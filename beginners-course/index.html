@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urban Sketching Beginners Course - Learn with Ian Fennelly</title>
+<meta name="description" content="Master urban sketching with Ian Fennelly's beginner-friendly online course. 4 workshops, lifetime access, 300+ five-star reviews. Start your artistic journey today.">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Urban Sketching Beginners Course - Learn with Ian Fennelly">
+<meta property="og:description" content="Go from complete beginner to confident urban sketcher in just 4 inspiring workshops with world-renowned artist Ian Fennelly.">
+<meta property="og:image" content="">
+<meta property="og:url" content="">
+
+<!-- Facebook Pixel - REPLACE WITH YOUR PIXEL ID -->
+<!--
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', 'YOUR_PIXEL_ID');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --charcoal:#2D2D2D;--charcoal-light:#3a3a3a;
+  --amber:#E8A838;--amber-hover:#d4952e;--amber-glow:rgba(232,168,56,.25);
+  --teal:#0D7377;--teal-dark:#095658;
+  --white:#FFFFFF;--off-white:#F5F3F0;--warm-grey:#E8E4DF;
+  --text:#333;--text-light:#666;--text-lighter:#999;
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'Source Sans 3','Source Sans Pro',system-ui,sans-serif;
+  --sketch:'Caveat',cursive;
+  --max-w:820px;
+  --section-pad:clamp(3rem,8vw,5.5rem) clamp(1.25rem,5vw,2rem);
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--text);line-height:1.65;background:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
+
+/* ===== UTILITY ===== */
+.container{max-width:var(--max-w);margin:0 auto}
+.section-pad{padding:var(--section-pad)}
+.bg-white{background:var(--white)}
+.bg-warm{background:var(--off-white)}
+.text-center{text-align:center}
+
+/* ===== CTA BUTTON ===== */
+.cta-btn{
+  display:inline-block;
+  background:var(--amber);color:var(--white);
+  font-family:var(--sans);font-weight:700;font-size:1.05rem;
+  padding:.95rem 2.4rem;border-radius:6px;border:none;cursor:pointer;
+  text-transform:none;letter-spacing:.01em;
+  box-shadow:0 4px 18px var(--amber-glow);
+  transition:all .25s ease;
+  text-align:center;
+}
+.cta-btn:hover{background:var(--amber-hover);transform:translateY(-2px);box-shadow:0 6px 24px var(--amber-glow)}
+.cta-btn:active{transform:translateY(0)}
+
+/* ===== SECTION HEADING ===== */
+.section-heading{
+  font-size:clamp(1.7rem,4.5vw,2.4rem);
+  margin-bottom:.6rem;color:var(--charcoal);
+}
+.section-subtext{
+  font-size:1.05rem;color:var(--text-light);
+  max-width:620px;margin:0 auto 2.2rem;line-height:1.7;
+}
+
+/* ===== HERO ===== */
+.hero{
+  position:relative;
+  background:var(--charcoal);color:var(--white);
+  padding:clamp(2.5rem,7vw,4.5rem) clamp(1.25rem,5vw,2rem) clamp(3rem,8vw,5rem);
+  overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 85%,rgba(13,115,119,.18),transparent),
+    radial-gradient(ellipse 60% 50% at 85% 20%,rgba(232,168,56,.12),transparent),
+    radial-gradient(ellipse 90% 70% at 50% 50%,rgba(60,55,50,.3),transparent);
+  pointer-events:none;
+}
+/* Watercolour-esque splatter accents */
+.hero::after{
+  content:'';position:absolute;top:-10%;right:-5%;
+  width:45%;height:70%;
+  background:radial-gradient(circle at 30% 40%,rgba(232,168,56,.08) 0%,transparent 60%),
+             radial-gradient(circle at 70% 60%,rgba(13,115,119,.06) 0%,transparent 50%);
+  filter:blur(40px);pointer-events:none;
+}
+.hero-inner{position:relative;z-index:1;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:2.5rem}
+@media(min-width:768px){.hero-inner{grid-template-columns:1fr 1fr;align-items:center;gap:3rem}}
+
+.hero-copy{max-width:540px}
+.hero-pre{
+  font-family:var(--sans);font-weight:500;font-size:.95rem;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.7);margin-bottom:.5rem;
+}
+.hero h1{
+  font-size:clamp(1.85rem,5vw,2.8rem);
+  line-height:1.15;margin-bottom:1.2rem;
+}
+.hero h1 span{color:var(--amber)}
+.hero-body{color:rgba(255,255,255,.82);font-size:1.02rem;margin-bottom:1.3rem;line-height:1.7}
+.hero-bullets{list-style:none;margin-bottom:1.4rem}
+.hero-bullets li{
+  padding:.35rem 0 .35rem 1.6rem;position:relative;
+  color:rgba(255,255,255,.85);font-size:.97rem;
+}
+.hero-bullets li::before{
+  content:'';position:absolute;left:0;top:.65rem;
+  width:8px;height:8px;border-radius:50%;background:var(--amber);
+}
+.hero-stars{color:var(--amber);font-size:.95rem;margin-bottom:1.6rem}
+.hero-stars span{color:rgba(255,255,255,.6)}
+
+/* Video placeholder */
+.hero-video{
+  position:relative;border-radius:10px;overflow:hidden;
+  background:var(--charcoal-light);
+  aspect-ratio:16/9;
+  box-shadow:0 12px 40px rgba(0,0,0,.35);
+}
+.hero-video::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(45,45,45,.6),rgba(45,45,45,.3));
+}
+.play-btn{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:68px;height:68px;border-radius:50%;
+  background:var(--amber);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(232,168,56,.4);
+  z-index:2;cursor:pointer;transition:transform .2s ease;
+}
+.play-btn:hover{transform:translate(-50%,-50%) scale(1.08)}
+.play-btn::after{
+  content:'';display:block;
+  width:0;height:0;
+  border-top:14px solid transparent;border-bottom:14px solid transparent;
+  border-left:22px solid var(--white);
+  margin-left:4px;
+}
+
+/* ===== COURSE DETAILS ===== */
+.details-list{list-style:none;margin:1.5rem 0 1.8rem;max-width:600px}
+.details-list li{
+  padding:.55rem 0 .55rem 2rem;position:relative;
+  font-size:1rem;color:var(--text);
+}
+.details-list li::before{
+  content:'';position:absolute;left:0;top:.75rem;
+  width:10px;height:10px;border-radius:50%;
+  background:var(--teal);opacity:.7;
+}
+.details-list li strong{color:var(--charcoal)}
+.details-closing{color:var(--text-light);font-size:1rem;margin-bottom:2rem;font-style:italic}
+
+/* ===== ABOUT INSTRUCTOR ===== */
+.instructor-grid{display:grid;grid-template-columns:1fr;gap:2rem;align-items:center}
+@media(min-width:640px){.instructor-grid{grid-template-columns:280px 1fr}}
+.instructor-photo{
+  width:100%;max-width:280px;aspect-ratio:3/4;
+  background:var(--warm-grey);border-radius:10px;
+  position:relative;overflow:hidden;margin:0 auto;
+}
+.instructor-photo::after{
+  content:'Instructor Photo';
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:var(--sketch);font-size:1.1rem;color:var(--text-lighter);
+}
+.instructor-text h2{margin-bottom:1rem}
+.instructor-text p{margin-bottom:1rem;color:var(--text-light);line-height:1.75}
+.instructor-text .bold-cta{
+  font-family:var(--serif);font-size:1.15rem;
+  color:var(--charcoal);font-weight:400;font-style:italic;
+  margin:1.5rem 0 0;
+}
+
+/* ===== WORKSHOPS / LESSONS ===== */
+.workshops{display:flex;flex-direction:column;gap:1rem;margin:2rem 0 2.5rem}
+.workshop{
+  border:1px solid var(--warm-grey);border-radius:8px;
+  background:var(--white);overflow:hidden;
+  transition:box-shadow .2s ease;
+}
+.workshop:hover{box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.workshop-header{
+  display:flex;align-items:center;gap:1rem;
+  padding:1rem 1.25rem;cursor:pointer;
+  background:var(--white);border:none;width:100%;text-align:left;
+  font-family:var(--serif);font-size:1.2rem;color:var(--charcoal);
+  transition:background .15s ease;
+}
+.workshop-header:hover{background:var(--off-white)}
+.workshop-num{
+  flex-shrink:0;width:36px;height:36px;border-radius:50%;
+  background:var(--teal);color:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--sans);font-size:.85rem;font-weight:700;
+}
+.workshop-arrow{
+  margin-left:auto;font-size:1.2rem;color:var(--text-lighter);
+  transition:transform .25s ease;flex-shrink:0;
+}
+.workshop.open .workshop-arrow{transform:rotate(180deg)}
+.workshop-body{
+  max-height:0;overflow:hidden;transition:max-height .35s ease;
+}
+.workshop.open .workshop-body{max-height:600px}
+.workshop-content{padding:0 1.25rem 1.25rem}
+.workshop-img{
+  width:100%;aspect-ratio:3/1;background:var(--off-white);
+  border-radius:6px;margin-bottom:1rem;position:relative;
+}
+.workshop-img::after{
+  content:'Workshop Image';position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);font-family:var(--sketch);color:var(--text-lighter);
+}
+.workshop-content p{color:var(--text-light);font-size:.95rem;line-height:1.7}
+.workshop-content ul{list-style:none;margin:.8rem 0 0}
+.workshop-content ul li{
+  padding:.3rem 0 .3rem 1.4rem;position:relative;
+  font-size:.93rem;color:var(--text-light);
+}
+.workshop-content ul li::before{
+  content:'';position:absolute;left:0;top:.6rem;
+  width:7px;height:7px;border-radius:50%;background:var(--amber);
+}
+
+/* ===== WHY DIFFERENT ===== */
+.diff-grid{display:grid;grid-template-columns:1fr;gap:2rem;margin:2rem 0 2.5rem}
+@media(min-width:600px){.diff-grid{grid-template-columns:1fr 1fr}}
+.diff-card{display:flex;gap:1rem;align-items:flex-start}
+.diff-icon{
+  flex-shrink:0;width:44px;height:44px;border-radius:50%;
+  background:var(--amber);opacity:.85;
+  margin-top:.2rem;
+}
+.diff-card h3{
+  font-family:var(--sketch);font-size:1.35rem;font-weight:700;
+  color:var(--charcoal);margin-bottom:.4rem;text-transform:uppercase;
+  letter-spacing:.02em;
+}
+.diff-card p{font-size:.93rem;color:var(--text-light);line-height:1.7}
+
+/* ===== STUDENT GALLERY ===== */
+.gallery-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+  gap:.75rem;margin:2rem 0 2.5rem;
+}
+.gallery-item{
+  aspect-ratio:1;background:var(--off-white);border-radius:6px;
+  position:relative;overflow:hidden;
+}
+.gallery-item::after{
+  content:'Student Work';position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);font-family:var(--sketch);
+  font-size:.85rem;color:var(--text-lighter);white-space:nowrap;
+}
+
+/* ===== BONUSES ===== */
+.bonuses{display:flex;flex-direction:column;gap:.75rem;margin:2rem 0 2.5rem}
+.bonus{border-radius:8px;overflow:hidden;border:1px solid var(--warm-grey)}
+.bonus-header{
+  display:flex;align-items:center;gap:.75rem;
+  padding:.9rem 1.25rem;cursor:pointer;
+  background:var(--amber);border:none;width:100%;text-align:left;
+  font-family:var(--sans);font-weight:700;font-size:1rem;color:var(--white);
+  transition:background .15s ease;
+}
+.bonus-header:hover{background:var(--amber-hover)}
+.bonus-header .gift{font-size:1.2rem}
+.bonus-arrow{
+  margin-left:auto;font-size:1rem;color:var(--white);
+  transition:transform .25s ease;
+}
+.bonus.open .bonus-arrow{transform:rotate(180deg)}
+.bonus-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.bonus.open .bonus-body{max-height:400px}
+.bonus-content{padding:1rem 1.25rem;background:var(--white)}
+.bonus-content h4{font-family:var(--sans);font-weight:600;margin-bottom:.5rem;color:var(--charcoal)}
+.bonus-content p{font-size:.93rem;color:var(--text-light);line-height:1.7}
+
+/* ===== TESTIMONIALS ===== */
+.testimonials-grid{
+  display:grid;grid-template-columns:1fr;gap:1.25rem;
+  margin:2rem 0 2.5rem;
+}
+@media(min-width:600px){.testimonials-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.testimonials-grid{grid-template-columns:1fr 1fr 1fr}}
+.testimonial-card{
+  background:var(--white);border-radius:10px;padding:1.5rem;
+  box-shadow:0 2px 10px rgba(0,0,0,.05);
+  border:1px solid rgba(0,0,0,.04);
+}
+.tc-avatar{
+  width:48px;height:48px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:.85rem;color:var(--white);
+  margin-bottom:.75rem;
+}
+.tc-name{font-weight:600;font-size:.95rem;margin-bottom:.5rem}
+.tc-text{font-size:.9rem;color:var(--text-light);line-height:1.7;margin-bottom:.75rem}
+.tc-stars{color:var(--amber);font-size:.9rem;letter-spacing:2px}
+
+/* ===== WHY TAKE ===== */
+.why-take p{color:var(--text-light);line-height:1.8;margin-bottom:1.2rem;font-size:1.02rem}
+
+/* ===== PRICING ===== */
+.pricing{background:var(--white);padding:0}
+.pricing-banner{
+  background:var(--teal);color:var(--white);
+  text-align:center;padding:2rem 1.5rem 1.5rem;
+  position:relative;
+}
+.pricing-banner h2{font-size:clamp(1.8rem,5vw,2.6rem);margin-bottom:.5rem}
+.pricing-banner p{font-size:1rem;opacity:.85;max-width:500px;margin:0 auto}
+.popular-badge{
+  position:absolute;top:1rem;right:1.5rem;
+  background:rgba(255,255,255,.15);color:var(--white);
+  font-family:var(--sans);font-weight:700;font-size:.7rem;
+  padding:.35rem .75rem;border-radius:4px;
+  text-transform:uppercase;letter-spacing:.1em;
+  transform:rotate(3deg);
+}
+.pricing-body{max-width:560px;margin:0 auto;padding:2rem clamp(1.25rem,5vw,2rem) 3rem;text-align:center}
+.price-breakdown{margin-bottom:1.5rem;font-size:1.05rem;line-height:2}
+.price-breakdown .label{color:var(--text-light);font-weight:500}
+.price-breakdown .old{text-decoration:line-through;color:var(--text-lighter)}
+.price-breakdown .free{color:var(--teal);font-weight:600}
+.price-breakdown .discount{color:var(--teal)}
+.price-total{
+  font-size:clamp(2rem,6vw,3rem);font-family:var(--serif);
+  color:var(--teal);margin:.5rem 0 1.5rem;
+}
+.price-total span{font-family:var(--sans);font-size:1rem;color:var(--text-light);display:block;margin-bottom:.25rem;font-weight:500}
+.pricing-checklist{
+  list-style:none;text-align:left;max-width:440px;margin:0 auto 2rem;
+}
+.pricing-checklist li{
+  padding:.5rem 0 .5rem 2rem;position:relative;
+  font-size:.95rem;color:var(--text);
+  border-bottom:1px solid var(--off-white);
+}
+.pricing-checklist li:last-child{border-bottom:none}
+.pricing-checklist li::before{
+  content:'✓';position:absolute;left:0;top:.5rem;
+  color:var(--teal);font-weight:700;font-size:1.1rem;
+}
+.buy-btn{
+  display:inline-block;
+  background:var(--amber);color:var(--white);
+  font-family:var(--sans);font-weight:800;font-size:1.3rem;
+  padding:1.1rem 3.5rem;border-radius:8px;border:none;cursor:pointer;
+  box-shadow:0 6px 24px var(--amber-glow);
+  transition:all .25s ease;text-transform:uppercase;letter-spacing:.05em;
+}
+.buy-btn:hover{background:var(--amber-hover);transform:translateY(-2px);box-shadow:0 8px 30px var(--amber-glow)}
+.payment-note{font-size:.85rem;color:var(--text-lighter);margin-top:1rem}
+
+/* ===== FAQ ===== */
+.faq-list{max-width:700px;margin:2rem auto 2.5rem;display:flex;flex-direction:column;gap:.5rem}
+.faq-item{border:1px solid var(--warm-grey);border-radius:8px;overflow:hidden;background:var(--white)}
+.faq-q{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 1.25rem;cursor:pointer;
+  background:none;border:none;width:100%;text-align:left;
+  font-family:var(--sans);font-weight:600;font-size:.98rem;color:var(--teal);
+  transition:color .15s ease;gap:1rem;
+}
+.faq-q:hover{color:var(--teal-dark)}
+.faq-icon{
+  flex-shrink:0;font-size:1.3rem;color:var(--text-lighter);
+  transition:transform .25s ease;
+}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-item.open .faq-a{max-height:800px}
+.faq-a-inner{padding:0 1.25rem 1.25rem;font-size:.93rem;color:var(--text-light);line-height:1.75}
+.faq-a-inner p{margin-bottom:.75rem}
+.faq-a-inner p:last-child{margin-bottom:0}
+
+/* ===== FOOTER ===== */
+footer{
+  background:var(--charcoal);color:rgba(255,255,255,.5);
+  text-align:center;padding:2rem 1.5rem;font-size:.85rem;
+}
+.footer-socials{display:flex;justify-content:center;gap:1.25rem;margin-bottom:1rem}
+.footer-socials a{
+  width:40px;height:40px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.15);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,.5);font-size:.85rem;
+  transition:all .2s ease;
+}
+.footer-socials a:hover{border-color:var(--amber);color:var(--amber)}
+
+/* ===== STICKY MOBILE BAR ===== */
+.sticky-bar{
+  display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;
+  background:var(--white);
+  padding:.75rem 1rem;
+  box-shadow:0 -4px 20px rgba(0,0,0,.1);
+  border-top:1px solid var(--warm-grey);
+}
+.sticky-bar .cta-btn{width:100%;padding:.85rem 1rem;font-size:1rem}
+@media(max-width:767px){
+  .sticky-bar{display:block}
+  body{padding-bottom:70px}
+}
+
+/* ===== SOCIAL PROOF POPUP ===== */
+.proof-popup{
+  position:fixed;bottom:90px;left:1rem;z-index:99;
+  background:var(--white);border-radius:8px;
+  box-shadow:0 4px 20px rgba(0,0,0,.12);
+  padding:.75rem 1rem;display:flex;align-items:center;gap:.75rem;
+  max-width:320px;
+  transform:translateX(-120%);opacity:0;
+  transition:all .4s cubic-bezier(.4,0,.2,1);
+}
+.proof-popup.show{transform:translateX(0);opacity:1}
+@media(min-width:768px){.proof-popup{bottom:1.5rem}}
+.proof-icon{
+  flex-shrink:0;width:36px;height:36px;border-radius:50%;
+  background:var(--off-white);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;
+}
+.proof-text{font-size:.82rem;line-height:1.4}
+.proof-name{font-weight:600;color:var(--charcoal)}
+.proof-action{color:var(--text-light)}
+.proof-time{color:var(--text-lighter);font-size:.75rem}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <p class="hero-pre">Master The Art Of Urban Sketching</p>
+      <h1>With <span>Ian Fennelly</span> &ndash; World-Renowned Artist &amp; Instructor</h1>
+      <p class="hero-body">Unlock your inner artist with Ian Fennelly's engaging and easy-to-follow online course. In just four inspiring workshops, you'll go from complete beginner to confident urban sketcher, learning to capture the charm of cityscapes with watercolour and ink.</p>
+      <ul class="hero-bullets">
+        <li><strong>Step-by-Step Guidance:</strong> Easy instructions for all levels.</li>
+        <li><strong>Exclusive Techniques:</strong> Pro tips for stunning sketches.</li>
+        <li><strong>Lifetime Access:</strong> Learn anytime, anywhere.</li>
+      </ul>
+      <p class="hero-stars">300+ &#9733;&#9733;&#9733;&#9733;&#9733; <span>reviews</span></p>
+      <a href="#buy" class="cta-btn">Start Your Artistic Journey Now</a>
+    </div>
+    <div class="hero-video">
+      <div class="play-btn" aria-label="Play video"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COURSE DETAILS ===== -->
+<section class="section-pad bg-white">
+  <div class="container">
+    <h2 class="section-heading">Course Details</h2>
+    <p class="section-subtext" style="margin-left:0;text-align:left">Discover Ian Fennelly's signature urban sketching techniques through easy-to-follow lessons. Perfect for beginners and aspiring artists alike, this course guides you from the basics to advanced concepts, ensuring your sketches capture the essence of any location.</p>
+    <ul class="details-list">
+      <li><strong>Selecting Perfect Locations:</strong> Find inspiration everywhere.</li>
+      <li><strong>Unique Pen &amp; Ink Techniques:</strong> Enhance your sketches with professional precision.</li>
+      <li><strong>Mastering Watercolour:</strong> Bring your sketches to life with vibrant colours and expressive washes.</li>
+      <li><strong>Simplifying Perspective &amp; Proportions:</strong> Create accurate yet dynamic compositions.</li>
+      <li><strong>Sketching from Photos:</strong> Capture scenes even when you're at home.</li>
+    </ul>
+    <p class="details-closing">Ian's proven techniques are broken down into simple, actionable steps, empowering you to create stunning sketches confidently from the comfort of your home.</p>
+    <a href="#buy" class="cta-btn">Start Your Artistic Journey Now</a>
+  </div>
+</section>
+
+<!-- ===== ABOUT INSTRUCTOR ===== -->
+<section class="section-pad bg-warm">
+  <div class="container">
+    <div class="instructor-grid">
+      <div class="instructor-photo"></div>
+      <div class="instructor-text">
+        <h2 class="section-heading">About Your Instructor</h2>
+        <p>Ian Fennelly is a world-renowned urban sketcher celebrated for his vibrant style, captivating on-location sketches, and engaging teaching methods. With a dedicated global following, Ian has inspired thousands to embrace their creativity through sketching.</p>
+        <p>Now, for the first time, Ian shares his exclusive step-by-step methodology online, guiding you personally through every technique needed to master the art of urban sketching &mdash; right from your home.</p>
+        <p class="bold-cta">Join Ian and begin your journey to artistic confidence today!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LESSONS ===== -->
+<section class="section-pad bg-white">
+  <div class="container">
+    <h2 class="section-heading text-center">Your Lessons: What You'll Create</h2>
+    <p class="section-subtext">This comprehensive course includes four detailed online workshops designed to rapidly build your urban sketching skills and artistic confidence.</p>
+    <div class="workshops">
+      <div class="workshop open">
+        <button class="workshop-header" onclick="togglePanel(this.parentElement)">
+          <span class="workshop-num">1</span>
+          English Bridge
+          <span class="workshop-arrow">&#9662;</span>
+        </button>
+        <div class="workshop-body">
+          <div class="workshop-content">
+            <div class="workshop-img"></div>
+            <p>In this first online workshop, you will learn how to draw a beautiful scene of the English Bridge from the historical town of Shrewsbury, England. The shapes in this scene, the strong perspective of the bridge and the beautiful protruding church, make it the perfect starting point for your beginner's sketching journey.</p>
+            <p style="margin-top:.5rem">You will learn Ian's methods for finding the best spot to draw from, sketching in pencil, getting the proportions right, drawing wonderful perspective, simplifying your sketch, emphasising with pen, drawing reflections, applying colours, hatching techniques, drawing on paint and more.</p>
+          </div>
+        </div>
+      </div>
+      <div class="workshop">
+        <button class="workshop-header" onclick="togglePanel(this.parentElement)">
+          <span class="workshop-num">2</span>
+          Tanners Wine Merchants
+          <span class="workshop-arrow">&#9662;</span>
+        </button>
+        <div class="workshop-body">
+          <div class="workshop-content">
+            <div class="workshop-img"></div>
+            <p>In this lesson, you'll capture the character and charm of the iconic Tanners Wine Merchants building. Ian guides you step-by-step to:</p>
+            <ul>
+              <li>Create accurate architectural proportions effortlessly.</li>
+              <li>Emphasise textures and depth with dynamic pen strokes.</li>
+              <li>Bring buildings to life with vibrant, expressive watercolour techniques.</li>
+              <li>Confidently capture complex details and historic atmosphere.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="workshop">
+        <button class="workshop-header" onclick="togglePanel(this.parentElement)">
+          <span class="workshop-num">3</span>
+          Church Street
+          <span class="workshop-arrow">&#9662;</span>
+        </button>
+        <div class="workshop-body">
+          <div class="workshop-content">
+            <div class="workshop-img"></div>
+            <p>Sketch the bustling, vibrant atmosphere of Church Street with precision and style. You'll learn how to:</p>
+            <ul>
+              <li>Quickly simplify complex street scenes into clear sketches.</li>
+              <li>Capture engaging perspectives that draw viewers in.</li>
+              <li>Enhance sketches with effective ink detailing and shadows.</li>
+              <li>Apply watercolour confidently to convey mood and energy.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="workshop">
+        <button class="workshop-header" onclick="togglePanel(this.parentElement)">
+          <span class="workshop-num">4</span>
+          Wyle Cop
+          <span class="workshop-arrow">&#9662;</span>
+        </button>
+        <div class="workshop-body">
+          <div class="workshop-content">
+            <p>Discover the secrets to sketching Wyle Cop, famous for its charming buildings and character-filled streetscape. This workshop teaches you to:</p>
+            <ul>
+              <li>Master challenging perspectives with ease and accuracy.</li>
+              <li>Depict architectural character and personality through simple shapes.</li>
+              <li>Use creative ink techniques to enhance visual appeal.</li>
+              <li>Combine pen and watercolour to create engaging urban sketches.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <a href="#buy" class="cta-btn">Enrol Now to Start Sketching!</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY DIFFERENT ===== -->
+<section class="section-pad bg-warm">
+  <div class="container">
+    <h2 class="section-heading text-center">Why This Course Is Different</h2>
+    <p class="section-subtext">This Urban Sketching for Beginners course has some notable differences to any other courses you may have taken:</p>
+    <div class="diff-grid">
+      <div class="diff-card">
+        <div class="diff-icon"></div>
+        <div>
+          <h3>A Focus on Fundamentals</h3>
+          <p>Ian assumes no prior knowledge or skills. You'll begin in the most simplistic form, with a pencil and a blank page. Then, Ian guides you from the very basics &mdash; showing you how to loosely sketch out your lines and shapes, before slowly and methodically building up your picture, piece-by-piece.</p>
+        </div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon"></div>
+        <div>
+          <h3>Pencil Sketching</h3>
+          <p>For the first time, Ian starts each workshop with a pencil and rubber, instead of a fine liner. This means you get to make mistakes, rub out and redo until you have your basic sketch down. If trying to be too perfect has held you back, these first lessons will be a game-changer.</p>
+        </div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon"></div>
+        <div>
+          <h3>Skill Building Exercises</h3>
+          <p>Each exercise starts with a demonstration from Ian, then deep dives into a specific technique that you will practise separately, before applying it to your main picture. Exercises include hatching, drawing perspective, penwork, drawing on paint, understanding colour, and more.</p>
+        </div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon"></div>
+        <div>
+          <h3>Progressive Learning</h3>
+          <p>Each carefully crafted lesson builds on the previous one through four comprehensive workshops. By the time you complete the final workshop, you will have developed the skills and confidence to sketch with a high degree of competence.</p>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <a href="#buy" class="cta-btn">Start Sketching with Confidence Today!</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STUDENT GALLERY ===== -->
+<section class="section-pad bg-white">
+  <div class="container text-center">
+    <h2 class="section-heading">See What Students Are Creating</h2>
+    <p class="section-subtext">Explore stunning sketches from Ian Fennelly's students &mdash; many started as complete beginners. Imagine what you can achieve!</p>
+    <div class="gallery-grid">
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+      <div class="gallery-item"></div>
+    </div>
+    <a href="#buy" class="cta-btn">Start Sketching with Confidence Today!</a>
+  </div>
+</section>
+
+<!-- ===== BONUSES ===== -->
+<section class="section-pad bg-white" style="padding-top:0">
+  <div class="container">
+    <h2 class="section-heading text-center">Exclusive Bonuses To Supercharge Your Sketching Skills!</h2>
+    <p class="section-subtext">When you invest in this training course, you'll also get these 4 bonuses included absolutely FREE (Worth <span class="priceBonusALL">&pound;208.00</span>).</p>
+    <div class="bonuses">
+      <div class="bonus open">
+        <button class="bonus-header" onclick="togglePanel(this.parentElement)">
+          <span class="gift">&#127873;</span>
+          Free Bonus #1 (Value: <span class="priceBonus1">&pound;39.00</span>)
+          <span class="bonus-arrow">&#9662;</span>
+        </button>
+        <div class="bonus-body">
+          <div class="bonus-content">
+            <h4>Rapid Skill-Building Exercise Bundle</h4>
+            <p>Accelerate your sketching skills with Ian's exclusive Rapid Skill-Building Exercises. These quick, fun, and practical exercises teach essential techniques like perspective, hatching, textures, <span class="priceColour">colour</span> blending, and more. Effortlessly elevate your sketches from basic to captivating!</p>
+          </div>
+        </div>
+      </div>
+      <div class="bonus">
+        <button class="bonus-header" onclick="togglePanel(this.parentElement)">
+          <span class="gift">&#127873;</span>
+          Free Bonus #2 (Value: <span class="priceBonus2">&pound;79.95</span>)
+          <span class="bonus-arrow">&#9662;</span>
+        </button>
+        <div class="bonus-body">
+          <div class="bonus-content">
+            <h4>Introduction to Urban Sketching Bonus Module</h4>
+            <p>Brand new to sketching? This exclusive bonus module is your perfect starting point. Ian gently guides you from your very first pencil stroke, helping you master the basics of perspective, composition, and <span class="priceColour">colour</span> theory. Quickly overcome hesitation and build artistic confidence &mdash; step-by-step.</p>
+          </div>
+        </div>
+      </div>
+      <div class="bonus">
+        <button class="bonus-header" onclick="togglePanel(this.parentElement)">
+          <span class="gift">&#127873;</span>
+          Free Bonus #3 (Value: <span class="priceBonus3">&pound;99.95</span>)
+          <span class="bonus-arrow">&#9662;</span>
+        </button>
+        <div class="bonus-body">
+          <div class="bonus-content">
+            <h4>Urban Sketchers Feedback Gallery</h4>
+            <p>Gain exclusive access to our private, supportive feedback gallery. Share your sketches in a welcoming community, get personalised feedback, and watch your skills flourish. This positive, judgement-free space helps you overcome challenges, gain inspiration, and boost your confidence.</p>
+          </div>
+        </div>
+      </div>
+      <div class="bonus">
+        <button class="bonus-header" onclick="togglePanel(this.parentElement)">
+          <span class="gift">&#127873;</span>
+          Free Bonus #4 (Value: <span class="priceBonusALL2">&pound;99.95</span>)
+          <span class="bonus-arrow">&#9662;</span>
+        </button>
+        <div class="bonus-body">
+          <div class="bonus-content">
+            <h4>&ldquo;Historic City Sketching Workshop&rdquo;</h4>
+            <p>Enjoy special access to Ian's recorded 3-hour live workshop. Sketch alongside Ian as he reveals expert techniques for capturing historic architecture and iconic landmarks. Featuring a bonus Q&amp;A session, this intimate training provides invaluable insight into Ian's creative process.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <a href="#buy" class="cta-btn">Start Sketching with Confidence Today!</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="section-pad bg-warm">
+  <div class="container text-center">
+    <h2 class="section-heading">Hear What Our Students Are Saying</h2>
+    <p class="section-subtext">Thousands of students &mdash; many complete beginners &mdash; have transformed their skills and confidence with Ian Fennelly's proven sketching methods.</p>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="tc-avatar" style="background:#9B7ED8">LB</div>
+        <div class="tc-name">Lynda Barlow</div>
+        <div class="tc-text">I like Ian's use of colour. It was good to break out of my need for realistic colours, and to also limit myself to a few complimentary colours and see what happens. Ian's emphasis on having fun rather than reaching for perfection is also useful to be reminded of.</div>
+        <div class="tc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="tc-avatar" style="background:#5BA68A">JB</div>
+        <div class="tc-name">Jennifer Brubaker</div>
+        <div class="tc-text">Ian was very thorough and extremely helpful with new tips and techniques!!</div>
+        <div class="tc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="tc-avatar" style="background:#D4895A">MA</div>
+        <div class="tc-name">Mary</div>
+        <div class="tc-text">I believed I could draw and fell in love with this style the moment I saw it. Indeed it is a huge challenge but I'm loving the learning! The watercolor is difficult for me but I'm gonna get it!</div>
+        <div class="tc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="tc-avatar" style="background:#5A8FD4">MB</div>
+        <div class="tc-name">Mrs Wendy Bakel</div>
+        <div class="tc-text">Absolutely love this course. Ian's teaching style is so relaxed and encouraging. I've learned more in the first two workshops than I did in years of trying on my own.</div>
+        <div class="tc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="tc-avatar" style="background:#C7A245">AF</div>
+        <div class="tc-name">Alistair Flood</div>
+        <div class="tc-text">This course gave me a solid foundation to move forward with urban sketching. The progressive approach really works and I can see the improvement in each piece I do.</div>
+        <div class="tc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="tc-avatar" style="background:#8A6BB5">SL</div>
+        <div class="tc-name">Simon L.</div>
+        <div class="tc-text">Never thought I could sketch buildings but after this course I'm hooked. The way Ian breaks everything down makes it feel achievable. Highly recommend to anyone thinking about it.</div>
+        <div class="tc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+    </div>
+    <div style="margin-top:1rem">
+      <a href="#buy" class="cta-btn">Start Sketching with Confidence Today!</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY TAKE ===== -->
+<section class="section-pad bg-white">
+  <div class="container why-take">
+    <h2 class="section-heading">Why Take The Urban Sketching For Beginners Course?</h2>
+    <p>Creating this online course has been a labour of love for Ian. He's poured his heart into it and everything he knows from decades as a professional artist, and travelling the world training hundreds of aspiring urban sketchers.</p>
+    <p>But getting personal training from a much sought-after artist like Ian is neither cheap nor practical for most people. A week-long sketching workshop can set you back thousands of pounds.</p>
+    <p>With the Urban Sketching for Beginners online course, you're getting the same training from a world leading artist and teacher &ndash; for a fraction of the cost. What's more, it is completely self-paced, so you get to learn it all from the comfort of home, in your own time.</p>
+    <p>If you're ready to skip the vast learning curve (and expense), and get the training that will transform you from a complete beginner to a confident and skilled sketcher creating beautiful artwork that fills you with pride, then take the Urban Sketching for Beginners course today.</p>
+    <p><strong>You'll be astonished at the speed and the results you achieve.</strong></p>
+    <div style="margin-top:1.5rem">
+      <a href="#buy" class="cta-btn">Start Sketching with Confidence Today!</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section id="buy" class="pricing">
+  <div class="pricing-banner">
+    <span class="popular-badge">Popular</span>
+    <h2>Get 50% Off Today!</h2>
+    <p>For a limited time, you can buy this course at half-price. Here's what's included when you invest in Ian's training today:</p>
+  </div>
+  <div class="pricing-body">
+    <div class="price-breakdown">
+      <strong class="label">RRP:</strong> <span class="priceFull">&pound;99.00</span><br>
+      <strong class="label">Bonuses:</strong> <span class="old priceBonusALL3">&pound;208.00</span> <span class="free">FREE</span><br>
+      <strong class="label">Discount:</strong> <span class="discount">-<span class="priceDiscount">&pound;50.00</span></span>
+    </div>
+    <div class="price-total">
+      <span>TOTAL PRICE:</span>
+      <span class="priceOffer">&pound;49</span>
+    </div>
+    <ul class="pricing-checklist">
+      <li>4 online workshops delivered by Ian Fennelly</li>
+      <li>FREE BONUS 1: Rapid Skill-Building Exercise Bundle (<span class="priceBonus1b">&pound;39.00</span> Value)</li>
+      <li>FREE BONUS 2: Introduction to Urban Sketching (<span class="priceBonus2b">&pound;39.00</span> Value)</li>
+      <li>FREE BONUS 3: Urban Sketch Feedback Gallery (<span class="priceBonus3b">&pound;99.95</span> Value)</li>
+      <li>FREE BONUS 4: 3-Hour Private Training Workshop (<span class="priceBonus4b">&pound;99.95</span> Value)</li>
+      <li>Downloadable Workfiles</li>
+      <li>24/7 Lifetime Access (it never expires)</li>
+      <li>30-Day Money Back Guarantee</li>
+    </ul>
+    <a href="#" class="buy-btn">Buy Now</a>
+    <p class="payment-note">Interest-free payment plan available</p>
+  </div>
+</section>
+
+<!-- ===== STILL UNDECIDED ===== -->
+<section class="section-pad bg-white">
+  <div class="container text-center">
+    <h2 class="section-heading">Still Undecided?</h2>
+    <p class="section-subtext">Watch the video below where Ian answers many of the most commonly asked questions about the Urban Sketching for Beginners course:</p>
+    <div style="max-width:640px;margin:0 auto 2rem;aspect-ratio:16/9;background:var(--off-white);border-radius:10px;position:relative">
+      <div class="play-btn" aria-label="Play video"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section-pad bg-warm">
+  <div class="container">
+    <h2 class="section-heading text-center">Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this.parentElement)">How easy is this course for a complete beginner? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>In this course Ian has assumed <strong>no prior knowledge</strong>, skills or experience. Starting with a pencil and a blank page, you'll be guided step-by-step, from drawing your first line, to slowly building up your picture, piece-by-piece.</p>
+          <p>You'll learn how to draw the right shapes, how to get the proportions right on your page first and then how to carefully layer your picture with more detail, colour and tone.</p>
+          <p>You'll be amazed at the speed and the results you achieve, even if you haven't picked up a pencil since high school.</p>
+        </div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this.parentElement)">Can I follow along with Ian while taking this course? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>Yes. This is over-my-shoulder learning with Ian Fennelly. Ian is an experienced and engaging teacher and has broken each workshop down into easy-to-follow stages. Within each of those stages he takes you through each step in the process, while explaining everything he is doing, slowly and methodically.</p>
+          <p>You can also slow down, pause, or speed up each tutorial to suit your own style of learning. And with lifetime access, you can watch the course over and over again.</p>
+        </div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this.parentElement)">I'm not a beginner, how will this course help me? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>While this course has been designed for beginners, many experienced sketchers take it to learn more about Ian's specific techniques and style, and his particular thinking behind certain components of sketching, such as colour choice.</p>
+          <p>Along with the sketching side, you're also learning other important factors of urban sketching, such as how Ian chooses the perfect locations and viewpoints, how Ian deals with the general public, and how he infuses his work with storytelling and the subtle details he brings into his work.</p>
+        </div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this.parentElement)">Do I get lifetime course access? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>Yes, you'll get lifetime access to the course and all of the supporting downloads and resources that come with it. It never expires which means that you can learn in your own time and at your own pace.</p>
+        </div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this.parentElement)">How easy is this online course to use? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>Our learning platform is super simple to use. Each tutorial is delivered by video and requires nothing more than clicking the play button.</p>
+        </div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this.parentElement)">Does this course include subtitles? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>Yes, this course includes subtitles in English, French, Spanish, and German to enhance your learning experience and accessibility.</p>
+        </div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this.parentElement)">What is the difference between this beginners course and the other courses you offer? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p><strong>1. Pencil:</strong> Ian starts this Beginner's course using a pencil, instead of a fineliner. Pencil is much more forgiving and allows you to make mistakes, rub out, and redo. It's perfect for beginners.</p>
+          <p><strong>2. Exercises:</strong> This course includes a series of technical exercises that are separate from the main course. This allows you to practice specific techniques on a separate piece of paper, before you apply them to your main picture.</p>
+          <p><strong>3. Skill Building:</strong> In this beginners course, each of the four workshops builds on the skills you learned in the previous one. So, as you progress through the course, you are adding new skills while building your competence and confidence, step-by-step.</p>
+        </div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this.parentElement)">If I'm not 100% thrilled can I get my money back? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>Yes. If you're anything less than thrilled with the training and value that we've packed into this course then just contact our support team within 30 days and we'll cheerfully refund your money in full, immediately.</p>
+          <p>There's no hoops to jump through. Even better, as a thank you for trying the course we will let you keep the 3-hour Historic City Sketching Workshop worth &pound;99.95, with our compliments!</p>
+        </div></div>
+      </div>
+    </div>
+    <div class="text-center">
+      <a href="#buy" class="cta-btn">Start Your Artistic Journey Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-socials">
+    <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <a href="#" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a>
+  </div>
+  <p>&copy; 2026 Urban Sketch Course. All rights reserved.</p>
+</footer>
+
+<!-- ===== STICKY MOBILE BAR ===== -->
+<div class="sticky-bar">
+  <a href="#buy" class="cta-btn">Get 50% Off &mdash; Enrol Now!</a>
+</div>
+
+<!-- ===== SOCIAL PROOF POPUP ===== -->
+<div class="proof-popup" id="proofPopup">
+  <div class="proof-icon">&#128077;</div>
+  <div class="proof-text">
+    <div class="proof-name" id="proofName"></div>
+    <div class="proof-action">Purchased the Beginners Course</div>
+    <div class="proof-time" id="proofTime"></div>
+  </div>
+</div>
+
+<script>
+/* Toggle panels (workshops & bonuses) */
+function togglePanel(el){el.classList.toggle('open')}
+
+/* Toggle FAQ */
+function toggleFaq(el){
+  const wasOpen=el.classList.contains('open');
+  el.parentElement.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open')});
+  if(!wasOpen)el.classList.add('open');
+}
+
+/* Social proof popup */
+(function(){
+  var names=[
+    {n:'John N.',t:'5 minutes ago'},{n:'Sarah D.',t:'12 minutes ago'},
+    {n:'Mike O.',t:'18 minutes ago'},{n:'Tuqa N.',t:'25 minutes ago'},
+    {n:'Liz W.',t:'32 minutes ago'},{n:'Simon L.',t:'41 minutes ago'},
+    {n:'Emma R.',t:'48 minutes ago'},{n:'David K.',t:'55 minutes ago'},
+    {n:'Helen P.',t:'1 hour ago'},{n:'James T.',t:'1 hour ago'}
+  ];
+  var popup=document.getElementById('proofPopup');
+  var nameEl=document.getElementById('proofName');
+  var timeEl=document.getElementById('proofTime');
+  var i=0;
+  function show(){
+    nameEl.textContent=names[i].n;
+    timeEl.textContent=names[i].t;
+    popup.classList.add('show');
+    setTimeout(function(){popup.classList.remove('show')},4000);
+    i=(i+1)%names.length;
+  }
+  setTimeout(show,3000);
+  setInterval(show,12000);
+})();
+
+/* Fade-in on scroll */
+(function(){
+  var els=document.querySelectorAll('.fade-in');
+  if(!els.length)return;
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})
+  },{threshold:0.15});
+  els.forEach(function(el){obs.observe(el)});
+})();
+
+/* Geo-pricing */
+(function(){
+  function usa(){
+    setAll('.priceOffer','$69');setAll('.priceFull','$138.00');
+    setAll('.priceDiscount','$69.00');setAll('.priceBonus1','$59.00');
+    setAll('.priceBonus2','$99.00');setAll('.priceBonus3','$89.00');
+    setAll('.priceBonusALL','$247.00');setAll('.priceColour','color');
+    setAll('.priceBonus1b','$59.00');setAll('.priceBonus2b','$99.00');
+    setAll('.priceBonus3b','$89.00');setAll('.priceBonus4b','$89.00');
+    setAll('.priceBonusALL3','$247.00');
+  }
+  function uk(){
+    setAll('.priceOffer','\u00A349');setAll('.priceFull','\u00A399.00');
+    setAll('.priceDiscount','\u00A350.00');setAll('.priceBonus1','\u00A339.00');
+    setAll('.priceBonus2','\u00A379.00');setAll('.priceBonus3','\u00A380.00');
+    setAll('.priceBonusALL','\u00A3208.00');setAll('.priceColour','colour');
+    setAll('.priceBonus1b','\u00A339.00');setAll('.priceBonus2b','\u00A339.00');
+    setAll('.priceBonus3b','\u00A399.95');setAll('.priceBonus4b','\u00A399.95');
+    setAll('.priceBonusALL3','\u00A3208.00');
+  }
+  function aus(){
+    setAll('.priceOffer','A$90');setAll('.priceFull','A$180.00');
+    setAll('.priceDiscount','A$90.00');setAll('.priceBonus1','A$79.00');
+    setAll('.priceBonus2','A$199.00');setAll('.priceBonus3','A$119.00');
+    setAll('.priceBonusALL','A$397.00');setAll('.priceColour','colour');
+    setAll('.priceBonus1b','A$79.00');setAll('.priceBonus2b','A$199.00');
+    setAll('.priceBonus3b','A$119.00');setAll('.priceBonus4b','A$119.00');
+    setAll('.priceBonusALL3','A$397.00');
+  }
+  function eur(){
+    setAll('.priceOffer','\u20AC49');setAll('.priceFull','\u20AC98.00');
+    setAll('.priceDiscount','\u20AC49.00');setAll('.priceBonus1','\u20AC59.00');
+    setAll('.priceBonus2','\u20AC79.00');setAll('.priceBonus3','\u20AC80.00');
+    setAll('.priceBonusALL','\u20AC218.00');setAll('.priceColour','colour');
+    setAll('.priceBonus1b','\u20AC59.00');setAll('.priceBonus2b','\u20AC79.00');
+    setAll('.priceBonus3b','\u20AC80.00');setAll('.priceBonus4b','\u20AC80.00');
+    setAll('.priceBonusALL3','\u20AC218.00');
+  }
+  function ca(){
+    setAll('.priceOffer','C$79');setAll('.priceFull','C$159.00');
+    setAll('.priceDiscount','C$80.00');setAll('.priceBonus1','C$79.00');
+    setAll('.priceBonus2','C$99.00');setAll('.priceBonus3','C$89.00');
+    setAll('.priceBonusALL','C$267.00');setAll('.priceColour','color');
+    setAll('.priceBonus1b','C$79.00');setAll('.priceBonus2b','C$99.00');
+    setAll('.priceBonus3b','C$89.00');setAll('.priceBonus4b','C$89.00');
+    setAll('.priceBonusALL3','C$267.00');
+  }
+  function setAll(sel,val){
+    document.querySelectorAll(sel).forEach(function(el){el.textContent=val});
+  }
+  /* Default to UK pricing; replace with GeoIP lookup in production */
+  /* To enable geo-pricing, integrate with a GeoIP service like geoip2 and
+     call the appropriate function based on the visitor's country code.
+     Example with geoip2:
+     try{geoip2.country(function(loc){
+       var c=loc.country.iso_code;
+       if(c==='GB'||c==='IM'||c==='JE'||c==='GG')uk();
+       else if(c==='AU')aus();
+       else if(['AT','BE','CY','DE','DK','EE','FI','FR','GR','IS','IE','IT','LV','LT','LU','PT','SK','SI','NL','NO','ES'].indexOf(c)>-1)eur();
+       else if(c==='CA')ca();
+       else usa();
+     },function(){usa()})}catch(e){usa()} */
+  uk();
+})();
+</script>
+
+</body>
+</html>
