@@ -1,0 +1,2 @@
+# MCP server config contains API tokens - do not commit
+.mcp.json
