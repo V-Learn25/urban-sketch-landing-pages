@@ -5,5 +5,17 @@
   "assets": {
     "directory": "./",
     "binding": "ASSETS"
+  },
+  // Non-secret configuration variables
+  // These persist across deployments (unlike dashboard secrets which can vanish)
+  "vars": {
+    "AFFWP_PARENT_URL": "https://learn.urbansketch.com",
+    "AFFWP_REF_VAR": "a",
+    "AFFWP_COOKIE_DAYS": "400",
+    "AFFWP_CREDIT_LAST": "true"
   }
+  // AFFWP_PUBLIC_KEY and AFFWP_TOKEN must be set as secrets via:
+  //   npx wrangler pages secret put AFFWP_PUBLIC_KEY --project-name=urban-sketch-landing-pages
+  //   npx wrangler pages secret put AFFWP_TOKEN --project-name=urban-sketch-landing-pages
+  // Or via the Cloudflare dashboard: Settings > Environment variables > Production
 }
