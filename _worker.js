@@ -40,6 +40,7 @@ export default {
           'cookie': request.headers.get('cookie') ? 'present' : 'none',
         },
         api_test: null,
+        asset_fetch_test: null,
       };
 
       // Test API connectivity
@@ -60,6 +61,25 @@ export default {
         } catch (err) {
           debug.api_test = { error: err.message };
         }
+      }
+
+      // Test asset fetching (simulates what happens on a real page request)
+      try {
+        const testAssetUrl = new URL('/beginners-course/', url.origin);
+        const testAssetReq = new Request(testAssetUrl.toString(), { method: 'GET' });
+        const testAssetResp = await env.ASSETS.fetch(testAssetReq);
+        const assetContentType = testAssetResp.headers.get('content-type') || 'NOT SET';
+        const assetHeaders = {};
+        testAssetResp.headers.forEach((val, key) => { assetHeaders[key] = val; });
+        debug.asset_fetch_test = {
+          requested_url: testAssetUrl.toString(),
+          status: testAssetResp.status,
+          content_type: assetContentType,
+          all_headers: assetHeaders,
+          is_html: assetContentType.includes('text/html'),
+        };
+      } catch (err) {
+        debug.asset_fetch_test = { error: err.message };
       }
 
       return new Response(JSON.stringify(debug, null, 2), {
