@@ -1,8 +1,11 @@
-# Cloudflare Pages + AffiliateWP Cross-Domain Tracking
+# Cloudflare Pages + AffiliateWP Cross-Domain Tracking + A/B Testing
 
 ## What This Project Does
 
-Static HTML landing pages hosted on Cloudflare Pages, with a Cloudflare Worker that replicates the "child site" behaviour of the AffiliateWP Cross Domain Tracker plugin. When a visitor arrives via an affiliate link (e.g. `?a=36`), the worker creates a visit in AffiliateWP via REST API, sets tracking cookies, and client-side JS rewrites outbound links to carry the attribution to the parent WordPress site.
+Static HTML landing pages hosted on Cloudflare Pages, with a Cloudflare Worker that:
+1. **Affiliate tracking** — replicates the "child site" behaviour of the AffiliateWP Cross Domain Tracker plugin (creates visits via REST API, sets cookies, rewrites outbound links)
+2. **A/B split testing** — routes visitors to page variants at the edge (zero latency), with cookie-based sticky sessions
+3. **Heatmap analytics** — Microsoft Clarity tags each session with the active variant, so you can filter heatmaps and recordings per variant
 
 ## Architecture
 
@@ -10,9 +13,13 @@ Static HTML landing pages hosted on Cloudflare Pages, with a Cloudflare Worker t
 Visitor clicks affiliate link
   -> go.urbansketchcourse.com/beginners-course/?a=36
   -> Cloudflare Worker intercepts (run_worker_first: true)
+  -> Worker checks for active A/B test on this path
+  -> If A/B test active: assigns variant via cookie, serves variant HTML
   -> Worker calls AffiliateWP REST API: POST /wp-json/affwp/v1/visits
   -> Worker sets cookies: affwp_affiliate_id, affwp_visit_id, affwp_campaign
-  -> Worker serves static HTML page
+  -> HTMLRewriter injects Clarity variant tag into <head>
+  -> Worker serves static HTML page (with Clarity script)
+  -> Clarity records session tagged with variant name
   -> Client-side JS reads cookies, rewrites Buy Now links to include ?a=36&visit={id}
   -> Visitor clicks Buy Now -> learn.urbansketch.com picks up attribution
 ```
@@ -21,12 +28,13 @@ Visitor clicks affiliate link
 
 ```
 /
-  _worker.js           - Cloudflare Worker (server-side tracking)
+  _worker.js           - Cloudflare Worker (affiliate tracking + A/B routing + Clarity tagging)
   wrangler.jsonc       - Cloudflare config (vars, assets, worker entry point)
   .assetsignore        - Prevents _worker.js from being served as a static file
   CLAUDE.md            - This file
   beginners-course/
-    index.html         - Landing page with client-side link rewriting JS
+    index.html         - Landing page (control) with Clarity + client-side link rewriting JS
+    variant-b.html     - A/B test variant (when test is active)
   [future-course]/
     index.html         - Additional landing pages follow same pattern
 ```
@@ -192,6 +200,114 @@ Or set via Cloudflare dashboard: Settings > Environment variables > Production (
    - Check Affiliates > Visits in WordPress admin
    - Should see a visit with the landing page URL
 
+## A/B Split Testing
+
+### How It Works
+
+The worker handles A/B testing at the edge — zero client-side latency, no third-party tools, no cost. The visitor always sees the same URL (e.g. `/beginners-course/`); the worker silently serves either `index.html` or `variant-b.html` based on a cookie.
+
+- **Cookie-based sticky sessions**: Once assigned, a visitor always sees the same variant (30-day cookie)
+- **Weighted splits**: Configure any split ratio (50/50, 70/30, 90/10)
+- **Clarity auto-tagging**: HTMLRewriter injects the variant name into Clarity via `clarity("set", testName, variantName)` — filter heatmaps and recordings by variant in Clarity dashboard
+- **No URL changes**: Ad links, UTM parameters, and affiliate tracking all work identically across variants
+
+### Running a Test
+
+1. **Create the variant file:**
+   ```bash
+   cp beginners-course/index.html beginners-course/variant-b.html
+   ```
+
+2. **Edit the copy** in `variant-b.html` — change headline, CTA, social proof, whatever you're testing.
+
+3. **Make sure variant-b.html has the Clarity script** in `<head>` and the affiliate link rewriting JS before `</body>` (they'll already be there if you copied from index.html).
+
+4. **Activate the test** by uncommenting/adding the config in `_worker.js`:
+   ```javascript
+   const AB_TESTS = {
+     '/beginners-course/': {
+       variants: [
+         { name: 'control',   path: '/beginners-course/index.html',      weight: 50 },
+         { name: 'variant-b', path: '/beginners-course/variant-b.html',  weight: 50 },
+       ],
+     },
+   };
+   ```
+
+5. **Deploy:**
+   ```bash
+   git add . && git commit -m "Start A/B test: beginners course headline" && git push
+   ```
+
+6. **Verify** in an incognito window. Check DevTools > Application > Cookies for `ab_beginners-course=control` or `ab_beginners-course=variant-b`.
+
+### Ending a Test
+
+1. Remove or comment out the test entry in `AB_TESTS`
+2. If the variant won, replace `index.html` with the winning variant's content
+3. Delete the variant HTML file
+4. Commit and push
+
+### Analysing Results
+
+**In Microsoft Clarity** (clarity.microsoft.com):
+- Go to Filters > Custom Tags
+- Filter by tag name (e.g. `beginners-course`) and value (`control` vs `variant-b`)
+- Compare heatmaps, scroll depth, click maps, and recordings side by side
+
+**Conversion tracking:**
+- The primary metric is CTA click-through rate (clicks on Buy Now links to learn.urbansketch.com)
+- Track this in Clarity via click maps on the CTA button area
+- For end-to-end purchase attribution: the affiliate `visit_id` is already tracked in AffiliateWP — you can cross-reference which variant a converting visitor saw
+
+**Statistical significance:**
+- Use https://abtestguide.com/calc/ — enter visitors and conversions per variant
+- Pre-plan test duration with https://www.convert.com/calculator/
+- Run tests for at least 14 days regardless of sample size (day-of-week effects)
+- With <200 daily visitors, test BIG changes (different headlines/angles, not button colours)
+
+### Multiple Simultaneous Tests
+
+You can run tests on different pages at the same time (one test per page). Each test gets its own cookie. Do NOT run multiple tests on the same page — with landing page traffic volumes you won't have enough data.
+
+## Microsoft Clarity (Heatmaps & Session Recordings)
+
+**Project ID:** `bn4hwc3a8c`
+**Dashboard:** https://clarity.microsoft.com
+
+Clarity is installed on all landing pages via a `<script>` tag in `<head>`. It provides:
+- **Click maps** — where visitors click (and don't click)
+- **Scroll depth / attention maps** — how far visitors scroll, where they stop
+- **Session recordings** — watch real visitor sessions
+- **Dead click detection** — elements visitors click that aren't clickable
+- **Rage click detection** — frustrated repeated clicking
+
+### Adding Clarity to a New Page
+
+Add this to the `<head>` of every landing page HTML file:
+
+```html
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){
+  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "bn4hwc3a8c");
+</script>
+```
+
+### Using Clarity for CRO
+
+The optimization loop:
+1. Let traffic run for a few days
+2. Check Clarity scroll depth maps — where do visitors stop scrolling?
+3. Check click maps — are they clicking the CTA? Are they clicking non-clickable elements?
+4. Watch 5-10 session recordings of visitors who did NOT click Buy Now — what happened?
+5. Form a hypothesis about what to change
+6. Create a variant and run an A/B test
+7. Repeat
+
 ## Debugging
 
 If tracking isn't working, temporarily add a debug endpoint to the worker. Add this block at the top of the `fetch()` handler, right after `const url = new URL(request.url);`:
@@ -250,6 +366,9 @@ Visit `https://yourdomain.com/__debug` to check. **Remove this before going live
 | Links not rewritten on page | Client-side JS missing or wrong parentUrl | Check JS is present before `</body>`, parentUrl matches |
 | `_worker.js` accessible as static file | Missing `.assetsignore` | Create `.assetsignore` with `_worker.js` |
 | Cached stale responses during debugging | Cloudflare CDN cache | Append `?nocache=xxx` or purge cache in dashboard |
+| A/B test always shows same variant | Cookie already set | Clear cookies or use incognito |
+| Clarity not showing custom tags | Script loads after clarity() call | Ensure Clarity script is in `<head>` before `</head>` |
+| Variant not loading | Wrong path in AB_TESTS config | Check path matches actual file location exactly |
 
 ## AffiliateWP API Reference
 
