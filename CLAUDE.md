@@ -325,22 +325,45 @@ For actual heatmap visuals and click coordinates, use the Clarity dashboard dire
 
 This is the complete step-by-step process for running continuous landing page optimisation. It combines the OfferNomics constraint identification framework with data from three sources: GoMarble (Meta ads), AffiliateWP (conversions), and Clarity (behaviour).
 
-### Your Funnel (Beginners Course)
+### Your Funnels
+
+You run **two types of funnel** — a free lead-gen funnel and paid course sales:
 
 ```
-Meta Ad (Facebook/Instagram)
-  → Landing Page: go.urbansketchcourse.com/beginners-course/?a=36  ← THIS IS WHAT WE TEST
-  → Order Form: learn.urbansketch.com/smm/buy-beginner  (via Buy Now link)
-  → Purchase
+FREE FUNNEL (current primary):
+  Meta Ad → www.urbansketchcourse.com/courses/free-urban-sketch-course
+         → www.urbansketchcourse.com/smm/urban-sketching-beginners-course/
+         → www.urbansketchcourse.com/smm/landscape-sketching-course/
+    → Registration Form: learn.urbansketch.com/reg/free-sketching-course-registration-form/
+    → Free course registration (referral amount = £0.00)
+
+PAID FUNNEL (landing page A/B testing):
+  Meta Ad → go.urbansketchcourse.com/beginners-course/?a=36  ← THIS IS WHAT WE TEST
+    → Order Form: learn.urbansketch.com/smm/buy-beginners-course/  (via Buy Now link)
+    → Purchase (referral amount > £0.00)
 ```
 
-The static landing page on go.urbansketchcourse.com replaces the old WordPress sales page. The Buy Now link goes directly to the checkout/order form on learn.urbansketch.com. The affiliate tracking (visit_id, affiliate_id) carries through via the rewritten link parameters.
+### URL Domain Mapping (from real AffiliateWP API data)
+
+AffiliateWP tracks visits across three domains. The data pull script classifies them:
+
+| Domain | Type | Example Paths |
+|--------|------|---------------|
+| `go.urbansketchcourse.com` | Landing (static Cloudflare) | `/beginners-course/` |
+| `www.urbansketchcourse.com` | Landing (WordPress) | `/courses/*`, `/smm/*`, `/world-sketcher-collection/` |
+| `learn.urbansketch.com` | Order form / registration | `/reg/*`, `/smm/buy-*`, `/buy/*`, `/join-today/*` |
+
+**Noise:** `www.urbansketchcourse.com/meta.json` — automated requests, ~74% of all www. visits. Filtered out by the script.
+
+**learn. non-order pages:** T&C, privacy policy, student gallery, etc. are tracked but excluded from order form counts.
 
 **Your optimisation zone is the landing page.** That's where the static pages live, where you control the copy, and where the A/B testing happens. The order form on WordPress is unchanged.
 
-**Your primary metric is CTA click-through rate** — the percentage of landing page visitors who click the Buy Now link (LP → Order Form rate from AffiliateWP).
+**Your primary metric is CTA click-through rate** — the percentage of landing page visitors who click through to an order/registration form (LP → Order Form rate from AffiliateWP).
 
-**Your secondary metric is cost per acquisition** — tracked via AffiliateWP visits → referrals → sales, cross-referenced with your Meta ad spend from GoMarble.
+**Your secondary metric is cost per lead/acquisition** — for free funnels, this is cost per registration. For paid funnels, this is CPA cross-referenced with AOV.
+
+**Referral amounts:** Free course registrations show `amount = 0`. Paid course purchases show the actual sale amount. The script auto-detects the funnel type and adjusts its reporting accordingly.
 
 ### Monday Morning Prompt (Copy-Paste This Every Monday)
 
@@ -630,14 +653,33 @@ node scripts/pull-affwp-data.js --days 14 --ad-spend 1000
 
 ### What It Reports
 
-- **Funnel metrics:** LP visits, order form visits, LP→OF click-through rate, sales, order form completion rate, end-to-end conversion
-- **Financial metrics:** Revenue, CPA, AOV, revenue per visitor, cost per visitor, CPA:AOV ratio
+- **Raw data:** Total visits, noise filtered, visits by classification
+- **Funnel metrics:** LP visits, order form visits, LP→OF click-through rate, registrations/sales, order form completion rate, end-to-end conversion
+- **Financial metrics:** Revenue, CPA, AOV, revenue per visitor, cost per visitor, CPA:AOV ratio (paid funnels), cost per lead (free funnels)
 - **OfferNomics diagnosis:** Identifies whether constraint is media, campaign, or economic
-- **Breakdowns:** Visits by campaign and by landing page URL
+- **Breakdowns:** Visits by landing page URL, by campaign, by referrer domain, order form pages, and non-order-form learn.urbansketch.com pages
 
-### How It Calculates LP→Order Form Rate
+### How It Classifies Visits
 
-AffiliateWP tracks visits on BOTH `go.urbansketchcourse.com` (landing page, created by our worker) AND `learn.urbansketch.com` (order form, tracked by WordPress plugin). The script separates visits by URL domain to calculate the click-through rate.
+The script classifies visits by hostname and path:
+
+| Classification | Domain | Paths | Count (typical 7-day) |
+|---------------|--------|-------|----------------------|
+| `landing` | `go.urbansketchcourse.com` | all | ~20 |
+| `landing` | `www.urbansketchcourse.com` | all except `/meta.json` | ~12,000 |
+| `order_form` | `learn.urbansketch.com` | `/reg/*`, `/smm/buy-*`, `/buy/*`, `/join-today/*` | ~1,700 |
+| `noise` | `www.urbansketchcourse.com` | `/meta.json` only | ~40,000 |
+| `learn_other` | `learn.urbansketch.com` | everything else (T&C, privacy, etc.) | ~180 |
+| `other` | any other domain | — | ~70 |
+
+**Performance note:** AffiliateWP generates ~7,000 visits/day, mostly `/meta.json` noise. A 7-day query fetches ~54,000 records in ~109 API batches (~90 seconds). The max batch limit is 150 (75K visits). For periods >10 days, consider whether the run time is acceptable.
+
+### Funnel Type Detection
+
+The script auto-detects whether the current period is a free funnel, paid funnel, or mixed:
+- **FREE funnel** — all referrals have `amount = 0`. Reports cost per lead instead of CPA.
+- **PAID funnel** — all referrals have `amount > 0`. Reports CPA, AOV, CPA:AOV ratio.
+- **MIXED** — both types present. Reports all metrics.
 
 ---
 
