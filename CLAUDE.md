@@ -657,6 +657,16 @@ The GoMarble Facebook Ads MCP server gives Claude direct access to your Meta ad 
 
 3. **Restart Claude Code** to pick up the new MCP server.
 
+### Token Expiry
+
+The Meta access token expires every **60 days**. Current token was set on **17 Feb 2026** — expires around **18 Apr 2026**.
+
+When it expires, GoMarble queries will fail with an auth error. To refresh:
+1. Go to https://developers.facebook.com/tools/explorer/
+2. Generate a new long-lived token with `ads_read` permission
+3. Update the `--fb-token` value in `.mcp.json`
+4. Restart Claude Code
+
 ### Available Tools
 
 | Tool | What It Does |
