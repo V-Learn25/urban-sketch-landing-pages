@@ -1,7 +1,9 @@
 {
   "name": "urban-sketch-landing-pages",
   "compatibility_date": "2026-02-13",
+  "main": "_worker.js",
   "assets": {
-    "directory": "./"
+    "directory": "./",
+    "binding": "ASSETS"
   }
 }
