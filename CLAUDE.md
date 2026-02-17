@@ -31,10 +31,19 @@ Visitor clicks affiliate link
   _worker.js           - Cloudflare Worker (affiliate tracking + A/B routing + Clarity tagging)
   wrangler.jsonc       - Cloudflare config (vars, assets, worker entry point)
   .assetsignore        - Prevents _worker.js from being served as a static file
-  CLAUDE.md            - This file
+  .mcp.json            - MCP server config: Clarity + GoMarble Meta Ads (gitignored)
+  .gitignore           - Excludes .mcp.json, scripts/.env, gomarble venv
+  CLAUDE.md            - This file (project runbook + CRO process)
   beginners-course/
     index.html         - Landing page (control) with Clarity + client-side link rewriting JS
     variant-b.html     - A/B test variant (when test is active)
+  scripts/
+    pull-affwp-data.js - AffiliateWP weekly CRO report (Node.js, zero dependencies)
+    .env               - AffiliateWP API credentials (gitignored)
+    .env.example        - Template for .env
+    gomarble-mcp/
+      server.py        - GoMarble Facebook Ads MCP server (from github.com/gomarble-ai)
+      venv/            - Python 3.12 virtual environment (gitignored)
   [future-course]/
     index.html         - Additional landing pages follow same pattern
 ```
@@ -314,7 +323,7 @@ For actual heatmap visuals and click coordinates, use the Clarity dashboard dire
 
 ## Weekly CRO Process (Monday Morning Rhythm)
 
-This is the complete step-by-step process for running continuous landing page optimisation. It maps to the Bionic Business CRO framework (Issues #96, #85) applied to your specific stack.
+This is the complete step-by-step process for running continuous landing page optimisation. It combines the OfferNomics constraint identification framework with data from three sources: GoMarble (Meta ads), AffiliateWP (conversions), and Clarity (behaviour).
 
 ### Your Funnel (Beginners Course)
 
@@ -329,27 +338,45 @@ The static landing page on go.urbansketchcourse.com replaces the old WordPress s
 
 **Your optimisation zone is the landing page.** That's where the static pages live, where you control the copy, and where the A/B testing happens. The order form on WordPress is unchanged.
 
-**Your primary metric is CTA click-through rate** — the percentage of landing page visitors who click the Buy Now link. This is what you're testing and optimising.
+**Your primary metric is CTA click-through rate** — the percentage of landing page visitors who click the Buy Now link (LP → Order Form rate from AffiliateWP).
 
-**Your secondary metric is cost per acquisition** — tracked via AffiliateWP visits → referrals → sales, cross-referenced with your Meta ad spend.
+**Your secondary metric is cost per acquisition** — tracked via AffiliateWP visits → referrals → sales, cross-referenced with your Meta ad spend from GoMarble.
+
+### Monday Morning Prompt (Copy-Paste This Every Monday)
+
+```
+Monday CRO Analysis — Week of [DATE]
+
+Run the full weekly analysis:
+1. Pull AffiliateWP conversion data: node scripts/pull-affwp-data.js --days 7 --ad-spend [AMOUNT]
+2. Pull Meta ad performance via GoMarble: campaign spend, CPC, CTR for the last 7 days
+3. Query Clarity: scroll depth, engagement, dead clicks, rage clicks for last 3 days
+4. If A/B test running: compare variants in Clarity custom tags
+5. Apply the OfferNomics constraint identification (see framework below):
+   - MEDIA: Is CPC in range? Is CTR solid? (GoMarble)
+   - CAMPAIGN: Is LP→Order Form rate >3%? Where's the scroll drop-off? (AffiliateWP + Clarity)
+   - ECONOMIC: Is CPA ≤ AOV? Revenue per visitor vs cost per visitor? (AffiliateWP + GoMarble)
+6. Identify the single constraint and recommend the highest-ICE test for this week
+7. If a test ended, declare winner and log in the test log below
+```
+
+Replace `[DATE]` with this Monday's date and `[AMOUNT]` with your Meta ad spend for the previous 7 days in GBP.
+
+**Note:** If the GoMarble MCP server is connected (Meta access token set in .mcp.json), Claude will pull the ad spend automatically and you can omit the `--ad-spend` flag. If not yet connected, provide the spend manually.
 
 ### The Weekly Cycle
 
 #### Phase 1: Monday Morning — Analyse (30-45 mins)
 
-**Step 1: Pull the numbers**
+**Step 1: Pull the numbers (Claude does this automatically from the prompt)**
 
-Open Claude Code in this project directory. The Clarity MCP server connects automatically. Ask:
+Three data sources, three layers:
 
-```
-"Show me traffic, scroll depth, engagement time, dead clicks, and rage clicks
-for the last 3 days, broken down by URL"
-```
-
-Also check AffiliateWP for conversion data:
-- How many visits were created this week? (Affiliates > Visits, filter by date)
-- How many referrals/sales? (Affiliates > Referrals, filter by date)
-- Calculate: CTA click-through rate = visits to learn.urbansketch.com ÷ landing page visits
+| Layer | Source | What Claude Pulls |
+|-------|--------|------------------|
+| Media | GoMarble MCP | Spend, CPC, CTR, impressions, clicks per campaign |
+| Campaign | AffiliateWP script + Clarity MCP | LP visits, OF visits, LP→OF rate, scroll depth, dead clicks |
+| Economic | AffiliateWP script + GoMarble | CPA, AOV, revenue per visitor, CPA:AOV ratio |
 
 **Step 2: If an A/B test is running — check the results**
 
@@ -565,4 +592,184 @@ Visit `https://yourdomain.com/__debug` to check. **Remove this before going live
 - **Auth:** HTTP Basic (`public_key:token`)
 - **Create visit:** `POST /visits?affiliate_id=X&ip=X&url=X&campaign=X&referrer=X`
 - **Get visits:** `GET /visits?number=100&orderby=date&order=DESC`
+  - Filter params: `visit_id`, `affiliate_id`, `referral_id`, `referral_status`, `campaign`, `fields`
+  - Response: `visit_id`, `affiliate_id`, `referral_id`, `url`, `referrer`, `campaign`, `ip`, `date`
 - **Get referrals:** `GET /referrals?number=100&orderby=date&order=DESC`
+  - Filter params: `referral_id`, `affiliate_id`, `reference`, `campaign`, `status` (paid/unpaid/pending/rejected), `date`, `fields`
+  - Response: `referral_id`, `affiliate_id`, `visit_id`, `description`, `status`, `amount`, `currency`, `campaign`, `date`
+
+---
+
+## AffiliateWP Data Pull Script
+
+A Node.js script that queries the AffiliateWP REST API and outputs a weekly CRO report with OfferNomics diagnosis.
+
+### Setup (One-Time)
+
+1. Copy your AffiliateWP API credentials from Cloudflare dashboard (Settings > Environment variables > Production) into `scripts/.env`:
+   ```
+   AFFWP_PARENT_URL=https://learn.urbansketch.com
+   AFFWP_PUBLIC_KEY=your-key-here
+   AFFWP_TOKEN=your-token-here
+   ```
+
+2. Requires Node.js 18+ (for built-in fetch). No npm install needed.
+
+### Usage
+
+```bash
+# Basic — last 7 days, no ad spend calculation
+node scripts/pull-affwp-data.js --days 7
+
+# With ad spend — enables CPA, revenue per visitor, OfferNomics diagnosis
+node scripts/pull-affwp-data.js --days 7 --ad-spend 500
+
+# Last 14 days
+node scripts/pull-affwp-data.js --days 14 --ad-spend 1000
+```
+
+### What It Reports
+
+- **Funnel metrics:** LP visits, order form visits, LP→OF click-through rate, sales, order form completion rate, end-to-end conversion
+- **Financial metrics:** Revenue, CPA, AOV, revenue per visitor, cost per visitor, CPA:AOV ratio
+- **OfferNomics diagnosis:** Identifies whether constraint is media, campaign, or economic
+- **Breakdowns:** Visits by campaign and by landing page URL
+
+### How It Calculates LP→Order Form Rate
+
+AffiliateWP tracks visits on BOTH `go.urbansketchcourse.com` (landing page, created by our worker) AND `learn.urbansketch.com` (order form, tracked by WordPress plugin). The script separates visits by URL domain to calculate the click-through rate.
+
+---
+
+## GoMarble Meta Ads MCP Server
+
+The GoMarble Facebook Ads MCP server gives Claude direct access to your Meta ad performance data — spend, CPC, CTR, creative breakdowns — without you having to manually look up numbers in Ads Manager.
+
+### Setup (One-Time)
+
+1. **Generate a Meta access token** with `ads_read` permission:
+   - Go to https://developers.facebook.com/tools/explorer/
+   - Select your app, then select `ads_read` permission
+   - Generate a long-lived token
+   - Or use GoMarble's installer: https://gomarble.ai/mcp
+
+2. **Replace** `YOUR_META_ACCESS_TOKEN` in `.mcp.json` with your actual token.
+
+3. **Restart Claude Code** to pick up the new MCP server.
+
+### Available Tools
+
+| Tool | What It Does |
+|------|-------------|
+| `list_ad_accounts` | Returns all ad accounts linked to your token |
+| `get_campaign_insights` | Campaign spend, CPC, CTR, impressions, clicks for a date range |
+| `get_adset_insights` | Per-adset performance breakdown |
+| `get_ad_insights` | Per-ad performance (creative analysis) |
+| `get_ad_creative_by_id` | Creative asset details |
+
+### Example Queries (Ask Claude)
+
+```
+"What was my total Meta ad spend, average CPC, and CTR for the last 7 days?"
+"Which campaigns had the highest CPA in the last 14 days?"
+"Show me the top 5 performing ads by CTR this month"
+"What's the spend breakdown by campaign for last week?"
+```
+
+### Python Environment
+
+The server runs in its own Python 3.12 venv at `scripts/gomarble-mcp/venv/`. If you need to reinstall:
+
+```bash
+cd scripts/gomarble-mcp
+/opt/homebrew/opt/python@3.12/bin/python3.12 -m venv venv
+source venv/bin/activate
+pip install mcp requests
+```
+
+---
+
+## OfferNomics CRO Framework
+
+From John Mulry's OfferNomics — a systematic constraint identification process for paid advertising. Every campaign has ONE weakest link. Find it, fix it, ignore everything else.
+
+### The Three Performance Layers
+
+```
+1. MEDIA PERFORMANCE — Are the ads working?
+   └─ Is CPC in range? Is CTR solid?
+   └─ Source: GoMarble MCP (Meta Ads data)
+
+2. CAMPAIGN PERFORMANCE — Are the pages converting?
+   └─ Is LP → Order Form rate above 3%?
+   └─ Where's the scroll drop-off?
+   └─ Is order form completion above 60%?
+   └─ Source: AffiliateWP script + Clarity MCP
+
+3. ECONOMIC PERFORMANCE — Do the numbers work?
+   └─ Is CPA ≤ AOV? (Level 2: breakeven)
+   └─ What's revenue per visitor vs cost per visitor?
+   └─ Source: AffiliateWP script + GoMarble spend
+```
+
+### Constraint Identification Flow
+
+Always diagnose in this order. Fix the FIRST constraint you find:
+
+```
+Is cost per visitor in range?
+  ├─ NO → Is targeting right? → Fix audience
+  │       Is CTR solid (>1%)? → Fix creative (headline, hook, image)
+  │       Both OK but CPC high? → Economic issue (see step 3)
+  │
+  └─ YES → Move to campaign performance
+
+Is landing page converting (>3% to order form)?
+  ├─ NO → Check Clarity scroll depth for drop-off point
+  │       Drop-off in first screen? → Fix headline/above-the-fold
+  │       Drop-off mid-page? → Fix copy/argument/proof section
+  │       Drop-off before CTA? → Fix CTA placement/copy
+  │
+  └─ YES → Move to order form
+
+Is order form completing (>60%)?
+  ├─ NO → Simplify form fields
+  │       Add trust signals, testimonials
+  │       Test two-step checkout
+  │       Check mobile rendering
+  │
+  └─ YES → Move to economics
+
+Is CPA ≤ AOV?
+  ├─ NO → ECONOMIC CONSTRAINT
+  │       Phase 1: Add transaction maximisation offers (bumps, upsells)
+  │       Phase 2: Optimise TMO conversion rates
+  │       Phase 3: Test higher TMO prices
+  │       Phase 4: Test higher core offer price (last resort)
+  │       Phase 5: Lengthen monetisation window (multiple funnels, 30-day window)
+  │
+  └─ YES → No constraint! Scale ad spend and expand audiences
+```
+
+### Benchmarks
+
+| Metric | Benchmark | Source |
+|--------|-----------|--------|
+| Link CTR (Meta ads) | >1% | GoMarble MCP |
+| Cost per visitor | Varies by niche | GoMarble MCP |
+| LP → Order Form rate | >3% | AffiliateWP visits |
+| Order form completion | >60% | AffiliateWP referrals vs OF visits |
+| Upsell take rate | >20% | WordPress backend |
+| CPA ≤ AOV | Level 2: breakeven | AffiliateWP + GoMarble |
+| Revenue per visitor > Cost per visitor | Viable | AffiliateWP ÷ LP visits vs GoMarble spend ÷ LP visits |
+
+### Levels of Acquisition Aggression (LAA)
+
+| Level | Name | Meaning |
+|-------|------|---------|
+| 1 | Mom & Pop | Profitable from day zero — won't spend more than they make |
+| 2 | Breakeven | Willing to break even on frontend, profit on backend |
+| 3 | Strategic | Willing to lose on frontend if LTV justifies it |
+| 4 | Investor | Willing to invest significantly, looking at 30/60/90 day payback |
+
+**Your current target: Level 2 (Breakeven)** — CPA ≤ AOV on day zero.

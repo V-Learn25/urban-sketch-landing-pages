@@ -1,2 +1,12 @@
 # MCP server config contains API tokens - do not commit
 .mcp.json
+
+# Script credentials (AffiliateWP API keys)
+scripts/.env
+
+# GoMarble MCP server (Python venv + downloaded server)
+scripts/gomarble-mcp/venv/
+scripts/gomarble-mcp/__pycache__/
+
+# OS files
+.DS_Store
