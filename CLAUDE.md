@@ -297,16 +297,204 @@ Add this to the `<head>` of every landing page HTML file:
 </script>
 ```
 
-### Using Clarity for CRO
+### Clarity MCP Server (AI Integration)
 
-The optimization loop:
-1. Let traffic run for a few days
-2. Check Clarity scroll depth maps — where do visitors stop scrolling?
-3. Check click maps — are they clicking the CTA? Are they clicking non-clickable elements?
-4. Watch 5-10 session recordings of visitors who did NOT click Buy Now — what happened?
-5. Form a hypothesis about what to change
-6. Create a variant and run an A/B test
-7. Repeat
+The Microsoft Clarity MCP server is configured in `.mcp.json` (gitignored).
+It connects automatically when you open Claude Code in this project.
+
+**Tools available:**
+- `query-analytics-dashboard` — pull scroll depth, engagement, traffic, dead clicks, rage clicks
+- `list-session-recordings` — find recordings by URL, device, browser, country
+- `query-documentation-resources` — search Clarity docs
+
+**Limitations:** Max 10 API requests/day, last 1-3 days of data, 1000 rows max.
+For actual heatmap visuals and click coordinates, use the Clarity dashboard directly.
+
+---
+
+## Weekly CRO Process (Monday Morning Rhythm)
+
+This is the complete step-by-step process for running continuous landing page optimisation. It maps to the Bionic Business CRO framework (Issues #96, #85) applied to your specific stack.
+
+### Your Funnel (Beginners Course)
+
+```
+Meta Ad (Facebook/Instagram)
+  → Landing Page: go.urbansketchcourse.com/beginners-course/?a=36
+  → Sales Page: learn.urbansketch.com/smm/urban-sketching-beginners-course
+  → Order Form: learn.urbansketch.com/smm/buy-beginner
+  → Purchase
+```
+
+**Your optimisation zone is the landing page.** That's where the static pages live, where you control the copy, and where the A/B testing happens. Everything downstream (sales page, order form) is on WordPress and unchanged.
+
+**Your primary metric is CTA click-through rate** — the percentage of landing page visitors who click the Buy Now link. This is what you're testing and optimising.
+
+**Your secondary metric is cost per acquisition** — tracked via AffiliateWP visits → referrals → sales, cross-referenced with your Meta ad spend.
+
+### The Weekly Cycle
+
+#### Phase 1: Monday Morning — Analyse (30-45 mins)
+
+**Step 1: Pull the numbers**
+
+Open Claude Code in this project directory. The Clarity MCP server connects automatically. Ask:
+
+```
+"Show me traffic, scroll depth, engagement time, dead clicks, and rage clicks
+for the last 3 days, broken down by URL"
+```
+
+Also check AffiliateWP for conversion data:
+- How many visits were created this week? (Affiliates > Visits, filter by date)
+- How many referrals/sales? (Affiliates > Referrals, filter by date)
+- Calculate: CTA click-through rate = visits to learn.urbansketch.com ÷ landing page visits
+
+**Step 2: If an A/B test is running — check the results**
+
+In Clarity dashboard (clarity.microsoft.com):
+1. Go to Filters > Custom Tags
+2. Filter by your test name (e.g. `beginners-course`)
+3. Set value to `control` — note the scroll depth, click map, engagement time
+4. Set value to `variant-b` — note the same metrics
+5. Compare side by side
+
+Then check statistical significance:
+- Go to https://abtestguide.com/calc/
+- Enter: visitors per variant + conversions (CTA clicks) per variant
+- If significant (p < 0.05): declare a winner, move to Phase 2
+- If not significant: keep running, come back next Monday
+
+**Step 3: If no test is running — diagnose the page**
+
+In Clarity dashboard:
+1. **Scroll depth map**: Where does the drop-off cliff happen? (The point where >50% of visitors have stopped scrolling.) That's your highest-impact optimisation target.
+2. **Click maps**: Are visitors clicking the CTA buttons? Are they clicking things that aren't clickable (dead clicks)? Are they rage-clicking anything?
+3. **Watch 5 recordings** of visitors who did NOT click Buy Now. Watch what they actually did. Where did they pause? Where did they leave?
+
+Write down your diagnosis:
+- "60% of visitors drop off before seeing the testimonials section"
+- "Nobody clicks the first CTA — they scroll past it"
+- "Visitors on mobile can't see the pricing clearly"
+
+#### Phase 2: Monday — Decide What to Test (15 mins)
+
+**Use ICE scoring** (from Bionic Business Issue #96):
+
+For each observation from Phase 1, score:
+- **Impact** (1-10): If this fix works, how much will CTA clicks increase?
+- **Confidence** (1-10): How sure am I this will actually help?
+- **Ease** (1-10): How fast can I implement and deploy this?
+
+Pick the highest-scoring item. That's your test for this week.
+
+**What to test (in priority order):**
+
+1. **Headline** — biggest impact, test first. Completely different angle, not just word changes.
+2. **Above-the-fold layout** — what visitors see before scrolling. Hero image, headline, sub-headline, first CTA.
+3. **Social proof placement** — move testimonials higher if scroll drop-off happens before them.
+4. **CTA copy and positioning** — different button text, different placement, add urgency.
+5. **Section order** — reorder the page to put highest-impact content earlier.
+6. **Copy length** — test a shorter page vs the current long-form page.
+
+**Rule: Test ONE thing at a time.** If you change the headline AND the CTA AND the layout, you won't know what worked.
+
+#### Phase 3: Monday/Tuesday — Build and Deploy the Variant (15-30 mins)
+
+**Step 1: Create the variant**
+
+```bash
+cd ~/urban-sketch-landing-pages
+cp beginners-course/index.html beginners-course/variant-b.html
+```
+
+**Step 2: Edit the variant**
+
+Open `variant-b.html` and make your ONE change. Clarity script and link rewriting JS are already there (copied from index.html).
+
+You can ask Claude to help with the copy. With your copywriting skills loaded (Clayton, Deutsch, Carlton, Evaldo), say something like:
+
+```
+"The current headline is [X]. Clarity shows 40% of visitors bounce before scrolling.
+Write me 3 alternative headlines using Carlton's incongruous juxtaposition technique
+that would stop a Facebook scroller and make them want to read more."
+```
+
+**Step 3: Activate the test**
+
+Edit `_worker.js` — uncomment/update the `AB_TESTS` config:
+
+```javascript
+const AB_TESTS = {
+  '/beginners-course/': {
+    variants: [
+      { name: 'control',   path: '/beginners-course/index.html',      weight: 50 },
+      { name: 'variant-b', path: '/beginners-course/variant-b.html',  weight: 50 },
+    ],
+  },
+};
+```
+
+**Step 4: Deploy**
+
+```bash
+git add . && git commit -m "Start test: [what you're testing]" && git push
+```
+
+**Step 5: Verify (2 mins)**
+
+Open an incognito window, visit the page. Check DevTools > Application > Cookies for `ab_beginners-course`. Reload in a new incognito window to check you can get both variants.
+
+#### Phase 4: Tuesday–Sunday — Let It Run
+
+Do nothing. Do not peek at results mid-week and stop the test early. The test needs a full week of traffic to account for day-of-week patterns.
+
+**Minimum requirements before calling a winner:**
+- At least 7 days of data
+- At least 100 visitors per variant (ideally 200+)
+- Statistical significance at p < 0.05
+
+#### Phase 5: Next Monday — Close the Loop
+
+Back to Phase 1. Analyse the results.
+
+**If the variant won:**
+1. Replace `index.html` with the winning variant's content
+2. Delete `variant-b.html`
+3. Comment out the `AB_TESTS` entry
+4. Commit: `"End test: [what won]. +X% CTA clicks"`
+5. Push — the winner is now the new control
+6. Start Phase 2 again with your next highest-ICE item
+
+**If the control won:**
+1. Delete `variant-b.html`
+2. Comment out the `AB_TESTS` entry
+3. Commit: `"End test: [what you tested]. Control won."`
+4. Push
+5. Your diagnosis was wrong OR the change wasn't big enough. Try a bolder change.
+
+**If inconclusive (not enough data):**
+- If close to significance: extend for another week
+- If nowhere near significance: the difference is too small to matter. Pick a bolder test.
+
+### Test Log
+
+Keep a running log in this section of what you've tested and the results. This prevents re-testing things and builds institutional knowledge.
+
+```
+| Date       | Test                          | Variant | Result     | CTA Rate Change |
+|------------|-------------------------------|---------|------------|-----------------|
+| 2026-02-17 | Tracking system setup          | N/A     | Baseline   | Measuring...    |
+| YYYY-MM-DD | [What you tested]             | B       | Won/Lost   | +X% / -X%      |
+```
+
+### Quarterly Review
+
+Every 3 months, review your test log:
+- What patterns are emerging? (e.g. "urgency headlines always win", "shorter pages convert better")
+- What's your cumulative CTA rate improvement since you started?
+- Are there diminishing returns? Time to test something bigger (different offer, different page structure, video vs no video)?
+- Should you apply winning patterns to the other landing pages (Rural Sketch, Free Course)?
 
 ## Debugging
 
