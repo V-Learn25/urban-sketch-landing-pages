@@ -4,7 +4,11 @@
   "main": "_worker.js",
   "assets": {
     "directory": "./",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
+    // Run the worker for ALL requests, not just unmatched assets.
+    // Required so the worker can intercept ?a= params and set tracking cookies
+    // before serving the static HTML page.
+    "run_worker_first": true
   },
   // Non-secret configuration variables
   // These persist across deployments (unlike dashboard secrets which can vanish)
