@@ -812,7 +812,7 @@ footer{
       <li>24/7 Lifetime Access (it never expires)</li>
       <li>30-Day Money Back Guarantee</li>
     </ul>
-    <a href="#" class="buy-btn">Buy Now</a>
+    <a href="https://learn.urbansketch.com/smm/buy-beginner" class="buy-btn">Buy Now</a>
     <p class="payment-note">Interest-free payment plan available</p>
   </div>
 </section>
@@ -1028,6 +1028,60 @@ function toggleFaq(el){
        else usa();
      },function(){usa()})}catch(e){usa()} */
   uk();
+})();
+
+/* AffiliateWP cross-domain link rewriting */
+(function(){
+  var parentUrl = 'https://learn.urbansketch.com';
+  var refVar = 'ref';
+
+  function getCookie(name) {
+    var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? decodeURIComponent(match[2]) : '';
+  }
+
+  var affiliateId = getCookie('affwp_affiliate_id');
+  if (!affiliateId) return;
+
+  var visitId = getCookie('affwp_visit_id');
+  var campaign = getCookie('affwp_campaign');
+
+  // Normalise parent URL (strip trailing slash)
+  var baseUrl = parentUrl.replace(/\/$/, '');
+
+  // Rewrite all links pointing to the parent site
+  var links = document.querySelectorAll("a[href^='" + baseUrl + "']");
+  links.forEach(function(link) {
+    var href = link.getAttribute('href');
+
+    // Separate any hash fragment
+    var hash = '';
+    var hashIdx = href.indexOf('#');
+    if (hashIdx !== -1) {
+      hash = href.substring(hashIdx);
+      href = href.substring(0, hashIdx);
+    }
+
+    // Add or replace ref parameter
+    var re = new RegExp('([?&])' + refVar + '=[^&#]*', 'i');
+    if (re.test(href)) {
+      href = href.replace(re, '$1' + refVar + '=' + affiliateId);
+    } else {
+      href += (href.indexOf('?') !== -1 ? '&' : '?') + refVar + '=' + affiliateId;
+    }
+
+    // Append visit ID
+    if (visitId) {
+      href += '&visit=' + visitId;
+    }
+
+    // Append campaign
+    if (campaign) {
+      href += '&campaign=' + encodeURIComponent(campaign);
+    }
+
+    link.setAttribute('href', href + hash);
+  });
 })();
 </script>
 
