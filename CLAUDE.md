@@ -320,13 +320,14 @@ This is the complete step-by-step process for running continuous landing page op
 
 ```
 Meta Ad (Facebook/Instagram)
-  → Landing Page: go.urbansketchcourse.com/beginners-course/?a=36
-  → Sales Page: learn.urbansketch.com/smm/urban-sketching-beginners-course
-  → Order Form: learn.urbansketch.com/smm/buy-beginner
+  → Landing Page: go.urbansketchcourse.com/beginners-course/?a=36  ← THIS IS WHAT WE TEST
+  → Order Form: learn.urbansketch.com/smm/buy-beginner  (via Buy Now link)
   → Purchase
 ```
 
-**Your optimisation zone is the landing page.** That's where the static pages live, where you control the copy, and where the A/B testing happens. Everything downstream (sales page, order form) is on WordPress and unchanged.
+The static landing page on go.urbansketchcourse.com replaces the old WordPress sales page. The Buy Now link goes directly to the checkout/order form on learn.urbansketch.com. The affiliate tracking (visit_id, affiliate_id) carries through via the rewritten link parameters.
+
+**Your optimisation zone is the landing page.** That's where the static pages live, where you control the copy, and where the A/B testing happens. The order form on WordPress is unchanged.
 
 **Your primary metric is CTA click-through rate** — the percentage of landing page visitors who click the Buy Now link. This is what you're testing and optimising.
 
