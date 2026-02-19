@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urban Sketching for Beginners - Ian Fennelly</title>
+<meta name="description" content="You were never untalented. You were untaught. Learn urban sketching with Ian Fennelly's step-by-step beginner course. 4 workshops, lifetime access, 30-day guarantee.">
+<link rel="icon" href="../favicon.jpg" sizes="32x32">
+<link rel="icon" href="../favicon.jpg" sizes="192x192">
+<link rel="apple-touch-icon" href="../favicon.jpg">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="8 Months Ago, Margaret Couldn't Draw a Stick Figure...">
+<meta property="og:description" content="Same woman. Same hands. The only thing that changed? She finally got a proper teacher.">
+
+<!-- Preconnect to critical origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://learn.urbansketch.com">
+<link rel="preconnect" href="https://www.urbansketchcourse.com">
+<link rel="preconnect" href="https://eg7oxqa9xch.exactdn.com">
+<link rel="preconnect" href="//js.maxmind.com">
+<link rel="dns-prefetch" href="https://customer-9w5x94b5hgokrmym.cloudflarestream.com">
+
+<!-- Preload hero image (LCP element) -->
+<link rel="preload" as="image" href="https://www.urbansketchcourse.com/wp-content/uploads/2025/11/PRAS8849-1-2048x1537.jpg.webp" type="image/webp">
+
+<!-- Fonts — swap ensures text is visible immediately -->
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- GeoIP — async so it doesn't block render -->
+<script src="//js.maxmind.com/js/apis/geoip2/v2.1/geoip2.js" async></script>
+
+<style>
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --charcoal:#2D2D2D;--charcoal-light:#3a3a3a;
+  --amber:#E8A838;--amber-hover:#d4952e;--amber-glow:rgba(232,168,56,.25);
+  --teal:#0D7377;--teal-dark:#095658;
+  --white:#FFFFFF;--off-white:#F5F3F0;--warm-grey:#E8E4DF;
+  --text:#333;--text-light:#666;--text-lighter:#999;
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'Source Sans 3','Source Sans Pro',system-ui,sans-serif;
+  --sketch:'Caveat',cursive;
+  --max-w:720px;
+  --section-pad:clamp(3rem,8vw,5.5rem) clamp(1.25rem,5vw,2rem);
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--text);line-height:1.75;background:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
+
+/* ===== LONG-FORM TYPOGRAPHY ===== */
+.prose{max-width:var(--max-w);margin:0 auto;padding:0 clamp(1.25rem,5vw,2rem)}
+.prose p{margin-bottom:1.4rem;font-size:clamp(1rem,2.5vw,1.08rem);line-height:1.8}
+.prose p:last-child{margin-bottom:0}
+.prose strong{color:var(--charcoal);font-weight:700}
+.prose em{font-style:italic}
+.prose ul,.prose ol{margin:1rem 0 1.6rem 1.2rem}
+.prose li{margin-bottom:.6rem;font-size:clamp(1rem,2.5vw,1.08rem);line-height:1.7}
+.prose blockquote{
+  border-left:4px solid var(--amber);
+  margin:2rem 0;padding:1.2rem 1.5rem;
+  background:rgba(232,168,56,.04);border-radius:0 8px 8px 0;
+  font-style:italic;color:var(--text);
+}
+.prose blockquote p{margin-bottom:.8rem}
+.prose blockquote cite,.prose blockquote .cite{
+  display:block;font-style:normal;font-weight:700;
+  color:var(--charcoal);margin-top:.5rem;font-size:.95rem;
+}
+
+/* ===== SECTION DIVIDERS ===== */
+.section-break{
+  text-align:center;padding:2.5rem 0;
+}
+.section-break::before{
+  content:'';display:inline-block;
+  width:60px;height:3px;
+  background:linear-gradient(90deg,var(--teal),var(--amber));
+  border-radius:2px;
+}
+
+/* ===== HERO — LONG-FORM LETTER OPENING ===== */
+.letter-hero{
+  background:var(--charcoal);color:var(--white);
+  padding:clamp(3rem,8vw,5rem) clamp(1.25rem,5vw,2rem) clamp(2.5rem,6vw,4rem);
+  text-align:center;position:relative;overflow:hidden;
+}
+.letter-hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 85%,rgba(13,115,119,.15),transparent),
+    radial-gradient(ellipse 60% 50% at 85% 20%,rgba(232,168,56,.1),transparent);
+  pointer-events:none;
+}
+.letter-hero-inner{position:relative;z-index:1;max-width:800px;margin:0 auto}
+.letter-pre{
+  font-family:var(--sketch);font-size:clamp(1.35rem,4vw,1.65rem);
+  color:var(--amber);margin-bottom:1.2rem;font-weight:700;
+  line-height:1.4;max-width:500px;margin-left:auto;margin-right:auto;
+}
+.letter-hero h1{
+  font-size:clamp(1.6rem,4.5vw,2.5rem);
+  line-height:1.25;margin-bottom:1.5rem;
+  color:var(--white);
+}
+.letter-hero h1 span{color:var(--amber)}
+.letter-subtitle{
+  font-size:clamp(.95rem,2.5vw,1.1rem);
+  color:rgba(255,255,255,.75);line-height:1.8;
+  max-width:680px;margin:0 auto;
+}
+
+/* ===== CONTENT SECTIONS ===== */
+.content-section{padding:clamp(2.5rem,6vw,4rem) 0}
+.bg-white{background:var(--white)}
+.bg-warm{background:var(--off-white)}
+
+.content-section h2{
+  font-size:clamp(1.5rem,4vw,2.1rem);
+  color:var(--charcoal);margin-bottom:1.2rem;
+  text-align:center;
+}
+.content-section h2.left-h{text-align:left}
+
+/* ===== TECHNIQUE CALLOUT CARDS ===== */
+.technique-card{
+  background:var(--off-white);
+  border-left:4px solid var(--teal);
+  border-radius:0 10px 10px 0;
+  padding:1.5rem 1.8rem;
+  margin:2rem 0;
+}
+.technique-card .technique-name{
+  font-family:var(--sketch);font-weight:700;
+  font-size:clamp(1.5rem,4vw,1.8rem);color:var(--teal);
+  margin-bottom:.5rem;
+}
+.technique-card p{font-size:.98rem;line-height:1.7;color:var(--text-light);margin-bottom:.5rem}
+.technique-card p:last-child{margin-bottom:0}
+
+/* ===== "TRY THIS" CALLOUT ===== */
+.try-this{
+  background:var(--charcoal);color:var(--white);
+  border-radius:10px;padding:1.8rem 2rem;
+  margin:2.5rem 0;position:relative;
+}
+.try-this::before{
+  content:'Try this right now';
+  display:inline-block;
+  font-family:var(--sketch);font-weight:700;
+  font-size:clamp(1.3rem,3.5vw,1.5rem);color:var(--amber);
+  margin-bottom:.8rem;
+}
+.try-this p{color:rgba(255,255,255,.85);margin-bottom:.8rem}
+.try-this p:last-child{margin-bottom:0}
+
+/* ===== TESTIMONIAL BLOCKS (INLINE) ===== */
+.testimonial-block{
+  border-left:4px solid var(--amber);
+  margin:2.5rem 0;padding:1.5rem 1.8rem;
+  background:rgba(232,168,56,.03);
+  border-radius:0 8px 8px 0;
+}
+.testimonial-block .tq{
+  font-size:clamp(.97rem,2.5vw,1.05rem);
+  line-height:1.8;font-style:italic;color:var(--text);
+  margin-bottom:.8rem;
+}
+.testimonial-block .ta{
+  font-weight:700;color:var(--charcoal);font-style:normal;
+  font-size:.95rem;
+}
+
+/* ===== BULLET LIST WITH ICONS ===== */
+.feature-list{list-style:none;margin:2rem 0;padding:0}
+.feature-list li{
+  padding:1rem 0 1rem 2.2rem;position:relative;
+  font-size:clamp(1rem,2.5vw,1.06rem);line-height:1.7;
+  border-bottom:1px solid rgba(0,0,0,.05);
+}
+.feature-list li:last-child{border-bottom:none}
+.feature-list li::before{
+  content:'';position:absolute;left:0;top:1.2rem;
+  width:10px;height:10px;border-radius:50%;
+  background:var(--teal);
+}
+.feature-list li strong{color:var(--charcoal)}
+
+/* ===== TWO PATHS ===== */
+.two-paths{
+  display:grid;grid-template-columns:1fr;gap:2rem;
+  margin:2.5rem 0;
+}
+@media(min-width:640px){.two-paths{grid-template-columns:1fr 1fr}}
+.path-card{
+  border-radius:12px;padding:2rem;
+  font-size:clamp(.93rem,2.5vw,1rem);line-height:1.75;
+}
+.path-card.path-one{
+  background:var(--off-white);border:1px solid var(--warm-grey);
+  color:var(--text-light);
+}
+.path-card.path-two{
+  background:var(--charcoal);color:rgba(255,255,255,.85);
+  border:2px solid var(--amber);
+}
+.path-card h3{
+  font-family:var(--sketch);font-weight:700;
+  font-size:clamp(1.5rem,4vw,1.8rem);margin-bottom:1rem;
+}
+.path-card.path-one h3{color:var(--text-lighter)}
+.path-card.path-two h3{color:var(--amber)}
+.path-card p{margin-bottom:.8rem}
+.path-card p:last-child{margin-bottom:0}
+
+/* ===== CTA BUTTON ===== */
+.cta-btn{
+  display:inline-block;
+  background:var(--amber);color:var(--white);
+  font-family:var(--sans);font-weight:700;font-size:1.05rem;
+  padding:.95rem 2.4rem;border-radius:6px;border:none;cursor:pointer;
+  box-shadow:0 4px 18px var(--amber-glow);
+  transition:all .25s ease;text-align:center;
+}
+.cta-btn:hover{background:var(--amber-hover);transform:translateY(-2px);box-shadow:0 6px 24px var(--amber-glow)}
+.cta-btn:active{transform:translateY(0)}
+
+/* ===== CTA BANNER (mid-page) ===== */
+.cta-banner{
+  text-align:center;
+  padding:2.5rem clamp(1.25rem,5vw,2rem);
+  background:var(--off-white);
+}
+.cta-banner p{
+  font-size:.9rem;color:var(--text-lighter);
+  margin-top:.75rem;
+}
+
+/* ===== PRICING SECTION ===== */
+.pricing-section{
+  background:linear-gradient(170deg,var(--off-white) 0%,#e8e4df 100%);
+  padding:clamp(3rem,8vw,5.5rem) clamp(1.25rem,5vw,2rem);
+}
+.pricing-card{
+  max-width:520px;margin:0 auto;
+  background:var(--white);border-radius:18px;overflow:hidden;
+  box-shadow:0 25px 80px rgba(13,115,119,.12),0 8px 30px rgba(0,0,0,.06);
+  position:relative;
+}
+.pricing-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--teal),var(--amber));
+}
+.pricing-card-header{
+  background:var(--charcoal);color:var(--white);
+  text-align:center;padding:2rem 2rem 1.8rem;position:relative;
+}
+.pricing-save-badge{
+  display:inline-block;background:var(--amber);color:var(--white);
+  font-family:var(--sans);font-weight:700;font-size:.75rem;
+  padding:.4rem 1rem;border-radius:50px;
+  text-transform:uppercase;letter-spacing:.12em;
+  margin-bottom:1rem;box-shadow:0 4px 12px var(--amber-glow);
+}
+.pricing-card-header h2{
+  font-size:clamp(1.5rem,4vw,1.9rem);margin-bottom:.5rem;
+  font-family:var(--serif);font-weight:400;
+}
+.pricing-card-header p{font-size:.95rem;opacity:.7;max-width:380px;margin:0 auto;line-height:1.5}
+.pricing-price-wrap{text-align:center;padding:2rem 2rem 0}
+.pricing-was{font-family:var(--sans);font-size:1rem;color:var(--text-lighter);margin-bottom:.25rem}
+.pricing-was s{font-size:1.1rem;color:var(--text-light)}
+.pricing-amount{
+  font-family:var(--serif);font-size:clamp(3.2rem,10vw,4.5rem);
+  color:var(--teal);line-height:1;margin-bottom:.25rem;letter-spacing:-.02em;
+}
+.pricing-per{font-family:var(--sans);font-size:.85rem;color:var(--text-lighter);margin-bottom:.15rem}
+.pricing-savings{
+  display:inline-block;background:rgba(13,115,119,.08);color:var(--teal);
+  font-family:var(--sans);font-weight:600;font-size:.8rem;
+  padding:.35rem .9rem;border-radius:50px;margin-top:.5rem;
+}
+.pricing-divider{
+  width:60px;height:2px;
+  background:linear-gradient(90deg,var(--teal),var(--amber));
+  margin:1.5rem auto;border:none;
+}
+.pricing-includes{padding:0 clamp(1.5rem,5vw,2.5rem)}
+.pricing-includes-title{
+  font-family:var(--sans);font-weight:700;font-size:.7rem;
+  text-transform:uppercase;letter-spacing:.15em;
+  color:var(--text-lighter);margin-bottom:1rem;text-align:center;
+}
+.pricing-list{list-style:none;margin:0;padding:0}
+.pricing-list li{
+  display:flex;align-items:flex-start;gap:.75rem;
+  padding:.6rem 0;font-size:.92rem;color:var(--text);line-height:1.45;
+  border-bottom:1px solid rgba(0,0,0,.04);
+}
+.pricing-list li:last-child{border-bottom:none}
+.pricing-list .pl-icon{
+  flex-shrink:0;width:22px;height:22px;
+  background:rgba(13,115,119,.1);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;margin-top:1px;
+}
+.pricing-list .pl-icon svg{width:12px;height:12px}
+.pricing-list .pl-bonus{color:var(--teal);font-weight:600;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em}
+.pricing-list .pl-val{color:var(--text-lighter);font-size:.82rem;font-weight:400}
+.pricing-cta-wrap{padding:1.5rem clamp(1.5rem,5vw,2.5rem) 2rem;text-align:center}
+.buy-btn{
+  display:block;width:100%;background:var(--amber);color:var(--white);
+  font-family:var(--sans);font-weight:800;font-size:1.15rem;
+  padding:1.1rem 2rem;border-radius:10px;border:none;cursor:pointer;
+  box-shadow:0 6px 24px var(--amber-glow);transition:all .3s ease;
+  letter-spacing:.02em;text-align:center;
+}
+.buy-btn:hover{background:var(--amber-hover);transform:translateY(-3px);box-shadow:0 12px 36px var(--amber-glow)}
+.buy-btn:active{transform:translateY(0)}
+.pricing-meta{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1rem}
+.pricing-meta span{font-family:var(--sans);font-size:.78rem;color:var(--text-lighter);display:flex;align-items:center;gap:.35rem}
+.pricing-meta svg{width:14px;height:14px;opacity:.5}
+
+/* ===== GUARANTEE SECTION ===== */
+.guarantee-section{
+  background:var(--teal);color:var(--white);
+  padding:clamp(3rem,8vw,5rem) clamp(1.25rem,5vw,2rem);
+  position:relative;overflow:hidden;
+}
+.guarantee-section::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:6px;
+  background:var(--amber);
+}
+.guarantee-inner{max-width:720px;margin:0 auto;text-align:center}
+.guarantee-seal{width:200px;height:200px;margin:0 auto 1.8rem;position:relative}
+.guarantee-seal svg{width:100%;height:100%}
+.guarantee-heading{
+  font-family:var(--sketch);font-weight:700;
+  font-size:clamp(1.8rem,5.5vw,2.6rem);
+  margin-bottom:1.2rem;line-height:1.2;color:var(--amber);
+}
+.guarantee-body{font-size:clamp(.95rem,2.5vw,1.08rem);line-height:1.75;margin-bottom:1.5rem}
+.guarantee-body p{margin-bottom:1rem}
+.guarantee-bold{
+  font-weight:700;font-size:clamp(1rem,2.5vw,1.12rem);
+  line-height:1.6;margin-bottom:1rem;
+}
+.guarantee-bold .thrilled{color:var(--amber);font-size:1.15em}
+.guarantee-keep{font-style:italic;opacity:.9;margin-bottom:1rem;font-size:clamp(.9rem,2.5vw,1.02rem)}
+.guarantee-closer{font-weight:600;font-size:clamp(1rem,2.5vw,1.1rem);margin-bottom:1.8rem}
+.guarantee-cta{
+  display:inline-block;background:var(--amber);color:var(--white);
+  font-family:var(--sans);font-weight:700;font-size:1.05rem;
+  padding:.95rem 2.8rem;border-radius:8px;border:none;cursor:pointer;
+  box-shadow:0 4px 20px rgba(0,0,0,.2);transition:all .25s ease;margin-bottom:1.5rem;
+}
+.guarantee-cta:hover{background:var(--amber-hover);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.25)}
+.guarantee-tagline{
+  font-family:var(--sans);font-weight:600;
+  font-size:clamp(.85rem,2vw,1rem);
+  letter-spacing:.08em;text-transform:uppercase;opacity:.7;
+}
+.guarantee-tagline span{margin:0 .5rem;opacity:.4}
+
+/* ===== FAQ ===== */
+.faq-section{padding:clamp(3rem,8vw,5.5rem) clamp(1.25rem,5vw,2rem);background:var(--off-white)}
+.faq-section h2{
+  font-size:clamp(1.5rem,4vw,2.1rem);color:var(--charcoal);
+  text-align:center;margin-bottom:2rem;
+}
+.faq-list{max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:.5rem}
+.faq-item{border:1px solid var(--warm-grey);border-radius:8px;overflow:hidden;background:var(--white)}
+.faq-q{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 1.25rem;cursor:pointer;
+  background:none;border:none;width:100%;text-align:left;
+  font-family:var(--sans);font-weight:600;font-size:.98rem;color:var(--teal);
+  transition:color .15s ease;gap:1rem;
+}
+.faq-q:hover{color:var(--teal-dark)}
+.faq-icon{flex-shrink:0;font-size:1.3rem;color:var(--text-lighter);transition:transform .25s ease}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-item.open .faq-a{max-height:800px}
+.faq-a-inner{padding:0 1.25rem 1.25rem;font-size:.93rem;color:var(--text-light);line-height:1.75}
+.faq-a-inner p{margin-bottom:.75rem}
+.faq-a-inner p:last-child{margin-bottom:0}
+
+/* ===== FINAL CTA ===== */
+.final-cta{
+  background:var(--charcoal);color:var(--white);
+  text-align:center;
+  padding:clamp(3rem,8vw,5rem) clamp(1.25rem,5vw,2rem);
+}
+.final-cta h2{
+  font-size:clamp(1.4rem,4vw,2rem);color:var(--white);
+  margin-bottom:.8rem;
+}
+.final-cta .subtitle{
+  font-family:var(--sketch);font-size:clamp(1.4rem,3.5vw,1.7rem);
+  color:var(--amber);margin-bottom:2rem;
+}
+.final-cta .cta-btn{font-size:1.15rem;padding:1.1rem 3rem}
+.final-cta .fine-print{
+  margin-top:1rem;font-size:.85rem;color:rgba(255,255,255,.5);
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:var(--charcoal);color:rgba(255,255,255,.5);
+  text-align:center;padding:2rem 1.5rem;font-size:.85rem;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+.footer-tagline{
+  font-family:var(--sketch);font-size:1.2rem;
+  color:rgba(255,255,255,.4);margin-top:.5rem;
+}
+
+/* ===== STICKY MOBILE BAR ===== */
+.sticky-bar{
+  display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;
+  background:var(--white);padding:.75rem 1rem;
+  box-shadow:0 -4px 20px rgba(0,0,0,.1);
+  border-top:1px solid var(--warm-grey);
+}
+.sticky-bar .cta-btn{width:100%;padding:.85rem 1rem;font-size:1rem}
+@media(max-width:767px){
+  .sticky-bar{display:block}
+  body{padding-bottom:70px}
+}
+
+/* ===== RESPONSIVE — MOBILE & TABLET ===== */
+@media(max-width:767px){
+  /* Hero image: taller crop on mobile so it's not a tiny sliver */
+  .hero-img{aspect-ratio:16/9;margin:1.5rem auto 0}
+  /* Inline images: remove negative margin that causes overflow */
+  .prose .inline-img{margin-left:0;margin-right:0}
+  /* Technique cards: tighter padding */
+  .technique-card{padding:1.2rem 1.3rem}
+  .technique-card .technique-name{font-size:1.2rem}
+  /* Try-this box: tighter padding */
+  .try-this{padding:1.4rem 1.3rem}
+  /* Testimonials: tighter */
+  .testimonial-block{padding:1.2rem 1.3rem}
+  /* Pull quotes: less vertical space */
+  .pull-quote{padding:1.8rem clamp(1rem,4vw,1.5rem);margin:1rem 0}
+  /* Stats bar: allow wrapping into 2x2 grid */
+  .stat-callout{gap:1rem .5rem;padding:1.5rem 1rem}
+  .stat-callout .stat{min-width:40%;padding:.5rem .5rem}
+  .stat-callout .stat-num{font-size:clamp(1.6rem,8vw,2.2rem)}
+  /* Path cards: tighter */
+  .path-card{padding:1.5rem}
+  /* Pricing card: tighter inner padding */
+  .pricing-card-header{padding:1.5rem 1.25rem 1.3rem}
+  .pricing-includes{padding:0 1.25rem}
+  .pricing-cta-wrap{padding:1.25rem 1.25rem 1.5rem}
+  /* CTA buttons: full width on mobile, min tap target */
+  .cta-btn{width:100%;padding:1rem 1.5rem;min-height:48px;font-size:1rem}
+  .cta-banner{padding:2rem clamp(1rem,4vw,1.5rem)}
+  /* Guarantee seal: slightly smaller */
+  .guarantee-seal{width:160px;height:160px}
+  /* FAQ: tighter */
+  .faq-q{padding:.85rem 1rem;font-size:.92rem}
+  .faq-a-inner{padding:0 1rem 1rem}
+  /* Workshop previews: slightly less margin */
+  .workshop-preview{margin:1.5rem 0}
+  /* Scene breaks with contain: ensure they don't overflow */
+  .scene-break img{max-width:100%}
+  /* Gallery strip items: ensure square on small screens */
+  .gallery-strip{gap:.5rem}
+  /* Video container: ensure no overflow */
+  .content-section iframe{max-width:100%}
+  /* Feature list: less left padding */
+  .feature-list li{padding-left:1.8rem}
+  .feature-list li::before{top:1.15rem;width:8px;height:8px}
+}
+
+/* Small phones (iPhone SE, etc) */
+@media(max-width:374px){
+  .letter-hero{padding:2rem 1rem 2rem}
+  .letter-hero h1{font-size:1.4rem}
+  .stat-callout .stat{min-width:45%}
+  .pricing-amount{font-size:2.8rem}
+  .path-card{padding:1.2rem}
+  .technique-card{padding:1rem 1.1rem}
+  .buy-btn{font-size:1rem;padding:.9rem 1rem}
+}
+
+/* Tablet landscape (768-1024) */
+@media(min-width:768px) and (max-width:1024px){
+  .hero-img{aspect-ratio:2.2/1}
+  .img-text-row{gap:1.5rem}
+  .gallery-strip{gap:.6rem}
+}
+
+/* Ensure tap targets are accessible on all touch devices */
+@media(pointer:coarse){
+  .cta-btn,.buy-btn,.guarantee-cta,.faq-q{min-height:48px}
+  .faq-q{padding:1rem 1.25rem}
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* ===== TEXT CENTER UTILITY ===== */
+.text-center{text-align:center}
+
+/* ===== IMAGE PLACEHOLDERS ===== */
+.img-placeholder{
+  background:var(--warm-grey);border-radius:10px;
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  border:2px dashed rgba(0,0,0,.12);
+}
+.img-placeholder::after{
+  font-family:var(--sketch);font-size:clamp(.85rem,2vw,1rem);
+  color:var(--text-lighter);text-align:center;
+  padding:1rem;line-height:1.4;
+}
+/* When real images are present, hide placeholder styling */
+.img-placeholder:has(img),
+.scene-break:has(img){border:none;background:none}
+.img-placeholder:has(img)::after,
+.scene-break:has(img)::after{display:none}
+/* Real image fitting */
+.img-placeholder img,.scene-break img,.workshop-preview img,
+.hero-img img,.inline-img img{
+  width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit;
+}
+/* Hero image */
+.hero-img{
+  max-width:900px;margin:2rem auto 0;
+  aspect-ratio:21/9;border-radius:12px;
+}
+.hero-img::after{content:'Hero Image: Ian sketching on location — vibrant, wide shot'}
+/* Full-width scene break */
+.scene-break{
+  max-width:100%;margin:0;
+  aspect-ratio:3/1;border-radius:0;border:none;
+  background:linear-gradient(135deg,var(--warm-grey) 0%,#ddd8d2 100%);
+}
+.scene-break::after{content:attr(data-label)}
+/* Inline image — within prose */
+.prose .inline-img{
+  margin:2rem -1rem;aspect-ratio:16/9;border-radius:10px;
+}
+.prose .inline-img::after{content:attr(data-label)}
+/* Side-by-side image + text */
+.img-text-row{
+  display:grid;grid-template-columns:1fr;gap:2rem;
+  align-items:center;margin:2.5rem 0;
+}
+@media(min-width:640px){
+  .img-text-row{grid-template-columns:280px 1fr}
+  .img-text-row.reverse{grid-template-columns:1fr 280px}
+  .img-text-row.reverse .img-placeholder{order:2}
+}
+.img-text-row .img-placeholder{
+  width:100%;aspect-ratio:4/5;border-radius:10px;
+}
+.img-text-row .img-placeholder::after{content:attr(data-label)}
+.img-text-row .img-text-copy p{
+  font-size:clamp(.95rem,2.5vw,1.05rem);
+  line-height:1.75;color:var(--text-light);margin-bottom:1rem;
+}
+/* Workshop sketch preview — landscape */
+.workshop-preview{
+  margin:2rem 0;aspect-ratio:16/10;border-radius:10px;
+  max-width:100%;
+}
+.workshop-preview::after{content:attr(data-label)}
+/* Small gallery strip */
+.gallery-strip{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:.75rem;margin:2.5rem 0;
+}
+@media(max-width:767px){.gallery-strip{grid-template-columns:repeat(2,1fr)}}
+.gallery-strip .img-placeholder{
+  aspect-ratio:1;border-radius:8px;
+}
+.gallery-strip .img-placeholder::after{content:attr(data-label)}
+
+/* ===== PULL QUOTE ===== */
+.pull-quote{
+  text-align:center;
+  padding:2.5rem clamp(1.25rem,5vw,2rem);
+  margin:2rem 0;
+}
+.pull-quote p{
+  font-family:var(--serif);
+  font-size:clamp(1.3rem,3.5vw,1.8rem);
+  line-height:1.4;color:var(--charcoal);
+  max-width:640px;margin:0 auto;
+  font-style:italic;
+}
+.pull-quote .pq-attr{
+  display:block;margin-top:.8rem;
+  font-family:var(--sketch);font-style:normal;
+  font-size:clamp(1.2rem,3vw,1.4rem);
+  color:var(--amber);
+}
+
+/* ===== STAT CALLOUT ===== */
+.stat-callout{
+  display:flex;align-items:center;justify-content:center;
+  gap:clamp(1.5rem,4vw,3rem);flex-wrap:wrap;
+  padding:2rem clamp(1.25rem,5vw,2rem);
+  background:var(--charcoal);color:var(--white);
+  text-align:center;
+}
+.stat-callout .stat{padding:.5rem 1rem}
+.stat-callout .stat-num{
+  font-family:var(--serif);
+  font-size:clamp(2rem,5vw,3rem);
+  color:var(--amber);line-height:1;
+}
+.stat-callout .stat-label{
+  font-size:.85rem;color:rgba(255,255,255,.6);
+  margin-top:.25rem;
+}
+</style>
+
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="letter-hero">
+  <div class="letter-hero-inner">
+    <p class="letter-pre">For women who've always wanted to draw... but secretly believe they can't.</p>
+    <h1>8 Months Ago, Margaret Couldn't Draw a Stick Figure. Now Her Sketches Get More Likes Than Her <span>Daughter's Holiday Photos.</span></h1>
+    <p class="letter-subtitle">Same woman. Same hands. The only thing that changed? She finally got a proper teacher. Here's how a complete beginner &mdash; one who'd convinced herself she had "no artistic talent" &mdash; started filling sketchbooks by her fourth Saturday afternoon.</p>
+    <div class="img-placeholder hero-img"><img src="https://www.urbansketchcourse.com/wp-content/uploads/2025/11/PRAS8849-1-2048x1537.jpg.webp" alt="Ian Fennelly sketching on location" width="2048" height="1537" fetchpriority="high" decoding="async"></div>
+  </div>
+</section>
+
+<!-- ===== THE WATERCOLOUR SET ===== -->
+<div class="content-section bg-white">
+  <div class="prose">
+    <p>The watercolour set is still in the cupboard.</p>
+
+    <p>You know the one. Third shelf, behind the birthday candles. The paints have cracked. The brush went stiff because you forgot to wash it. And every time you open that cupboard, it looks back at you like a small, quiet accusation.</p>
+
+    <p>You bought it because something stirred. A feeling. Not a thought &mdash; a <em>feeling</em>. Something that said: <em>I want to make something. Something that's just mine.</em></p>
+
+    <p>And then you sat down. And the page was white and enormous. And you didn't know where to start. And what came out of the brush looked nothing like what you'd imagined. And that voice &mdash; the one you've been carrying since school &mdash; said: <em>See? You're not an art person. You never were.</em></p>
+
+    <p>So you put it away.</p>
+  </div>
+</div>
+
+<!-- Visual break: watercolour set image -->
+<div style="max-width:var(--max-w);margin:0 auto;padding:0 clamp(1.25rem,5vw,2rem)">
+  <div class="img-placeholder inline-img" style="margin:0;aspect-ratio:16/7;border-radius:10px"><img src="https://learn.urbansketch.com/wp-content/uploads/2023/05/Watercolor-Paper.jpg" alt="Watercolour paints and paper" loading="lazy" decoding="async"></div>
+</div>
+
+<div class="content-section bg-white" style="padding-top:clamp(1.5rem,4vw,2.5rem)">
+  <div class="prose">
+    <h3 style="font-family:var(--sketch);font-size:clamp(1.5rem,4vw,1.85rem);color:var(--teal);text-align:center;margin-bottom:1.5rem;font-weight:700">But you didn't stop trying.</h3>
+
+    <p>Six months later, you tried again. Different thing this time. An online watercolour course &mdash; you signed up at midnight, full of hope, watched the first two videos, got lost by the third, and quietly stopped logging in.</p>
+
+    <p>Then there was YouTube. The drawing book from Amazon. The Pinterest board you called "Someday." The craft kit your daughter bought you for Christmas that you opened, tried once, and never touched again. The local workshop where everyone else seemed to know what they were doing and you sat in the corner thinking <em>I'm the only one here who can't do this.</em></p>
+
+    <p>Fourteen times. Give or take.</p>
+
+    <p>Fourteen times you reached for something creative. Something that had nothing to do with school runs or meal planning or holding everyone else's life together. And fourteen times, it slipped through your fingers.</p>
+
+    <p>And every single time, you blamed yourself.</p>
+
+    <p><em>I'm not disciplined enough. I'm a quitter. I just don't have the patience. I don't have the talent.</em></p>
+
+    <p>Here's what I need you to hear.</p>
+
+    <p><strong>Not one word of that is true.</strong></p>
+
+    <p>And what I'm about to show you is stranger than that. Not only were those failures not your fault &mdash; they were doing something you couldn't see at the time.</p>
+
+    <p>They were preparing you.</p>
+  </div>
+</div>
+
+<!-- Pull quote visual break -->
+<div class="pull-quote bg-warm">
+  <p>&ldquo;You didn't fail fourteen times. You ran fourteen experiments.&rdquo;</p>
+</div>
+
+<!-- ===== WHAT THOSE FOURTEEN ATTEMPTS PROVE ===== -->
+<div class="content-section bg-white">
+  <div class="prose">
+    <h2 class="left-h">What Those Fourteen Attempts Really Prove</h2>
+
+    <p>Those fourteen attempts don't prove you can't learn.</p>
+
+    <p>They prove you <em>won't stop trying.</em></p>
+
+    <p>Think about what those failures actually tell us about you. Not the story you've been telling yourself. The evidence.</p>
+
+    <p>A woman without motivation doesn't sign up for an online course at midnight. A woman without courage doesn't walk into a room full of strangers and pick up a brush. A woman without hunger doesn't keep reaching &mdash; fourteen times &mdash; for something she's been told she can't have.</p>
+
+    <p>Your fourteen failures are the most expensive, most thorough market research in the history of adult creative education. You have personally tested every way that DOESN'T work. You've eliminated the books that leave you alone. The videos that skip steps. The workshops that assume you already know things. The kits that sell you supplies and call it teaching.</p>
+
+    <p>You didn't fail fourteen times. You ran fourteen experiments. And every single one returned the same result: <em>It wasn't the student. It was the method.</em></p>
+  </div>
+</div>
+
+<!-- Scene break: inspirational sketch image -->
+<div class="img-placeholder scene-break"><img src="https://www.urbansketchcourse.com/wp-content/uploads/2023/03/2023-03-07_11-31-51.png" alt="Colourful urban sketch street scene by Ian Fennelly" width="911" height="237" loading="lazy" decoding="async"></div>
+
+<!-- ===== THE LIE UNDERNEATH ===== -->
+<div class="content-section bg-white">
+  <div class="prose">
+    <h2 class="left-h">The Lie Underneath It All</h2>
+
+    <p>But let's deal with the big one. The belief underneath all of it.</p>
+
+    <p><em>&ldquo;I don't have the talent.&rdquo;</em></p>
+
+    <p>Let me ask you something.</p>
+
+    <p>You learned to cook. Not because you were born with a cooking gene &mdash; but because somebody stood beside you and showed you. Your mum. A recipe card. A friend who said, "Lower the heat &mdash; like this." Step by step. With patience. With presence.</p>
+
+    <p>You learned to drive. Remember those first lessons? Stalling at the roundabout. Mounting the kerb. If you'd quit after three goes and said "I just don't have the driving talent," everyone would have thought you were mad. You didn't need talent. You needed more lessons. With a teacher <em>in the car.</em></p>
+
+    <p>You raised children. Through sleepless nights and school plays and teenage silences and that long stretch where you weren't sure you'd survive the worry. Through the part nobody warns you about &mdash; the part where they leave, and the house fills with a silence that has weight. You muddled through. You asked questions at 2am. You learned by doing, with people around you who helped.</p>
+
+    <p>Cooking. Driving. Parenting. Every single thing you've ever been properly taught, you've learned.</p>
+
+    <p>So here's the question that changes everything:</p>
+
+    <p><strong>Why is drawing the ONE thing where you decided talent was required?</strong></p>
+
+    <p>It isn't. It never was.</p>
+
+    <p>Drawing is a skill. Learnable. Teachable. Practicable. Like cooking. Like driving. Like every other thing you've already proven you can master when someone actually shows you how.</p>
+
+    <p>The watercolour set didn't fail you. The YouTube tutorials didn't fail you. You didn't fail you.</p>
+
+    <p><em>The teaching failed you. Because there was no teaching present.</em></p>
+  </div>
+</div>
+
+<!-- Pull quote -->
+<div class="pull-quote">
+  <p>&ldquo;Drawing is a skill. Learnable. Teachable. Like cooking. Like driving. Like every other thing you've mastered when someone showed you how.&rdquo;</p>
+</div>
+
+<!-- ===== YOU ALREADY HAVE PROOF ===== -->
+<div class="content-section bg-warm">
+  <div class="prose">
+    <h2 class="left-h">You Already Have Proof This Works</h2>
+
+    <p>You've already felt this, by the way. You may have forgotten, but your body remembers.</p>
+
+    <p>There was a moment &mdash; maybe just one &mdash; where you tried something creative and it actually <em>clicked</em>. Where the voice went quiet and your hands just... did the thing.</p>
+
+    <p>For a lot of women I talk to, it was something like a pottery class. A taster session. Maybe a bachelorette party, or a rainy Saturday, or a birthday thing.</p>
+
+    <p>The instructor was warm. She smiled. She said something like "the wonkier the better" and you felt your shoulders drop about three inches. And your hands were in the clay. And the thing you made was lopsided and lumpy and absolutely, completely <em>yours.</em> And you carried it home like it was made of gold.</p>
+
+    <p>That wasn't a fluke. That was what happens when the right conditions show up. A warm teacher. A method that celebrates imperfection. Permission to be rubbish at the start.</p>
+
+    <p>What you got &mdash; for one afternoon &mdash; was what had been missing every other time:</p>
+
+    <p><em>Someone who knew how to teach. And who made it safe to begin.</em></p>
+
+    <div class="img-placeholder inline-img"><img src="https://www.urbansketchcourse.com/wp-content/uploads/2025/10/Screenshot-2025-10-09-130457.jpg" alt="Urban sketching creative energy" loading="lazy" decoding="async"></div>
+  </div>
+</div>
+
+<!-- ===== MID-PAGE CTA ===== -->
+<div class="cta-banner">
+  <a href="#buy" class="cta-btn">Yes, I Want to Start Sketching</a>
+  <p>30-day guarantee &bull; Lifetime access &bull; All bonuses included</p>
+</div>
+
+<!-- ===== THE TEACHER WHO WAS MISSING ===== -->
+<div class="content-section bg-white">
+  <div class="prose">
+    <h2 class="left-h">The Teacher Who Was Missing</h2>
+
+    <div class="img-text-row">
+      <div class="img-placeholder" data-label="Photo: Ian Fennelly"><img src="https://learn.urbansketch.com/wp-content/uploads/2025/03/ian-chelsea.jpg" alt="Ian Fennelly sketching outdoors" width="557" height="803" loading="lazy" decoding="async"></div>
+      <div class="img-text-copy">
+        <p>My name is <strong>Ian Fennelly.</strong></p>
+        <p>And before you picture some serious artist in a black turtleneck who emerged from the womb holding a charcoal pencil &mdash; let me introduce the real version.</p>
+        <p>I'm the bloke who gets paint on his shorts. Who holds his brush between his teeth while talking to camera.</p>
+      </div>
+    </div>
+
+    <p>Who once spent three hours painting a doorway in Chester and when I stepped back, the thing looked like the building was slowly melting.</p>
+
+    <p>For twelve years, I was a very unsuccessful artist. Not the gifted kid. Not the prodigy. Just someone who fell in love with sketching buildings and then spent years &mdash; <em>years</em> &mdash; trying to understand why some people learn to draw and others quit believing they can't.</p>
+
+    <p>The answer was never talent. Not once. Not ever.</p>
+
+    <p>It was teaching.</p>
+
+    <p>The moment I understood that, I stopped being just an artist and started being a teacher. A proper one. Not someone who demonstrates and expects you to keep up. Someone who sits beside you &mdash; step by step, shape by shape &mdash; and stays with you until you feel it click.</p>
+
+    <p>My method? <strong>No rules. No pressure.</strong></p>
+
+    <p>My promise? <strong>If you can hold a pen, you can do this.</strong></p>
+
+    <div class="img-placeholder inline-img"><img src="https://www.urbansketchcourse.com/wp-content/uploads/2024/01/Untitled-design-23.jpg" alt="Ian Fennelly teaching urban sketching" loading="lazy" decoding="async"></div>
+
+    <p>I've taught this method to over 50,000 beginners &mdash; most of them women over forty who told me in their first email that they "can't draw."</p>
+
+    <p>And here's something that will surprise you, because it surprised me too.</p>
+
+    <p><strong>The students who struggle most in their first week are the ones who've had the MOST art training.</strong> They come in with rigid rules about how things "should" look. They grip the pencil too tight. They second-guess every line.</p>
+
+    <p>The ones who fly? Complete beginners. Every single time. Because they have nothing to unlearn.</p>
+
+    <p><strong>Your lack of training isn't your weakness. It's your unfair advantage.</strong></p>
+  </div>
+</div>
+
+<!-- Stats bar -->
+<div class="stat-callout">
+  <div class="stat"><div class="stat-num">50,000+</div><div class="stat-label">Beginners taught</div></div>
+  <div class="stat"><div class="stat-num">300+</div><div class="stat-label">Five-star reviews</div></div>
+  <div class="stat"><div class="stat-num">4</div><div class="stat-label">Step-by-step workshops</div></div>
+  <div class="stat"><div class="stat-num">30</div><div class="stat-label">Day guarantee</div></div>
+</div>
+
+<!-- ===== WORKSHOP 1: THE LAYER CAKE METHOD ===== -->
+<div class="content-section bg-white">
+  <div class="prose">
+    <h2 class="left-h">What the First Twenty Minutes Feel Like</h2>
+
+    <p>Let me show you what that advantage looks like in practice.</p>
+
+    <div class="img-placeholder workshop-preview"><img src="https://learn.urbansketch.com/wp-content/uploads/2022/11/English-Bridge-copy1-1.jpg" alt="Workshop 1: The English Bridge — finished sketch in pencil, ink and watercolour" width="850" height="567" loading="lazy" decoding="async"></div>
+
+    <p>It's evening. Quiet house. The day is done. You're at the kitchen table &mdash; cup of tea, sketchbook open, lamp on. On the screen there's me, standing in front of a beautiful old stone bridge in Shrewsbury. Three arches. Weathered stone. Light on the water.</p>
+
+    <p>It looks impossible.</p>
+
+    <p>And I say: "Forget the bridge. Forget the whole thing. Just look at this one shape here &mdash; see it? That rectangle? Just draw that."</p>
+
+    <p>So you draw it.</p>
+
+    <p>Your hand is tight on the pencil. The line wobbles. It doesn't look like much. But it's a rectangle. On your paper. And you did it.</p>
+
+    <p>"Good," I say. "Now this shape next to it. See how it sits? A bit taller. Slightly narrower."</p>
+
+    <p>You draw that one. Then the next. Then an arch underneath. And somewhere between the third shape and the fifth, something changes in your hand. You didn't tell it to. The grip softens. The pencil moves a little faster. The shapes start to connect and you are not thinking about whether you are doing it right because my voice is still there, calm and unhurried, and your hand keeps moving.</p>
+
+    <p>You glance down.</p>
+
+    <p>There's a bridge on your page.</p>
+
+    <p>Not a perfect bridge. Not a photograph. A wobbly, sketchy, imperfect, unmistakably <em>real-looking</em> bridge. Made of six or seven simple shapes that you drew, one at a time, with your own hand, in the last fifteen minutes.</p>
+
+    <p>Your tea went cold. You didn't notice.</p>
+
+    <div class="technique-card">
+      <div class="technique-name">The Layer Cake Method</div>
+      <p>One layer at a time. Pencil shapes first &mdash; just the skeleton of what you see. Then ink &mdash; the confident lines that bring the whole thing alive. Then colour &mdash; not filling in, but painting <em>light.</em></p>
+      <p>Each layer has a single job. Each layer builds on the last. Nothing complicated. Nothing mysterious. Just a teacher showing you which shape to draw next.</p>
+    </div>
+
+    <p>And by the end of that first sitting, you have a finished sketch. A real one. The English Bridge, in pencil and ink and watercolour, sitting on your kitchen table. Something you could pin on the wall. Something you made.</p>
+
+    <p>That tightness in your stomach &mdash; the one that has been saying <em>you can't do this</em> for thirty years &mdash; loosens. Just a little. Just enough for you to turn the page and think: <em>What's next?</em></p>
+  </div>
+</div>
+
+<div class="section-break"></div>
+
+<!-- ===== WORKSHOP 2: THE EDITOR'S EYE ===== -->
+<div class="content-section bg-white">
+  <div class="prose">
+    <h2 class="left-h">Workshop 2: Tanners Wine Merchants</h2>
+
+    <div class="img-placeholder workshop-preview"><img src="https://learn.urbansketch.com/wp-content/uploads/2025/05/Tanners-Wine-Merchants-co1py.jpg" alt="Workshop 2: Tanners Wine Merchants — finished sketch showing timber framing and character" width="2000" height="1333" loading="lazy" decoding="async"></div>
+
+    <p>What's next is a gorgeous old shopfront called Tanners Wine Merchants. More detail now. Timber framing. Hanging baskets. A sign with curling letters.</p>
+
+    <p>Your first instinct will be to draw everything. Every beam, every flower, every letter on the sign. That's what beginners do &mdash; they think more detail means a better sketch. It doesn't. It means a fussy, overworked, slightly dead one.</p>
+
+    <p>Workshop 2 is where I teach you the thing that separates sketchers from copiers.</p>
+
+    <div class="technique-card">
+      <div class="technique-name">The Editor's Eye</div>
+      <p>What you leave out defines a sketch more than what you put in. You start making choices. This detail matters. That one doesn't. This shadow tells the story. That drainpipe adds nothing.</p>
+      <p>Your hand moves faster because it isn't trying to record everything &mdash; it's selecting. Editing. Deciding.</p>
+    </div>
+
+    <p>And the sketch that comes out of this workshop has something the first one didn't. Not more skill. More <em>confidence.</em> You can see it in the lines. Looser. Bolder. The marks of someone who is starting to trust her own eye.</p>
+  </div>
+</div>
+
+<div class="section-break"></div>
+
+<!-- ===== WORKSHOP 3: THE FOUR PILLARS ===== -->
+<div class="content-section bg-white">
+  <div class="prose">
+    <h2 class="left-h">Workshop 3: Church Street &mdash; Your Age Is Your Advantage</h2>
+
+    <div class="img-placeholder workshop-preview"><img src="https://learn.urbansketch.com/wp-content/uploads/2023/09/Church-Street-Finished-Picture-crt5jopy.jpg" alt="Workshop 3: Church Street — finished sketch showing perspective and depth" width="2000" height="1333" loading="lazy" decoding="async"></div>
+
+    <p>Workshop 3 is Church Street. A full street scene. Buildings receding into the distance. Perspective. Depth. Complexity.</p>
+
+    <p>And this is where I need to tell you something about age. Because I know it's sitting in the back of your mind. <em>I'm 57. I'm 63. I'm too old for this.</em></p>
+
+    <p>Here's what I've seen, teaching over 50,000 students.</p>
+
+    <p>Women in their fifties and sixties consistently produce the most interesting sketches in the course. Not the most technically precise. The most <em>interesting.</em> The most alive. The ones with soul.</p>
+
+    <p>A twenty-five-year-old draws a street and sees geometry. A woman who has lived in streets &mdash; raised children on them, walked them in every season, watched the light change over decades &mdash; draws a street and sees <em>story.</em></p>
+
+    <div class="technique-card">
+      <div class="technique-name">The Four Pillars</div>
+      <p>Perspective, composition, detail, tonal value. In Workshop 3, I teach them explicitly. But women your age have been absorbing them unconsciously for decades &mdash; every time you noticed how light falls across a garden wall, every time you arranged flowers in a vase.</p>
+      <p>You've been training your eye your whole life. You just never connected it to drawing.</p>
+    </div>
+
+    <p>By the end of this workshop, you're not just following along anymore. You're making decisions I didn't tell you to make. A shadow here. An empty space there. A doorway you chose to include because something about it felt right.</p>
+
+    <p>You're starting to sketch like yourself.</p>
+  </div>
+</div>
+
+<div class="section-break"></div>
+
+<!-- ===== WORKSHOP 4: THE BOLDNESS PARADOX ===== -->
+<div class="content-section bg-white">
+  <div class="prose">
+    <h2 class="left-h">Workshop 4: Wyle Cop &mdash; The Boldness Paradox</h2>
+
+    <div class="img-placeholder workshop-preview"><img src="https://learn.urbansketch.com/wp-content/uploads/2025/05/Wyle-Cop-scaled-1.jpg" alt="Workshop 4: Wyle Cop — finished sketch showing bold colour and confident linework" width="2560" height="1707" loading="lazy" decoding="async"></div>
+
+    <p>Workshop 4. Wyle Cop. The final workshop. Everything together. And this is where your worst enemy becomes your greatest asset.</p>
+
+    <p>I'm talking about your perfectionism.</p>
+
+    <p>You know the voice. The one that checks every line. The one that says <em>that's not right, that's not good enough, start again.</em> The one you've always assumed was the reason you can't draw.</p>
+
+    <p>It isn't.</p>
+
+    <p>Your perfectionism means you <em>care</em> about quality. That you refuse to accept sloppy work. That something in you demands excellence. Those aren't weaknesses. They're only a problem in sketching because nobody ever told you the secret:</p>
+
+    <div class="technique-card">
+      <div class="technique-name">The Boldness Paradox</div>
+      <p>The instinct to pull back is the signal to push forward. You'll reach a point in the sketch &mdash; usually during the colour stage &mdash; and your instinct will scream: <em>Stop. Be careful. You're about to ruin it.</em></p>
+      <p>And instead of stopping, you push. A bold line. A splash of colour. And it <em>sings.</em> Not despite the imperfection. Because of it.</p>
+    </div>
+
+    <div class="technique-card">
+      <div class="technique-name">The Colour Family</div>
+      <p>Three colours. Mixed in pairs. Infinite palette. No more paralysis in the art shop. No more muddy colours. No more buying thirty tubes of paint when three will do.</p>
+    </div>
+
+    <p>By the end of Workshop 4, you have four finished sketches on your kitchen table. A bridge. A shopfront. A street. A townscape. Each one better than the last. Each one more confident, more loose, more <em>yours.</em></p>
+
+    <p>And the woman who made them is someone you're only just starting to recognise.</p>
+  </div>
+</div>
+
+<!-- ===== STUDENT WORK GALLERY ===== -->
+<div style="padding:clamp(2rem,5vw,3.5rem) clamp(1.25rem,5vw,2rem);background:var(--off-white)">
+  <p style="text-align:center;font-family:var(--sketch);font-size:clamp(1.5rem,4vw,1.85rem);color:var(--teal);margin-bottom:1.5rem;font-weight:700">What Our Students Are Creating</p>
+  <div class="gallery-strip" style="max-width:820px;margin:0 auto">
+    <div class="img-placeholder"><img src="https://www.urbansketchcourse.com/wp-content/uploads/2024/11/Fernando-AM-copy-768x559.jpg" alt="Student sketch by Fernando" width="768" height="559" loading="lazy" decoding="async"></div>
+    <div class="img-placeholder"><img src="https://www.urbansketchcourse.com/wp-content/uploads/2024/11/susan-leadbeater-768x576.jpg" alt="Student sketch by Susan Leadbeater" width="768" height="576" loading="lazy" decoding="async"></div>
+    <div class="img-placeholder"><img src="https://www.urbansketchcourse.com/wp-content/uploads/2024/11/Adrian-Wyman-768x576.jpg" alt="Student sketch by Adrian Wyman" width="768" height="576" loading="lazy" decoding="async"></div>
+    <div class="img-placeholder"><img src="https://www.urbansketchcourse.com/wp-content/uploads/2024/11/Birgit-Koch-768x576.jpg" alt="Student sketch by Birgit Koch" width="768" height="576" loading="lazy" decoding="async"></div>
+  </div>
+  <p style="text-align:center;font-size:.85rem;color:var(--text-lighter);margin-top:1rem">Real sketches from real beginners — most had never drawn before joining</p>
+</div>
+
+<!-- ===== MID-PAGE CTA ===== -->
+<div class="cta-banner">
+  <a href="#buy" class="cta-btn">Yes, I Want to Start Sketching</a>
+  <p>30-day guarantee &bull; Lifetime access &bull; All bonuses included</p>
+</div>
+
+<!-- ===== THE MOMENT THE STORY CHANGES ===== -->
+<div class="content-section bg-warm">
+  <div class="prose">
+    <h2 class="left-h">The Moment the Story Changes</h2>
+
+    <p>It's a Wednesday morning. Early. The house is still.</p>
+
+    <p>You're on your third sketch. Or maybe your fifth &mdash; you've gone back and done them again because you wanted to. Not because you had to. The pencil work is done and you're inking over it now &mdash; the confident lines, the ones that bring the whole thing alive. Your tea went cold twenty minutes ago. You didn't notice.</p>
+
+    <p>You hold the sketchbook up at arm's length. You tilt your head.</p>
+
+    <p>And you don't hate it.</p>
+
+    <p>You actually... like it. You might even love it. Not because it's perfect. Because it's <em>raw.</em> It has the quality that art teachers spend years trying to recapture in trained students and almost never can: the unself-conscious, direct, immediate mark-making of someone who draws what she sees instead of what she thinks she's supposed to see.</p>
+
+    <p>You take a photo with your phone. You send it to your daughter. No message &mdash; just the picture.</p>
+
+    <p>Three dots appear.</p>
+
+    <p><em>"Mum! You did THAT?!"</em></p>
+
+    <div class="img-placeholder inline-img"><img src="https://learn.urbansketch.com/wp-content/uploads/2026/02/usc_lady.jpg" alt="Woman sketching at home — warm evening light" loading="lazy" decoding="async"></div>
+
+    <p>And you sit there, phone in one hand, pen in the other, grinning at the kitchen table like an absolute idiot. Because yes. Yes, you did that.</p>
+
+    <p>That's the moment this is really about. Not technique. Not method. Not perspective or tonal value or colour theory.</p>
+
+    <p>It's the moment the story changes. The story you've been telling yourself for thirty years. The one that says: <em>I'm not creative. I'm not talented. I'm not someone who makes things.</em></p>
+
+    <p>Because "I can't draw" was never just about drawing, was it?</p>
+
+    <p>It was about everything you decided you couldn't do. Couldn't be. Couldn't try. It was the lock on a door you stopped reaching for.</p>
+
+    <p>And when that lock opens &mdash; when "I can't draw" becomes "look what I drew" &mdash; other doors start opening too.</p>
+  </div>
+</div>
+
+<!-- Pull quote visual break -->
+<div class="pull-quote bg-white">
+  <p>&ldquo;You were never untalented. You were untaught.&rdquo;</p>
+  <span class="pq-attr">&mdash; Ian Fennelly</span>
+</div>
+
+<div class="cta-banner">
+  <a href="#buy" class="cta-btn">Yes, I Want to Start Sketching</a>
+  <p>30-day guarantee &bull; Lifetime access &bull; All bonuses included</p>
+</div>
+
+<!-- ===== WHAT YOU'LL DISCOVER ===== -->
+<div class="content-section bg-white">
+  <div class="prose">
+    <h2 class="left-h">What You'll Discover Inside</h2>
+
+    <p>Here's a taste of what's waiting for you:</p>
+
+    <ul class="feature-list">
+      <li><strong>The Layer Cake Method</strong> &mdash; how to build any intimidating scene one simple layer at a time, so you never stare at a blank page wondering <em>where do I even start?</em></li>
+      <li><strong>The Editor's Eye</strong> &mdash; the counterintuitive discovery that what you <em>leave out</em> defines your sketch more than what you put in. One shift in thinking, and every sketch looks completely different.</li>
+      <li><strong>The Four Pillars framework</strong> &mdash; the four elements every great sketch rests on, explained so clearly you'll start seeing them everywhere: in every building, every street, every view from your kitchen window.</li>
+      <li><strong>The Boldness Paradox</strong> &mdash; why the urge to be careful is the exact signal to push forward. The single biggest reason Ian's students produce sketches with <em>character</em> instead of stiff, overworked drawings.</li>
+      <li><strong>The Colour Family system</strong> &mdash; three colours. Mixed in pairs. Infinite palette. No more paralysis in the art shop.</li>
+      <li>Why the woman who draws the <strong>worst</strong> first sketch almost always produces the <strong>best</strong> final one &mdash; and what that tells you about the dirty little secret behind "natural talent."</li>
+      <li>How to look at a complicated building and see just five or six shapes &mdash; which is all you actually need to capture it on paper.</li>
+    </ul>
+
+    <div class="img-placeholder inline-img"><img src="https://learn.urbansketch.com/wp-content/uploads/2024/09/Instructor-Ian-Fennelly.jpg" alt="Ian Fennelly demonstrating sketching technique" width="1000" height="629" loading="lazy" decoding="async"></div>
+
+    <div class="try-this">
+      <p>Pick up any pen. Hold it near the <em>end</em>, not near the nib. Loosen your grip until the pen almost &mdash; but not quite &mdash; falls out of your hand. Now draw a line. See how it flows instead of scratching? That's biomechanics, not talent. And it's the very first thing Ian teaches you in the course.</p>
+    </div>
+  </div>
+</div>
+
+<div class="cta-banner">
+  <a href="#buy" class="cta-btn">Yes, I Want to Start Sketching</a>
+  <p>30-day guarantee &bull; Lifetime access &bull; All bonuses included</p>
+</div>
+
+<!-- ===== TESTIMONIALS ===== -->
+<div class="content-section bg-warm">
+  <div class="prose">
+    <h2>The Women (and Men) Who Went First</h2>
+    <p style="text-align:center;color:var(--text-light);margin-bottom:2rem">I could tell you all day that this works. But you don't need my word. Listen to the people who were standing exactly where you are:</p>
+
+    <div class="img-placeholder inline-img"><img src="https://eg7oxqa9xch.exactdn.com/wp-content/uploads/2023/08/04134055/P1283061-copy-scaled.jpg?strip=all&lossy=1&w=800&ssl=1" alt="Ian Fennelly teaching a group outdoors" width="800" height="764" loading="lazy" decoding="async"></div>
+
+    <div class="testimonial-block">
+      <div class="tq">"I tried two drawing classes before this and quit both of them. With Ian, I finished my first full sketch in a single afternoon. I sat at my kitchen table afterwards and cried. Not because it was good &mdash; because I had finished something. My husband walked in, saw the sketch, saw me crying, and went very quiet. Then he said: 'That bridge is really something.' He's not a man who says things like that. He meant it."</div>
+      <div class="ta">&mdash; Wendy</div>
+    </div>
+
+    <div class="testimonial-block">
+      <div class="tq">"I'm 62 and I'd never drawn anything in my life. Not a thing. After Workshop 1, my daughter walked past the kitchen table, stopped, and said, 'Mum... YOU did that?' I haven't stopped smiling since. I've done all four workshops now and I've got eleven sketches pinned on my wall. My wall. I've never had a wall of my own work before."</div>
+      <div class="ta">&mdash; Jennifer</div>
+    </div>
+
+    <div class="testimonial-block">
+      <div class="tq">"Zero confidence. Absolutely none. Three weeks and four workshops later, I look at buildings and streets completely differently. I see shapes. I see composition. I've filled half a sketchbook. My sister rang the morning after I posted my first sketch. She said, 'I didn't know you could draw.' Neither did I, love. Neither did I."</div>
+      <div class="ta">&mdash; Lynda</div>
+    </div>
+
+    <div class="testimonial-block">
+      <div class="tq">"What I love is he makes mistakes ON CAMERA and then celebrates them. He doesn't pretend to be perfect. That gave me permission to be imperfect. My daughter-in-law saw my Church Street sketch on the wall and asked where I'd bought the print. I said, 'I drew it, love.' Best moment of my year."</div>
+      <div class="ta">&mdash; Mary</div>
+    </div>
+
+    <div class="testimonial-block">
+      <div class="tq">"I joined mostly because of the community, if I'm honest. Since my wife passed, the house has been very quiet. I thought I might meet people. I did &mdash; but I also discovered I could draw. I'd never tried. The Feedback Gallery changed everything. I post a sketch, someone in Canada posts theirs, we compare notes, we laugh at our wonky perspectives. I've made more friends in four months than in the previous four years."</div>
+      <div class="ta">&mdash; Alistair</div>
+    </div>
+
+    <div class="testimonial-block">
+      <div class="tq">"I give them as gifts now. My grandchildren get sketches of places we've visited together. My neighbour got one of her cottage for her birthday. She cried. Holidays have become reconnaissance missions &mdash; I'm always scouting for things to sketch. My wife says I've become completely insufferable. But she's framed three of them."</div>
+      <div class="ta">&mdash; Simon</div>
+    </div>
+  </div>
+</div>
+
+<!-- Scene break: inspirational sketch collage -->
+<div class="img-placeholder scene-break"><img src="https://learn.urbansketch.com/wp-content/uploads/2021/02/Ian_LondonPen.jpg" alt="Ian Fennelly urban sketches — vibrant colours, different locations" width="1551" height="568" loading="lazy" decoding="async"></div>
+
+<!-- Before & After Student Gallery -->
+<div style="padding:clamp(2rem,5vw,3rem) clamp(1.25rem,5vw,2rem);background:var(--white)">
+  <p style="text-align:center;font-family:var(--sketch);font-size:clamp(1.5rem,4vw,1.85rem);color:var(--teal);margin-bottom:.4rem;font-weight:700">Before &amp; After</p>
+  <p style="text-align:center;font-size:.9rem;color:var(--text-lighter);margin-bottom:1.5rem">Week 1 vs Week 4 — same students, same hands</p>
+  <div style="max-width:820px;margin:0 auto">
+    <div class="img-placeholder" style="border:none;border-radius:10px;aspect-ratio:auto"><img src="https://learn.urbansketch.com/wp-content/uploads/2026/02/2026-02-18_20-54-43.jpg" alt="Before and after — student progress from Week 1 to Week 4" style="width:100%;height:auto;border-radius:10px;display:block" loading="lazy" decoding="async"></div>
+  </div>
+</div>
+
+<!-- ===== WHAT ABOUT MARGARET? ===== -->
+<div class="content-section bg-white">
+  <div class="prose">
+    <h2 class="left-h">What About Margaret?</h2>
+
+    <p>There's something else I want to say. And it might sting a little.</p>
+
+    <p>You probably already know someone who does this.</p>
+
+    <p>Maybe her name isn't Margaret. But you know who I mean. A friend. A neighbour. Someone on your Instagram who started posting sketches about eight months ago &mdash; beautiful, characterful, alive sketches &mdash; and every time one comes up in your feed you feel two things at once.</p>
+
+    <p>Admiration. And something sharper. Something underneath that whispers: <em>That could have been me.</em></p>
+
+    <div class="img-placeholder inline-img"><img src="https://learn.urbansketch.com/wp-content/uploads/2021/12/20211109_115847-copy.jpg" alt="Urban sketch — vibrant street scene" width="1200" height="945" loading="lazy" decoding="async"></div>
+
+    <p>Eight months ago, Margaret was exactly where you are right now. Same doubts. Same "I'm not creative" story. Same drawer full of dried-out paint pans and abandoned craft kits.</p>
+
+    <p>The only difference between you and her? She started.</p>
+
+    <p>Not because she was braver. Not because she had more talent. She found the right teacher at the right moment and thought: <em>What have I got to lose?</em></p>
+
+    <p>And here's the part that catches most people off guard:</p>
+
+    <p>That ache you feel when you see Margaret's sketches? That sharp feeling? You've probably been treating it like jealousy. Like something to be ashamed of.</p>
+
+    <p>It isn't jealousy. It's <em>recognition.</em></p>
+
+    <p>Your gut is telling you something your head has been arguing with for years: <em>That's supposed to be me. I'm supposed to be doing that.</em></p>
+
+    <p>Eight months from now, you will either be where Margaret is &mdash; filling sketchbooks, seeing the world differently, posting your work and watching the comments roll in &mdash; or you'll still be watching her from the outside, feeling that same sharp little ache, wondering <em>what if.</em></p>
+  </div>
+</div>
+
+<div class="pull-quote bg-warm">
+  <p>&ldquo;Eight months from now, someone will scroll past <em>your</em> sketch and feel that sharp little ache.&rdquo;</p>
+</div>
+
+<!-- Image break between pull quote and next section -->
+<div class="img-placeholder scene-break" style="aspect-ratio:auto;padding:clamp(1.5rem,4vw,3rem) clamp(1.25rem,5vw,2rem) clamp(2rem,5vw,3.5rem);background:var(--off-white)"><img src="https://www.urbansketchcourse.com/wp-content/uploads/2026/02/Taking-a-Line-for-a-Walk-00-02-39-090.jpg" alt="Taking a line for a walk — urban sketching demonstration" style="object-fit:contain;max-width:900px;margin:0 auto;height:auto" loading="lazy" decoding="async"></div>
+
+<!-- ===== LOOK AT WHAT YOU'RE CARRYING ===== -->
+<div class="content-section bg-warm">
+  <div class="prose">
+    <h2 class="left-h">Look at What You're Actually Carrying</h2>
+
+    <p>Before I tell you about the offer, I want you to see something.</p>
+
+    <p>Look at what you're carrying. Not the things you thought were holding you back. The things that are actually <em>in your hands.</em></p>
+
+    <ul class="feature-list">
+      <li>Fourteen experiments that taught you exactly what doesn't work &mdash; so the method that does will hit you like a thunderclap.</li>
+      <li>A lifetime of seeing that you never connected to drawing.</li>
+      <li>The rawness of a true beginner &mdash; which produces bolder, more alive work than years of art school.</li>
+      <li>The care of a perfectionist, which once redirected becomes the engine of your best sketches.</li>
+      <li>The hunger of someone who has wanted this for decades and never stopped reaching.</li>
+      <li>The depth of someone who has lived long enough to see what a twenty-five-year-old walks past.</li>
+    </ul>
+
+    <p>You are not behind.</p>
+
+    <p><strong>You are the exact person this course was built for.</strong></p>
+
+    <p>Every single thing you thought disqualified you is the reason you'll fly.</p>
+  </div>
+</div>
+
+<!-- Scene break before pricing -->
+<div class="img-placeholder scene-break" style="aspect-ratio:auto;padding:clamp(1.5rem,4vw,3rem) clamp(1.25rem,5vw,2rem);background:var(--off-white)"><img src="https://www.urbansketchcourse.com/wp-content/uploads/2026/02/13-USC-Beginners-Church-Street-Pic-3-Pen-4-with-names-00-11-55-0401.jpg" alt="Church Street sketch demonstration with annotations" style="object-fit:contain;max-width:900px;margin:0 auto;height:auto" loading="lazy" decoding="async"></div>
+
+<!-- ===== PRICING ===== -->
+<section id="buy" class="pricing-section">
+  <div style="max-width:var(--max-w);margin:0 auto;text-align:center;margin-bottom:2rem;padding:0 clamp(1.25rem,5vw,2rem)">
+    <h2 style="font-size:clamp(1.5rem,4vw,2.1rem);color:var(--charcoal);margin-bottom:.6rem">Here's Exactly What You Get</h2>
+    <p style="font-size:1.05rem;color:var(--text-light);max-width:620px;margin:0 auto;line-height:1.7">Everything you need to go from complete beginner to confident urban sketcher &mdash; all in one package.</p>
+  </div>
+  <div class="pricing-card">
+    <div class="pricing-card-header">
+      <span class="pricing-save-badge">Half Price &mdash; Limited Time</span>
+      <h2>Urban Sketching for Beginners</h2>
+      <p>Complete course + all bonuses + lifetime access</p>
+    </div>
+
+    <div class="pricing-price-wrap">
+      <div class="pricing-was">Was <s class="priceFull">&pound;99.00</s></div>
+      <div class="pricing-amount priceOffer">&pound;49</div>
+      <div class="pricing-per">One-time payment &mdash; yours forever</div>
+      <span class="pricing-savings">You save <span class="priceDiscount">&pound;50.00</span></span>
+    </div>
+
+    <hr class="pricing-divider">
+
+    <div class="pricing-includes">
+      <p style="font-size:clamp(.88rem,2.3vw,.97rem);color:var(--text-light);line-height:1.6;margin:0 0 1.2rem;text-align:center">For context: a single two-hour session with a local art tutor runs <span class="priceTutor">&pound;60&ndash;&pound;80</span>. A weekend workshop is <span class="priceWorkshop">&pound;150&ndash;&pound;250</span>. This is four full masterclasses &mdash; plus everything below &mdash; for less than one private lesson.</p>
+      <div class="pricing-includes-title">Everything Included</div>
+      <ul class="pricing-list">
+        <li>
+          <span class="pl-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0D7377" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span><strong>4 Workshop Masterclasses</strong> with Ian Fennelly<br><span class="pl-val">Progressive, step-by-step video training</span></span>
+        </li>
+        <li>
+          <span class="pl-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0D7377" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span><strong>Rapid Skill-Building Exercises</strong><br><span class="pl-val">Targeted practice between workshops</span></span>
+        </li>
+        <li>
+          <span class="pl-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0D7377" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span><strong>Intro to Urban Sketching Module</strong><br><span class="pl-val">The foundations &mdash; before you pick up a brush</span></span>
+        </li>
+        <li>
+          <span class="pl-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0D7377" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span><strong>Urban Sketchers Feedback Gallery</strong><br><span class="pl-val">Post your work, get encouragement, make friends</span></span>
+        </li>
+        <li>
+          <span class="pl-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0D7377" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span><strong>3-Hour Live Workshop Recording</strong><br><span class="pl-val">Yours to keep &mdash; even if you get a refund</span></span>
+        </li>
+        <li>
+          <span class="pl-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0D7377" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span><strong>Downloadable Workfiles</strong><br><span class="pl-val">Reference photos &amp; practice sheets</span></span>
+        </li>
+        <li>
+          <span class="pl-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0D7377" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span><strong>Lifetime Access</strong> &mdash; 24/7, never expires<br><span class="pl-val">Subtitles in English, French, Spanish &amp; German</span></span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="pricing-cta-wrap">
+      <a href="https://learn.urbansketch.com/smm/buy-beginner" class="buy-btn">Yes, I Want to Start Sketching!</a>
+      <div class="pricing-meta">
+        <span><svg viewBox="0 0 16 16" fill="none"><path d="M8 1.33v13.34M4.67 4.67l6.66 6.66M11.33 4.67L4.67 11.33" stroke="currentColor" stroke-width="1.2"/></svg> Instant access</span>
+        <span><svg viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M5 8h6M8 5v6" stroke="currentColor" stroke-width="1.2"/></svg> Interest-free payment plan</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===== GUARANTEE ===== -->
+<section class="guarantee-section">
+  <div class="guarantee-inner">
+
+    <div class="guarantee-seal">
+      <svg viewBox="0 0 220 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="paintTexture" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" seed="3" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+          <filter id="strokeTexture" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="5" seed="7" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+        </defs>
+        <rect x="4" y="68" width="212" height="64" rx="8" fill="#E8A838" filter="url(#strokeTexture)" opacity=".85"/>
+        <circle cx="110" cy="100" r="68" fill="#E8A838" filter="url(#paintTexture)"/>
+        <circle cx="110" cy="100" r="62" fill="none" stroke="#fff" stroke-width="2.5" opacity=".9"/>
+        <circle cx="110" cy="100" r="57" fill="none" stroke="#fff" stroke-width="1" opacity=".3"/>
+        <path d="M110 58 L134 71 L134 94 C134 112 122 126 110 134 C98 126 86 112 86 94 L86 71 Z" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M97 94 L106 103 L125 84" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path id="sealArcTop" d="M38,100 a72,72 0 1,1 144,0" fill="none"/>
+        <text font-family="Source Sans 3,sans-serif" font-weight="700" font-size="13.5" fill="#fff" letter-spacing="2.5">
+          <textPath href="#sealArcTop" startOffset="50%" text-anchor="middle">100% SATISFACTION</textPath>
+        </text>
+        <path id="sealArcBot" d="M36,104 a74,74 0 1,0 148,0" fill="none"/>
+        <text font-family="Source Sans 3,sans-serif" font-weight="700" font-size="12.5" fill="#fff" letter-spacing="2">
+          <textPath href="#sealArcBot" startOffset="50%" text-anchor="middle">ZERO RISK GUARANTEED</textPath>
+        </text>
+      </svg>
+    </div>
+
+    <h2 class="guarantee-heading">&mdash; The Missing Teacher Guarantee &mdash;</h2>
+
+    <div class="guarantee-body">
+      <p>I know what you're thinking. <em>What if I'm the one person this doesn't work for? What if this is attempt number fifteen and it ends the same way?</em></p>
+      <p>Here's my answer.</p>
+    </div>
+
+    <p class="guarantee-bold">You have <strong>30 full days</strong> to try everything. Watch the workshops. Do the exercises. Post in the community. Use all four bonuses. Give it an honest go. If at any point you feel this isn't right for you &mdash; for any reason &mdash; I'll return every penny. No questions asked. No hoops. And you keep the Historic City Sketching Workshop. It's yours regardless.</p>
+
+    <p class="guarantee-keep">Why would I do that? Because in fifteen years of teaching beginners, I've learned something: the women who actually sit down and try this don't ask for refunds. They send me photos of their sketchbooks instead.</p>
+
+    <p class="guarantee-closer">I'm not asking you to believe me. I'm asking you to test me.</p>
+
+    <a href="#buy" class="guarantee-cta">I'm Ready to Start</a>
+
+    <div class="guarantee-tagline">100% Satisfaction <span>|</span> Zero Risk <span>|</span> Guaranteed</div>
+  </div>
+</section>
+
+<!-- ===== TWO PATHS ===== -->
+<div class="content-section bg-white">
+  <div class="prose">
+    <h2>Two Paths From Here</h2>
+    <p style="text-align:center;color:var(--text-light);margin-bottom:1rem">I'm not going to give you a countdown clock. That's not how I do things. What I am going to do is tell you the truth.</p>
+
+    <div class="two-paths">
+      <div class="path-card path-one">
+        <h3>Path One</h3>
+        <p>You close this page. You go back to your evening. The kettle goes on. The telly goes on. Tomorrow looks like yesterday.</p>
+        <p>You scroll past Margaret's latest sketch and feel that ache and keep scrolling. You open the cupboard for the birthday candles and see the watercolour set and close the door.</p>
+        <p>And one evening, when the house is quiet and someone asks what you did today, you say "nothing much." And you hear how small it sounds.</p>
+      </div>
+      <div class="path-card path-two">
+        <h3>Path Two</h3>
+        <p>Tonight. Quiet house. Lamp on. Kitchen table cleared. Cup of tea. You press play, and there I am &mdash; paint on my shorts, brush in my teeth &mdash; saying "right, see this shape? Just draw that."</p>
+        <p>And you draw it. Your hand is tight at first. But by the third shape, your grip softens. By the fifth, you stop thinking. By the tenth, there's something on the page that makes you sit back and stare.</p>
+        <p><strong>A bridge. Your bridge. Your pencil, your eyes, your lines.</strong></p>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:1.5rem">Eight months from now, a woman who's exactly where you are tonight scrolls past one of <em>your</em> sketches and feels that sharp little ache. And thinks: <em>That could have been me.</em></p>
+
+    <p style="text-align:center;font-weight:700;color:var(--charcoal);font-size:1.1rem;margin-top:1rem">It can be. The teaching was missing. That's all it ever was. And now it's here.</p>
+  </div>
+</div>
+
+<!-- Pull quote before final CTA -->
+<div class="pull-quote bg-white">
+  <p>&ldquo;The teaching was missing. That's all it ever was. And now it's here.&rdquo;</p>
+  <span class="pq-attr">&mdash; Ian Fennelly</span>
+</div>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="final-cta">
+  <h2>Start Your First Sketch Today</h2>
+  <p class="subtitle">You were never untalented. You were untaught. Let's fix that.</p>
+  <a href="https://learn.urbansketch.com/smm/buy-beginner" class="cta-btn">Enrol Now &mdash; <span class="priceOffer">&pound;49</span></a>
+  <p class="fine-print">Save 50% &bull; Payment plan available &bull; 30-day money-back guarantee &bull; Keep the Historic City Workshop even if you refund</p>
+</section>
+
+<!-- ===== STILL UNDECIDED? ===== -->
+<div class="content-section bg-white" style="text-align:center">
+  <div class="prose" style="max-width:800px">
+    <h2 style="margin-bottom:1.5rem">Still Undecided?</h2>
+    <div style="position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.1)">
+      <iframe src="https://customer-9w5x94b5hgokrmym.cloudflarestream.com/33c9c42ab4a3bb730c272d4e984081d4/iframe?preload=true&defaultTextTrack=en&poster=https%3A%2F%2Fcustomer-9w5x94b5hgokrmym.cloudflarestream.com%2F33c9c42ab4a3bb730c272d4e984081d4%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600" style="border:none;position:absolute;top:0;left:0;width:100%;height:100%" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="true" loading="lazy"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FAQ ===== -->
+<section class="faq-section">
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this.parentElement)">I have absolutely no drawing ability. None. Can I really do this? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>This course was built &mdash; from the ground up, every single frame of it &mdash; for people who believe exactly that. You don't need ability. You don't need experience. You don't need steady hands or a good eye or any other thing you've told yourself you're missing. You need a method and a teacher who doesn't skip steps. Wendy hadn't drawn in twelve years. She finished her first sketch in week one and cried. Not because it was perfect. Because it existed.</p>
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this.parentElement)">I'm in my 50s / 60s / 70s. Haven't I left it too late? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Women aged 45 to 65 are the fastest-growing group in online creative education. Not just participating &mdash; thriving. Women your age consistently produce the most interesting sketches in the course. You've been training your eye your entire life. You just never connected it to drawing. There is no age at which your brain loses the ability to learn a new skill. There is only the age at which you stop trying. That doesn't have to be today.</p>
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this.parentElement)">What if my first sketches are terrible? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>They should be. A terrible first sketch is the correct starting condition. If your first sketch were good, you wouldn't need the course. And here's the thing nobody tells you: the woman who draws the worst first sketch almost always produces the best work by Workshop 4. Because she has nothing to unlearn. Your terrible first sketch is your unfair advantage in disguise.</p>
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this.parentElement)">I've tried other courses and they didn't work. Why would this be different? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Because those resources assumed you already knew things you didn't. They skipped steps. They left you alone in the hard moments. This course shows you every single mark I make, explains <em>why</em> I'm making it, and stays beside you at the pace of someone who has genuinely never done this before. It's the difference between being handed a recipe and having someone cook beside you, adjusting the heat when you're not sure.</p>
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this.parentElement)">I'm a perfectionist. I'll hate my early work. <span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Good. That means you care. And caring about quality &mdash; once you learn the Boldness Paradox &mdash; becomes the engine that produces your best sketches, not the cage that stops you making them. Your inner perfectionist isn't the problem. She just needs a new set of instructions. Workshop 4 will give them to her.</p>
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this.parentElement)">I don't want to post my work in the community. I'm too nervous. <span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>You don't have to. The community is there when you're ready, not before. But here's what every nervous poster discovers: when you finally share your first sketch &mdash; heart hammering, finger hovering over the Post button &mdash; what comes back is not criticism. It's warmth. Everyone in that gallery was once the nervous person hovering over the button. They remember. They'll look after you.</p>
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this.parentElement)">What if I start this and quit like I quit everything else? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>You don't have a history of starting things and not finishing. You have a history of starting things without a proper teacher and running out of guidance. There's an enormous difference. This course gives you a teacher, a method, a community, and lifetime access. But more than that &mdash; it gives you the experience of finishing something in your very first session. That feeling of completion is what pulls you into the next one.</p>
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this.parentElement)">What materials do I need? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>A pen, a pencil, some watercolour paints, and paper. I tell you exactly what to get in the Introduction module (Bonus 2). Nothing expensive. Nothing complicated. You can start with what's in your kitchen drawer right now.</p>
+      </div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this.parentElement)">What's the refund policy? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>The Missing Teacher Guarantee: thirty days, no questions asked, full refund. And you keep the Historic City Sketching Workshop (worth <span class="priceBonus4b">&pound;99.95</span>) even if you get your money back. I'm not asking you to believe me. I'm asking you to test me. Thirty days is enough.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>&copy; 2026 Urban Sketch Course. All rights reserved.</p>
+  <p class="footer-tagline">It's the teaching, not the talent.</p>
+</footer>
+
+<!-- ===== STICKY MOBILE BAR ===== -->
+<div class="sticky-bar">
+  <a href="#buy" class="cta-btn">Enrol Now &mdash; Save 50%</a>
+</div>
+
+<script>
+/* Toggle FAQ */
+function toggleFaq(el){
+  var wasOpen=el.classList.contains('open');
+  el.parentElement.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open')});
+  if(!wasOpen)el.classList.add('open');
+}
+
+/* Fade-in on scroll */
+(function(){
+  var els=document.querySelectorAll('.fade-in');
+  if(!els.length)return;
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})
+  },{threshold:0.15});
+  els.forEach(function(el){obs.observe(el)});
+})();
+
+/* Geo-pricing */
+(function(){
+  function usa(){
+    setAll('.priceOffer','$69');setAll('.priceFull','$138.00');
+    setAll('.priceDiscount','$69.00');setAll('.priceBonus1','$59.00');
+    setAll('.priceBonus2','$99.00');setAll('.priceBonus3','$89.00');
+    setAll('.priceBonusALL','$247.00');setAll('.priceColour','color');
+    setAll('.priceBonus1b','$59.00');setAll('.priceBonus2b','$99.00');
+    setAll('.priceBonus3b','$89.00');setAll('.priceBonus4b','$89.00');
+    setAll('.priceBonusALL3','$247.00');
+    setAll('.priceTutor','$60\u2013$80');setAll('.priceWorkshop','$150\u2013$250');
+  }
+  function uk(){
+    setAll('.priceOffer','\u00A349');setAll('.priceFull','\u00A399.00');
+    setAll('.priceDiscount','\u00A350.00');setAll('.priceBonus1','\u00A339.00');
+    setAll('.priceBonus2','\u00A379.00');setAll('.priceBonus3','\u00A380.00');
+    setAll('.priceBonusALL','\u00A3208.00');setAll('.priceColour','colour');
+    setAll('.priceBonus1b','\u00A339.00');setAll('.priceBonus2b','\u00A379.95');
+    setAll('.priceBonus3b','\u00A399.95');setAll('.priceBonus4b','\u00A399.95');
+    setAll('.priceBonusALL3','\u00A3318.85');
+    setAll('.priceTutor','\u00A360\u2013\u00A380');setAll('.priceWorkshop','\u00A3150\u2013\u00A3250');
+  }
+  function aus(){
+    setAll('.priceOffer','A$90');setAll('.priceFull','A$180.00');
+    setAll('.priceDiscount','A$90.00');setAll('.priceBonus1','A$79.00');
+    setAll('.priceBonus2','A$199.00');setAll('.priceBonus3','A$119.00');
+    setAll('.priceBonusALL','A$397.00');setAll('.priceColour','colour');
+    setAll('.priceBonus1b','A$79.00');setAll('.priceBonus2b','A$199.00');
+    setAll('.priceBonus3b','A$119.00');setAll('.priceBonus4b','A$119.00');
+    setAll('.priceBonusALL3','A$397.00');
+    setAll('.priceTutor','A$120\u2013A$160');setAll('.priceWorkshop','A$300\u2013A$500');
+  }
+  function eur(){
+    setAll('.priceOffer','\u20AC49');setAll('.priceFull','\u20AC98.00');
+    setAll('.priceDiscount','\u20AC49.00');setAll('.priceBonus1','\u20AC59.00');
+    setAll('.priceBonus2','\u20AC79.00');setAll('.priceBonus3','\u20AC80.00');
+    setAll('.priceBonusALL','\u20AC218.00');setAll('.priceColour','colour');
+    setAll('.priceBonus1b','\u20AC59.00');setAll('.priceBonus2b','\u20AC79.00');
+    setAll('.priceBonus3b','\u20AC80.00');setAll('.priceBonus4b','\u20AC80.00');
+    setAll('.priceBonusALL3','\u20AC218.00');
+    setAll('.priceTutor','\u20AC60\u2013\u20AC80');setAll('.priceWorkshop','\u20AC150\u2013\u20AC250');
+  }
+  function ca(){
+    setAll('.priceOffer','C$79');setAll('.priceFull','C$159.00');
+    setAll('.priceDiscount','C$80.00');setAll('.priceBonus1','C$79.00');
+    setAll('.priceBonus2','C$99.00');setAll('.priceBonus3','C$89.00');
+    setAll('.priceBonusALL','C$267.00');setAll('.priceColour','color');
+    setAll('.priceBonus1b','C$79.00');setAll('.priceBonus2b','C$99.00');
+    setAll('.priceBonus3b','C$89.00');setAll('.priceBonus4b','C$89.00');
+    setAll('.priceBonusALL3','C$267.00');
+    setAll('.priceTutor','C$100\u2013C$140');setAll('.priceWorkshop','C$250\u2013C$400');
+  }
+  function setAll(sel,val){
+    document.querySelectorAll(sel).forEach(function(el){el.textContent=val});
+  }
+  /* GeoIP pricing via MaxMind geoip2 — async-safe with retry */
+  function runGeo(){
+    try{geoip2.country(function(loc){
+      var c=loc.country.iso_code;
+      if(c==='GB'||c==='IM'||c==='JE'||c==='GG')uk();
+      else if(c==='AU')aus();
+      else if(['AT','BE','CY','DE','DK','EE','FI','FR','GR','IS','IE','IT','LV','LT','LU','PT','SK','SI','NL','NO','ES'].indexOf(c)>-1)eur();
+      else if(c==='CA')ca();
+      else usa();
+    },function(){usa()})}catch(e){
+      /* Script not loaded yet — retry up to 3s */
+      if(typeof geoip2==='undefined'&&runGeo.tries<6){runGeo.tries++;setTimeout(runGeo,500)}
+      else{usa()}
+    }
+  }
+  runGeo.tries=0;
+  runGeo();
+})();
+
+/* AffiliateWP cross-domain link rewriting */
+(function(){
+  var parentUrl = 'https://learn.urbansketch.com';
+  var refVar = 'a';
+
+  function getCookie(name) {
+    var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? decodeURIComponent(match[2]) : '';
+  }
+
+  var affiliateId = getCookie('affwp_affiliate_id');
+  if (!affiliateId) return;
+
+  var visitId = getCookie('affwp_visit_id');
+  var campaign = getCookie('affwp_campaign');
+
+  var baseUrl = parentUrl.replace(/\/$/, '');
+
+  var links = document.querySelectorAll("a[href^='" + baseUrl + "']");
+  links.forEach(function(link) {
+    var href = link.getAttribute('href');
+
+    var hash = '';
+    var hashIdx = href.indexOf('#');
+    if (hashIdx !== -1) {
+      hash = href.substring(hashIdx);
+      href = href.substring(0, hashIdx);
+    }
+
+    var re = new RegExp('([?&])' + refVar + '=[^&#]*', 'i');
+    if (re.test(href)) {
+      href = href.replace(re, '$1' + refVar + '=' + affiliateId);
+    } else {
+      href += (href.indexOf('?') !== -1 ? '&' : '?') + refVar + '=' + affiliateId;
+    }
+
+    if (visitId) {
+      href += '&visit=' + visitId;
+    }
+
+    if (campaign) {
+      href += '&campaign=' + encodeURIComponent(campaign);
+    }
+
+    link.setAttribute('href', href + hash);
+  });
+})();
+</script>
+
+<!-- Microsoft Clarity — loaded after page content -->
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){
+  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "bn4hwc3a8c");
+</script>
+
+</body>
+</html>
