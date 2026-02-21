@@ -1629,6 +1629,19 @@ function toggleFaq(el){
       href += '&campaign=' + encodeURIComponent(campaign);
     }
 
+    /* A/B variant tagging — so AffiliateWP visit URLs show which variant converted */
+    var abCookies = document.cookie.split(';');
+    for (var i = 0; i < abCookies.length; i++) {
+      var c = abCookies[i].trim();
+      if (c.indexOf('ab_') === 0) {
+        var eqIdx = c.indexOf('=');
+        if (eqIdx > 0) {
+          href += '&ab=' + encodeURIComponent(c.substring(eqIdx + 1));
+          break;
+        }
+      }
+    }
+
     link.setAttribute('href', href + hash);
   });
 })();

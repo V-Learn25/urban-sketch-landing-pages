@@ -49,7 +49,8 @@ Visitor clicks affiliate link
     index.html         - Landing page (control) — cold traffic (ads)
     variant-b.html     - A/B test variant (when test is active)
     start/
-      index.html       - Warm-traffic landing page (email list, organic)
+      index.html       - Warm-traffic landing page (control)
+      variant-b.html   - Warm-traffic A/B test variant (when test is active)
     favicon.jpg        - Site favicon
   scripts/
     pull-affwp-data.js - AffiliateWP weekly CRO report (Node.js, zero dependencies)
@@ -113,7 +114,22 @@ The API endpoint is `/wp-json/affwp/v1/visits`. Authentication is HTTP Basic wit
 
 The worker checks BOTH the content-type header from `env.ASSETS.fetch()` AND the URL path pattern to determine if a request is for an HTML page. Relying only on content-type failed because Cloudflare doesn't always set it correctly for directory index files.
 
-### 7. Secrets Setup (One-Time Per Project)
+### 7. A/B Test Paths Must Be Extensionless
+
+**Problem:** Cloudflare Pages strips `.html` extensions and issues 307 redirects (e.g. `/page/index.html` → `/page/`, `/page/variant-b.html` → `/page/variant-b`). If you use `.html` paths in the `AB_TESTS` config, the worker's `env.ASSETS.fetch()` returns a 307 redirect instead of HTML content, creating a redirect loop.
+
+**Solution:** Always use extensionless paths in `AB_TESTS`:
+```javascript
+// WRONG — causes redirect loop
+{ name: 'control',   path: '/beginners-course/start/index.html',      weight: 50 },
+{ name: 'variant-b', path: '/beginners-course/start/variant-b.html',  weight: 50 },
+
+// CORRECT — Cloudflare Pages resolves these to the .html files directly
+{ name: 'control',   path: '/beginners-course/start/',          weight: 50 },
+{ name: 'variant-b', path: '/beginners-course/start/variant-b', weight: 50 },
+```
+
+### 8. Secrets Setup (One-Time Per Project)
 
 ```bash
 npx wrangler pages secret put AFFWP_PUBLIC_KEY --project-name=<project-name>
@@ -174,6 +190,19 @@ Or set via Cloudflare dashboard: Settings > Environment variables > Production (
       href += '&campaign=' + encodeURIComponent(campaign);
     }
 
+    /* A/B variant tagging — so AffiliateWP visit URLs show which variant converted */
+    var abCookies = document.cookie.split(';');
+    for (var i = 0; i < abCookies.length; i++) {
+      var c = abCookies[i].trim();
+      if (c.indexOf('ab_') === 0) {
+        var eqIdx = c.indexOf('=');
+        if (eqIdx > 0) {
+          href += '&ab=' + encodeURIComponent(c.substring(eqIdx + 1));
+          break;
+        }
+      }
+    }
+
     link.setAttribute('href', href + hash);
   });
 })();
@@ -232,6 +261,7 @@ The worker handles A/B testing at the edge — zero client-side latency, no thir
 - **Cookie-based sticky sessions**: Once assigned, a visitor always sees the same variant (30-day cookie)
 - **Weighted splits**: Configure any split ratio (50/50, 70/30, 90/10)
 - **Clarity auto-tagging**: HTMLRewriter injects the variant name into Clarity via `clarity("set", testName, variantName)` — filter heatmaps and recordings by variant in Clarity dashboard
+- **Checkout URL tagging**: Client-side JS reads the AB cookie and appends `&ab=control` or `&ab=variant-b` to all outbound `learn.urbansketch.com` links — so AffiliateWP visit URLs show which variant the buyer came from
 - **No URL changes**: Ad links, UTM parameters, and affiliate tracking all work identically across variants
 
 ### Running a Test
@@ -243,7 +273,7 @@ The worker handles A/B testing at the edge — zero client-side latency, no thir
 
 2. **Edit the copy** in `variant-b.html` — change headline, CTA, social proof, whatever you're testing.
 
-3. **Make sure variant-b.html has the Clarity script** in `<head>` and the affiliate link rewriting JS before `</body>` (they'll already be there if you copied from index.html).
+3. **Make sure variant-b.html has the Clarity script** in `<head>` and the affiliate link rewriting JS (with AB cookie tagging) before `</body>` (they'll already be there if you copied from index.html).
 
 4. **Activate the test** by uncommenting/adding the config in `_worker.js`:
    ```javascript
@@ -278,10 +308,15 @@ The worker handles A/B testing at the edge — zero client-side latency, no thir
 - Filter by tag name (e.g. `beginners-course`) and value (`control` vs `variant-b`)
 - Compare heatmaps, scroll depth, click maps, and recordings side by side
 
-**Conversion tracking:**
-- The primary metric is CTA click-through rate (clicks on Buy Now links to learn.urbansketch.com)
-- Track this in Clarity via click maps on the CTA button area
-- For end-to-end purchase attribution: the affiliate `visit_id` is already tracked in AffiliateWP — you can cross-reference which variant a converting visitor saw
+**Conversion tracking (three layers):**
+
+1. **Clarity click maps** — filter by custom tag (`beginners-course-start` = `control` or `variant-b`), then compare CTA click counts per variant in the Click Maps view.
+
+2. **AffiliateWP visit URLs** — the client-side JS appends `&ab=control` or `&ab=variant-b` to all checkout links. When the visitor hits the order form, AffiliateWP records the full URL including the `ab` param. Query visits where URL contains `&ab=control` vs `&ab=variant-b` to count order form arrivals per variant.
+
+3. **AffiliateWP referrals** — each sale creates a referral linked to a `visit_id`. Cross-reference the visit's URL (which contains the `ab` param) to attribute purchases to variants.
+
+**In the Monday CRO script**, the `pull-affwp-data.js` script can filter order form visits by `ab` param to report per-variant conversion rates. Example: `node scripts/pull-affwp-data.js --days 7` then grep for `ab=control` and `ab=variant-b` in the visit URLs.
 
 **Statistical significance:**
 - Use https://abtestguide.com/calc/ — enter visitors and conversions per variant
@@ -493,8 +528,8 @@ Edit `_worker.js` — uncomment/update the `AB_TESTS` config:
 const AB_TESTS = {
   '/beginners-course/': {
     variants: [
-      { name: 'control',   path: '/beginners-course/index.html',      weight: 50 },
-      { name: 'variant-b', path: '/beginners-course/variant-b.html',  weight: 50 },
+      { name: 'control',   path: '/beginners-course/',          weight: 50 },
+      { name: 'variant-b', path: '/beginners-course/variant-b', weight: 50 },
     ],
   },
 };
@@ -547,10 +582,11 @@ Back to Phase 1. Analyse the results.
 Keep a running log in this section of what you've tested and the results. This prevents re-testing things and builds institutional knowledge.
 
 ```
-| Date       | Test                          | Variant | Result     | CTA Rate Change |
-|------------|-------------------------------|---------|------------|-----------------|
-| 2026-02-17 | Tracking system setup          | N/A     | Baseline   | Measuring...    |
-| YYYY-MM-DD | [What you tested]             | B       | Won/Lost   | +X% / -X%      |
+| Date       | Page              | Test                                          | Variant | Result     | CTA Rate Change |
+|------------|-------------------|-----------------------------------------------|---------|------------|-----------------|
+| 2026-02-17 | /beginners-course | Tracking system setup                          | N/A     | Baseline   | Measuring...    |
+| 2026-02-21 | /bc/start         | Video position: above pricing vs below guarantee | B      | Running    | Pending         |
+| YYYY-MM-DD | [page]            | [What you tested]                              | B       | Won/Lost   | +X% / -X%      |
 ```
 
 ### Quarterly Review
@@ -622,6 +658,8 @@ Visit `https://yourdomain.com/__debug` to check. **Remove this before going live
 | A/B test always shows same variant | Cookie already set | Clear cookies or use incognito |
 | Clarity not showing custom tags | Script loads after clarity() call | Ensure Clarity script is in `<head>` before `</head>` |
 | Variant not loading | Wrong path in AB_TESTS config | Check path matches actual file location exactly |
+| A/B test causes redirect loop | `.html` in AB_TESTS paths | Use extensionless paths — CF Pages strips `.html` (see Gotcha #7) |
+| Order form visits not tagged with variant | AB cookie not read | Ensure link rewriting JS includes the AB cookie loop (see template above) |
 
 ## AffiliateWP API Reference
 
