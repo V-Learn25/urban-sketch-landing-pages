@@ -176,6 +176,53 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
   font-size:.95rem;
 }
 
+/* ===== TESTIMONIAL SPOTLIGHT (scattered standout boxes) ===== */
+.testimonial-spotlight{
+  position:relative;
+  margin:3rem auto;max-width:620px;
+  padding:2.2rem 2.5rem 2rem;
+  background:linear-gradient(135deg,#faf8f5 0%,#f5f0ea 100%);
+  border-radius:16px;
+  box-shadow:0 4px 24px rgba(0,0,0,.06),0 1px 4px rgba(0,0,0,.04);
+  border:1px solid rgba(232,168,56,.15);
+  text-align:center;
+}
+.testimonial-spotlight::before{
+  content:"\201C";
+  position:absolute;top:-18px;left:50%;transform:translateX(-50%);
+  font-family:var(--serif);font-size:4rem;line-height:1;
+  color:var(--amber);opacity:.5;
+  width:48px;height:48px;
+  background:var(--white);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+.testimonial-spotlight .ts-quote{
+  font-family:var(--serif);
+  font-size:clamp(1.05rem,2.8vw,1.2rem);
+  line-height:1.75;color:var(--charcoal);
+  font-style:italic;margin-bottom:1.2rem;
+}
+.testimonial-spotlight .ts-author{
+  font-family:var(--sans);font-weight:700;
+  font-size:.9rem;color:var(--teal);
+  text-transform:uppercase;letter-spacing:.08em;
+  font-style:normal;
+}
+.testimonial-spotlight .ts-detail{
+  font-family:var(--sans);font-size:.82rem;
+  color:var(--text-light);font-weight:400;
+  margin-top:.2rem;letter-spacing:normal;
+  text-transform:none;
+}
+.testimonial-spotlight .ts-stars{
+  display:block;margin-bottom:.8rem;
+  color:var(--amber);font-size:1.1rem;letter-spacing:2px;
+}
+@media(max-width:767px){
+  .testimonial-spotlight{padding:1.8rem 1.5rem 1.5rem;margin:2.5rem 1rem}
+}
+
 /* ===== BULLET LIST WITH ICONS ===== */
 .feature-list{list-style:none;margin:2rem 0;padding:0}
 .feature-list li{
@@ -750,6 +797,14 @@ footer{
   <p>&ldquo;Drawing is a skill. Learnable. Teachable. Like cooking. Like driving. Like every other thing you've mastered when someone showed you how.&rdquo;</p>
 </div>
 
+<!-- Scattered testimonial: Jennifer -->
+<div class="testimonial-spotlight fade-in">
+  <span class="ts-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+  <div class="ts-quote">&ldquo;I'm 62 and I'd never drawn anything in my life. Not a thing. After Workshop 1, my daughter walked past the kitchen table, stopped, and said, &lsquo;Mum... YOU did that?&rsquo; I've got eleven sketches pinned on my wall. My wall. I've never had a wall of my own work before.&rdquo;</div>
+  <div class="ts-author">&mdash; Jennifer</div>
+  <div class="ts-detail">Complete beginner &bull; Now on her 11th sketch</div>
+</div>
+
 <!-- ===== YOU ALREADY HAVE PROOF ===== -->
 <div class="content-section bg-warm">
   <div class="prose">
@@ -870,6 +925,14 @@ footer{
 
     <p>That tightness in your stomach &mdash; the one that has been saying <em>you can't do this</em> for thirty years &mdash; loosens. Just a little. Just enough for you to turn the page and think: <em>What's next?</em></p>
   </div>
+</div>
+
+<!-- Scattered testimonial: Wendy -->
+<div class="testimonial-spotlight fade-in">
+  <span class="ts-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+  <div class="ts-quote">&ldquo;I tried two drawing classes before this and quit both of them. With Ian, I finished my first full sketch in a single afternoon. I sat at my kitchen table afterwards and cried. Not because it was good &mdash; because I had finished something. My husband said: &lsquo;That bridge is really something.&rsquo; He's not a man who says things like that.&rdquo;</div>
+  <div class="ts-author">&mdash; Wendy</div>
+  <div class="ts-detail">Quit two classes before finding Ian &bull; Now sketches weekly</div>
 </div>
 
 <div class="section-break"></div>
@@ -1187,6 +1250,16 @@ footer{
 <!-- Scene break before pricing -->
 <div class="img-placeholder scene-break" style="aspect-ratio:auto;padding:clamp(1.5rem,4vw,3rem) clamp(1.25rem,5vw,2rem);background:var(--off-white)"><img src="https://www.urbansketchcourse.com/wp-content/uploads/2026/02/13-USC-Beginners-Church-Street-Pic-3-Pen-4-with-names-00-11-55-0401.jpg" alt="Church Street sketch demonstration with annotations" style="object-fit:contain;max-width:900px;margin:0 auto;height:auto" loading="lazy" decoding="async"></div>
 
+<!-- ===== STILL UNDECIDED? (moved above pricing for maximum impact) ===== -->
+<div class="content-section bg-white" style="text-align:center">
+  <div class="prose" style="max-width:800px">
+    <h2 style="margin-bottom:1.5rem">Still Undecided?</h2>
+    <div style="position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.1)">
+      <iframe src="https://customer-9w5x94b5hgokrmym.cloudflarestream.com/33c9c42ab4a3bb730c272d4e984081d4/iframe?preload=true&defaultTextTrack=en&poster=https%3A%2F%2Fcustomer-9w5x94b5hgokrmym.cloudflarestream.com%2F33c9c42ab4a3bb730c272d4e984081d4%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600" style="border:none;position:absolute;top:0;left:0;width:100%;height:100%" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="true" loading="lazy"></iframe>
+    </div>
+  </div>
+</div>
+
 <!-- ===== PRICING ===== -->
 <section id="buy" class="pricing-section">
   <div style="max-width:var(--max-w);margin:0 auto;text-align:center;margin-bottom:2rem;padding:0 clamp(1.25rem,5vw,2rem)">
@@ -1347,16 +1420,6 @@ footer{
   <a href="https://learn.urbansketch.com/smm/buy-beginner" class="cta-btn">Enrol Now &mdash; <span class="priceOffer">&pound;59</span></a>
   <p class="fine-print">Save 60% &bull; Payment plan available &bull; 30-day money-back guarantee &bull; Keep the Historic City Workshop even if you refund</p>
 </section>
-
-<!-- ===== STILL UNDECIDED? ===== -->
-<div class="content-section bg-white" style="text-align:center">
-  <div class="prose" style="max-width:800px">
-    <h2 style="margin-bottom:1.5rem">Still Undecided?</h2>
-    <div style="position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.1)">
-      <iframe src="https://customer-9w5x94b5hgokrmym.cloudflarestream.com/33c9c42ab4a3bb730c272d4e984081d4/iframe?preload=true&defaultTextTrack=en&poster=https%3A%2F%2Fcustomer-9w5x94b5hgokrmym.cloudflarestream.com%2F33c9c42ab4a3bb730c272d4e984081d4%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600" style="border:none;position:absolute;top:0;left:0;width:100%;height:100%" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="true" loading="lazy"></iframe>
-    </div>
-  </div>
-</div>
 
 <!-- ===== FAQ ===== -->
 <section class="faq-section">
