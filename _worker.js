@@ -41,12 +41,12 @@
 //   },
 // ─────────────────────────────────────────────────────────────
 const AB_TESTS = {
-  // '/beginners-course/': {
-  //   variants: [
-  //     { name: 'control',   path: '/beginners-course/index.html',      weight: 50 },
-  //     { name: 'variant-b', path: '/beginners-course/variant-b.html',  weight: 50 },
-  //   ],
-  // },
+  '/beginners-course/start/': {
+    variants: [
+      { name: 'control',   path: '/beginners-course/start/index.html',      weight: 50 },
+      { name: 'variant-b', path: '/beginners-course/start/variant-b.html',  weight: 50 },
+    ],
+  },
 };
 
 // Cookie prefix for A/B test assignments

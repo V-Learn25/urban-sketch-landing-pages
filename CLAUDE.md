@@ -1,5 +1,16 @@
 # Cloudflare Pages + AffiliateWP Cross-Domain Tracking + A/B Testing
 
+## Landing Page Deployment Skill
+
+A comprehensive skill for building, QA-ing, and deploying landing pages lives at:
+`~/.claude/skills/landing-page-deployment/SKILL.md`
+
+**Use it when:** Building a new page, running pre-launch QA, deploying, setting up GeoIP, or checking accessibility. It includes 8 frameworks covering every step from build to weekly CRO analysis, plus a linear runbook for team handoff.
+
+**Quick reference:** The skill has a `RUNBOOK-new-page.md` in `references/` — a zero-interpretation, step-by-step deployment script anyone can follow.
+
+---
+
 ## What This Project Does
 
 Static HTML landing pages hosted on Cloudflare Pages, with a Cloudflare Worker that:
@@ -35,8 +46,11 @@ Visitor clicks affiliate link
   .gitignore           - Excludes .mcp.json, scripts/.env, gomarble venv
   CLAUDE.md            - This file (project runbook + CRO process)
   beginners-course/
-    index.html         - Landing page (control) with Clarity + client-side link rewriting JS
+    index.html         - Landing page (control) — cold traffic (ads)
     variant-b.html     - A/B test variant (when test is active)
+    start/
+      index.html       - Warm-traffic landing page (email list, organic)
+    favicon.jpg        - Site favicon
   scripts/
     pull-affwp-data.js - AffiliateWP weekly CRO report (Node.js, zero dependencies)
     .env               - AffiliateWP API credentials (gitignored)
