@@ -43,8 +43,8 @@
 const AB_TESTS = {
   '/beginners-course/start/': {
     variants: [
-      { name: 'control',   path: '/beginners-course/start/index.html',      weight: 50 },
-      { name: 'variant-b', path: '/beginners-course/start/variant-b.html',  weight: 50 },
+      { name: 'control',   path: '/beginners-course/start/',          weight: 50 },
+      { name: 'variant-b', path: '/beginners-course/start/variant-b', weight: 50 },
     ],
   },
 };
