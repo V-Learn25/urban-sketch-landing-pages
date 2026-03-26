@@ -54,7 +54,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
 /* ===== READABLE BODY COPY ===== */
 .letter p,.prose p{margin-bottom:1.4rem;font-size:1.19rem}
 .letter p:last-child,.prose p:last-child{margin-bottom:0}
-.sub-heading{font-family:var(--sketch);font-size:1.4rem;color:var(--teal);margin:2.5rem 0 .75rem;font-weight:700}
+.sub-heading{font-family:var(--sketch);font-size:2rem;color:var(--teal);margin:2.5rem 0 .75rem;font-weight:700}
 .pull-quote{font-family:var(--serif);font-size:1.35rem;font-style:italic;color:var(--charcoal);text-align:center;padding:1.5rem 2rem;margin:2rem 0;border-top:2px solid var(--amber);border-bottom:2px solid var(--amber);line-height:1.5}
 .image-break{width:100%;aspect-ratio:21/9;background:var(--off-white);border-radius:10px;margin:2rem 0;position:relative;overflow:hidden}
 .image-break::after{content:attr(data-caption);position:absolute;bottom:0;left:0;right:0;padding:.5rem 1rem;font-family:var(--sketch);font-size:1.05rem;color:var(--text-light);background:rgba(255,255,255,.85)}
@@ -163,24 +163,20 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
 .details-list li strong{color:var(--charcoal)}
 
 /* ===== FRAMEWORK LIST ===== */
-.framework-item{margin-bottom:1.5rem}
+.framework-item{margin-bottom:1.5rem;padding:1.5rem 1.75rem;background:var(--charcoal);border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.1)}
 .framework-item h3{
-  font-family:var(--serif);font-size:1.2rem;color:var(--charcoal);margin-bottom:.3rem;
+  font-family:var(--serif);font-size:1.4rem;color:var(--amber);margin-bottom:.5rem;
 }
-.framework-item p{color:var(--text-light);line-height:1.75;font-size:1rem}
+.framework-item p{font-size:1.1rem;color:rgba(255,255,255,.85);line-height:1.7}
 
 /* ===== ABOUT INSTRUCTOR ===== */
-.instructor-grid{display:grid;grid-template-columns:1fr;gap:2rem;align-items:center}
-@media(min-width:640px){.instructor-grid{grid-template-columns:280px 1fr}}
+.instructor-grid{display:flex;flex-direction:column;gap:2rem}
 .instructor-photo{
-  width:100%;max-width:280px;aspect-ratio:3/4;
-  background:var(--warm-grey);border-radius:10px;
-  position:relative;overflow:hidden;margin:0 auto;
+  width:100%;height:auto;aspect-ratio:16/9;
+  border-radius:10px;overflow:hidden;
 }
-.instructor-photo::after{
-  content:'Instructor Photo';
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  font-family:var(--sketch);font-size:1.1rem;color:var(--text-lighter);
+.instructor-photo img{
+  width:100%;height:100%;object-fit:cover;
 }
 .instructor-text h2{margin-bottom:1rem}
 .instructor-text p{margin-bottom:1rem;color:var(--text-light);line-height:1.75}
@@ -295,16 +291,6 @@ footer{
   </div>
 </section>
 
-<!-- ===== MEET IAN (VIDEO) ===== -->
-<section class="section-pad bg-warm">
-  <div class="container text-center fade-in">
-    <p style="font-family:var(--sketch);font-size:1.3rem;color:var(--teal);margin-bottom:.5rem">Meet your teacher</p>
-    <h2 class="section-heading" style="margin-bottom:1.5rem">Watch Ian Introduce the Free Course</h2>
-    <div style="position:relative;width:100%;padding-bottom:56.25%;margin:0 auto;border-radius:10px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.15)"><iframe allow="autoplay" class="spotlightr" allowtransparency="true" style="width:100%;height:100%;position:absolute;top:0;left:0" allowfullscreen="true" src="https://digitalsea.cdn.spotlightr.com/watch/MTgzNTc4MA==?fallback=true" frameborder="0" scrolling="no" name="videoPlayer"></iframe></div>
-    <p style="font-size:1.05rem;color:var(--text-light);margin-top:1.2rem;font-style:italic">Three minutes with Ian. No sales pitch. Just the man behind the course.</p>
-  </div>
-</section>
-
 <!-- ===== SECTION 1: THE RECOGNITION SCENE ===== -->
 <section class="section-pad bg-white">
   <div class="container prose fade-in">
@@ -317,6 +303,11 @@ footer{
     <p>You&rsquo;ve tried before. YouTube tutorials that moved too fast. Books that assumed you already knew things. A class where everyone else seemed to &ldquo;get it&rdquo; and you spent the whole time wondering what was wrong with you.</p>
     <p>It wasn&rsquo;t your fault. It was never about talent.</p>
     <p>It was about finding the right person to show you how.</p>
+
+    <div class="text-center" style="margin-top:2rem">
+      <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course - It&rsquo;s Free</a>
+      <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required. Just your email.</p>
+    </div>
   </div>
 </section>
 
@@ -353,6 +344,11 @@ footer{
     </div>
 
     <p>Angela was seventy-nine. She started anyway. Ken had zero artistic talent. He was pleased with his results. Different people. Different reasons. Same starting point: <em>I don&rsquo;t know if I can do this, but I want to try.</em></p>
+
+    <div class="text-center" style="margin-top:2rem">
+      <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course - It&rsquo;s Free</a>
+      <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required. Just your email.</p>
+    </div>
   </div>
 </section>
 
@@ -392,6 +388,9 @@ footer{
 <!-- ===== SECTION 4: THE DOOR BEYOND ===== -->
 <section class="section-pad bg-warm">
   <div class="container fade-in">
+    <div class="instructor-photo" style="margin:0 0 2rem 0">
+      <img src="https://www.urbansketchcourse.com/wp-content/uploads/2025/11/PRAS8849-1-2048x1537.jpg.webp" alt="Ian Fennelly sketching on location" loading="lazy">
+    </div>
     <h2 class="section-heading">There Are Ideas in Ian&rsquo;s World With Names You Haven&rsquo;t Heard Yet.</h2>
 
     <div class="prose" style="margin-bottom:.5rem">
@@ -427,6 +426,11 @@ footer{
       <p>You&rsquo;ll catch glimpses of these ideas in the free course  - the way Ian layers his process, the way he decides what to leave out, the way his colours work together as if they share a secret. But the full system  - the frameworks, the four different locations, the dedicated exercises that turn watching into doing  - lives in his Beginners Course.</p>
       <p>The free course is where you discover if this is for you. If you feel that door opening  - you&rsquo;ll know where to go next.</p>
     </div>
+
+    <div class="text-center" style="margin-top:2rem">
+      <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course - It&rsquo;s Free</a>
+      <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required. Just your email.</p>
+    </div>
   </div>
 </section>
 
@@ -435,12 +439,19 @@ footer{
   <div class="container fade-in">
     <h2 class="section-heading">The Teacher Who Makes You Forget You&rsquo;re Learning</h2>
     <div class="instructor-grid">
-      <div class="instructor-photo"></div>
+      <div class="instructor-photo">
+        <img src="https://learn.urbansketch.com/wp-content/uploads/2025/03/ian-chelsea.jpg" alt="Ian Fennelly sketching outdoors" loading="lazy">
+      </div>
       <div class="instructor-text">
         <p><strong>Ian Fennelly</strong> is a world-renowned urban sketching artist, published author of three books, and the creator of a teaching system that has guided more than 50,000 students across 188 countries from &ldquo;I can&rsquo;t draw&rdquo; to sketching with confidence.</p>
         <p>His students call him &ldquo;the Bob Ross of urban sketching.&rdquo; The comparison stuck because it&rsquo;s accurate  - the same warmth, the same calm, the same ability to make something intimidating feel like something you could do on a Sunday morning with a cup of tea.</p>
         <p>He teaches workshops internationally  - from Brighton to Porto to New York. He&rsquo;s built the Beginners Course, advanced courses across 10+ locations, and an entire ecosystem of learning built on one belief: <strong>anyone can sketch. You just need someone to show you how.</strong></p>
         <p>His philosophy, in his own words: <em>&ldquo;Life&rsquo;s too short to count windows.&rdquo;</em> Meaning: stop obsessing over perfection. Let the line wobble. Let the colour bleed. That&rsquo;s where the charm lives.</p>
+
+        <div class="instructor-photo" style="margin:1.5rem 0;aspect-ratio:21/9">
+          <img src="https://eg7oxqa9xch.exactdn.com/wp-content/uploads/2023/08/04134055/P1283061-copy-scaled.jpg?strip=all&lossy=1&w=800&ssl=1" alt="Ian Fennelly teaching a workshop group outdoors" loading="lazy">
+        </div>
+
         <p>His most disarming truth: <em>&ldquo;There&rsquo;s no such thing as a mistake.&rdquo;</em> He says it like he means it. Because he does.</p>
 
         <div class="testimonial-quote">
@@ -458,6 +469,20 @@ footer{
           <p class="attribution"> - Renee King, retired teacher</p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MEET IAN (VIDEO) ===== -->
+<section class="section-pad bg-white">
+  <div class="container text-center fade-in">
+    <p style="font-family:var(--sketch);font-size:1.8rem;color:var(--teal);margin-bottom:.5rem">See for yourself</p>
+    <h2 class="section-heading" style="margin-bottom:1.5rem">Watch Ian Introduce the Free Course</h2>
+    <div style="position:relative;width:100%;padding-bottom:56.25%;margin:0 auto;border-radius:10px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.15)"><iframe allow="autoplay" class="spotlightr" allowtransparency="true" style="width:100%;height:100%;position:absolute;top:0;left:0" allowfullscreen="true" src="https://digitalsea.cdn.spotlightr.com/watch/MTgzNTc4MA==?fallback=true" frameborder="0" scrolling="no" name="videoPlayer"></iframe></div>
+    <p style="font-size:1.1rem;color:var(--text-light);margin-top:1.2rem;font-style:italic">Three minutes with Ian. No sales pitch. Just the man behind the course.</p>
+    <div style="margin-top:2rem">
+      <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course</a>
+      <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required.</p>
     </div>
   </div>
 </section>
@@ -500,6 +525,11 @@ footer{
         <p>&ldquo;I have improved 200%... best thing to happen to me this year.&rdquo;</p>
         <p class="attribution"> - Debbie Dodge</p>
       </div>
+    </div>
+
+    <div class="text-center" style="margin-top:2rem">
+      <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course - It&rsquo;s Free</a>
+      <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required. Just your email.</p>
     </div>
   </div>
 </section>
