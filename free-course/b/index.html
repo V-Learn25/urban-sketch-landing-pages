@@ -27,7 +27,7 @@ fbq('track', 'PageView');
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 /* ===== RESET & BASE ===== */
@@ -41,7 +41,7 @@ fbq('track', 'PageView');
   --serif:'DM Serif Display',Georgia,serif;
   --body:'Lora','Source Sans 3',Georgia,serif;
   --sans:'Source Sans 3','Source Sans Pro',system-ui,sans-serif;
-  --sketch:'Caveat',cursive;
+  --sketch:'Kalam',cursive;
   --max-w:740px;
   --section-pad:clamp(3rem,8vw,5.5rem) clamp(1.25rem,5vw,2rem);
 }
@@ -54,7 +54,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
 /* ===== READABLE BODY COPY ===== */
 .letter p,.prose p{margin-bottom:1.4rem;font-size:1.19rem}
 .letter p:last-child,.prose p:last-child{margin-bottom:0}
-.sub-heading{font-family:var(--sketch);font-size:2.8rem;color:var(--teal);margin:2.5rem 0 .75rem;font-weight:700}
+.sub-heading{font-family:var(--sketch);font-size:2.4rem;color:var(--teal);margin:2.5rem 0 .75rem;font-weight:700}
 .pull-quote{font-family:var(--serif);font-size:1.35rem;font-style:italic;color:var(--charcoal);text-align:center;padding:1.5rem 2rem;margin:2rem 0;border-top:2px solid var(--amber);border-bottom:2px solid var(--amber);line-height:1.5}
 .image-break{width:100%;border-radius:10px;margin:2rem 0;overflow:hidden}
 .image-break img{width:100%;height:auto;display:block;border-radius:10px}
@@ -226,8 +226,9 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
 /* ===== OBJECTION SECTION ===== */
 .objection{margin-bottom:2rem}
 .objection h3{
-  font-family:var(--sans);font-weight:700;font-size:1.1rem;color:var(--charcoal);margin-bottom:.4rem;
+  font-family:var(--sans);font-weight:700;font-size:2rem;color:var(--charcoal);margin-bottom:.75rem;
 }
+.objection:first-child{margin-top:2rem}
 .objection p{color:var(--text-light);line-height:1.75;font-size:1rem;margin-bottom:.5rem}
 .objection .stat{font-weight:700;color:var(--teal)}
 
@@ -327,8 +328,8 @@ footer{
   <div class="hero-inner">
     <h1>You Don&rsquo;t Need Talent. <span>You Need Someone to Show You Where to Start.</span></h1>
     <p class="hero-body"><strong>Ian Fennelly&rsquo;s free urban sketching course.</strong> Fifteen lessons. One beautiful scene in Porto. Your first taste of the process that&rsquo;s guided 50,000+ complete beginners across 188 countries from &ldquo;I can&rsquo;t draw&rdquo; to &ldquo;I just did.&rdquo;</p>
-    <p class="hero-sub-body">No credit card. No experience needed. Just curiosity.</p>
     <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course</a>
+    <p class="hero-sub-body">No credit card. No experience needed. Just curiosity.</p>
     <p class="hero-note">Ready to begin? Click above  - or keep reading to hear from people who started exactly where you are.</p>
   </div>
 </section>
@@ -348,7 +349,7 @@ footer{
 
     <div class="text-center" style="margin-top:2rem">
       <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course - It&rsquo;s Free</a>
-      <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required. Just your email.</p>
+      <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required.</p>
     </div>
   </div>
 </section>
@@ -389,7 +390,7 @@ footer{
 
     <div class="text-center" style="margin-top:2rem">
       <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course - It&rsquo;s Free</a>
-      <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required. Just your email.</p>
+      <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required.</p>
     </div>
   </div>
 </section>
@@ -401,6 +402,12 @@ footer{
     <div class="prose">
       <p>Let me be straight with you about what this course is.</p>
       <p>This is your introduction to Ian Fennelly&rsquo;s sketching process. Fifteen video lessons where Ian  - standing at his desk in paint-stained shorts, brush between his teeth  - walks you through building a complete urban sketch from a blank page, step by step, on one gorgeous scene in Porto, Portugal.</p>
+
+      <div class="image-break">
+        <img src="https://learn.urbansketch.com/wp-content/uploads/2026/03/USC-Free-Introductory-Course-01-Introduction-00-01-03-187.jpg" alt="Ian Fennelly introducing the free urban sketching course" loading="lazy">
+        <p class="image-caption">Inside the free course - Ian introduces you to his process</p>
+      </div>
+
       <p>You&rsquo;ll watch. You&rsquo;ll follow along. And somewhere around the watercolour stage, something will shift.</p>
       <p><strong>Here&rsquo;s what you&rsquo;ll discover:</strong></p>
     </div>
@@ -410,19 +417,43 @@ footer{
       <li><strong>Why big shapes come before small details</strong>  - the single principle that eliminates most beginner frustration</li>
       <li><strong>The moment pen meets paper</strong>  - and why it&rsquo;s less terrifying than you think</li>
       <li><strong>How four watercolours create an entire world</strong>  - washes mixed right on the page that practically glow</li>
+    </ul>
+
+    <div class="image-break">
+      <img src="https://learn.urbansketch.com/wp-content/uploads/2026/03/USC-Free-Introductory-Course-08-Watercolour-Part-One-00-05-59-778.jpg" alt="Ian Fennelly demonstrating watercolour technique in the free course" loading="lazy">
+      <p class="image-caption">Watercolour, step by step - Ian walks you through every stage</p>
+    </div>
+
+    <ul class="details-list">
       <li><strong>Brush pens and toning</strong>  - the layer that gives a sketch depth and atmosphere (this is where most students lean forward)</li>
       <li><strong>Hatching</strong>  - simple lines that add texture, tone, and a sense of place</li>
       <li><strong>When to stop</strong>  - and why Ian says <em>&ldquo;Life&rsquo;s too short to count windows&rdquo;</em></li>
     </ul>
 
     <div class="prose">
+      <div class="image-break">
+        <img src="https://learn.urbansketch.com/wp-content/uploads/2026/03/USC-Free-Introductory-Course-02-Composition-Excercise-00-01-32-662.jpg" alt="Ian Fennelly teaching composition in the free course" loading="lazy">
+        <p class="image-caption">Ian's composition exercise - learning to see before you draw</p>
+      </div>
+
+      <div class="image-break">
+        <img src="https://learn.urbansketch.com/wp-content/uploads/2026/03/USC-Free-Introductory-Course-04-Initial-Sketch-00-06-08-449.jpg" alt="Ian Fennelly's initial sketch in the free course" loading="lazy">
+        <p class="image-caption">The initial sketch takes shape</p>
+      </div>
+
       <p>Here&rsquo;s what this course is designed to do: <strong>show you what&rsquo;s possible.</strong> Give you a taste. Let you feel what it&rsquo;s like to have a guide who genuinely believes you can do this  - because he&rsquo;s watched 50,000 people prove it.</p>
+
+      <div class="image-break">
+        <img src="https://learn.urbansketch.com/wp-content/uploads/2026/03/USC-Free-Introductory-Course-15-Finished-Work-00-02-54-457.jpg" alt="The finished sketch from Ian Fennelly's free course" loading="lazy">
+        <p class="image-caption">The finished sketch - built step by step across 15 lessons</p>
+      </div>
+
       <p>It&rsquo;s a generous taste. Fifteen real lessons, not a teaser reel. But it&rsquo;s the opening chapter, not the whole book.</p>
     </div>
 
     <div class="text-center" style="margin-top:2rem">
       <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course  - It Takes 30 Seconds to Sign Up</a>
-      <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required. Just your email.</p>
+      <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required.</p>
     </div>
   </div>
 </section>
@@ -431,7 +462,7 @@ footer{
 <section class="section-pad bg-warm">
   <div class="container fade-in">
     <div class="instructor-photo" style="margin:0 0 2rem 0">
-      <img src="https://www.urbansketchcourse.com/wp-content/uploads/2025/11/PRAS8849-1-2048x1537.jpg.webp" alt="Ian Fennelly sketching on location" loading="lazy">
+      <img src="https://learn.urbansketch.com/wp-content/uploads/2026/03/USC-Free-Introductory-Course-04-Initial-Sketch-00-06-08-449.jpg" alt="Ian Fennelly's initial sketch in the free course" loading="lazy">
     </div>
     <h2 class="section-heading">There Are Ideas in Ian&rsquo;s World With Names You Haven&rsquo;t Heard Yet.</h2>
 
@@ -465,13 +496,12 @@ footer{
     </div>
 
     <div class="prose" style="margin-top:1.5rem">
-      <p>You&rsquo;ll catch glimpses of these ideas in the free course  - the way Ian layers his process, the way he decides what to leave out, the way his colours work together as if they share a secret. But the full system  - the frameworks, the four different locations, the dedicated exercises that turn watching into doing  - lives in his Beginners Course.</p>
-      <p>The free course is where you discover if this is for you. If you feel that door opening  - you&rsquo;ll know where to go next.</p>
+      <p>You&rsquo;ll catch glimpses of all of this in the free course - the way Ian layers his process, the way he decides what to leave out, the way his colours work together as if they share a secret. Fifteen lessons, and you&rsquo;ll start to see the world the way a sketcher does.</p>
     </div>
 
     <div class="text-center" style="margin-top:2rem">
       <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course - It&rsquo;s Free</a>
-      <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required. Just your email.</p>
+      <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required.</p>
     </div>
   </div>
 </section>
@@ -489,6 +519,10 @@ footer{
         <p>His students call him &ldquo;the Bob Ross of urban sketching.&rdquo; The comparison stuck because it&rsquo;s accurate  - the same warmth, the same calm, the same ability to make something intimidating feel like something you could do on a Sunday morning with a cup of tea.</p>
         <p>He teaches workshops internationally  - from Brighton to Porto to New York. He&rsquo;s built the Beginners Course, advanced courses across 10+ locations, and an entire ecosystem of learning built on one belief: <strong>anyone can sketch. You just need someone to show you how.</strong></p>
         <p>His philosophy, in his own words: <em>&ldquo;Life&rsquo;s too short to count windows.&rdquo;</em> Meaning: stop obsessing over perfection. Let the line wobble. Let the colour bleed. That&rsquo;s where the charm lives.</p>
+
+        <div class="instructor-photo" style="margin:1.5rem 0">
+          <img src="https://www.urbansketchcourse.com/wp-content/uploads/2025/11/PRAS8849-1-2048x1537.jpg.webp" alt="Ian Fennelly sketching outdoors in the English countryside" loading="lazy">
+        </div>
 
         <div class="instructor-photo" style="margin:1.5rem 0;aspect-ratio:21/9">
           <img src="https://eg7oxqa9xch.exactdn.com/wp-content/uploads/2023/08/04134055/P1283061-copy-scaled.jpg?strip=all&lossy=1&w=800&ssl=1" alt="Ian Fennelly teaching a workshop group outdoors" loading="lazy">
@@ -516,7 +550,7 @@ footer{
 </section>
 
 <!-- ===== MEET IAN (VIDEO) ===== -->
-<section class="section-pad bg-white">
+<section class="section-pad bg-white" style="padding-top:0">
   <div class="container text-center fade-in">
     <p style="font-family:var(--sketch);font-size:1.8rem;color:var(--teal);margin-bottom:.5rem">See for yourself</p>
     <h2 class="section-heading" style="margin-bottom:1.5rem">Watch Ian Introduce the Free Course</h2>
@@ -571,7 +605,7 @@ footer{
 
     <div class="text-center" style="margin-top:2rem">
       <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course - It&rsquo;s Free</a>
-      <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required. Just your email.</p>
+      <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required.</p>
     </div>
   </div>
 </section>
