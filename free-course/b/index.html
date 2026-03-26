@@ -56,8 +56,9 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
 .letter p:last-child,.prose p:last-child{margin-bottom:0}
 .sub-heading{font-family:var(--sketch);font-size:2rem;color:var(--teal);margin:2.5rem 0 .75rem;font-weight:700}
 .pull-quote{font-family:var(--serif);font-size:1.35rem;font-style:italic;color:var(--charcoal);text-align:center;padding:1.5rem 2rem;margin:2rem 0;border-top:2px solid var(--amber);border-bottom:2px solid var(--amber);line-height:1.5}
-.image-break{width:100%;aspect-ratio:21/9;background:var(--off-white);border-radius:10px;margin:2rem 0;position:relative;overflow:hidden}
-.image-break::after{content:attr(data-caption);position:absolute;bottom:0;left:0;right:0;padding:.5rem 1rem;font-family:var(--sketch);font-size:1.05rem;color:var(--text-light);background:rgba(255,255,255,.85)}
+.image-break{width:100%;border-radius:10px;margin:2rem 0;overflow:hidden}
+.image-break img{width:100%;height:auto;display:block;border-radius:10px}
+.image-caption{font-family:var(--sketch);font-size:1.1rem;color:var(--text-light);margin-top:.5rem;text-align:center}
 
 /* ===== UTILITY ===== */
 .container{max-width:var(--max-w);margin:0 auto}
