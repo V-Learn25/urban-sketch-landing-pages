@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beginners Urban Sketching Course - Ian Fennelly</title>
+<meta name="description" content="Learn to sketch any scene from scratch with Ian Fennelly's complete beginner system. Four workshops, six frameworks, 50,000+ students. 30-day guarantee.">
+
+<!-- Facebook Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '453207863234417');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=453207863234417&ev=PageView&noscript=1"/></noscript>
+
+<script>
+(function() {
+  // Split test router - assigns visitor to variant A or B
+  // Cookie persists for 30 days so the same visitor always sees the same variant
+
+  var COOKIE_NAME = 'us_bc_variant';
+  var COOKIE_DAYS = 30;
+  var VARIANTS = ['a', 'b'];
+
+  // Read existing cookie
+  function getCookie(name) {
+    var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? match[2] : null;
+  }
+
+  // Set cookie
+  function setCookie(name, value, days) {
+    var d = new Date();
+    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+    document.cookie = name + '=' + value + ';expires=' + d.toUTCString() + ';path=/;SameSite=Lax';
+  }
+
+  // Collect all URL parameters to pass through
+  function getPassthroughParams() {
+    var params = new URLSearchParams(window.location.search);
+    return params.toString();
+  }
+
+  // Determine variant
+  var variant = getCookie(COOKIE_NAME);
+  if (!variant || VARIANTS.indexOf(variant) === -1) {
+    // Random 50/50 assignment
+    variant = VARIANTS[Math.floor(Math.random() * VARIANTS.length)];
+    setCookie(COOKIE_NAME, variant, COOKIE_DAYS);
+  }
+
+  // Build redirect URL
+  var basePath = '/beginners-course-v2/' + variant + '/';
+  var params = getPassthroughParams();
+  if (params) {
+    basePath += '?' + params;
+  }
+
+  // Redirect
+  window.location.replace(basePath);
+})();
+</script>
+
+<style>
+  body {
+    font-family: 'Source Sans 3', 'Source Sans Pro', system-ui, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background: #F5F3F0;
+    color: #666;
+  }
+</style>
+</head>
+<body>
+  <p>Loading your course page...</p>
+</body>
+</html>
