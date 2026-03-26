@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Urban Sketching Course - Learn with Ian Fennelly</title>
+<meta name="description" content="You don't need talent. You need someone to show you where to start. Ian Fennelly's free 15-lesson urban sketching course. Join 50,000+ students across 188 countries.">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Urban Sketching Course - Ian Fennelly">
+<meta property="og:description" content="15 free video lessons with world-renowned artist Ian Fennelly. No experience needed. Join 50,000+ students from 188 countries.">
+<meta property="og:image" content="https://www.urbansketchcourse.com/wp-content/uploads/2024/05/Porto.jpg">
+<meta property="og:url" content="">
+
+<!-- Facebook Pixel - REPLACE 453207863234417 WITH YOUR ACTUAL PIXEL ID -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '453207863234417');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=453207863234417&ev=PageView&noscript=1"/></noscript>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --charcoal:#2D2D2D;--charcoal-light:#3a3a3a;
+  --amber:#E8A838;--amber-hover:#d4952e;--amber-glow:rgba(232,168,56,.25);
+  --teal:#0D7377;--teal-dark:#095658;
+  --white:#FFFFFF;--off-white:#F5F3F0;--warm-grey:#E8E4DF;
+  --text:#333;--text-light:#666;--text-lighter:#999;
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'Source Sans 3','Source Sans Pro',system-ui,sans-serif;
+  --sketch:'Caveat',cursive;
+  --max-w:820px;
+  --section-pad:clamp(3rem,8vw,5.5rem) clamp(1.25rem,5vw,2rem);
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--text);line-height:1.65;background:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
+
+/* ===== UTILITY ===== */
+.container{max-width:var(--max-w);margin:0 auto}
+.section-pad{padding:var(--section-pad)}
+.bg-white{background:var(--white)}
+.bg-warm{background:var(--off-white)}
+.text-center{text-align:center}
+
+/* ===== CTA BUTTON ===== */
+.cta-btn{
+  display:inline-block;
+  background:var(--amber);color:var(--white);
+  font-family:var(--sans);font-weight:700;font-size:1.05rem;
+  padding:.95rem 2.4rem;border-radius:6px;border:none;cursor:pointer;
+  text-transform:none;letter-spacing:.01em;
+  box-shadow:0 4px 18px var(--amber-glow);
+  transition:all .25s ease;
+  text-align:center;
+}
+.cta-btn:hover{background:var(--amber-hover);transform:translateY(-2px);box-shadow:0 6px 24px var(--amber-glow)}
+.cta-btn:active{transform:translateY(0)}
+
+/* ===== SECTION HEADING ===== */
+.section-heading{
+  font-size:clamp(1.7rem,4.5vw,2.4rem);
+  margin-bottom:.6rem;color:var(--charcoal);
+}
+.section-subtext{
+  font-size:1.05rem;color:var(--text-light);
+  max-width:620px;margin:0 auto 2.2rem;line-height:1.7;
+}
+
+/* ===== LOGO BAR ===== */
+.logo-bar{
+  background:var(--white);
+  padding:1rem clamp(1.25rem,5vw,2rem);
+  text-align:center;
+  border-bottom:1px solid var(--warm-grey);
+}
+.logo-bar img{
+  height:40px;
+  margin:0 auto;
+}
+
+/* ===== HERO ===== */
+.hero{
+  position:relative;
+  background:var(--charcoal);color:var(--white);
+  padding:clamp(2.5rem,7vw,4.5rem) clamp(1.25rem,5vw,2rem) clamp(3rem,8vw,5rem);
+  overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    url('https://www.urbansketchcourse.com/wp-content/uploads/2024/05/Porto.jpg') center/cover no-repeat;
+  opacity:.2;
+  pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(45,45,45,.85) 0%,rgba(45,45,45,.7) 50%,rgba(45,45,45,.9) 100%);
+  pointer-events:none;
+}
+.hero-inner{position:relative;z-index:1;max-width:var(--max-w);margin:0 auto;text-align:center}
+.hero h1{
+  font-size:clamp(1.85rem,5vw,2.8rem);
+  line-height:1.15;margin-bottom:1.2rem;
+}
+.hero h1 span{color:var(--amber)}
+.hero-body{color:rgba(255,255,255,.82);font-size:1rem;margin-bottom:.6rem;line-height:1.7;max-width:640px;margin-left:auto;margin-right:auto}
+.hero-body strong{color:var(--white)}
+.hero-sub-body{color:rgba(255,255,255,.65);font-size:.95rem;margin-bottom:1.6rem}
+.hero .cta-btn{font-size:1.15rem;padding:1rem 2.8rem}
+.hero-note{color:rgba(255,255,255,.55);font-size:.9rem;margin-top:1rem;font-style:italic}
+
+/* ===== PROSE SECTION ===== */
+.prose p{color:var(--text-light);line-height:1.85;margin-bottom:1.3rem;font-size:1.05rem}
+.prose p strong{color:var(--charcoal)}
+.prose p em{font-style:italic}
+
+/* ===== BLOCKQUOTE ===== */
+.testimonial-quote{
+  border-left:3px solid var(--amber);
+  padding:.75rem 0 .75rem 1.5rem;
+  margin:1.8rem 0;
+}
+.testimonial-quote p{
+  font-style:italic;color:var(--text);font-size:1.05rem;margin-bottom:.3rem;line-height:1.7;
+}
+.testimonial-quote .attribution{
+  font-style:normal;font-weight:600;font-size:.95rem;color:var(--charcoal);
+}
+
+/* ===== DETAILS LIST ===== */
+.details-list{list-style:none;margin:1.5rem 0 1.8rem;max-width:600px}
+.details-list li{
+  padding:.55rem 0 .55rem 2rem;position:relative;
+  font-size:1rem;color:var(--text);line-height:1.7;
+}
+.details-list li::before{
+  content:'';position:absolute;left:0;top:.75rem;
+  width:10px;height:10px;border-radius:50%;
+  background:var(--teal);opacity:.7;
+}
+.details-list li strong{color:var(--charcoal)}
+
+/* ===== FRAMEWORK LIST ===== */
+.framework-item{margin-bottom:1.5rem}
+.framework-item h3{
+  font-family:var(--serif);font-size:1.2rem;color:var(--charcoal);margin-bottom:.3rem;
+}
+.framework-item p{color:var(--text-light);line-height:1.75;font-size:1rem}
+
+/* ===== ABOUT INSTRUCTOR ===== */
+.instructor-grid{display:grid;grid-template-columns:1fr;gap:2rem;align-items:center}
+@media(min-width:640px){.instructor-grid{grid-template-columns:280px 1fr}}
+.instructor-photo{
+  width:100%;max-width:280px;aspect-ratio:3/4;
+  background:var(--warm-grey);border-radius:10px;
+  position:relative;overflow:hidden;margin:0 auto;
+}
+.instructor-photo::after{
+  content:'Instructor Photo';
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:var(--sketch);font-size:1.1rem;color:var(--text-lighter);
+}
+.instructor-text h2{margin-bottom:1rem}
+.instructor-text p{margin-bottom:1rem;color:var(--text-light);line-height:1.75}
+
+/* ===== OBJECTION SECTION ===== */
+.objection{margin-bottom:2rem}
+.objection h3{
+  font-family:var(--sans);font-weight:700;font-size:1.1rem;color:var(--charcoal);margin-bottom:.4rem;
+}
+.objection p{color:var(--text-light);line-height:1.75;font-size:1rem;margin-bottom:.5rem}
+.objection .stat{font-weight:700;color:var(--teal)}
+
+/* ===== TESTIMONIALS ===== */
+.testimonials-grid{
+  display:grid;grid-template-columns:1fr;gap:1.25rem;
+  margin:2rem 0 2.5rem;
+}
+@media(min-width:600px){.testimonials-grid{grid-template-columns:1fr 1fr}}
+.testimonial-card{
+  background:var(--white);border-radius:10px;padding:1.5rem;
+  box-shadow:0 2px 10px rgba(0,0,0,.05);
+  border:1px solid rgba(0,0,0,.04);
+}
+.tc-avatar{
+  width:48px;height:48px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:.85rem;color:var(--white);
+  margin-bottom:.75rem;
+}
+.tc-name{font-weight:600;font-size:.95rem;margin-bottom:.5rem}
+.tc-text{font-size:.9rem;color:var(--text-light);line-height:1.7;margin-bottom:.75rem}
+.tc-stars{color:var(--amber);font-size:.9rem;letter-spacing:2px}
+
+/* ===== TRUST BAR ===== */
+.trust-bar{
+  text-align:center;
+  padding:1.5rem;
+  font-size:.95rem;
+  color:var(--text-light);
+}
+.trust-bar strong{color:var(--charcoal)}
+
+/* ===== DIVIDER ===== */
+.section-divider{
+  width:60px;height:2px;background:var(--amber);margin:0 auto 2rem;opacity:.5;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:var(--charcoal);color:rgba(255,255,255,.5);
+  text-align:center;padding:2rem 1.5rem;font-size:.85rem;
+}
+
+/* ===== STICKY MOBILE BAR ===== */
+.sticky-bar{
+  display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;
+  background:var(--white);
+  padding:.75rem 1rem;
+  box-shadow:0 -4px 20px rgba(0,0,0,.1);
+  border-top:1px solid var(--warm-grey);
+}
+.sticky-bar .cta-btn{width:100%;padding:.85rem 1rem;font-size:1rem}
+@media(max-width:767px){
+  .sticky-bar{display:block}
+  body{padding-bottom:70px}
+}
+
+/* ===== SOCIAL PROOF POPUP ===== */
+.proof-popup{
+  position:fixed;bottom:90px;left:1rem;z-index:99;
+  background:var(--white);border-radius:8px;
+  box-shadow:0 4px 20px rgba(0,0,0,.12);
+  padding:.75rem 1rem;display:flex;align-items:center;gap:.75rem;
+  max-width:320px;
+  transform:translateX(-120%);opacity:0;
+  transition:all .4s cubic-bezier(.4,0,.2,1);
+}
+.proof-popup.show{transform:translateX(0);opacity:1}
+@media(min-width:768px){.proof-popup{bottom:1.5rem}}
+.proof-icon{
+  flex-shrink:0;width:36px;height:36px;border-radius:50%;
+  background:var(--off-white);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;
+}
+.proof-text{font-size:.82rem;line-height:1.4}
+.proof-name{font-weight:600;color:var(--charcoal)}
+.proof-action{color:var(--text-light)}
+.proof-time{color:var(--text-lighter);font-size:.75rem}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- ===== LOGO BAR ===== -->
+<div class="logo-bar">
+  <img src="https://www.urbansketchcourse.com/wp-content/uploads/2019/06/Urban-Sketch-Logo-Regular.-1-e1594285958173.jpg" alt="Urban Sketch Course" width="200" height="40">
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-inner">
+    <h1>You Don&rsquo;t Need Talent. <span>You Need Someone to Show You Where to Start.</span></h1>
+    <p class="hero-body"><strong>Ian Fennelly&rsquo;s free urban sketching course.</strong> Fifteen lessons. One beautiful scene in Porto. Your first taste of the process that&rsquo;s guided 50,000+ complete beginners across 188 countries from &ldquo;I can&rsquo;t draw&rdquo; to &ldquo;I just did.&rdquo;</p>
+    <p class="hero-sub-body">No credit card. No experience needed. Just curiosity.</p>
+    <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course</a>
+    <p class="hero-note">Ready to begin? Click above &mdash; or keep reading to hear from people who started exactly where you are.</p>
+  </div>
+</section>
+
+<!-- ===== MEET IAN (VIDEO) ===== -->
+<section class="section-pad bg-warm">
+  <div class="container text-center fade-in">
+    <p style="font-family:var(--sketch);font-size:1.3rem;color:var(--teal);margin-bottom:.5rem">Meet your teacher</p>
+    <h2 class="section-heading" style="margin-bottom:1.5rem">Watch Ian Introduce the Free Course</h2>
+    <div style="position:relative;width:1px;min-width:100%;padding-bottom:56.25%;margin:0 auto;border-radius:10px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.15)"><iframe allow="autoplay" class="spotlightr" allowtransparency="true" style="width:1px;min-width:100%;height:100%;position:absolute" allowfullscreen="true" src="https://digitalsea.cdn.spotlightr.com/watch/MTgzNTc4MA==?fallback=true" frameborder="0" scrolling="no" name="videoPlayer"></iframe></div>
+    <p style="font-size:.95rem;color:var(--text-light);margin-top:1.2rem;font-style:italic">Three minutes with Ian. No sales pitch. Just the man behind the course.</p>
+  </div>
+</section>
+
+<!-- ===== SECTION 1: THE RECOGNITION SCENE ===== -->
+<section class="section-pad bg-white">
+  <div class="container prose fade-in">
+    <p>There&rsquo;s a drawer somewhere in your house.</p>
+    <p>Or a cupboard. Or a shelf in the spare room where things go when you don&rsquo;t want to throw them away but can&rsquo;t quite face looking at them.</p>
+    <p>Inside it: a sketchbook with three pages used. Watercolour pans still in their packaging. Pencils bought with good intentions. Maybe an online course you started, watched two lessons of, and quietly abandoned.</p>
+    <p>You know the drawer. You know the feeling that comes with it.</p>
+    <p>That small, private thought: <em>I wanted to be someone who creates things.</em></p>
+    <p>Not someone who watches. Not someone who admires from the outside. Someone who sits down with a pen and makes something real &mdash; something that didn&rsquo;t exist until their hand moved across the page.</p>
+    <p>You&rsquo;ve tried before. YouTube tutorials that moved too fast. Books that assumed you already knew things. A class where everyone else seemed to &ldquo;get it&rdquo; and you spent the whole time wondering what was wrong with you.</p>
+    <p>It wasn&rsquo;t your fault. It was never about talent.</p>
+    <p>It was about finding the right person to show you how.</p>
+  </div>
+</section>
+
+<!-- ===== SECTION 2: THE PROOF THAT CHANGES EVERYTHING ===== -->
+<section class="section-pad bg-warm">
+  <div class="container prose fade-in">
+    <div class="section-divider"></div>
+    <p>Mary R wasn&rsquo;t looking for an art course.</p>
+    <p>She was her husband&rsquo;s only carer as his dementia worsened. Every day was the same loop &mdash; medication, meals, watching him lose another piece of the life they&rsquo;d built together. She was disappearing inside the role. She needed something &mdash; anything &mdash; that was hers.</p>
+    <p>She found Ian Fennelly&rsquo;s free sketching course.</p>
+
+    <div class="testimonial-quote">
+      <p>&ldquo;They saved my mental health as I was the only caregiver for my husband as his dementia worsened.&rdquo;</p>
+      <p class="attribution">&mdash; Mary R</p>
+    </div>
+
+    <p>Mary is not unusual. She is typical.</p>
+    <p><strong>86.1% of Ian Fennelly&rsquo;s students are complete beginners.</strong> People who genuinely believed they couldn&rsquo;t draw. People who had a drawer full of abandoned supplies. People who had tried before and given up.</p>
+    <p>They started anyway.</p>
+
+    <div class="testimonials-grid" style="margin-top:2rem">
+      <div class="testimonial-card">
+        <div class="tc-avatar" style="background:#5BA68A">KW</div>
+        <div class="tc-name">Ken Wire</div>
+        <div class="tc-text">&ldquo;I have zero artistic talent, but Ian convinced me to try something and I was pleased with my results.&rdquo;</div>
+        <div class="tc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="tc-avatar" style="background:#D4895A">AP</div>
+        <div class="tc-name">Angela Pound, age 79</div>
+        <div class="tc-text">&ldquo;Who would have thought at the age of 79 I would learn to sketch from a great artist like Ian.&rdquo;</div>
+        <div class="tc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+    </div>
+
+    <p>Angela was seventy-nine. She started anyway. Ken had zero artistic talent. He was pleased with his results. Different people. Different reasons. Same starting point: <em>I don&rsquo;t know if I can do this, but I want to try.</em></p>
+  </div>
+</section>
+
+<!-- ===== SECTION 3: WHAT YOU'LL DISCOVER ===== -->
+<section class="section-pad bg-white">
+  <div class="container fade-in">
+    <h2 class="section-heading">What Happens Inside These 15 Free Lessons</h2>
+    <div class="prose">
+      <p>Let me be straight with you about what this course is.</p>
+      <p>This is your introduction to Ian Fennelly&rsquo;s sketching process. Fifteen video lessons where Ian &mdash; standing at his desk in paint-stained shorts, brush between his teeth &mdash; walks you through building a complete urban sketch from a blank page, step by step, on one gorgeous scene in Porto, Portugal.</p>
+      <p>You&rsquo;ll watch. You&rsquo;ll follow along. And somewhere around the watercolour stage, something will shift.</p>
+      <p><strong>Here&rsquo;s what you&rsquo;ll discover:</strong></p>
+    </div>
+
+    <ul class="details-list">
+      <li><strong>How to look at a scene and know where to start</strong> &mdash; Ian&rsquo;s composition exercise that takes the terror out of a blank page</li>
+      <li><strong>Why big shapes come before small details</strong> &mdash; the single principle that eliminates most beginner frustration</li>
+      <li><strong>The moment pen meets paper</strong> &mdash; and why it&rsquo;s less terrifying than you think</li>
+      <li><strong>How four watercolours create an entire world</strong> &mdash; washes mixed right on the page that practically glow</li>
+      <li><strong>Brush pens and toning</strong> &mdash; the layer that gives a sketch depth and atmosphere (this is where most students lean forward)</li>
+      <li><strong>Hatching</strong> &mdash; simple lines that add texture, tone, and a sense of place</li>
+      <li><strong>When to stop</strong> &mdash; and why Ian says <em>&ldquo;Life&rsquo;s too short to count windows&rdquo;</em></li>
+    </ul>
+
+    <div class="prose">
+      <p>Here&rsquo;s what this course is designed to do: <strong>show you what&rsquo;s possible.</strong> Give you a taste. Let you feel what it&rsquo;s like to have a guide who genuinely believes you can do this &mdash; because he&rsquo;s watched 50,000 people prove it.</p>
+      <p>It&rsquo;s a generous taste. Fifteen real lessons, not a teaser reel. But it&rsquo;s the opening chapter, not the whole book.</p>
+    </div>
+
+    <div class="text-center" style="margin-top:2rem">
+      <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course &mdash; It Takes 30 Seconds to Sign Up</a>
+      <p style="color:var(--text-lighter);font-size:.85rem;margin-top:.75rem">No credit card required. Just your email.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 4: THE DOOR BEYOND ===== -->
+<section class="section-pad bg-warm">
+  <div class="container fade-in">
+    <h2 class="section-heading">There Are Ideas in Ian&rsquo;s World With Names You Haven&rsquo;t Heard Yet.</h2>
+
+    <div class="prose" style="margin-bottom:.5rem">
+      <p>Ian has spent years developing a complete system for urban sketching. Inside it, there are named frameworks:</p>
+    </div>
+
+    <div class="framework-item">
+      <h3>The Layers of Looking.</h3>
+      <p>A way of building any sketch in stages &mdash; where each layer has a specific job and nothing you&rsquo;ve done is ever wasted, because the next layer transforms it.</p>
+    </div>
+
+    <div class="framework-item">
+      <h3>The Four Pillars.</h3>
+      <p>The structural foundation every sketch stands on.</p>
+    </div>
+
+    <div class="framework-item">
+      <h3>The Editor&rsquo;s Eye.</h3>
+      <p>The discipline of knowing what to leave out &mdash; which, Ian says, matters more than what you put in.</p>
+    </div>
+
+    <div class="framework-item">
+      <h3>The Colour Family.</h3>
+      <p>A system where three colours create everything you need. No clashing. Just harmony.</p>
+    </div>
+
+    <div class="framework-item">
+      <h3>The Boldness Paradox.</h3>
+      <p>The discovery that the moment you want to pull back is actually the moment to push forward.</p>
+    </div>
+
+    <div class="prose" style="margin-top:1.5rem">
+      <p>You&rsquo;ll catch glimpses of these ideas in the free course &mdash; the way Ian layers his process, the way he decides what to leave out, the way his colours work together as if they share a secret. But the full system &mdash; the frameworks, the four different locations, the dedicated exercises that turn watching into doing &mdash; lives in his Beginners Course.</p>
+      <p>The free course is where you discover if this is for you. If you feel that door opening &mdash; you&rsquo;ll know where to go next.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 5: MEET YOUR TEACHER ===== -->
+<section class="section-pad bg-white">
+  <div class="container fade-in">
+    <h2 class="section-heading">The Teacher Who Makes You Forget You&rsquo;re Learning</h2>
+    <div class="instructor-grid">
+      <div class="instructor-photo"></div>
+      <div class="instructor-text">
+        <p><strong>Ian Fennelly</strong> is a world-renowned urban sketching artist, published author of three books, and the creator of a teaching system that has guided more than 50,000 students across 188 countries from &ldquo;I can&rsquo;t draw&rdquo; to sketching with confidence.</p>
+        <p>His students call him &ldquo;the Bob Ross of urban sketching.&rdquo; The comparison stuck because it&rsquo;s accurate &mdash; the same warmth, the same calm, the same ability to make something intimidating feel like something you could do on a Sunday morning with a cup of tea.</p>
+        <p>He teaches workshops internationally &mdash; from Brighton to Porto to New York. He&rsquo;s built the Beginners Course, advanced courses across 10+ locations, and an entire ecosystem of learning built on one belief: <strong>anyone can sketch. You just need someone to show you how.</strong></p>
+        <p>His philosophy, in his own words: <em>&ldquo;Life&rsquo;s too short to count windows.&rdquo;</em> Meaning: stop obsessing over perfection. Let the line wobble. Let the colour bleed. That&rsquo;s where the charm lives.</p>
+        <p>His most disarming truth: <em>&ldquo;There&rsquo;s no such thing as a mistake.&rdquo;</em> He says it like he means it. Because he does.</p>
+
+        <div class="testimonial-quote">
+          <p>&ldquo;His light fun approach to learning was contagious.&rdquo;</p>
+          <p class="attribution">&mdash; Rose</p>
+        </div>
+
+        <div class="testimonial-quote">
+          <p>&ldquo;A few minutes into the Beginner&rsquo;s course and I felt like I was learning from a close friend.&rdquo;</p>
+          <p class="attribution">&mdash; Dorian Scotti</p>
+        </div>
+
+        <div class="testimonial-quote">
+          <p>&ldquo;As a retired teacher I really appreciate how Ian organizes the courses.&rdquo;</p>
+          <p class="attribution">&mdash; Renee King, retired teacher</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 6: OBJECTION HANDLING ===== -->
+<section class="section-pad bg-warm">
+  <div class="container fade-in">
+    <h2 class="section-heading">The Voice in Your Head. Let&rsquo;s Deal With It.</h2>
+
+    <div class="objection">
+      <h3>&ldquo;I can&rsquo;t draw.&rdquo;</h3>
+      <p>Neither could <span class="stat">86.1%</span> of Ian&rsquo;s students when they started. Ken Wire called himself &ldquo;zero artistic talent.&rdquo; He was pleased with his results. This course doesn&rsquo;t require talent. It requires a pen and the willingness to follow along.</p>
+    </div>
+
+    <div class="objection">
+      <h3>&ldquo;I&rsquo;m too old to start.&rdquo;</h3>
+      <p>Shirley would disagree:</p>
+      <div class="testimonial-quote">
+        <p>&ldquo;As a raw beginner at 74... He has opened my world to color and shape and added a spark to my days.&rdquo;</p>
+        <p class="attribution">&mdash; Shirley, age 74</p>
+      </div>
+      <p><em>Added a spark to my days.</em> That&rsquo;s not someone talking about art technique. That&rsquo;s someone talking about being alive again. Angela started at 79. Your age isn&rsquo;t a barrier. It might be the reason this matters so much.</p>
+    </div>
+
+    <div class="objection">
+      <h3>&ldquo;I&rsquo;ve tried online courses before and never finished.&rdquo;</h3>
+      <p>So had Marc:</p>
+      <div class="testimonial-quote">
+        <p>&ldquo;My track record for online training has not been that good. But the beginner course was a game changer for me.&rdquo;</p>
+        <p class="attribution">&mdash; Marc Dabros</p>
+      </div>
+      <p>The difference wasn&rsquo;t Marc. It was the teacher. As Renee King, a retired teacher herself, recognised: <em>&ldquo;As a retired teacher I really appreciate how Ian organizes the courses.&rdquo;</em> Structure matters. Ian&rsquo;s structure is built for people who&rsquo;ve been let down before.</p>
+    </div>
+
+    <div class="objection">
+      <h3>&ldquo;What if I waste my time?&rdquo;</h3>
+      <p>It&rsquo;s free. Fifteen lessons you can watch at your own pace. No credit card, no commitment. The only time you can waste is the years you spend wondering &ldquo;what if.&rdquo;</p>
+      <p>And what if you&rsquo;re not terrible? What if you&rsquo;re like Debbie?</p>
+      <div class="testimonial-quote">
+        <p>&ldquo;I have improved 200%... best thing to happen to me this year.&rdquo;</p>
+        <p class="attribution">&mdash; Debbie Dodge</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 7: WHY THIS ACTUALLY MATTERS ===== -->
+<section class="section-pad bg-white">
+  <div class="container prose fade-in">
+    <h2 class="section-heading">This Was Never Just About Art Supplies.</h2>
+
+    <div class="testimonial-quote">
+      <p>&ldquo;These classes are quite literally a life saver to me.&rdquo;</p>
+      <p class="attribution">&mdash; Melissa McCutcheon</p>
+    </div>
+
+    <div class="testimonial-quote">
+      <p>&ldquo;I think I have found my &lsquo;thing&rsquo; and my tribe.&rdquo;</p>
+      <p class="attribution">&mdash; Dawn Milsom</p>
+    </div>
+
+    <p>There&rsquo;s a moment &mdash; Ian&rsquo;s students talk about it constantly &mdash; where you sit down, press play, and the world gets quieter. The obligations recede. The inner critic shuts up for once. It&rsquo;s just you and the pen and the page and the surprising discovery that your hand knows more than your head gave it credit for.</p>
+    <p>Mary found it while caring for her husband. Dawn found it when she discovered her &ldquo;thing.&rdquo; Shirley found it at 74. Angela at 79.</p>
+    <p>That&rsquo;s what&rsquo;s on the other side of pressing play. Not a certificate. Not a skill set. A door.</p>
+    <p>The free course opens it. Where you go from there &mdash; that&rsquo;s your story to write.</p>
+  </div>
+</section>
+
+<!-- ===== PRIMARY CTA ===== -->
+<section class="section-pad bg-warm">
+  <div class="container text-center fade-in">
+    <h2 class="section-heading">Your Free Course Is Waiting</h2>
+    <p style="font-size:1.1rem;color:var(--text);line-height:1.8;max-width:480px;margin:0 auto 1.5rem"><strong>15 video lessons with Ian Fennelly.</strong><br>One beautiful scene in Porto, Portugal.<br>From blank page to finished sketch.</p>
+    <p class="section-subtext" style="margin-bottom:1.5rem">No credit card required. No experience needed. No judgment.</p>
+    <p style="font-size:1.05rem;color:var(--text-light);margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto">Just you, a pen, and the best urban sketching teacher in the world saying: <em>&ldquo;Let&rsquo;s crack on.&rdquo;</em></p>
+    <a href="#" class="cta-btn" onclick="handleCTA(event)" style="font-size:1.2rem;padding:1.1rem 3rem">Start Your Free Course Now</a>
+    <p style="color:var(--text-lighter);font-size:.85rem;margin-top:.75rem">No credit card required. Instant access.</p>
+  </div>
+</section>
+
+<!-- ===== TRUST SIGNAL CTA ===== -->
+<section class="section-pad bg-white">
+  <div class="container text-center fade-in">
+    <p class="trust-bar"><strong>50,000+ students. 188 countries. 500+ five-star reviews. 86.1% complete beginners.</strong></p>
+    <p style="font-size:1.1rem;color:var(--text);line-height:1.6;max-width:480px;margin:0 auto 1.5rem">You&rsquo;re not behind. You&rsquo;re not too old. You&rsquo;re not too untalented.</p>
+    <p style="font-family:var(--serif);font-size:1.3rem;color:var(--charcoal);margin-bottom:2rem">You&rsquo;re just not started yet.</p>
+    <a href="#" class="cta-btn" onclick="handleCTA(event)" style="font-size:1.15rem;padding:1rem 2.8rem">Start Your Free Course &mdash; It&rsquo;s Free</a>
+    <p style="color:var(--text-lighter);font-size:.9rem;margin-top:1rem;font-style:italic">No credit card required. Instant access. Your first lesson is waiting.</p>
+
+    <div class="testimonial-quote" style="max-width:500px;margin:2.5rem auto 0">
+      <p>&ldquo;I&rsquo;m a very self critical artist... My confidence is growing day by day.&rdquo;</p>
+      <p class="attribution">&mdash; Mrs. Karen McComish</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>&copy; 2026 Urban Sketch Course. All rights reserved.</p>
+</footer>
+
+<!-- ===== STICKY MOBILE BAR ===== -->
+<div class="sticky-bar">
+  <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course &mdash; It&rsquo;s Free</a>
+</div>
+
+<!-- ===== SOCIAL PROOF POPUP ===== -->
+<div class="proof-popup" id="proofPopup">
+  <div class="proof-icon">&#127912;</div>
+  <div class="proof-text">
+    <div class="proof-name" id="proofName"></div>
+    <div class="proof-action">Started the free course</div>
+    <div class="proof-time" id="proofTime"></div>
+  </div>
+</div>
+
+<script>
+/* ===== Facebook Conversion API (server-side deduplication) ===== */
+function sendCAPI(eventName){
+  var ck=document.cookie.split(';').reduce(function(a,c){var p=c.trim().split('=');a[p[0]]=p[1];return a},{});
+  fetch('/api/fb-event',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({event_name:eventName,event_source_url:window.location.href,
+      user_agent:navigator.userAgent,fbc:ck._fbc||null,fbp:ck._fbp||null})
+  }).catch(function(){});
+}
+sendCAPI('PageView');
+
+/* ===== CTA HANDLER — Facebook Pixel Lead + CAPI + Affiliate Passthrough ===== */
+function handleCTA(e) {
+  e.preventDefault();
+
+  // Fire Facebook Pixel Lead event (client-side)
+  if (typeof fbq === 'function') {
+    fbq('track', 'Lead');
+  }
+  // Fire CAPI Lead event (server-side)
+  sendCAPI('Lead');
+
+  // Build registration URL with passthrough parameters
+  var baseURL = 'https://learn.urbansketch.com/free-urban-sketch-course/';
+  var currentParams = new URLSearchParams(window.location.search);
+  var passParams = new URLSearchParams();
+
+  // UTM parameters
+  ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(function(key) {
+    if (currentParams.has(key)) passParams.set(key, currentParams.get(key));
+  });
+
+  // Affiliate parameters
+  ['ref','aff','affiliate','affiliate_id'].forEach(function(key) {
+    if (currentParams.has(key)) passParams.set(key, currentParams.get(key));
+  });
+
+  // Any other parameters — pass them all through
+  currentParams.forEach(function(value, key) {
+    if (!passParams.has(key)) passParams.set(key, value);
+  });
+
+  var queryString = passParams.toString();
+  var finalURL = baseURL + (queryString ? '?' + queryString : '');
+
+  window.location.href = finalURL;
+}
+
+/* ===== Social proof popup ===== */
+(function(){
+  var names=[
+    {n:'Sarah D.',t:'3 minutes ago'},{n:'John N.',t:'8 minutes ago'},
+    {n:'Angela P.',t:'14 minutes ago'},{n:'Marc D.',t:'19 minutes ago'},
+    {n:'Liz W.',t:'25 minutes ago'},{n:'Emma R.',t:'31 minutes ago'},
+    {n:'David K.',t:'38 minutes ago'},{n:'Helen P.',t:'45 minutes ago'},
+    {n:'Ken W.',t:'52 minutes ago'},{n:'Dawn M.',t:'1 hour ago'}
+  ];
+  var popup=document.getElementById('proofPopup');
+  var nameEl=document.getElementById('proofName');
+  var timeEl=document.getElementById('proofTime');
+  var i=0;
+  function show(){
+    nameEl.textContent=names[i].n;
+    timeEl.textContent=names[i].t;
+    popup.classList.add('show');
+    setTimeout(function(){popup.classList.remove('show')},4000);
+    i=(i+1)%names.length;
+  }
+  setTimeout(show,3000);
+  setInterval(show,12000);
+})();
+
+/* ===== Fade-in on scroll ===== */
+(function(){
+  var els=document.querySelectorAll('.fade-in');
+  if(!els.length)return;
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})
+  },{threshold:0.15});
+  els.forEach(function(el){obs.observe(el)});
+})();
+</script>
+</body>
+</html>
