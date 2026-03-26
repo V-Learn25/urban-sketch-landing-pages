@@ -54,15 +54,15 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
 /* ===== READABLE BODY COPY ===== */
 .letter p,.prose p{margin-bottom:1.4rem;font-size:1.19rem}
 .letter p:last-child,.prose p:last-child{margin-bottom:0}
-.sub-heading{font-family:var(--sketch);font-size:1.4rem;color:var(--teal);margin:2.5rem 0 .75rem;font-weight:700}
+.sub-heading{font-family:var(--sketch);font-size:2rem;color:var(--teal);margin:2.5rem 0 .75rem;font-weight:700}
 .pull-quote{font-family:var(--serif);font-size:1.35rem;font-style:italic;color:var(--charcoal);text-align:center;padding:1.5rem 2rem;margin:2rem 0;border-top:2px solid var(--amber);border-bottom:2px solid var(--amber);line-height:1.5}
 .image-break{width:100%;aspect-ratio:21/9;background:var(--off-white);border-radius:10px;margin:2rem 0;position:relative;overflow:hidden}
 .image-break::after{content:attr(data-caption);position:absolute;bottom:0;left:0;right:0;padding:.5rem 1rem;font-family:var(--sketch);font-size:1.05rem;color:var(--text-light);background:rgba(255,255,255,.85)}
 .objection{margin-bottom:2.5rem}
 .objection h3{font-family:var(--serif);font-size:1.4rem;color:var(--charcoal);margin-bottom:.75rem}
-.framework-item{margin-bottom:2rem;padding-left:1.25rem;border-left:3px solid var(--teal)}
-.framework-item h3{font-family:var(--serif);font-size:1.25rem;color:var(--charcoal);margin-bottom:.4rem}
-.framework-item p{font-size:1.1rem;color:var(--text-light)}
+.framework-item{margin-bottom:1.5rem;padding:1.5rem 1.75rem;background:var(--charcoal);border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.framework-item h3{font-family:var(--serif);font-size:1.4rem;color:var(--amber);margin-bottom:.5rem}
+.framework-item p{font-size:1.1rem;color:rgba(255,255,255,.85);line-height:1.7}
 
 /* ===== UTILITY ===== */
 .container{max-width:var(--max-w);margin:0 auto}
@@ -121,7 +121,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
 }
 .hero::after{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(45,45,45,.55) 0%,rgba(45,45,45,.45) 50%,rgba(45,45,45,.65) 100%);
+  background:linear-gradient(180deg,rgba(45,45,45,.70) 0%,rgba(45,45,45,.60) 50%,rgba(45,45,45,.75) 100%);
   pointer-events:none;
 }
 .hero-inner{position:relative;z-index:1;max-width:var(--max-w);margin:0 auto;text-align:center}
@@ -155,25 +155,16 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
   font-style:normal;font-weight:600;font-size:1.05rem;color:var(--charcoal);
 }
 
-/* ===== FRAMEWORK LIST ===== */
-.framework-item{margin-bottom:1.5rem}
-.framework-item h3{
-  font-family:var(--serif);font-size:1.2rem;color:var(--charcoal);margin-bottom:.3rem;
-}
-.framework-item p{color:var(--text-light);line-height:1.75;font-size:1rem}
+/* ===== FRAMEWORK LIST (styles defined above) ===== */
 
 /* ===== ABOUT INSTRUCTOR ===== */
-.instructor-grid{display:grid;grid-template-columns:1fr;gap:2rem;align-items:center}
-@media(min-width:640px){.instructor-grid{grid-template-columns:280px 1fr}}
+.instructor-grid{display:flex;flex-direction:column;gap:2rem}
 .instructor-photo{
-  width:100%;max-width:280px;aspect-ratio:3/4;
-  background:var(--warm-grey);border-radius:10px;
-  position:relative;overflow:hidden;margin:0 auto;
+  width:100%;height:auto;aspect-ratio:16/9;
+  border-radius:10px;overflow:hidden;
 }
-.instructor-photo::after{
-  content:'Instructor Photo';
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  font-family:var(--sketch);font-size:1.1rem;color:var(--text-lighter);
+.instructor-photo img{
+  width:100%;height:100%;object-fit:cover;
 }
 .instructor-text h2{margin-bottom:1rem}
 .instructor-text p{margin-bottom:1rem;color:var(--text-light);line-height:1.75}
@@ -282,18 +273,8 @@ footer{
   <div class="hero-inner">
     <h1>She Signed Up Because She Was Drowning. <span>She Didn&rsquo;t Expect What Happened Next.</span></h1>
     <p class="hero-body">A free course. Fifteen lessons. One scene in Porto. And the beginning of something none of them saw coming.</p>
-    <a href="#" class="cta-btn" onclick="handleCTA(event)">Start the Free Course &mdash; It&rsquo;s Free</a>
-    <p class="hero-sub">Just your email. No credit card. Or stay &mdash; this letter is worth reading.</p>
-  </div>
-</section>
-
-<!-- ===== MEET IAN (VIDEO) ===== -->
-<section class="section-pad bg-warm">
-  <div class="container text-center fade-in">
-    <p style="font-family:var(--sketch);font-size:1.3rem;color:var(--teal);margin-bottom:.5rem">Meet your teacher</p>
-    <h2 class="section-heading" style="margin-bottom:1.5rem">Watch Ian Introduce the Free Course</h2>
-    <div style="position:relative;width:100%;padding-bottom:56.25%;margin:0 auto;border-radius:10px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.15)"><iframe allow="autoplay" class="spotlightr" allowtransparency="true" style="width:100%;height:100%;position:absolute;top:0;left:0" allowfullscreen="true" src="https://digitalsea.cdn.spotlightr.com/watch/MTgzNTc4MA==?fallback=true" frameborder="0" scrolling="no" name="videoPlayer"></iframe></div>
-    <p style="font-size:1.05rem;color:var(--text-light);margin-top:1.2rem;font-style:italic">Three minutes with Ian. No sales pitch. Just the man behind the course.</p>
+    <a href="#" class="cta-btn" onclick="handleCTA(event)">Start the Free Course  - It&rsquo;s Free</a>
+    <p class="hero-sub">Just your email. No credit card. Or stay  - this letter is worth reading.</p>
   </div>
 </section>
 
@@ -301,13 +282,18 @@ footer{
 <section class="section-pad bg-white">
   <div class="container letter fade-in">
     <p>Mary&rsquo;s husband had dementia.</p>
-    <p>She was his only carer. The days had collapsed into a single repeating pattern &mdash; medication, meals, small acts of love for a man who was slowly forgetting her name. There was no time for hobbies. No space for herself. She hadn&rsquo;t done something purely for <em>her</em> in so long she&rsquo;d forgotten what that even felt like.</p>
+    <p>She was his only carer. The days had collapsed into a single repeating pattern  - medication, meals, small acts of love for a man who was slowly forgetting her name. There was no time for hobbies. No space for herself. She hadn&rsquo;t done something purely for <em>her</em> in so long she&rsquo;d forgotten what that even felt like.</p>
     <p>She signed up for a free sketching course. Not because she wanted to be an artist. Not because she thought she had talent. Not because someone convinced her.</p>
     <p>Because she was disappearing. And she needed proof she still existed.</p>
 
     <div class="testimonial-quote">
       <p>&ldquo;They saved my mental health as I was the only caregiver for my husband as his dementia worsened.&rdquo;</p>
-      <p class="attribution">&mdash; Mary R</p>
+      <p class="attribution"> - Mary R</p>
+    </div>
+
+    <div class="text-center" style="margin-top:2rem">
+      <a href="#" class="cta-btn" onclick="handleCTA(event)">Start the Free Course  - It&rsquo;s Free</a>
+      <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required. Just your email.</p>
     </div>
   </div>
 </section>
@@ -317,9 +303,9 @@ footer{
   <div class="container letter fade-in">
     <div class="section-divider"></div>
     <p>The course she signed up for is the same one you&rsquo;re looking at right now.</p>
-    <p>Fifteen video lessons. A teacher named Ian Fennelly. A scene in Porto, Portugal &mdash; colourful townhouses climbing a hill, a church in the background, the kind of place that makes you want to reach for a pen even if you&rsquo;ve never held one.</p>
+    <p>Fifteen video lessons. A teacher named Ian Fennelly. A scene in Porto, Portugal  - colourful townhouses climbing a hill, a church in the background, the kind of place that makes you want to reach for a pen even if you&rsquo;ve never held one.</p>
 
-    <div class="image-break" data-caption="Porto, Portugal — the scene you'll sketch in the free course" style="background-image:url('https://www.urbansketchcourse.com/wp-content/uploads/2024/05/Porto.jpg');background-size:cover;background-position:center"></div>
+    <div class="image-break" data-caption="Porto, Portugal  - the scene you'll sketch in the free course" style="background-image:url('https://www.urbansketchcourse.com/wp-content/uploads/2024/05/Porto.jpg');background-size:cover;background-position:center"></div>
 
     <p>Mary signed up. She watched the first lesson. Then the second. Then she picked up a pen.</p>
     <p>And something shifted.</p>
@@ -338,11 +324,11 @@ footer{
 
     <p>Fifteen lessons. Ian, working from a single gorgeous reference photograph in Porto. Pen, paper, watercolour, step by step, at your pace.</p>
 
-    <p>You&rsquo;ll see how Ian looks at a scene before he draws it &mdash; how he finds the shapes, the structure, the story hiding inside the chaos of rooftops and walls and windows.</p>
+    <p>You&rsquo;ll see how Ian looks at a scene before he draws it  - how he finds the shapes, the structure, the story hiding inside the chaos of rooftops and walls and windows.</p>
 
-    <p>You&rsquo;ll watch him place his first pencil marks (loose, imperfect, alive). You&rsquo;ll see the moment pen hits paper and the sketch starts to breathe. You&rsquo;ll experience watercolour for the first time &mdash; or the first time it didn&rsquo;t terrify you.</p>
+    <p>You&rsquo;ll watch him place his first pencil marks (loose, imperfect, alive). You&rsquo;ll see the moment pen hits paper and the sketch starts to breathe. You&rsquo;ll experience watercolour for the first time  - or the first time it didn&rsquo;t terrify you.</p>
 
-    <p>By lesson 15, you&rsquo;ll have watched a complete sketch come to life. And if you followed along &mdash; even roughly, even badly, even with a shaky hand and a sceptical mind &mdash; you&rsquo;ll have made something.</p>
+    <p>By lesson 15, you&rsquo;ll have watched a complete sketch come to life. And if you followed along  - even roughly, even badly, even with a shaky hand and a sceptical mind  - you&rsquo;ll have made something.</p>
 
     <div class="pull-quote">With your own hands. Something that didn&rsquo;t exist before you sat down.</div>
 
@@ -352,14 +338,14 @@ footer{
 
     <p><strong>The free course shows you what&rsquo;s possible.</strong> It introduces you to the process. It gives you a taste of Ian&rsquo;s way of seeing.</p>
 
-    <p>What it can&rsquo;t do &mdash; what fifteen lessons on one scene were never designed to do &mdash; is make you independent.</p>
+    <p>What it can&rsquo;t do  - what fifteen lessons on one scene were never designed to do  - is make you independent.</p>
 
-    <p>Following along with Ian on one sketch is one thing. Sitting down in front of a scene you&rsquo;ve never drawn before and knowing where to start, what to focus on, what to leave out, and how to build it layer by layer &mdash; that&rsquo;s something else entirely.</p>
+    <p>Following along with Ian on one sketch is one thing. Sitting down in front of a scene you&rsquo;ve never drawn before and knowing where to start, what to focus on, what to leave out, and how to build it layer by layer  - that&rsquo;s something else entirely.</p>
 
     <p>Ian knows this. It&rsquo;s why he built a complete system.</p>
 
     <div class="text-center" style="margin-top:2rem">
-      <a href="#" class="cta-btn" onclick="handleCTA(event)">Start the Free Course &mdash; It&rsquo;s Free</a>
+      <a href="#" class="cta-btn" onclick="handleCTA(event)">Start the Free Course  - It&rsquo;s Free</a>
       <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required. Just your email.</p>
     </div>
   </div>
@@ -368,16 +354,19 @@ footer{
 <!-- ===== FRAMEWORKS ===== -->
 <section class="section-pad bg-warm">
   <div class="container fade-in">
+    <div class="instructor-photo" style="margin:0 0 2rem 0">
+      <img src="https://www.urbansketchcourse.com/wp-content/uploads/2025/11/PRAS8849-1-2048x1537.jpg.webp" alt="Ian Fennelly sketching on location" loading="lazy">
+    </div>
     <h2 class="section-heading">There are things in Ian&rsquo;s world with names you haven&rsquo;t heard yet.</h2>
 
     <div class="framework-item">
       <h3>The Layers of Looking.</h3>
-      <p>A way of building any sketch in stages &mdash; where each layer has a specific job and nothing you&rsquo;ve done is ever wasted because the next layer transforms it.</p>
+      <p>A way of building any sketch in stages  - where each layer has a specific job and nothing you&rsquo;ve done is ever wasted because the next layer transforms it.</p>
     </div>
 
     <div class="framework-item">
       <h3>The Editor&rsquo;s Eye.</h3>
-      <p>The discipline of knowing what to leave out &mdash; which, Ian says, matters more than what you put in.</p>
+      <p>The discipline of knowing what to leave out  - which, Ian says, matters more than what you put in.</p>
     </div>
 
     <div class="framework-item">
@@ -387,7 +376,7 @@ footer{
 
     <div class="framework-item">
       <h3>The Boldness Paradox.</h3>
-      <p>The discovery that the moment you want to pull back &mdash; when the line feels too thick, the colour too strong, the mark too bold &mdash; is actually the moment to push forward.</p>
+      <p>The discovery that the moment you want to pull back  - when the line feels too thick, the colour too strong, the mark too bold  - is actually the moment to push forward.</p>
     </div>
 
     <div class="framework-item">
@@ -396,8 +385,13 @@ footer{
     </div>
 
     <div class="letter" style="margin-top:1.5rem">
-      <p>You won&rsquo;t learn these in the free course. You&rsquo;ll catch glimpses of them &mdash; the way Ian layers his process, the way he decides what to leave out of the Porto scene, the way his colours work together as if they share a secret. But the names, the systems, the frameworks that make these instincts transferable to any scene you&rsquo;ll ever face &mdash; those live in the Beginners Course, across four completely different locations, with dedicated exercises that turn watching into doing.</p>
-      <p>The free course is where you discover if this is for you. If you feel that door opening &mdash; you&rsquo;ll know where to go next.</p>
+      <p>You won&rsquo;t learn these in the free course. You&rsquo;ll catch glimpses of them  - the way Ian layers his process, the way he decides what to leave out of the Porto scene, the way his colours work together as if they share a secret. But the names, the systems, the frameworks that make these instincts transferable to any scene you&rsquo;ll ever face  - those live in the Beginners Course, across four completely different locations, with dedicated exercises that turn watching into doing.</p>
+      <p>The free course is where you discover if this is for you. If you feel that door opening  - you&rsquo;ll know where to go next.</p>
+    </div>
+
+    <div class="text-center" style="margin-top:2rem">
+      <a href="#" class="cta-btn" onclick="handleCTA(event)">Start the Free Course  - It&rsquo;s Free</a>
+      <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required. Just your email.</p>
     </div>
   </div>
 </section>
@@ -407,13 +401,15 @@ footer{
   <div class="container fade-in">
     <h2 class="section-heading">The man who makes beginners feel like they belong</h2>
     <div class="instructor-grid">
-      <div class="instructor-photo"></div>
+      <div class="instructor-photo">
+        <img src="https://learn.urbansketch.com/wp-content/uploads/2025/03/ian-chelsea.jpg" alt="Ian Fennelly sketching outdoors" loading="lazy">
+      </div>
       <div class="instructor-text">
         <p>His name is <strong>Ian Fennelly</strong>. His students call him &ldquo;the Bob Ross of urban sketching.&rdquo;</p>
 
         <div class="testimonial-quote">
           <p>&ldquo;He is the bob ross of urban sketching.&rdquo;</p>
-          <p class="attribution">&mdash; john spagnoli</p>
+          <p class="attribution"> - john spagnoli</p>
         </div>
 
         <p>He&rsquo;s taught <strong>50,000+ people across 188 countries</strong>. Published author of three books. Workshop leader from Brighton to Porto to New York. Creator of the Beginners Course, advanced courses across 10+ locations, and an entire world of learning for people who thought they couldn&rsquo;t draw.</p>
@@ -421,22 +417,41 @@ footer{
 
         <div class="testimonial-quote">
           <p>&ldquo;A few minutes into the Beginner&rsquo;s course and I felt like I was learning from a close friend.&rdquo;</p>
-          <p class="attribution">&mdash; Dorian Scotti</p>
+          <p class="attribution"> - Dorian Scotti</p>
         </div>
 
         <div class="testimonial-quote">
           <p>&ldquo;His light fun approach to learning was contagious.&rdquo;</p>
-          <p class="attribution">&mdash; Rose</p>
+          <p class="attribution"> - Rose</p>
         </div>
 
         <div class="testimonial-quote">
           <p>&ldquo;As a retired teacher I really appreciate how Ian organizes the courses.&rdquo;</p>
-          <p class="attribution">&mdash; Renee King, retired teacher</p>
+          <p class="attribution"> - Renee King, retired teacher</p>
         </div>
 
-        <p>His teaching philosophy: <em>&ldquo;Life&rsquo;s too short to count windows.&rdquo;</em> Meaning: let the details be imperfect. Let the line wobble. Let the colour go where it wants. That&rsquo;s not sloppiness &mdash; that&rsquo;s where the life is.</p>
+        <p>His teaching philosophy: <em>&ldquo;Life&rsquo;s too short to count windows.&rdquo;</em> Meaning: let the details be imperfect. Let the line wobble. Let the colour go where it wants. That&rsquo;s not sloppiness  - that&rsquo;s where the life is.</p>
+
+        <div class="instructor-photo" style="margin:1.5rem 0;aspect-ratio:21/9">
+          <img src="https://eg7oxqa9xch.exactdn.com/wp-content/uploads/2023/08/04134055/P1283061-copy-scaled.jpg?strip=all&lossy=1&w=800&ssl=1" alt="Ian Fennelly teaching a workshop group outdoors" loading="lazy">
+        </div>
+
         <p>And his most disarming truth: <em>&ldquo;There&rsquo;s no such thing as a mistake.&rdquo;</em> He says it like he means it. Because he does.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MEET IAN (VIDEO) ===== -->
+<section class="section-pad bg-white">
+  <div class="container text-center fade-in">
+    <p style="font-family:var(--sketch);font-size:1.8rem;color:var(--teal);margin-bottom:.5rem">See for yourself</p>
+    <h2 class="section-heading" style="margin-bottom:1.5rem">Watch Ian Introduce the Free Course</h2>
+    <div style="position:relative;width:100%;padding-bottom:56.25%;margin:0 auto;border-radius:10px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.15)"><iframe allow="autoplay" class="spotlightr" allowtransparency="true" style="width:100%;height:100%;position:absolute;top:0;left:0" allowfullscreen="true" src="https://digitalsea.cdn.spotlightr.com/watch/MTgzNTc4MA==?fallback=true" frameborder="0" scrolling="no" name="videoPlayer"></iframe></div>
+    <p style="font-size:1.1rem;color:var(--text-light);margin-top:1.2rem;font-style:italic">Three minutes with Ian. No sales pitch. Just the man behind the course.</p>
+    <div style="margin-top:2rem">
+      <a href="#" class="cta-btn" onclick="handleCTA(event)">Start the Free Course</a>
+      <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required.</p>
     </div>
   </div>
 </section>
@@ -451,7 +466,7 @@ footer{
       <p><span class="stat">86.1%</span> of Ian&rsquo;s students said the same thing before they started. Eighty-six percent. Complete beginners. Zero experience.</p>
       <div class="testimonial-quote">
         <p>&ldquo;I have zero artistic talent, but Ian convinced me to try something and I was pleased with my results.&rdquo;</p>
-        <p class="attribution">&mdash; Ken Wire</p>
+        <p class="attribution"> - Ken Wire</p>
       </div>
     </div>
 
@@ -460,11 +475,11 @@ footer{
       <p>Angela is 79. Shirley is 74. They started anyway.</p>
       <div class="testimonial-quote">
         <p>&ldquo;Who would have thought at the age of 79 I would learn to sketch from a great artist like Ian.&rdquo;</p>
-        <p class="attribution">&mdash; Angela Pound, age 79</p>
+        <p class="attribution"> - Angela Pound, age 79</p>
       </div>
       <div class="testimonial-quote">
         <p>&ldquo;As a raw beginner at 74... He has opened my world to color and shape and added a spark to my days.&rdquo;</p>
-        <p class="attribution">&mdash; Shirley, age 74</p>
+        <p class="attribution"> - Shirley, age 74</p>
       </div>
     </div>
 
@@ -472,7 +487,7 @@ footer{
       <h3>&ldquo;I&rsquo;ve tried online courses before. I never finish.&rdquo;</h3>
       <div class="testimonial-quote">
         <p>&ldquo;My track record for online training has not been that good. But the beginner course was a game changer for me.&rdquo;</p>
-        <p class="attribution">&mdash; Marc Dabros</p>
+        <p class="attribution"> - Marc Dabros</p>
       </div>
     </div>
 
@@ -482,9 +497,14 @@ footer{
       <p>And what if it IS for you? What if you&rsquo;re like Debbie?</p>
       <div class="testimonial-quote">
         <p>&ldquo;I have improved 200%... It&rsquo;s already September but this course has been the best thing to happen to me this year.&rdquo;</p>
-        <p class="attribution">&mdash; Debbie Dodge</p>
+        <p class="attribution"> - Debbie Dodge</p>
       </div>
       <p>The best thing that happened to her all year started with the same decision you&rsquo;re about to make.</p>
+    </div>
+
+    <div class="text-center" style="margin-top:2rem">
+      <a href="#" class="cta-btn" onclick="handleCTA(event)">Start the Free Course  - It&rsquo;s Free</a>
+      <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required. Just your email.</p>
     </div>
   </div>
 </section>
@@ -496,18 +516,18 @@ footer{
 
     <div class="testimonial-quote">
       <p>&ldquo;These classes are quite literally a life saver to me.&rdquo;</p>
-      <p class="attribution">&mdash; Melissa McCutcheon</p>
+      <p class="attribution"> - Melissa McCutcheon</p>
     </div>
 
     <div class="testimonial-quote">
       <p>&ldquo;I think I have found my &lsquo;thing&rsquo; and my tribe.&rdquo;</p>
-      <p class="attribution">&mdash; Dawn Milsom</p>
+      <p class="attribution"> - Dawn Milsom</p>
     </div>
 
-    <p>Mary found something in those free lessons that had nothing to do with watercolour technique. She found a space. A quiet space where the caregiving stopped and something else took over &mdash; the focused, absorbing, almost meditative act of putting marks on paper and watching them become something.</p>
+    <p>Mary found something in those free lessons that had nothing to do with watercolour technique. She found a space. A quiet space where the caregiving stopped and something else took over  - the focused, absorbing, almost meditative act of putting marks on paper and watching them become something.</p>
     <p>Dawn found her &ldquo;thing.&rdquo; After years of not having one. Melissa called it a lifesaver. Shirley called it &ldquo;a spark.&rdquo;</p>
     <p>That&rsquo;s what&rsquo;s on the other side of pressing play. Not a certificate. Not a skill set. A door.</p>
-    <p>The free course opens it. Where you go from there &mdash; that&rsquo;s your story to write.</p>
+    <p>The free course opens it. Where you go from there  - that&rsquo;s your story to write.</p>
   </div>
 </section>
 
@@ -529,7 +549,7 @@ footer{
   <div class="container text-center fade-in">
     <div class="testimonial-quote" style="max-width:500px;margin:0 auto">
       <p>&ldquo;I&rsquo;m a very self critical artist... My confidence is growing day by day.&rdquo;</p>
-      <p class="attribution">&mdash; Mrs. Karen McComish</p>
+      <p class="attribution"> - Mrs. Karen McComish</p>
     </div>
   </div>
 </section>
@@ -550,7 +570,7 @@ footer{
 
 <!-- ===== STICKY MOBILE BAR ===== -->
 <div class="sticky-bar">
-  <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course &mdash; It&rsquo;s Free</a>
+  <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course  - It&rsquo;s Free</a>
 </div>
 
 <!-- ===== SOCIAL PROOF POPUP ===== -->
@@ -574,7 +594,7 @@ function sendCAPI(eventName){
 }
 sendCAPI('PageView');
 
-/* ===== CTA HANDLER — Facebook Pixel Lead + CAPI + Affiliate Passthrough ===== */
+/* ===== CTA HANDLER  - Facebook Pixel Lead + CAPI + Affiliate Passthrough ===== */
 function handleCTA(e) {
   e.preventDefault();
 
@@ -600,7 +620,7 @@ function handleCTA(e) {
     if (currentParams.has(key)) passParams.set(key, currentParams.get(key));
   });
 
-  // Any other parameters — pass them all through
+  // Any other parameters  - pass them all through
   currentParams.forEach(function(value, key) {
     if (!passParams.has(key)) passParams.set(key, value);
   });
