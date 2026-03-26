@@ -598,11 +598,11 @@ sendCAPI('PageView');
 function handleCTA(e) {
   e.preventDefault();
 
-  // Fire Facebook Pixel Lead event (client-side)
+  // Fire Facebook Pixel Lead event with variant tracking
   if (typeof fbq === 'function') {
-    fbq('track', 'Lead');
+    fbq('track', 'Lead', {content_name: 'free-course', variant: 'a'});
   }
-  // Fire CAPI Lead event (server-side)
+  // Fire CAPI Lead event with variant tracking
   sendCAPI('Lead');
 
   // Build registration URL with passthrough parameters
@@ -619,6 +619,10 @@ function handleCTA(e) {
   ['ref','aff','affiliate','affiliate_id'].forEach(function(key) {
     if (currentParams.has(key)) passParams.set(key, currentParams.get(key));
   });
+
+  // Variant tracking
+  passParams.set('variant', 'a');
+  passParams.set('lp', 'free-course');
 
   // Any other parameters  - pass them all through
   currentParams.forEach(function(value, key) {
