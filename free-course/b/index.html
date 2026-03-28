@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Free Urban Sketching Course - Learn with Ian Fennelly</title>
-<meta name="description" content="You don't need talent. You need someone to show you where to start. Ian Fennelly's free 15-lesson urban sketching course. Join 50,000+ students across 188 countries.">
+<meta name="description" content="50,000 people who thought they could not draw started here. 15 free video lessons with Ian Fennelly. No experience needed. Join students across 188 countries.">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
@@ -13,7 +13,7 @@
 <meta property="og:image" content="https://www.urbansketchcourse.com/wp-content/uploads/2024/05/Porto.jpg">
 <meta property="og:url" content="">
 
-<!-- Facebook Pixel - REPLACE 453207863234417 WITH YOUR ACTUAL PIXEL ID -->
+<!-- Facebook Pixel -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -52,8 +52,10 @@ a{color:inherit;text-decoration:none}
 h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
 
 /* ===== READABLE BODY COPY ===== */
-.letter p,.prose p{margin-bottom:1.4rem;font-size:1.19rem}
-.letter p:last-child,.prose p:last-child{margin-bottom:0}
+.prose p{margin-bottom:1.3rem;font-size:1.05rem;color:var(--text-light);line-height:1.85}
+.prose p:last-child{margin-bottom:0}
+.prose p strong{color:var(--charcoal)}
+.prose p em{font-style:italic}
 .sub-heading{font-family:var(--sketch);font-size:2.4rem;color:var(--teal);margin:2.5rem 0 .75rem;font-weight:700}
 .pull-quote{font-family:var(--serif);font-size:1.35rem;font-style:italic;color:var(--charcoal);text-align:center;padding:1.5rem 2rem;margin:2rem 0;border-top:2px solid var(--amber);border-bottom:2px solid var(--amber);line-height:1.5}
 .image-break{width:100%;border-radius:10px;margin:2rem 0;overflow:hidden}
@@ -127,15 +129,9 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
 }
 .hero h1 span{color:var(--amber)}
 .hero-body{color:rgba(255,255,255,.95);font-size:1.3rem;font-weight:600;margin-bottom:.6rem;line-height:1.7;max-width:640px;margin-left:auto;margin-right:auto}
-.hero-body strong{color:var(--white)}
 .hero-sub-body{color:rgba(255,255,255,.65);font-size:1.05rem;margin-bottom:1.6rem}
 .hero .cta-btn{font-size:1.15rem;padding:1rem 2.8rem}
 .hero-note{color:rgba(255,255,255,.9);font-size:1.2rem;font-weight:600;margin-top:1rem;font-style:italic}
-
-/* ===== PROSE SECTION ===== */
-.prose p{color:var(--text-light);line-height:1.85;margin-bottom:1.3rem;font-size:1.05rem}
-.prose p strong{color:var(--charcoal)}
-.prose p em{font-style:italic}
 
 /* ===== BLOCKQUOTE ===== */
 .testimonial-quote{
@@ -204,13 +200,6 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
 }
 .details-list li strong{color:var(--charcoal)}
 
-/* ===== FRAMEWORK LIST ===== */
-.framework-item{margin-bottom:1.5rem;padding:1.5rem 1.75rem;background:var(--charcoal);border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.1)}
-.framework-item h3{
-  font-family:var(--serif);font-size:1.4rem;color:var(--amber);margin-bottom:.5rem;
-}
-.framework-item p{font-size:1.1rem;color:rgba(255,255,255,.85);line-height:1.7}
-
 /* ===== ABOUT INSTRUCTOR ===== */
 .instructor-grid{display:flex;flex-direction:column;gap:2rem}
 .instructor-photo{
@@ -232,7 +221,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
 .objection p{color:var(--text-light);line-height:1.75;font-size:1rem;margin-bottom:.5rem}
 .objection .stat{font-weight:700;color:var(--teal)}
 
-/* ===== TESTIMONIALS ===== */
+/* ===== TESTIMONIALS GRID ===== */
 .testimonials-grid{
   display:grid;grid-template-columns:1fr;gap:1.25rem;
   margin:2rem 0 2.5rem;
@@ -266,6 +255,13 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
 .section-divider{
   width:60px;height:2px;background:var(--amber);margin:0 auto 2rem;opacity:.5;
 }
+
+/* ===== FAQ ===== */
+.faq-item{margin-bottom:2rem}
+.faq-item h3{
+  font-family:var(--sans);font-weight:700;font-size:1.15rem;color:var(--charcoal);margin-bottom:.5rem;
+}
+.faq-item p{color:var(--text-light);line-height:1.75;font-size:1rem;margin-bottom:.5rem}
 
 /* ===== FOOTER ===== */
 footer{
@@ -326,26 +322,22 @@ footer{
 <!-- ===== HERO ===== -->
 <section class="hero">
   <div class="hero-inner">
-    <h1>You Don&rsquo;t Need Talent. <span>You Need Someone to Show You Where to Start.</span></h1>
-    <p class="hero-body"><strong>Ian Fennelly&rsquo;s free urban sketching course.</strong> Fifteen lessons. One beautiful scene in Porto. Your first taste of the process that&rsquo;s guided 50,000+ complete beginners across 188 countries from &ldquo;I can&rsquo;t draw&rdquo; to &ldquo;I just did.&rdquo;</p>
+    <h1>50,000 People Who Thought They Could Not Draw <span>Started Here</span></h1>
+    <p class="hero-body">15 free video lessons with the guide students call &ldquo;the Bob Ross of urban sketching.&rdquo;</p>
     <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course</a>
-    <p class="hero-sub-body">No credit card. No experience needed. Just curiosity.</p>
-    <p class="hero-note">Ready to begin? Click above  - or keep reading to hear from people who started exactly where you are.</p>
+    <p class="hero-note">Ready to start? Click above - or keep reading to hear from people who started exactly where you are.</p>
   </div>
 </section>
 
-<!-- ===== SECTION 1: THE RECOGNITION SCENE ===== -->
+<!-- ===== SECTION 1: EMPATHY OPENING ===== -->
 <section class="section-pad bg-white">
   <div class="container prose fade-in">
-    <p>There&rsquo;s a drawer somewhere in your house.</p>
-    <p>Or a cupboard. Or a shelf in the spare room where things go when you don&rsquo;t want to throw them away but can&rsquo;t quite face looking at them.</p>
-    <p>Inside it: a sketchbook with three pages used. Watercolour pans still in their packaging. Pencils bought with good intentions. Maybe an online course you started, watched two lessons of, and quietly abandoned.</p>
-    <p>You know the drawer. You know the feeling that comes with it.</p>
-    <p>That small, private thought: <em>I wanted to be someone who creates things.</em></p>
-    <p>Not someone who watches. Not someone who admires from the outside. Someone who sits down with a pen and makes something real  - something that didn&rsquo;t exist until their hand moved across the page.</p>
-    <p>You&rsquo;ve tried before. YouTube tutorials that moved too fast. Books that assumed you already knew things. A class where everyone else seemed to &ldquo;get it&rdquo; and you spent the whole time wondering what was wrong with you.</p>
-    <p>It wasn&rsquo;t your fault. It was never about talent.</p>
-    <p>It was about finding the right person to show you how.</p>
+    <p>Maybe you have a cupboard full of art supplies you bought with good intentions and never used.</p>
+    <p>Maybe you have watched tutorials on YouTube that made it look easy, then picked up a pen and felt that familiar sinking feeling. The gap between what you see in your head and what comes out on the page.</p>
+    <p>Maybe you have told yourself you are not the creative type. That you missed your window. That people who can draw were simply born with something you were not.</p>
+    <p>If any of that sounds like you, you are not alone. And you are not wrong for feeling it.</p>
+
+    <div class="pull-quote">But you might be wrong about the reason.</div>
 
     <div class="text-center" style="margin-top:2rem">
       <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course - It&rsquo;s Free</a>
@@ -354,22 +346,16 @@ footer{
   </div>
 </section>
 
-<!-- ===== SECTION 2: THE PROOF THAT CHANGES EVERYTHING ===== -->
+<!-- ===== SECTION 2: THE REFRAME ===== -->
 <section class="section-pad bg-warm">
   <div class="container prose fade-in">
     <div class="section-divider"></div>
-    <p>Mary R wasn&rsquo;t looking for an art course.</p>
-    <p>She was her husband&rsquo;s only carer as his dementia worsened. Every day was the same loop  - medication, meals, watching him lose another piece of the life they&rsquo;d built together. She was disappearing inside the role. She needed something  - anything  - that was hers.</p>
-    <p>She found Ian Fennelly&rsquo;s free sketching course.</p>
-
-    <div class="testimonial-quote">
-      <p>&ldquo;They saved my mental health as I was the only caregiver for my husband as his dementia worsened.&rdquo;</p>
-      <p class="attribution"> - Mary R</p>
-    </div>
-
-    <p>Mary is not unusual. She is typical.</p>
-    <p><strong>86.1% of Ian Fennelly&rsquo;s students are complete beginners.</strong> People who genuinely believed they couldn&rsquo;t draw. People who had a drawer full of abandoned supplies. People who had tried before and given up.</p>
-    <p>They started anyway.</p>
+    <p>Here is what 50,000+ students have discovered after starting with the same doubts you have right now:</p>
+    <p><strong>The problem was never talent. It was never age. It was never &ldquo;having an eye for it.&rdquo;</strong></p>
+    <p>The problem was not having a guide who actually teaches beginners - step by step, stroke by stroke, with the patience to show you everything and the warmth to make you feel safe while you learn.</p>
+    <p>That guide is Ian Fennelly.</p>
+    <p>Students call him &ldquo;the Bob Ross of urban sketching.&rdquo; He has taught people across 188 countries. He has 500+ five-star reviews on Trustpilot and Google. And <strong><span class="stat">86.1%</span> of his students started as complete beginners</strong> with zero art background.</p>
+    <p>He built this free course specifically for you.</p>
 
     <div class="testimonials-grid" style="margin-top:2rem">
       <div class="testimonial-card">
@@ -379,124 +365,54 @@ footer{
         <div class="tc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
       </div>
       <div class="testimonial-card">
-        <div class="tc-avatar" style="background:#D4895A">AP</div>
-        <div class="tc-name">Angela Pound, age 79</div>
-        <div class="tc-text">&ldquo;Who would have thought at the age of 79 I would learn to sketch from a great artist like Ian.&rdquo;</div>
+        <div class="tc-avatar" style="background:#D4895A">WA</div>
+        <div class="tc-name">Wendy Aitken</div>
+        <div class="tc-text">&ldquo;This has been my first introduction into any kind of sketching and the course is a great way to start.&rdquo;</div>
         <div class="tc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
       </div>
-    </div>
-
-    <p>Angela was seventy-nine. She started anyway. Ken had zero artistic talent. He was pleased with his results. Different people. Different reasons. Same starting point: <em>I don&rsquo;t know if I can do this, but I want to try.</em></p>
-
-    <div class="text-center" style="margin-top:2rem">
-      <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course - It&rsquo;s Free</a>
-      <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required.</p>
     </div>
   </div>
 </section>
 
-<!-- ===== SECTION 3: WHAT YOU'LL DISCOVER ===== -->
+<!-- ===== SECTION 3: WHAT YOU WILL DISCOVER ===== -->
 <section class="section-pad bg-white">
   <div class="container fade-in">
-    <h2 class="section-heading">What Happens Inside These 15 Free Lessons</h2>
+    <h2 class="section-heading">What Is Inside Your Free Course</h2>
     <div class="prose">
-      <p>Let me be straight with you about what this course is.</p>
-      <p>This is your introduction to Ian Fennelly&rsquo;s sketching process. Fifteen video lessons where Ian  - standing at his desk in paint-stained shorts, brush between his teeth  - walks you through building a complete urban sketch from a blank page, step by step, on one gorgeous scene in Porto, Portugal.</p>
+      <p>Fifteen video lessons where Ian introduces you to his sketching process - from a completely blank page to a finished urban sketch of a gorgeous scene in Porto, Portugal.</p>
+    </div>
 
-      <div class="image-break">
-        <img src="https://learn.urbansketch.com/wp-content/uploads/2026/03/USC-Free-Introductory-Course-01-Introduction-00-01-03-187.jpg" alt="Ian Fennelly introducing the free urban sketching course" loading="lazy">
-        <p class="image-caption">Inside the free course - Ian introduces you to his process</p>
-      </div>
+    <div class="image-break">
+      <img src="https://www.urbansketchcourse.com/wp-content/uploads/2024/05/Porto.jpg" alt="Porto, Portugal - the scene you'll sketch in the free course" loading="lazy">
+      <p class="image-caption">Porto, Portugal - the scene you&rsquo;ll sketch in the free course</p>
+    </div>
 
-      <p>You&rsquo;ll watch. You&rsquo;ll follow along. And somewhere around the watercolour stage, something will shift.</p>
-      <p><strong>Here&rsquo;s what you&rsquo;ll discover:</strong></p>
+    <div class="prose">
+      <p><strong>You will discover:</strong></p>
     </div>
 
     <ul class="details-list">
-      <li><strong>How to look at a scene and know where to start</strong>  - Ian&rsquo;s composition exercise that takes the terror out of a blank page</li>
-      <li><strong>Why big shapes come before small details</strong>  - the single principle that eliminates most beginner frustration</li>
-      <li><strong>The moment pen meets paper</strong>  - and why it&rsquo;s less terrifying than you think</li>
-      <li><strong>How four watercolours create an entire world</strong>  - washes mixed right on the page that practically glow</li>
+      <li><strong>How to see like a sketcher</strong> - Ian&rsquo;s composition method for placing shapes on the page before you draw a single line</li>
+      <li><strong>The pen technique that removes the pressure</strong> - why you are not &ldquo;tracing&rdquo; but taking a line for a walk</li>
+      <li><strong>Watercolour without fear</strong> - how four colours and a simple mixing approach create warmth, depth, and atmosphere</li>
+      <li><strong>Brush pen magic</strong> - a tool most beginners have never tried that adds instant tone and life to any sketch</li>
+      <li><strong>Hatching for texture and depth</strong> - the technique that makes flat drawings feel three-dimensional</li>
+      <li><strong>When to stop</strong> - maybe the most important lesson of all</li>
     </ul>
+
+    <div class="image-break">
+      <img src="https://learn.urbansketch.com/wp-content/uploads/2026/03/USC-Free-Introductory-Course-02-Composition-Excercise-00-01-32-662.jpg" alt="Ian Fennelly teaching composition in the free course" loading="lazy">
+      <p class="image-caption">Ian&rsquo;s composition exercise - learning to see before you draw</p>
+    </div>
 
     <div class="image-break">
       <img src="https://learn.urbansketch.com/wp-content/uploads/2026/03/USC-Free-Introductory-Course-08-Watercolour-Part-One-00-05-59-778.jpg" alt="Ian Fennelly demonstrating watercolour technique in the free course" loading="lazy">
       <p class="image-caption">Watercolour, step by step - Ian walks you through every stage</p>
     </div>
 
-    <ul class="details-list">
-      <li><strong>Brush pens and toning</strong>  - the layer that gives a sketch depth and atmosphere (this is where most students lean forward)</li>
-      <li><strong>Hatching</strong>  - simple lines that add texture, tone, and a sense of place</li>
-      <li><strong>When to stop</strong>  - and why Ian says <em>&ldquo;Life&rsquo;s too short to count windows&rdquo;</em></li>
-    </ul>
-
     <div class="prose">
-      <div class="image-break">
-        <img src="https://learn.urbansketch.com/wp-content/uploads/2026/03/USC-Free-Introductory-Course-02-Composition-Excercise-00-01-32-662.jpg" alt="Ian Fennelly teaching composition in the free course" loading="lazy">
-        <p class="image-caption">Ian's composition exercise - learning to see before you draw</p>
-      </div>
-
-      <div class="image-break">
-        <img src="https://learn.urbansketch.com/wp-content/uploads/2026/03/USC-Free-Introductory-Course-04-Initial-Sketch-00-06-08-449.jpg" alt="Ian Fennelly's initial sketch in the free course" loading="lazy">
-        <p class="image-caption">The initial sketch takes shape</p>
-      </div>
-
-      <p>Here&rsquo;s what this course is designed to do: <strong>show you what&rsquo;s possible.</strong> Give you a taste. Let you feel what it&rsquo;s like to have a guide who genuinely believes you can do this  - because he&rsquo;s watched 50,000 people prove it.</p>
-
-      <div class="image-break">
-        <img src="https://learn.urbansketch.com/wp-content/uploads/2026/03/USC-Free-Introductory-Course-15-Finished-Work-00-02-54-457.jpg" alt="The finished sketch from Ian Fennelly's free course" loading="lazy">
-        <p class="image-caption">The finished sketch - built step by step across 15 lessons</p>
-      </div>
-
-      <p>It&rsquo;s a generous taste. Fifteen real lessons, not a teaser reel. But it&rsquo;s the opening chapter, not the whole book.</p>
-    </div>
-
-    <div class="text-center" style="margin-top:2rem">
-      <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course  - It Takes 30 Seconds to Sign Up</a>
-      <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===== SECTION 4: THE DOOR BEYOND ===== -->
-<section class="section-pad bg-warm">
-  <div class="container fade-in">
-    <div class="instructor-photo" style="margin:0 0 2rem 0">
-      <img src="https://learn.urbansketch.com/wp-content/uploads/2026/03/USC-Free-Introductory-Course-04-Initial-Sketch-00-06-08-449.jpg" alt="Ian Fennelly's initial sketch in the free course" loading="lazy">
-    </div>
-    <h2 class="section-heading">There Are Ideas in Ian&rsquo;s World With Names You Haven&rsquo;t Heard Yet.</h2>
-
-    <div class="prose" style="margin-bottom:.5rem">
-      <p>Ian has spent years developing a complete system for urban sketching. Inside it, there are named frameworks:</p>
-    </div>
-
-    <div class="framework-item">
-      <h3>The Layers of Looking.</h3>
-      <p>A way of building any sketch in stages  - where each layer has a specific job and nothing you&rsquo;ve done is ever wasted, because the next layer transforms it.</p>
-    </div>
-
-    <div class="framework-item">
-      <h3>The Four Pillars.</h3>
-      <p>The structural foundation every sketch stands on.</p>
-    </div>
-
-    <div class="framework-item">
-      <h3>The Editor&rsquo;s Eye.</h3>
-      <p>The discipline of knowing what to leave out  - which, Ian says, matters more than what you put in.</p>
-    </div>
-
-    <div class="framework-item">
-      <h3>The Colour Family.</h3>
-      <p>A system where three colours create everything you need. No clashing. Just harmony.</p>
-    </div>
-
-    <div class="framework-item">
-      <h3>The Boldness Paradox.</h3>
-      <p>The discovery that the moment you want to pull back is actually the moment to push forward.</p>
-    </div>
-
-    <div class="prose" style="margin-top:1.5rem">
-      <p>You&rsquo;ll catch glimpses of all of this in the free course - the way Ian layers his process, the way he decides what to leave out, the way his colours work together as if they share a secret. Fifteen lessons, and you&rsquo;ll start to see the world the way a sketcher does.</p>
+      <p>This is not a lecture. It is Ian, on screen, building a sketch in real time while you follow along. Pause when you need to. Rewind as many times as you want. Go at your own pace.</p>
+      <p>As Ian says: <em>&ldquo;There are absolutely no rules about this. The only rules are to enjoy yourself.&rdquo;</em></p>
     </div>
 
     <div class="text-center" style="margin-top:2rem">
@@ -506,19 +422,108 @@ footer{
   </div>
 </section>
 
-<!-- ===== SECTION 5: MEET YOUR TEACHER ===== -->
+<!-- ===== SECTION 4: EMOTIONAL PERMISSION ===== -->
+<section class="section-pad bg-warm">
+  <div class="container prose fade-in">
+    <h2 class="section-heading">This Is Not About Being Good. This Is About Starting.</h2>
+
+    <p>There is a moment - usually around the watercolour stage - where something clicks.</p>
+    <p>The colours bleed into each other on the page. The sketch starts looking like something. And a quiet voice in your head says: <em>I could actually do this.</em></p>
+    <p>That moment is what this free course is designed to give you.</p>
+    <p>Not mastery. Not perfection. Not a portfolio piece. Just the experience of picking up a pen, following a warm and patient guide, and discovering that the thing you have been wanting to try is not as far away as you thought.</p>
+
+    <div class="image-break">
+      <img src="https://learn.urbansketch.com/wp-content/uploads/2026/03/USC-Free-Introductory-Course-04-Initial-Sketch-00-06-08-449.jpg" alt="Ian Fennelly's initial sketch in the free course" loading="lazy">
+      <p class="image-caption">The initial sketch takes shape</p>
+    </div>
+
+    <p>Ian has a phrase his students love: <em>&ldquo;Life&rsquo;s too short to count windows.&rdquo;</em></p>
+    <p>It means: stop worrying about getting every detail right. The joy is in the doing. The story is in what you notice, not what you copy. And there is no such thing as a mistake - only a learning opportunity wrapped up in a bit of frustration.</p>
+  </div>
+</section>
+
+<!-- ===== SECTION 5: PROOF CASCADE ===== -->
 <section class="section-pad bg-white">
   <div class="container fade-in">
-    <h2 class="section-heading">The Teacher Who Makes You Forget You&rsquo;re Learning</h2>
+    <h2 class="section-heading">People Who Started Exactly Where You Are</h2>
+
+    <div class="objection">
+      <h3>&ldquo;I have no talent&rdquo;</h3>
+      <p>Ken Wire tried Ian&rsquo;s course with what he describes as &ldquo;zero artistic talent.&rdquo;</p>
+      <div class="testimonial-quote">
+        <p>&ldquo;Ian convinced me to try something and I was pleased with my results.&rdquo;</p>
+        <p class="attribution"> - Ken Wire</p>
+      </div>
+      <p>Wendy Aitken had never sketched anything before: <em>&ldquo;This has been my first introduction into any kind of sketching and the course is a great way to start.&rdquo;</em></p>
+    </div>
+
+    <div class="objection">
+      <h3>&ldquo;I am too old to start&rdquo;</h3>
+      <div class="testimonial-quote">
+        <p>&ldquo;Who would have thought at the age of 79 I would learn to sketch from a great artist like Ian.&rdquo;</p>
+        <p class="attribution"> - Angela Pound, age 79</p>
+      </div>
+      <div class="testimonial-quote">
+        <p>&ldquo;As a raw beginner at 74... He has opened my world to color and shape and added a spark to my days.&rdquo;</p>
+        <p class="attribution"> - Shirley, age 74</p>
+      </div>
+    </div>
+
+    <div class="objection">
+      <h3>&ldquo;I have tried online courses before and they did not work&rdquo;</h3>
+      <div class="testimonial-quote">
+        <p>&ldquo;My track record for online training has not been that good. But the beginner course was a game changer for me.&rdquo;</p>
+        <p class="attribution"> - Marc Dabros</p>
+      </div>
+      <div class="testimonial-quote">
+        <p>&ldquo;With Ian&rsquo;s course... I&rsquo;m just so inspired and feel I have improved 200%.&rdquo;</p>
+        <p class="attribution"> - Debbie Dodge</p>
+      </div>
+    </div>
+
+    <div class="objection">
+      <h3>&ldquo;Does this actually change anything?&rdquo;</h3>
+      <div class="testimonial-quote">
+        <p>&ldquo;They saved my mental health as I was the only caregiver for my husband as his dementia worsened. I would show him the drawings and he delighted in them, which was priceless.&rdquo;</p>
+        <p class="attribution"> - Mary R</p>
+      </div>
+      <div class="testimonial-quote">
+        <p>&ldquo;These classes are quite literally a life saver to me.&rdquo;</p>
+        <p class="attribution"> - Melissa McCutcheon</p>
+      </div>
+      <p>Dawn Milsom put it simply: <em>&ldquo;I think I have found my &lsquo;thing&rsquo; and my tribe.&rdquo;</em></p>
+    </div>
+
+    <div class="text-center" style="margin-top:2rem">
+      <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course - It&rsquo;s Free</a>
+      <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 6: MEET IAN ===== -->
+<section class="section-pad bg-warm">
+  <div class="container fade-in">
+    <h2 class="section-heading">Meet Ian Fennelly</h2>
     <div class="instructor-grid">
       <div class="instructor-photo">
         <img src="https://learn.urbansketch.com/wp-content/uploads/2025/03/ian-chelsea.jpg" alt="Ian Fennelly sketching outdoors" loading="lazy">
       </div>
       <div class="instructor-text">
-        <p><strong>Ian Fennelly</strong> is a world-renowned urban sketching artist, published author of three books, and the creator of a teaching system that has guided more than 50,000 students across 188 countries from &ldquo;I can&rsquo;t draw&rdquo; to sketching with confidence.</p>
-        <p>His students call him &ldquo;the Bob Ross of urban sketching.&rdquo; The comparison stuck because it&rsquo;s accurate  - the same warmth, the same calm, the same ability to make something intimidating feel like something you could do on a Sunday morning with a cup of tea.</p>
-        <p>He teaches workshops internationally  - from Brighton to Porto to New York. He&rsquo;s built the Beginners Course, advanced courses across 10+ locations, and an entire ecosystem of learning built on one belief: <strong>anyone can sketch. You just need someone to show you how.</strong></p>
-        <p>His philosophy, in his own words: <em>&ldquo;Life&rsquo;s too short to count windows.&rdquo;</em> Meaning: stop obsessing over perfection. Let the line wobble. Let the colour bleed. That&rsquo;s where the charm lives.</p>
+        <p>Ian is a world-renowned urban sketching artist, teacher, and published author of three books.</p>
+        <p>But numbers do not tell you what it feels like to learn from him.</p>
+        <p>Imagine sitting beside someone who points out every little detail that makes a building interesting - the way a roofline tilts, the colour of a shadow, the story a cracked window tells. Someone who gets paint on his shorts and puts his brush between his teeth and says things like <em>&ldquo;Isn&rsquo;t that gorgeous? It&rsquo;s like a really warm, sexy kind of gray.&rdquo;</em></p>
+        <p>He does not talk down to you. He does not assume you know anything. He shows you exactly what he is doing and why, step by step, in a calm voice that makes the hours feel like minutes.</p>
+
+        <div class="testimonial-quote">
+          <p>&ldquo;A few minutes into the Beginner&rsquo;s course and I felt like I was learning from a close friend.&rdquo;</p>
+          <p class="attribution"> - Dorian Scotti</p>
+        </div>
+
+        <div class="testimonial-quote">
+          <p>&ldquo;As a retired teacher I really appreciate how Ian organizes the courses and breaks down his method.&rdquo;</p>
+          <p class="attribution"> - Renee King, retired teacher</p>
+        </div>
 
         <div class="instructor-photo" style="margin:1.5rem 0">
           <img src="https://www.urbansketchcourse.com/wp-content/uploads/2025/11/PRAS8849-1-2048x1537.jpg.webp" alt="Ian Fennelly sketching outdoors in the English countryside" loading="lazy">
@@ -528,22 +533,7 @@ footer{
           <img src="https://eg7oxqa9xch.exactdn.com/wp-content/uploads/2023/08/04134055/P1283061-copy-scaled.jpg?strip=all&lossy=1&w=800&ssl=1" alt="Ian Fennelly teaching a workshop group outdoors" loading="lazy">
         </div>
 
-        <p>His most disarming truth: <em>&ldquo;There&rsquo;s no such thing as a mistake.&rdquo;</em> He says it like he means it. Because he does.</p>
-
-        <div class="testimonial-quote">
-          <p>&ldquo;His light fun approach to learning was contagious.&rdquo;</p>
-          <p class="attribution"> - Rose</p>
-        </div>
-
-        <div class="testimonial-quote">
-          <p>&ldquo;A few minutes into the Beginner&rsquo;s course and I felt like I was learning from a close friend.&rdquo;</p>
-          <p class="attribution"> - Dorian Scotti</p>
-        </div>
-
-        <div class="testimonial-quote">
-          <p>&ldquo;As a retired teacher I really appreciate how Ian organizes the courses.&rdquo;</p>
-          <p class="attribution"> - Renee King, retired teacher</p>
-        </div>
+        <p>Ian is the creator of the Beginners Course, advanced courses across 10+ locations worldwide, and the author of &ldquo;Layers of Looking,&rdquo; &ldquo;Finding Your Inspiration,&rdquo; and &ldquo;Sketching Stories.&rdquo; He leads international workshops from Brighton to Barcelona to New York. And this free course is your introduction to the way he sees the world.</p>
       </div>
     </div>
   </div>
@@ -563,100 +553,83 @@ footer{
   </div>
 </section>
 
-<!-- ===== SECTION 6: OBJECTION HANDLING ===== -->
+<!-- ===== SECTION 7: THE BIGGER PICTURE ===== -->
 <section class="section-pad bg-warm">
-  <div class="container fade-in">
-    <h2 class="section-heading">The Voice in Your Head. Let&rsquo;s Deal With It.</h2>
+  <div class="container prose fade-in">
+    <h2 class="section-heading">Your First Step Into Something Deeper</h2>
 
-    <div class="objection">
-      <h3>&ldquo;I can&rsquo;t draw.&rdquo;</h3>
-      <p>Neither could <span class="stat">86.1%</span> of Ian&rsquo;s students when they started. Ken Wire called himself &ldquo;zero artistic talent.&rdquo; He was pleased with his results. This course doesn&rsquo;t require talent. It requires a pen and the willingness to follow along.</p>
+    <p>This free course is your first step. Inside, Ian teaches from a single location in Porto using his layered sketching process. You will see how it works. You will feel the magic.</p>
+
+    <div class="image-break">
+      <img src="https://learn.urbansketch.com/wp-content/uploads/2026/03/USC-Free-Introductory-Course-15-Finished-Work-00-02-54-457.jpg" alt="The finished sketch from Ian Fennelly's free course" loading="lazy">
+      <p class="image-caption">The finished sketch - built step by step across 15 lessons</p>
     </div>
 
-    <div class="objection">
-      <h3>&ldquo;I&rsquo;m too old to start.&rdquo;</h3>
-      <p>Shirley would disagree:</p>
-      <div class="testimonial-quote">
-        <p>&ldquo;As a raw beginner at 74... He has opened my world to color and shape and added a spark to my days.&rdquo;</p>
-        <p class="attribution"> - Shirley, age 74</p>
-      </div>
-      <p><em>Added a spark to my days.</em> That&rsquo;s not someone talking about art technique. That&rsquo;s someone talking about being alive again. Angela started at 79. Your age isn&rsquo;t a barrier. It might be the reason this matters so much.</p>
-    </div>
+    <p>What you will glimpse in these fifteen lessons is the beginning of something deeper. In the full Beginners Course, Ian teaches you how to really look at a scene before you sketch it, how to build your work in layers so nothing feels overwhelming, and how to know when a piece is finished. These are the tools his students use to sketch independently, anywhere in the world, without Ian looking over their shoulder. He teaches it across four completely different locations with dedicated exercises and practice.</p>
+    <p>But that comes later.</p>
+    <p>Right now, start here. See what it feels like to follow along. Discover if this is something you want to go deeper with.</p>
 
-    <div class="objection">
-      <h3>&ldquo;I&rsquo;ve tried online courses before and never finished.&rdquo;</h3>
-      <p>So had Marc:</p>
-      <div class="testimonial-quote">
-        <p>&ldquo;My track record for online training has not been that good. But the beginner course was a game changer for me.&rdquo;</p>
-        <p class="attribution"> - Marc Dabros</p>
-      </div>
-      <p>The difference wasn&rsquo;t Marc. It was the teacher. As Renee King, a retired teacher herself, recognised: <em>&ldquo;As a retired teacher I really appreciate how Ian organizes the courses.&rdquo;</em> Structure matters. Ian&rsquo;s structure is built for people who&rsquo;ve been let down before.</p>
-    </div>
-
-    <div class="objection">
-      <h3>&ldquo;What if I waste my time?&rdquo;</h3>
-      <p>It&rsquo;s free. Fifteen lessons you can watch at your own pace. No credit card, no commitment. The only time you can waste is the years you spend wondering &ldquo;what if.&rdquo;</p>
-      <p>And what if you&rsquo;re not terrible? What if you&rsquo;re like Debbie?</p>
-      <div class="testimonial-quote">
-        <p>&ldquo;I have improved 200%... best thing to happen to me this year.&rdquo;</p>
-        <p class="attribution"> - Debbie Dodge</p>
-      </div>
-    </div>
-
-    <div class="text-center" style="margin-top:2rem">
-      <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course - It&rsquo;s Free</a>
-      <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required.</p>
+    <div class="testimonial-quote">
+      <p>&ldquo;His light fun approach to learning was contagious.&rdquo;</p>
+      <p class="attribution"> - Rose</p>
     </div>
   </div>
 </section>
 
-<!-- ===== SECTION 7: WHY THIS ACTUALLY MATTERS ===== -->
+<!-- ===== SECTION 8: FAQ ===== -->
 <section class="section-pad bg-white">
-  <div class="container prose fade-in">
-    <h2 class="section-heading">This Was Never Just About Art Supplies.</h2>
+  <div class="container fade-in">
+    <h2 class="section-heading">Questions You Might Have</h2>
 
-    <div class="testimonial-quote">
-      <p>&ldquo;These classes are quite literally a life saver to me.&rdquo;</p>
-      <p class="attribution"> - Melissa McCutcheon</p>
+    <div class="faq-item">
+      <h3>Do I need any drawing experience?</h3>
+      <p>Not even a little bit. 86.1% of Ian&rsquo;s students are complete beginners with no art background. If you can hold a pen, you have everything you need.</p>
     </div>
 
-    <div class="testimonial-quote">
-      <p>&ldquo;I think I have found my &lsquo;thing&rsquo; and my tribe.&rdquo;</p>
-      <p class="attribution"> - Dawn Milsom</p>
+    <div class="faq-item">
+      <h3>What materials do I need?</h3>
+      <p>Nothing fancy. A few pencils, some fineliners, a basic watercolour set, and a sketchbook. Ian walks you through exactly what you need in the first lesson, and none of it requires a trip to a specialist art shop.</p>
     </div>
 
-    <p>There&rsquo;s a moment  - Ian&rsquo;s students talk about it constantly  - where you sit down, press play, and the world gets quieter. The obligations recede. The inner critic shuts up for once. It&rsquo;s just you and the pen and the page and the surprising discovery that your hand knows more than your head gave it credit for.</p>
-    <p>Mary found it while caring for her husband. Dawn found it when she discovered her &ldquo;thing.&rdquo; Shirley found it at 74. Angela at 79.</p>
-    <p>That&rsquo;s what&rsquo;s on the other side of pressing play. Not a certificate. Not a skill set. A door.</p>
-    <p>The free course opens it. Where you go from there  - that&rsquo;s your story to write.</p>
+    <div class="faq-item">
+      <h3>How long do I have access?</h3>
+      <p>As long as you want. Watch at your own pace. Pause, rewind, rewatch. The course is yours to keep.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Is this really free?</h3>
+      <p>Completely. No credit card. No hidden fees. No catch. Just enter your email and you will get instant access to all fifteen lessons.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>What happens after the free course?</h3>
+      <p>You will have completed your first urban sketch with Ian. Many students find they want to go deeper. Ian&rsquo;s complete Beginners Course teaches his full system across four locations with dedicated exercises and frameworks. But there is zero pressure. Start with the free course and see how it feels.</p>
+    </div>
   </div>
 </section>
 
 <!-- ===== PRIMARY CTA ===== -->
 <section class="section-pad bg-warm">
   <div class="container text-center fade-in">
-    <h2 class="section-heading">Your Free Course Is Waiting</h2>
-    <p style="font-size:1.1rem;color:var(--text);line-height:1.8;max-width:480px;margin:0 auto 1.5rem"><strong>15 video lessons with Ian Fennelly.</strong><br>One beautiful scene in Porto, Portugal.<br>From blank page to finished sketch.</p>
-    <p class="section-subtext" style="margin-bottom:1.5rem">No credit card required. No experience needed. No judgment.</p>
-    <p style="font-size:1.05rem;color:var(--text-light);margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto">Just you, a pen, and the best urban sketching teacher in the world saying: <em>&ldquo;Let&rsquo;s crack on.&rdquo;</em></p>
+    <h2 class="section-heading">Start Your Free Urban Sketching Course</h2>
+    <div class="prose" style="max-width:520px;margin:0 auto 1.5rem">
+      <p>You have read the stories. You have seen what other beginners - people with zero experience, people in their 70s and 80s, people who had given up on online courses - discovered when they gave Ian a chance.</p>
+      <p>Now it is your turn.</p>
+    </div>
+    <p style="font-size:1.1rem;color:var(--text);line-height:1.8;max-width:480px;margin:0 auto 1.5rem"><strong>Fifteen video lessons. A complete sketch from blank page to finished piece.</strong><br>A guide who has helped 50,000+ people in 188 countries discover that they can do this.</p>
+    <p class="section-subtext" style="margin-bottom:1.5rem">All it costs is your email address.</p>
     <a href="#" class="cta-btn" onclick="handleCTA(event)" style="font-size:1.2rem;padding:1.1rem 3rem">Start Your Free Course Now</a>
-    <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required. Instant access.</p>
+    <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required. No experience needed. Just press play and follow along.</p>
   </div>
 </section>
 
-<!-- ===== TRUST SIGNAL CTA ===== -->
+<!-- ===== TRUST SIGNAL + FINAL CTA ===== -->
 <section class="section-pad bg-white">
   <div class="container text-center fade-in">
     <p class="trust-bar"><strong>50,000+ students. 188 countries. 500+ five-star reviews. 86.1% complete beginners.</strong></p>
-    <p style="font-size:1.1rem;color:var(--text);line-height:1.6;max-width:480px;margin:0 auto 1.5rem">You&rsquo;re not behind. You&rsquo;re not too old. You&rsquo;re not too untalented.</p>
-    <p style="font-family:var(--serif);font-size:1.3rem;color:var(--charcoal);margin-bottom:2rem">You&rsquo;re just not started yet.</p>
-    <a href="#" class="cta-btn" onclick="handleCTA(event)" style="font-size:1.15rem;padding:1rem 2.8rem">Start Your Free Course  - It&rsquo;s Free</a>
+    <p style="font-family:var(--serif);font-size:1.3rem;color:var(--charcoal);margin-bottom:2rem;font-style:italic">&ldquo;There&rsquo;s no such thing as a mistake.&rdquo; - Ian Fennelly</p>
+    <a href="#" class="cta-btn" onclick="handleCTA(event)" style="font-size:1.15rem;padding:1rem 2.8rem">Start Your Free Course - It&rsquo;s Free</a>
     <p style="color:var(--text-lighter);font-size:1.05rem;margin-top:1rem;font-style:italic">No credit card required. Instant access. Your first lesson is waiting.</p>
-
-    <div class="testimonial-quote" style="max-width:500px;margin:2.5rem auto 0">
-      <p>&ldquo;I&rsquo;m a very self critical artist... My confidence is growing day by day.&rdquo;</p>
-      <p class="attribution"> - Mrs. Karen McComish</p>
-    </div>
   </div>
 </section>
 
@@ -667,7 +640,7 @@ footer{
 
 <!-- ===== STICKY MOBILE BAR ===== -->
 <div class="sticky-bar">
-  <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course  - It&rsquo;s Free</a>
+  <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course - It&rsquo;s Free</a>
 </div>
 
 <!-- ===== SOCIAL PROOF POPUP ===== -->
@@ -691,7 +664,7 @@ function sendCAPI(eventName){
 }
 sendCAPI('PageView');
 
-/* ===== CTA HANDLER  - Facebook Pixel Lead + CAPI + Affiliate Passthrough ===== */
+/* ===== CTA HANDLER - Facebook Pixel Lead + CAPI + Affiliate Passthrough ===== */
 function handleCTA(e) {
   e.preventDefault();
 
@@ -721,7 +694,7 @@ function handleCTA(e) {
   passParams.set('variant', 'b');
   passParams.set('lp', 'free-course');
 
-  // Any other parameters  - pass them all through
+  // Any other parameters - pass them all through
   currentParams.forEach(function(value, key) {
     if (!passParams.has(key)) passParams.set(key, value);
   });
