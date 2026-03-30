@@ -254,7 +254,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
   padding:clamp(3rem,8vw,5.5rem) clamp(1.25rem,5vw,2rem);
 }
 .pricing-card{
-  max-width:520px;margin:0 auto;
+  max-width:640px;margin:0 auto;
   background:var(--white);
   border-radius:18px;
   overflow:hidden;
@@ -273,8 +273,8 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
 .pricing-save-badge{
   display:inline-block;
   background:var(--amber);color:var(--white);
-  font-family:var(--sans);font-weight:700;font-size:.75rem;
-  padding:.4rem 1rem;border-radius:50px;
+  font-family:var(--sans);font-weight:700;font-size:.85rem;
+  padding:.5rem 1.2rem;border-radius:50px;
   text-transform:uppercase;letter-spacing:.12em;
   margin-bottom:1rem;
   box-shadow:0 4px 12px var(--amber-glow);
@@ -290,10 +290,10 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
   text-align:center;padding:2rem 2rem 0;
 }
 .pricing-was{
-  font-family:var(--sans);font-size:1rem;color:var(--text-lighter);
+  font-family:var(--sans);font-size:1.15rem;color:var(--text-lighter);
   margin-bottom:.25rem;
 }
-.pricing-was s{font-size:1.1rem;color:var(--text-light)}
+.pricing-was s{font-size:1.35rem;color:var(--text-light)}
 .pricing-amount{
   font-family:var(--serif);
   font-size:clamp(3.2rem,10vw,4.5rem);
@@ -303,14 +303,14 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
   letter-spacing:-.02em;
 }
 .pricing-per{
-  font-family:var(--sans);font-size:.85rem;color:var(--text-lighter);
+  font-family:var(--sans);font-size:1rem;color:var(--text-lighter);
   margin-bottom:.15rem;
 }
 .pricing-savings{
   display:inline-block;
   background:rgba(13,115,119,.08);color:var(--teal);
-  font-family:var(--sans);font-weight:600;font-size:.8rem;
-  padding:.35rem .9rem;border-radius:50px;
+  font-family:var(--sans);font-weight:600;font-size:.95rem;
+  padding:.4rem 1rem;border-radius:50px;
   margin-top:.5rem;
 }
 .pricing-divider{
@@ -322,31 +322,31 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
   padding:0 clamp(1.5rem,5vw,2.5rem);
 }
 .pricing-includes-title{
-  font-family:var(--sans);font-weight:700;font-size:.7rem;
+  font-family:var(--sans);font-weight:700;font-size:.8rem;
   text-transform:uppercase;letter-spacing:.15em;
   color:var(--text-lighter);margin-bottom:1rem;text-align:center;
 }
 .pricing-list{list-style:none;margin:0;padding:0}
 .pricing-list li{
   display:flex;align-items:flex-start;gap:.75rem;
-  padding:.6rem 0;
-  font-size:.92rem;color:var(--text);line-height:1.45;
+  padding:.75rem 0;
+  font-size:1.05rem;color:var(--text);line-height:1.5;
   border-bottom:1px solid rgba(0,0,0,.04);
 }
 .pricing-list li:last-child{border-bottom:none}
 .pricing-list .pl-icon{
-  flex-shrink:0;width:22px;height:22px;
+  flex-shrink:0;width:26px;height:26px;
   background:rgba(13,115,119,.1);
   border-radius:50%;display:flex;align-items:center;justify-content:center;
-  margin-top:1px;
+  margin-top:2px;
 }
-.pricing-list .pl-icon svg{width:12px;height:12px}
+.pricing-list .pl-icon svg{width:14px;height:14px}
 .pricing-list .pl-bonus{
-  color:var(--teal);font-weight:600;font-size:.75rem;
+  color:var(--teal);font-weight:600;font-size:.85rem;
   text-transform:uppercase;letter-spacing:.05em;
 }
 .pricing-list .pl-val{
-  color:var(--text-lighter);font-size:.82rem;font-weight:400;
+  color:var(--text-lighter);font-size:.92rem;font-weight:400;
 }
 .pricing-cta-wrap{
   padding:1.5rem clamp(1.5rem,5vw,2.5rem) 2rem;text-align:center;
@@ -356,7 +356,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
   margin-top:1rem;
 }
 .pricing-meta span{
-  font-family:var(--sans);font-size:.78rem;color:var(--text-lighter);
+  font-family:var(--sans);font-size:.9rem;color:var(--text-lighter);
   display:flex;align-items:center;gap:.35rem;
 }
 
@@ -489,6 +489,23 @@ footer{
 .proof-name{font-weight:600;color:var(--charcoal)}
 .proof-action{color:var(--text-light)}
 .proof-time{color:var(--text-lighter);font-size:.75rem}
+
+/* ===== BONUS CARDS ===== */
+.bonus-grid{display:flex;flex-direction:column;gap:1.25rem;margin-top:1.5rem}
+.bonus-card{display:flex;gap:1.25rem;align-items:flex-start;background:var(--white);border-radius:12px;padding:1.5rem;border-left:4px solid var(--teal);box-shadow:0 2px 8px rgba(0,0,0,.06);transition:box-shadow .2s ease}
+.bonus-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.bonus-card.main-offer{border-left-color:var(--amber);background:linear-gradient(135deg,#fffbf0 0%,var(--white) 100%)}
+.bonus-icon{flex-shrink:0;width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(0,128,128,.08)}
+.bonus-card.main-offer .bonus-icon{background:rgba(217,119,6,.1)}
+.bonus-icon svg{width:24px;height:24px;stroke:var(--teal);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.bonus-card.main-offer .bonus-icon svg{stroke:var(--amber)}
+.bonus-body{flex:1;min-width:0}
+.bonus-body h3{font-size:1.15rem;color:var(--charcoal);margin:0 0 .35rem;line-height:1.3}
+.bonus-body .bonus-value{color:var(--teal);font-weight:600;font-size:.95rem}
+.bonus-card.main-offer .bonus-body .bonus-value{color:var(--amber)}
+.bonus-body p{color:var(--text-light);font-size:.95rem;margin:.5rem 0 0;line-height:1.6}
+.bonus-tag{display:inline-block;background:var(--teal);color:var(--white);font-size:.7rem;font-weight:700;letter-spacing:.05em;padding:.2rem .6rem;border-radius:4px;text-transform:uppercase;margin-bottom:.35rem}
+@media(max-width:600px){.bonus-card{flex-direction:column;gap:.75rem;padding:1.25rem}.bonus-icon{width:40px;height:40px}.bonus-icon svg{width:20px;height:20px}}
 
 /* ===== ANIMATIONS ===== */
 @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
@@ -835,35 +852,68 @@ footer{
   <div class="container letter fade-in">
     <h2 class="section-heading">Here Is Everything You Get Today</h2>
 
-    <div class="section-divider" style="margin:2rem auto"></div>
+    <div class="bonus-grid">
+      <!-- Main Course -->
+      <div class="bonus-card main-offer">
+        <div class="bonus-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="bonus-body">
+          <h3>THE BEGINNERS URBAN SKETCHING COURSE <span class="bonus-value">(Value: <span class="priceFull"></span>)</span></h3>
+          <p>4 complete on-location workshop modules. 6 named frameworks. Dedicated exercises for perspective, <span class="priceColour">colour</span> mixing, and hatching. Lifetime access. Instant access.</p>
+        </div>
+      </div>
 
-    <h3 style="font-size:1.3rem;color:var(--charcoal);margin-bottom:1rem">THE BEGINNERS URBAN SKETCHING COURSE (Value: <span class="priceFull"></span>)</h3>
+      <p style="margin:0;font-weight:600;color:var(--charcoal)">Plus these 4 bonuses - all included free:</p>
 
-    <p>4 complete on-location workshop modules. 6 named frameworks. Dedicated exercises for perspective, <span class="priceColour">colour</span> mixing, and hatching. Lifetime access. Instant access.</p>
+      <!-- Bonus 1 -->
+      <div class="bonus-card">
+        <div class="bonus-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+        </div>
+        <div class="bonus-body">
+          <span class="bonus-tag">Bonus 1</span>
+          <h3>"Absolute Beginner" Introduction Module <span class="bonus-value">(Value: <span class="priceBonus1"></span>)</span></h3>
+          <p>Meets you exactly where you are, even if you have not picked up a pencil since school. No assumptions. No jargon. What supplies you need, how to set up, and your first marks without any pressure. This alone removes every excuse for not starting.</p>
+        </div>
+      </div>
 
-    <div class="section-divider" style="margin:2rem auto"></div>
+      <!-- Bonus 2 -->
+      <div class="bonus-card">
+        <div class="bonus-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <div class="bonus-body">
+          <span class="bonus-tag">Bonus 2</span>
+          <h3>Rapid Skill-Building Exercise Bundle <span class="bonus-value">(Value: <span class="priceBonus2"></span>)</span></h3>
+          <p>12 focused exercises covering perspective, hatching, textures, and blending. These are the drills that turn shaky lines into confident strokes. Think of them as your personal training programme between workshops.</p>
+        </div>
+      </div>
 
-    <p><strong>Plus these 4 bonuses - all included free:</strong></p>
+      <!-- Bonus 3 -->
+      <div class="bonus-card">
+        <div class="bonus-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="bonus-body">
+          <span class="bonus-tag">Bonus 3</span>
+          <h3>Urban Sketchers Feedback Gallery and Private Community <span class="bonus-value">(Value: <span class="priceBonus3"></span>)</span></h3>
+          <p>Share your work. Get real, friendly feedback from fellow learners and Ian's team. Not Instagram strangers who scroll past in half a second. A real community of people on the same journey as you. This is where Dawn found her "tribe." You will too.</p>
+        </div>
+      </div>
 
-    <div class="section-divider" style="margin:2rem auto"></div>
-
-    <h3 style="font-size:1.2rem;color:var(--charcoal);margin-bottom:.5rem">BONUS 1: "Absolute Beginner" Introduction Module <span style="color:var(--teal)">(Value: <span class="priceBonus1"></span>)</span></h3>
-    <p>Meets you exactly where you are, even if you have not picked up a pencil since school. No assumptions. No jargon. What supplies you need, how to set up, and your first marks without any pressure. This alone removes every excuse for not starting.</p>
-
-    <div class="section-divider" style="margin:2rem auto"></div>
-
-    <h3 style="font-size:1.2rem;color:var(--charcoal);margin-bottom:.5rem">BONUS 2: Rapid Skill-Building Exercise Bundle <span style="color:var(--teal)">(Value: <span class="priceBonus2"></span>)</span></h3>
-    <p>12 focused exercises covering perspective, hatching, textures, and blending. These are the drills that turn shaky lines into confident strokes. Think of them as your personal training programme between workshops.</p>
-
-    <div class="section-divider" style="margin:2rem auto"></div>
-
-    <h3 style="font-size:1.2rem;color:var(--charcoal);margin-bottom:.5rem">BONUS 3: Urban Sketchers Feedback Gallery and Private Community Access <span style="color:var(--teal)">(Value: <span class="priceBonus3"></span>)</span></h3>
-    <p>Share your work. Get real, friendly feedback from fellow learners and Ian's team. Not Instagram strangers who scroll past in half a second. A real community of people on the same journey as you. This is where Dawn found her "tribe." You will too.</p>
-
-    <div class="section-divider" style="margin:2rem auto"></div>
-
-    <h3 style="font-size:1.2rem;color:var(--charcoal);margin-bottom:.5rem">BONUS 4: Historic City Live Workshop Recording - 3 Full Hours <span style="color:var(--teal)">(Value: <span class="priceBonus4"></span>)</span></h3>
-    <p>A complete recorded live session of Ian sketching a historic city scene in real time, answering student questions as they come in. Completely unscripted. Three full hours of watching a master work. This is like getting a front-row seat at one of his sold-out international workshops - for free.</p>
+      <!-- Bonus 4 -->
+      <div class="bonus-card">
+        <div class="bonus-icon">
+          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+        <div class="bonus-body">
+          <span class="bonus-tag">Bonus 4</span>
+          <h3>Historic City Live Workshop Recording - 3 Full Hours <span class="bonus-value">(Value: <span class="priceBonus4"></span>)</span></h3>
+          <p>A complete recorded live session of Ian sketching a historic city scene in real time, answering student questions as they come in. Completely unscripted. Three full hours of watching a master work. This is like getting a front-row seat at one of his sold-out international workshops - for free.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
