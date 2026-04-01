@@ -507,6 +507,18 @@ footer{
 .bonus-tag{display:inline-block;background:var(--teal);color:var(--white);font-size:.7rem;font-weight:700;letter-spacing:.05em;padding:.2rem .6rem;border-radius:4px;text-transform:uppercase;margin-bottom:.35rem}
 @media(max-width:600px){.bonus-card{flex-direction:column;gap:.75rem;padding:1.25rem}.bonus-icon{width:40px;height:40px}.bonus-icon svg{width:20px;height:20px}}
 
+/* ===== STUDENT GALLERY ===== */
+.student-gallery{position:relative;overflow:hidden;margin-top:1.5rem}
+.student-gallery-track{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:1rem}
+.student-gallery-track::-webkit-scrollbar{display:none}
+.student-card{flex:0 0 calc(50% - .5rem);scroll-snap-align:start;position:relative;border-radius:10px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.student-card img{width:100%;height:auto;display:block}
+.student-name{position:absolute;bottom:0;left:0;right:0;padding:.5rem .75rem;background:linear-gradient(transparent,rgba(0,0,0,.7));color:var(--white);font-family:var(--sketch);font-size:1rem;text-align:right}
+.student-gallery-dots{display:flex;justify-content:center;gap:.5rem;margin-top:.75rem}
+.student-gallery-dots .dot{width:10px;height:10px;border-radius:50%;background:var(--warm-grey);border:none;cursor:pointer;transition:background .2s}
+.student-gallery-dots .dot.active{background:var(--teal)}
+@media(max-width:600px){.student-card{flex:0 0 85%}}
+
 /* ===== ANIMATIONS ===== */
 @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .fade-in{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
@@ -554,6 +566,12 @@ footer{
     <p><strong>That voice is a liar. And I can prove it.</strong></p>
 
     <p style="font-family:var(--serif);font-size:1.25rem;color:var(--charcoal);text-align:center;margin:2rem 0;font-style:italic">How many more years does that drawer stay closed?</p>
+
+    <!-- Image break: English Bridge pencil start -->
+    <div class="image-break" style="margin-top:2.5rem">
+      <img src="https://learn.urbansketch.com/wp-content/uploads/2026/04/03-USC-Beginners-English-Bridge-Pic-1-Pencil-New-2-00-03-17-333.jpg" alt="The very first pencil lines of Ian Fennelly's English Bridge sketch - just simple arches on a blank page" loading="lazy">
+      <p class="image-caption">This is where every sketch starts. Two pencil lines on a blank page.</p>
+    </div>
   </div>
 </section>
 
@@ -577,6 +595,12 @@ footer{
     <p>That's the difference. Not talent. Not age. Not some gift you either have or don't.</p>
 
     <p><strong>A system you can follow. That's all that was ever missing.</strong></p>
+
+    <!-- Image break: English Bridge watercolour transformation -->
+    <div class="image-break" style="margin-top:2.5rem">
+      <img src="https://learn.urbansketch.com/wp-content/uploads/2026/04/09-USC-Beginners-English-Bridge-Pic-1-Watercolour-00-10-33-864.jpg" alt="Ian Fennelly painting the English Bridge in watercolour - vivid blues and oranges transforming the sketch" loading="lazy">
+      <p class="image-caption">Those two pencil lines? This is where they end up. Three colours. One system.</p>
+    </div>
   </div>
 </section>
 
@@ -685,6 +709,7 @@ footer{
 
     <div class="framework-item">
       <h3>The <span class="priceColourCap">Colour</span> Family</h3>
+      <img src="https://learn.urbansketch.com/wp-content/uploads/2026/04/07-USC-Beginners-Wyle-Cop-Pic-4-Understanding-Colour-00-02-24-689.jpg" alt="Ian demonstrating the Colour Family - three watercolours and all their mixes on white paper" loading="lazy">
       <p>Three <span class="priceColour">colour</span>s create infinite harmony. No <span class="priceColour">colour</span>-matching anxiety. No overwhelm at the paint aisle. Three <span class="priceColour">colour</span>s. That's it.</p>
     </div>
 
@@ -766,6 +791,16 @@ footer{
       <p>"A few minutes into the Beginner's course and I felt like I was learning from a close friend. The volume of content - for a modest price - was well beyond any online course I've taken."</p>
       <p class="attribution">- Dorian Scotti</p>
     </div>
+    <!-- Image break: Tanners Wine watercolour + Church Street brush pens -->
+    <div class="image-break" style="margin-top:2.5rem">
+      <img src="https://learn.urbansketch.com/wp-content/uploads/2026/04/09-USC-Beginners-Tanners-Wine-Pic-2-Watercolour-00-11-05-703.jpg" alt="Ian painting Tanners Wine Merchants in bold watercolour - Tudor buildings in vivid blues, browns and oranges" loading="lazy">
+      <p class="image-caption">Workshop 2: Bold watercolour brings Tudor architecture to life. Just three colours.</p>
+    </div>
+
+    <div class="image-break">
+      <img src="https://learn.urbansketch.com/wp-content/uploads/2026/04/11-USC-Beginners-Church-Street-Pic-3-Brush-Pens-00-10-58-712.jpg" alt="Ian adding brush pen depth to Church Street sketch - blues, greens and rich textures creating 3D depth" loading="lazy">
+      <p class="image-caption">Workshop 3: Brush pens over watercolour. This is where your sketches start feeling three-dimensional.</p>
+    </div>
   </div>
 </section>
 
@@ -798,6 +833,48 @@ footer{
     <p>People come for a skill. They find a creative identity. They find calm. They find a way to be present in the world that they didn't have before. They find a community of people just like them - people who thought they couldn't, and then did.</p>
 
     <p>That's what a good system and a good teacher actually give you. Not just a drawing on a page. A part of yourself you thought was gone.</p>
+  </div>
+</section>
+
+<!-- ===== 9b. SEE WHAT STUDENTS ARE CREATING ===== -->
+<section class="section-pad bg-warm">
+  <div class="container fade-in">
+    <h2 class="section-heading text-center">See What Students Are Creating</h2>
+    <p class="section-subtext text-center">These sketches are from real students - many started as complete beginners. Imagine what you could create.</p>
+
+    <div class="student-gallery">
+      <div class="student-gallery-track" id="studentGalleryTrack">
+        <div class="student-card">
+          <img src="https://www.urbansketchcourse.com/wp-content/uploads/2024/11/Fernando-AM-copy-768x559.jpg" alt="Student sketch by Fernando" loading="lazy">
+          <span class="student-name">Fernando</span>
+        </div>
+        <div class="student-card">
+          <img src="https://www.urbansketchcourse.com/wp-content/uploads/2024/11/susan-leadbeater-768x576.jpg" alt="Student sketch by Susan Leadbeater" loading="lazy">
+          <span class="student-name">Susan Leadbeater</span>
+        </div>
+        <div class="student-card">
+          <img src="https://www.urbansketchcourse.com/wp-content/uploads/2024/11/Adrian-Wyman-768x576.jpg" alt="Student sketch by Adrian Wyman" loading="lazy">
+          <span class="student-name">Adrian Wyman</span>
+        </div>
+        <div class="student-card">
+          <img src="https://www.urbansketchcourse.com/wp-content/uploads/2024/11/Birgit-Koch-768x576.jpg" alt="Student sketch by Birgit Koch" loading="lazy">
+          <span class="student-name">Birgit Koch</span>
+        </div>
+        <div class="student-card">
+          <img src="https://www.urbansketchcourse.com/wp-content/uploads/2024/11/Carolyn-Gawalko-768x602.jpg" alt="Student sketch by Carolyn Gawalko" loading="lazy">
+          <span class="student-name">Carolyn Gawalko</span>
+        </div>
+        <div class="student-card">
+          <img src="https://www.urbansketchcourse.com/wp-content/uploads/2024/11/Grant-Cochrane-768x574.jpg" alt="Student sketch by Grant Cochrane" loading="lazy">
+          <span class="student-name">Grant Cochrane</span>
+        </div>
+        <div class="student-card">
+          <img src="https://www.urbansketchcourse.com/wp-content/uploads/2024/11/Marlies-Azahaf-768x576.jpg" alt="Student sketch by Marlies Azahaf" loading="lazy">
+          <span class="student-name">Marlies Azahaf</span>
+        </div>
+      </div>
+      <div class="student-gallery-dots" id="studentGalleryDots"></div>
+    </div>
   </div>
 </section>
 
@@ -866,6 +943,16 @@ footer{
           <p>A complete recorded live session of Ian sketching a historic city scene in real time, answering student questions as they come in. Unscripted. Unedited. Like sitting next to him on location.</p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- Wyle Cop finished: the grand finale -->
+<section class="section-pad bg-white" style="padding-top:0;padding-bottom:0">
+  <div class="container fade-in">
+    <div class="image-break">
+      <img src="https://learn.urbansketch.com/wp-content/uploads/2026/04/13-USC-Beginners-Wyle-Cop-Pic-4-Finished-Work-00-01-14-017.jpg" alt="Ian presenting the finished Wyle Cop sketch - a dramatic steep hill street scene in rich watercolour" loading="lazy">
+      <p class="image-caption">Workshop 4: Everything comes together. This is what the system produces.</p>
     </div>
   </div>
 </section>
@@ -1225,6 +1312,33 @@ function toggleFaq(el){
   }
   setTimeout(show,3000);
   setInterval(show,12000);
+})();
+
+/* ===== Student Gallery Dots ===== */
+(function(){
+  var track=document.getElementById('studentGalleryTrack');
+  var dotsWrap=document.getElementById('studentGalleryDots');
+  if(!track||!dotsWrap)return;
+  var cards=track.querySelectorAll('.student-card');
+  var perView=window.innerWidth<=600?1:2;
+  var pages=Math.ceil(cards.length/perView);
+  for(var i=0;i<pages;i++){
+    var d=document.createElement('button');
+    d.className='dot'+(i===0?' active':'');
+    d.setAttribute('aria-label','Gallery page '+(i+1));
+    d.dataset.page=i;
+    d.onclick=function(){
+      var p=parseInt(this.dataset.page);
+      var cardW=cards[0].offsetWidth+16;
+      track.scrollTo({left:p*perView*cardW,behavior:'smooth'});
+    };
+    dotsWrap.appendChild(d);
+  }
+  track.addEventListener('scroll',function(){
+    var cardW=cards[0].offsetWidth+16;
+    var current=Math.round(track.scrollLeft/(perView*cardW));
+    dotsWrap.querySelectorAll('.dot').forEach(function(d,i){d.classList.toggle('active',i===current)});
+  });
 })();
 
 /* ===== Fade-in on scroll ===== */
