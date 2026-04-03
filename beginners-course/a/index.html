@@ -1515,7 +1515,7 @@ function toggleFaq(el){
     document.addEventListener('mouseout',function(e){
       if(!e.relatedTarget&&e.clientY<10)showPopup();
     });
-  },15000);
+  },10000);
   /* Mobile: back button / history navigation */
   if(/Mobi|Android/i.test(navigator.userAgent)){
     setTimeout(function(){
@@ -1524,7 +1524,7 @@ function toggleFaq(el){
         history.pushState(null,document.title,location.href);
         showPopup();
       });
-    },15000);
+    },10000);
   }
 })();
 </script>
