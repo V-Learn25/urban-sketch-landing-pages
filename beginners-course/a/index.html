@@ -1470,5 +1470,63 @@ function toggleFaq(el){
   },function(){usa()})}catch(e){usa()}
 })();
 </script>
+
+<!-- Exit Intent Pop-up: Free Course Offer -->
+<style>
+.exit-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:9999;align-items:center;justify-content:center;padding:1.25rem}
+.exit-overlay.active{display:flex}
+.exit-modal{background:#fff;border-radius:14px;max-width:480px;width:100%;padding:2.5rem 2rem 2rem;text-align:center;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:exitSlideIn .35s ease-out}
+@keyframes exitSlideIn{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
+.exit-close{position:absolute;top:12px;right:16px;background:none;border:none;font-size:1.6rem;cursor:pointer;color:#999;line-height:1}
+.exit-close:hover{color:#333}
+.exit-modal h2{font-family:'DM Serif Display',Georgia,serif;font-size:1.75rem;color:#2D2D2D;margin-bottom:.5rem;line-height:1.25}
+.exit-modal p{font-family:'Lora','Source Sans 3',Georgia,serif;font-size:1.05rem;color:#333;line-height:1.65;margin-bottom:1.5rem}
+.exit-modal .exit-btn{display:inline-block;background:#0D7377;color:#fff;font-family:'Source Sans 3','Source Sans Pro',system-ui,sans-serif;font-weight:700;font-size:1.1rem;padding:.9rem 2.2rem;border-radius:8px;text-decoration:none;border:none;cursor:pointer;transition:background .2s,transform .15s}
+.exit-modal .exit-btn:hover{background:#095658;transform:translateY(-2px)}
+.exit-modal .exit-dismiss{display:block;margin-top:.85rem;font-family:'Source Sans 3',system-ui,sans-serif;font-size:.9rem;color:#999;cursor:pointer;background:none;border:none;text-decoration:underline}
+.exit-modal .exit-dismiss:hover{color:#666}
+</style>
+<div class="exit-overlay" id="exitOverlay">
+  <div class="exit-modal">
+    <button class="exit-close" id="exitClose" aria-label="Close">&times;</button>
+    <h2>Not quite ready to commit?</h2>
+    <p>Try Ian Fennelly's free 15-lesson sketching course first. No card needed, no catch. Just pick up a pen and start.</p>
+    <a href="https://go.urbansketchcourse.com/free-course/" class="exit-btn">Start the Free Course</a>
+    <button class="exit-dismiss" id="exitDismiss">No thanks, I'll keep looking</button>
+  </div>
+</div>
+<script>
+(function(){
+  var shown=false;
+  var cookieName='exit_popup_seen';
+  if(document.cookie.indexOf(cookieName+'=1')!==-1)return;
+  function showPopup(){
+    if(shown)return;
+    shown=true;
+    document.getElementById('exitOverlay').classList.add('active');
+    document.cookie=cookieName+'=1;path=/;max-age='+60*60*24*7+';SameSite=Lax';
+  }
+  function hidePopup(){document.getElementById('exitOverlay').classList.remove('active')}
+  document.getElementById('exitClose').addEventListener('click',hidePopup);
+  document.getElementById('exitDismiss').addEventListener('click',hidePopup);
+  document.getElementById('exitOverlay').addEventListener('click',function(e){if(e.target===this)hidePopup()});
+  /* Desktop: mouse leaves viewport from the top */
+  setTimeout(function(){
+    document.addEventListener('mouseout',function(e){
+      if(!e.relatedTarget&&e.clientY<10)showPopup();
+    });
+  },15000);
+  /* Mobile: back button / history navigation */
+  if(/Mobi|Android/i.test(navigator.userAgent)){
+    setTimeout(function(){
+      history.pushState(null,document.title,location.href);
+      window.addEventListener('popstate',function(){
+        history.pushState(null,document.title,location.href);
+        showPopup();
+      });
+    },15000);
+  }
+})();
+</script>
 </body>
 </html>
