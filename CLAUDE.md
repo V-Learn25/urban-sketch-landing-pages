@@ -1,5 +1,34 @@
 # Cloudflare Pages + AffiliateWP Cross-Domain Tracking + A/B Testing
 
+## MANDATORY: Deploy Prompt After Any File Change
+
+**After ANY HTML, JS, or config file is modified in this repo, you MUST ask the user:**
+
+> "These changes are saved locally. Do you want me to deploy them live? (This will commit and push to GitHub, which triggers an automatic Cloudflare Pages deployment.)"
+
+Do NOT silently commit and push. Do NOT skip this prompt. Do NOT assume the user wants to deploy. Always ask.
+
+If the user says yes:
+1. `cd ~/Projects/urban-sketch-landing-pages`
+2. `git add` the specific changed files (never `git add .` or `git add -A`)
+3. `git commit` with a clear message describing what changed
+4. `git push origin main`
+5. Tell the user: "Deployed. Changes will be live at go.urbansketchcourse.com within ~60 seconds. Verify in an incognito window."
+
+If the user says no or not yet:
+- Acknowledge and move on. The changes remain local until they're ready.
+
+---
+
+## Page Registry
+
+The canonical list of all pages, file paths, and live URLs is maintained at:
+`/Users/neilmk/V-Learn Dropbox/VL-Vaults/UrbanSketch-KB/06 Landing Pages/LANDING-PAGE-REGISTRY.md`
+
+When adding or removing pages, update the registry too.
+
+---
+
 ## Landing Page Deployment Skill
 
 A comprehensive skill for building, QA-ing, and deploying landing pages lives at:
