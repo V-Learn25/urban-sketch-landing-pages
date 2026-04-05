@@ -41,10 +41,10 @@
 //   },
 // ─────────────────────────────────────────────────────────────
 const AB_TESTS = {
-  '/beginners-course/start/': {
+  '/beginners-course/': {
     variants: [
-      { name: 'control',   path: '/beginners-course/start/',          weight: 50 },
-      { name: 'variant-b', path: '/beginners-course/start/variant-b', weight: 50 },
+      { name: 'a', path: '/beginners-course/a/', weight: 50 },
+      { name: 'b', path: '/beginners-course/b/', weight: 50 },
     ],
   },
 };
