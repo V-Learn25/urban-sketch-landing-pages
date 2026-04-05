@@ -64,16 +64,30 @@ export default {
     // ── A/B Test Routing ────────────────────────────────────
     const abResult = resolveABTest(url, cookies);
 
-    // Fetch the page — either the variant path or the original request
-    let response;
     if (abResult) {
-      // Serve the variant's HTML file from static assets
-      const variantUrl = new URL(request.url);
-      variantUrl.pathname = abResult.variant.path;
-      response = await env.ASSETS.fetch(new Request(variantUrl, request));
-    } else {
-      response = await env.ASSETS.fetch(request);
+      // Server-side redirect to variant URL, preserving query params (ref, campaign, etc.)
+      const redirectUrl = new URL(request.url);
+      redirectUrl.pathname = abResult.variant.path;
+
+      const headers = new Headers({
+        'Location': redirectUrl.toString(),
+        'Cache-Control': 'no-store, no-cache',
+      });
+
+      // Set A/B cookie on new assignments
+      if (abResult.isNew) {
+        const cookieName = AB_COOKIE_PREFIX + abResult.testKey;
+        headers.append(
+          'Set-Cookie',
+          `${cookieName}=${abResult.variant.name}; Path=/; Max-Age=${AB_COOKIE_MAX_AGE}; SameSite=Lax`
+        );
+      }
+
+      return new Response(null, { status: 302, headers });
     }
+
+    // No A/B test — fetch the page normally
+    let response = await env.ASSETS.fetch(request);
 
     // ── Determine if this is an HTML page ────────────────────
     const contentType = response.headers.get('content-type') || '';
@@ -89,27 +103,16 @@ export default {
     const cookieDays = parseInt(env.AFFWP_COOKIE_DAYS || '400', 10);
     const creditLast = (env.AFFWP_CREDIT_LAST || 'true') === 'true';
 
-    // Decide if we need to do any post-processing (affiliate cookies, AB cookies, variant tagging)
+    // Decide if we need to do any post-processing (affiliate cookies, variant tagging)
     const needsAffiliate = affiliateId && isHtml;
-    const needsABCookie = abResult && abResult.isNew;
-    const needsVariantTag = abResult && isHtml;
 
     // If nothing to do, return the response as-is
-    if (!needsAffiliate && !needsABCookie && !needsVariantTag) {
+    if (!needsAffiliate) {
       return response;
     }
 
     // We need a mutable response for cookies / HTMLRewriter
     let newResponse = new Response(response.body, response);
-
-    // ── Set A/B cookie for new visitors ─────────────────────
-    if (needsABCookie) {
-      const cookieName = AB_COOKIE_PREFIX + abResult.testKey;
-      newResponse.headers.append(
-        'Set-Cookie',
-        `${cookieName}=${abResult.variant.name}; Path=/; Max-Age=${AB_COOKIE_MAX_AGE}; SameSite=Lax`
-      );
-    }
 
     // ── Affiliate tracking: create visit + set cookies ──────
     if (needsAffiliate) {
@@ -144,27 +147,6 @@ export default {
           );
         }
       }
-    }
-
-    // ── Inject Clarity variant tag via HTMLRewriter ──────────
-    if (needsVariantTag) {
-      const testKey = abResult.testKey;
-      const variantName = abResult.variant.name;
-
-      newResponse = new HTMLRewriter()
-        .on('head', {
-          element(element) {
-            element.append(
-              `\n<script>` +
-              `window.__abTest="${testKey}";` +
-              `window.__abVariant="${variantName}";` +
-              `if(typeof clarity==="function"){clarity("set","${testKey}","${variantName}");}` +
-              `</script>\n`,
-              { html: true }
-            );
-          },
-        })
-        .transform(newResponse);
     }
 
     return newResponse;
