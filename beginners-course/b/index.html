@@ -482,7 +482,7 @@ footer{
 }
 .sticky-bar .buy-btn{padding:.85rem 1rem;font-size:1rem}
 @media(max-width:767px){
-  .sticky-bar{display:block}
+  .sticky-bar.visible{display:block}
   body{padding-bottom:70px}
 }
 
@@ -1414,6 +1414,16 @@ function toggleFaq(el){
       });
     },10000);
   }
+})();
+</script>
+<script>
+(function(){
+  var bar = document.querySelector('.sticky-bar');
+  if(!bar) return;
+  function onScroll(){
+    if(window.scrollY > 600){ bar.classList.add('visible'); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
 })();
 </script>
 </body>
