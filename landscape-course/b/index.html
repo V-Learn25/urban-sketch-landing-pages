@@ -252,10 +252,10 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
   text-align:center;padding:2rem 2rem 0;
 }
 .pricing-was{
-  font-family:var(--sans);font-size:1.15rem;color:var(--text-lighter);
+  font-family:var(--sans);font-size:1.35rem;color:var(--text-lighter);
   margin-bottom:.25rem;
 }
-.pricing-was s{font-size:1.35rem;color:var(--text-light)}
+.pricing-was s{font-size:1.8rem;color:var(--text-light)}
 .pricing-amount{
   font-family:var(--serif);
   font-size:clamp(3.2rem,10vw,4.5rem);
@@ -270,10 +270,12 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
 }
 .pricing-savings{
   display:inline-block;
-  background:rgba(13,115,119,.08);color:var(--teal);
-  font-family:var(--sans);font-weight:600;font-size:.95rem;
-  padding:.4rem 1rem;border-radius:50px;
-  margin-top:.5rem;
+  background:var(--amber);color:var(--white);
+  font-family:var(--sans);font-weight:700;font-size:1.1rem;
+  padding:.6rem 1.5rem;border-radius:50px;
+  margin-top:.75rem;
+  box-shadow:0 4px 12px var(--amber-glow);
+  letter-spacing:.03em;
 }
 .pricing-divider{
   width:60px;height:2px;
@@ -914,7 +916,7 @@ footer{
 <section class="pricing-section" id="pricing">
   <div class="pricing-card fade-in">
     <div class="pricing-card-header">
-      <div class="pricing-save-badge">SAVE <span class="priceDiscount"></span></div>
+      <div class="pricing-save-badge">Page-Exclusive Price — Save <span class="priceDiscount"></span></div>
       <h2>Start Today - Instant Lifetime Access</h2>
     </div>
 
@@ -968,7 +970,8 @@ footer{
     <div class="pricing-cta-wrap">
       <a href="#" class="buy-btn" onclick="handleBuy(event)">Get The Complete Course + All 5 Bonuses for <span class="priceOffer"></span></a>
       <p class="buy-sub">Interest-free payment plan available | 30-Day Money-Back Guarantee | Instant Lifetime Access</p>
-      <p style="margin-top:1rem;font-size:.95rem;color:var(--text-light);text-align:center;line-height:1.6">That's less than <strong><span class="priceColour">£20 per workshop</span></strong>. Less than a decent set of markers from your local art shop. And less than one hundredth of what Ian charges for an in-person workshop.</p>
+      <p style="margin-top:1rem;font-size:.95rem;color:var(--text-light);text-align:center;line-height:1.6">Less than 10% of what Ian charges for an in-person workshop.</p>
+      <p style="margin-top:.75rem;font-size:.9rem;color:var(--text-lighter);text-align:center;line-height:1.6">This price is not available on the main website. It is exclusive to this page.</p>
     </div>
   </div>
 </section>
