@@ -536,7 +536,6 @@ footer{
     <p style="font-family:var(--sketch);font-size:1.6rem;color:var(--amber);margin-bottom:.5rem;font-weight:700">Ian Fennelly's Complete Beginners Course</p>
     <h1>A 79-Year-Old Grandmother Who "Can't Draw a Straight Line" Now Creates <span>Stunning Street Sketches</span> That Make Her Family's Jaws Drop</h1>
     <p class="hero-body">Ian Fennelly's step-by-step urban sketching system has turned 50,000+ complete beginners into confident artists across 188 countries. Six named frameworks. Any scene. Any city. The rest of your life.</p>
-    <p class="hero-stars">&#9733;&#9733;&#9733;&#9733;&#9733; 500+ five-star reviews <span>| 50,000+ students | 188 countries</span></p>
   </div>
 </section>
 
@@ -1006,6 +1005,14 @@ footer{
     </div>
   </div>
 </section>
+
+<!-- ===== STAR RATING BAR ===== -->
+<div style="text-align:center;padding:1.5rem 1.25rem;background:var(--off-white)">
+  <p style="font-size:1.15rem;color:var(--charcoal)">
+    <span style="color:var(--amber);font-size:1.2rem">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+    &nbsp;500+ five-star reviews &nbsp;|&nbsp; 50,000+ students &nbsp;|&nbsp; 188 countries
+  </p>
+</div>
 
 <!-- ===== 13. VALUE STACK + PRICING ===== -->
 <section id="buy" class="pricing-section">
@@ -1489,11 +1496,15 @@ function toggleFaq(el){
 <script>
 (function(){
   var bar = document.querySelector('.sticky-bar');
-  if(!bar) return;
-  function onScroll(){
-    if(window.scrollY > 600){ bar.classList.add('visible'); }
+  var anchor = document.getElementById('buy');
+  if(!bar || !anchor) return;
+  function check(){
+    var threshold = anchor.getBoundingClientRect().top + window.scrollY - window.innerHeight * 1.5;
+    if(window.scrollY > threshold){ bar.classList.add('visible'); }
+    else{ bar.classList.remove('visible'); }
   }
-  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('scroll', check, {passive:true});
+  check();
 })();
 </script>
 </body>

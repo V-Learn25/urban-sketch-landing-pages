@@ -417,7 +417,7 @@ footer{
 }
 .sticky-bar .buy-btn{padding:.85rem 1rem;font-size:1rem}
 @media(max-width:767px){
-  .sticky-bar{display:block}
+  .sticky-bar.visible{display:block}
   body{padding-bottom:70px}
 }
 
@@ -455,7 +455,6 @@ footer{
   <div class="hero-inner">
     <h1>A World-Famous Artist's Students Produce <span>Stunning Landscape Sketches</span> - After He Tells Them to Ignore Most of What They See</h1>
     <p class="hero-body">Sounds backwards. Here's why it works.</p>
-    <p class="hero-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>Rated 4.8/5 by 500+ verified reviews</span></p>
     <div style="position:relative;width:100%;max-width:700px;margin:1.5rem auto 0;border-radius:10px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.3)">
       <script src="https://digitalsea.cdn.spotlightr.com/assets/spotlightr.js"></script>
       <iframe allow="autoplay" class="spotlightr" allowtransparency="true" style="width:100%;aspect-ratio:16/9" allowfullscreen="true" src="https://digitalsea.cdn.spotlightr.com/watch/MTg3MDE5MQ==?fallback=true" frameborder="0" scrolling="no"></iframe>
@@ -754,12 +753,135 @@ footer{
   <div class="container fade-in">
     <h2 class="section-heading text-center">Student Results</h2>
     <p class="section-subtext text-center">Real sketches from real students - just like you.</p>
-    <div class="image-break">
-      <img src="https://www.urbansketchcourse.com/wp-content/uploads/2024/11/Gerda-van-Hummel-768x576.jpg" alt="Student result: Gerda van Hummel landscape sketch" loading="lazy">
-      <p class="image-caption">Gerda van Hummel - Rural Sketch Course student</p>
+
+    <div class="sc-carousel" id="studentCarousel">
+      <div class="sc-track">
+        <div class="sc-slide">
+          <img src="https://www.urbansketchcourse.com/wp-content/uploads/2024/11/Gerda-van-Hummel-768x576.jpg" alt="Student sketch by Gerda van Hummel" loading="lazy">
+          <p class="sc-caption">Gerda van Hummel</p>
+        </div>
+        <div class="sc-slide">
+          <img src="https://www.urbansketchcourse.com/wp-content/uploads/2024/11/Gerda-van-Hummel-2-768x576.jpg" alt="Second sketch by Gerda van Hummel" loading="lazy">
+          <p class="sc-caption">Gerda van Hummel</p>
+        </div>
+        <div class="sc-slide">
+          <img src="https://www.urbansketchcourse.com/wp-content/uploads/2024/11/Leanna-Landers-2-768x576.jpg" alt="Student sketch by Leanna Landers" loading="lazy">
+          <p class="sc-caption">Leanna Landers</p>
+        </div>
+        <div class="sc-slide">
+          <img src="https://www.urbansketchcourse.com/wp-content/uploads/2024/11/Joerg-Bruendel-4-768x576.jpg" alt="Student sketch by Joerg Bruendel" loading="lazy">
+          <p class="sc-caption">Joerg Bruendel</p>
+        </div>
+        <div class="sc-slide">
+          <img src="https://www.urbansketchcourse.com/wp-content/uploads/2024/11/Giuia.jpg" alt="Student sketch by Giulia" loading="lazy">
+          <p class="sc-caption">Giulia</p>
+        </div>
+        <div class="sc-slide">
+          <img src="https://www.urbansketchcourse.com/wp-content/uploads/2024/11/Valerio-Marques-2-768x518.jpg" alt="Student sketch by Valerio Marques" loading="lazy">
+          <p class="sc-caption">Valerio Marques</p>
+        </div>
+        <div class="sc-slide">
+          <img src="https://www.urbansketchcourse.com/wp-content/uploads/2024/11/Arna-2.jpg" alt="Student sketch by Arna" loading="lazy">
+          <p class="sc-caption">Arna</p>
+        </div>
+        <div class="sc-slide">
+          <img src="https://www.urbansketchcourse.com/wp-content/uploads/2024/11/Anja-Saalberg-2-768x576.jpg" alt="Student sketch by Anja Saalberg" loading="lazy">
+          <p class="sc-caption">Anja Saalberg</p>
+        </div>
+        <div class="sc-slide">
+          <img src="https://www.urbansketchcourse.com/wp-content/uploads/2024/11/First-RSC-Sketches-768x699.jpg" alt="First Rural Sketch Course student sketches" loading="lazy">
+          <p class="sc-caption">Rural Sketch Course Students</p>
+        </div>
+      </div>
+
+      <button class="sc-btn sc-prev" aria-label="Previous sketch">&#8592;</button>
+      <button class="sc-btn sc-next" aria-label="Next sketch">&#8594;</button>
+
+      <div class="sc-dots" id="scDots"></div>
     </div>
   </div>
 </section>
+
+<style>
+.sc-carousel{position:relative;margin-top:1.75rem;user-select:none}
+.sc-track{overflow:hidden;border-radius:12px}
+.sc-slides-inner{display:flex;transition:transform .4s ease}
+.sc-slide{min-width:100%;position:relative}
+.sc-slide img{width:100%;height:auto;display:block;border-radius:12px}
+.sc-caption{font-family:var(--sketch);font-size:1.1rem;color:var(--text-light);margin-top:.6rem;text-align:center}
+.sc-btn{
+  position:absolute;top:calc(50% - 1.2rem);transform:translateY(-50%);
+  width:2.75rem;height:2.75rem;border-radius:50%;
+  background:rgba(255,255,255,.92);border:2px solid var(--amber);
+  font-size:1.25rem;line-height:1;color:var(--charcoal);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);transition:background .2s,transform .15s;
+  z-index:10;
+}
+.sc-btn:hover{background:var(--amber);color:var(--white)}
+.sc-prev{left:.5rem}
+.sc-next{right:.5rem}
+.sc-dots{display:flex;justify-content:center;gap:.5rem;margin-top:1rem;flex-wrap:wrap}
+.sc-dot{width:10px;height:10px;border-radius:50%;background:var(--warm-grey);border:none;cursor:pointer;padding:0;transition:background .2s,transform .2s}
+.sc-dot.active{background:var(--amber);transform:scale(1.3)}
+</style>
+
+<script>
+(function(){
+  var track = document.querySelector('#studentCarousel .sc-track');
+  var slides = track.querySelectorAll('.sc-slide');
+  var dotsWrap = document.getElementById('scDots');
+  var total = slides.length;
+  var current = 0;
+  var autoTimer;
+  var touchStartX = 0;
+
+  // Build inner flex wrapper
+  var inner = document.createElement('div');
+  inner.className = 'sc-slides-inner';
+  while(track.firstChild){ inner.appendChild(track.firstChild); }
+  track.appendChild(inner);
+
+  // Build dots
+  for(var i=0;i<total;i++){
+    var dot = document.createElement('button');
+    dot.className = 'sc-dot' + (i===0?' active':'');
+    dot.setAttribute('aria-label','Slide '+(i+1));
+    dot.setAttribute('data-idx',i);
+    dot.addEventListener('click', function(){ goTo(parseInt(this.getAttribute('data-idx'))); resetAuto(); });
+    dotsWrap.appendChild(dot);
+  }
+
+  function goTo(n){
+    current = (n + total) % total;
+    inner.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dotsWrap.querySelectorAll('.sc-dot').forEach(function(d,i){ d.classList.toggle('active', i===current); });
+  }
+
+  document.querySelector('#studentCarousel .sc-prev').addEventListener('click', function(){ goTo(current-1); resetAuto(); });
+  document.querySelector('#studentCarousel .sc-next').addEventListener('click', function(){ goTo(current+1); resetAuto(); });
+
+  // Touch swipe
+  track.addEventListener('touchstart',function(e){ touchStartX = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend',function(e){
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    if(Math.abs(dx) > 40){ goTo(dx < 0 ? current+1 : current-1); resetAuto(); }
+  }, {passive:true});
+
+  // Auto-advance every 4s
+  function startAuto(){ autoTimer = setInterval(function(){ goTo(current+1); }, 4000); }
+  function resetAuto(){ clearInterval(autoTimer); startAuto(); }
+  startAuto();
+})();
+</script>
+
+<!-- ===== STAR RATING BAR ===== -->
+<div style="text-align:center;padding:1.5rem 1.25rem;background:var(--off-white)">
+  <p style="font-size:1.15rem;color:var(--charcoal)">
+    <span style="color:var(--amber);font-size:1.2rem">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+    &nbsp;Rated 4.8/5 by 500+ verified reviews
+  </p>
+</div>
 
 <!-- ===== 10. PRICING SECTION ===== -->
 <section class="pricing-section" id="pricing">
@@ -1196,6 +1318,21 @@ function toggleFaq(el){
       });
     },10000);
   }
+})();
+</script>
+<script>
+/* ===== STICKY BAR — show when approaching pricing section ===== */
+(function(){
+  var bar = document.querySelector('.sticky-bar');
+  var anchor = document.getElementById('pricing');
+  if(!bar || !anchor) return;
+  function check(){
+    var threshold = anchor.getBoundingClientRect().top + window.scrollY - window.innerHeight * 1.5;
+    if(window.scrollY > threshold){ bar.classList.add('visible'); }
+    else{ bar.classList.remove('visible'); }
+  }
+  window.addEventListener('scroll', check, {passive:true});
+  check();
 })();
 </script>
 </body>
