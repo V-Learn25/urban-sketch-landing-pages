@@ -76,12 +76,12 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.25}
 .hub-hero{background:var(--charcoal);padding:3rem 1.5rem 3.5rem;text-align:center;border-top:1px solid rgba(255,255,255,.08)}
 .hub-hero h1{font-family:var(--serif);font-size:clamp(1.8rem,5vw,2.6rem);color:var(--white);margin-bottom:1rem;line-height:1.2}
 .hub-hero p{font-family:var(--sans);font-size:1.1rem;color:rgba(255,255,255,.8);max-width:600px;margin:0 auto;line-height:1.7}
-.hub-hero .tag{display:inline-block;font-family:var(--sans);font-size:.85rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem}
+.hub-hero .tag{display:inline-block;font-family:var(--sans);font-size:1.05rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem}
 
 /* COURSE GRID */
 .courses-section{padding:3rem 1.5rem 4rem;max-width:var(--max-w);margin:0 auto}
 .courses-section h2{font-family:var(--serif);font-size:clamp(1.4rem,3vw,1.9rem);color:var(--charcoal);text-align:center;margin-bottom:.5rem}
-.courses-section .section-sub{font-family:var(--sans);font-size:1rem;color:var(--text-lighter);text-align:center;margin-bottom:2.5rem}
+.courses-section .section-sub{font-family:var(--sans);font-size:1.2rem;color:var(--text-lighter);text-align:center;margin-bottom:2.5rem}
 
 .course-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
 
@@ -150,7 +150,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.25}
     <!-- FREE COURSE -->
     <div class="course-card">
       <img class="course-card-img"
-        src="https://www.urbansketchcourse.com/wp-content/uploads/2023/09/Ian-Fennelly-Sketching-1024x683.jpg"
+        src="https://www.urbansketchcourse.com/wp-content/uploads/2024/05/Porto.jpg"
         alt="Free Urban Sketch Taster Course">
       <div class="course-card-body">
         <span class="course-card-tag tag-free">Free</span>
@@ -167,7 +167,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.25}
     <!-- BEGINNERS COURSE -->
     <div class="course-card">
       <img class="course-card-img"
-        src="https://www.urbansketchcourse.com/wp-content/uploads/2023/09/Ian-Fennelly-Urban-Sketch-Course-2048x1366.jpg"
+        src="https://www.urbansketchcourse.com/wp-content/uploads/2024/05/English-Bridge-scaled.jpg"
         alt="Urban Sketch Beginners Course">
       <div class="course-card-body">
         <span class="course-card-tag tag-paid">Full Course</span>
@@ -204,25 +204,32 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.25}
 <!-- FOOTER -->
 <div class="hub-footer">
   <p>Want to see Ian's full portfolio of work, read his blog, or explore more about his teaching?</p>
-  <a class="main-site-btn" href="https://www.urbansketchcourse.com/" target="_blank" rel="noopener">Visit the Full Website &rarr;</a>
+  <a class="main-site-btn" id="btn-main-site" href="https://www.urbansketchcourse.com/" target="_blank" rel="noopener">Visit the Full Website &rarr;</a>
   <p class="credits">&copy; Urban Sketch Course. All rights reserved.</p>
 </div>
 
 <!-- AFFILIATE PARAMETER PASSTHROUGH -->
 <script>
 (function(){
-  // Read ?a= from URL and append to all course card buttons
+  // Check all common affiliate param names used across the site
   var params = new URLSearchParams(window.location.search);
-  var affiliate = params.get('a');
-  if (!affiliate) return;
+  var affiliateKey = null, affiliateVal = null;
+  ['ref','aff','affiliate','affiliate_id','a'].forEach(function(key){
+    if (!affiliateVal && params.get(key)) {
+      affiliateKey = key;
+      affiliateVal = params.get(key);
+    }
+  });
+  if (!affiliateVal) return;
 
-  var ids = ['btn-free', 'btn-beginners', 'btn-rural'];
+  // Apply to all course buttons + main site link
+  var ids = ['btn-free', 'btn-beginners', 'btn-rural', 'btn-main-site'];
   ids.forEach(function(id){
     var el = document.getElementById(id);
     if (!el) return;
     var href = el.getAttribute('href');
     var sep = href.indexOf('?') >= 0 ? '&' : '?';
-    el.setAttribute('href', href + sep + 'a=' + encodeURIComponent(affiliate));
+    el.setAttribute('href', href + sep + affiliateKey + '=' + encodeURIComponent(affiliateVal));
   });
 })();
 </script>
