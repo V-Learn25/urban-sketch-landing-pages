@@ -330,77 +330,57 @@ The `AB_TESTS` object in `_worker.js` must remain empty.
 
 ### How It Works
 
-The worker handles A/B testing at the edge — zero client-side latency, no third-party tools, no cost. The visitor always sees the same URL (e.g. `/beginners-course/`); the worker silently serves either `index.html` or `variant-b.html` based on a cookie.
+A/B routing is handled **client-side** via JavaScript in each funnel's `index.html`. The `index.html` is a lightweight router — it reads (or sets) a cookie, then immediately calls `window.location.replace()` to send the visitor to the correct variant subdirectory (`/funnel/a/` or `/funnel/b/`).
 
 - **Cookie-based sticky sessions**: Once assigned, a visitor always sees the same variant (30-day cookie)
-- **Weighted splits**: Configure any split ratio (50/50, 70/30, 90/10)
-- **Clarity auto-tagging**: HTMLRewriter injects the variant name into Clarity via `clarity("set", testName, variantName)` — filter heatmaps and recordings by variant in Clarity dashboard
-- **Checkout URL tagging**: Client-side JS reads the AB cookie and appends `&ab=control` or `&ab=variant-b` to all outbound `learn.urbansketch.com` links — so AffiliateWP visit URLs show which variant the buyer came from
-- **No URL changes**: Ad links, UTM parameters, and affiliate tracking all work identically across variants
+- **Bot-proof**: Bots and crawlers don't execute JavaScript, so they never trigger variant page visits — LP visit counts stay accurate
+- **Affiliate tracking intact**: The router passes all query parameters (`?a=36&campaign=...`) through to the variant URL, so the Worker sets affiliate cookies correctly on the variant page
+
+> **IMPORTANT: Do NOT add A/B routing to `_worker.js`.** The `AB_TESTS` object must remain empty. Server-side 302 routing inflates LP visit counts with bot traffic, destroying LP→OF conversion metrics. See "A/B Testing — ALWAYS Use Client-Side Routing" section above for the full explanation and template code.
 
 ### Running a Test
 
-1. **Create the variant file:**
+1. **Create variant subdirectories** (if they don't already exist):
+   ```
+   funnel-name/a/index.html   ← control (current page)
+   funnel-name/b/index.html   ← variant
+   ```
+
+2. **Edit `funnel-name/b/index.html`** — change whatever you're testing (headline, CTA, social proof, etc.)
+
+3. **The router (`funnel-name/index.html`)** is already set up for new funnels. If adding a test to an existing funnel that doesn't yet have a router, replace its `index.html` with the client-side router template from the "A/B Testing — ALWAYS Use Client-Side Routing" section above.
+
+4. **Deploy:**
    ```bash
-   cp beginners-course/index.html beginners-course/variant-b.html
+   git add . && git commit -m "Start A/B test: [funnel] [what you're testing]" && git push
    ```
 
-2. **Edit the copy** in `variant-b.html` — change headline, CTA, social proof, whatever you're testing.
-
-3. **Make sure variant-b.html has the Clarity script** in `<head>` and the affiliate link rewriting JS (with AB cookie tagging) before `</body>` (they'll already be there if you copied from index.html).
-
-4. **Activate the test** by uncommenting/adding the config in `_worker.js`:
-   ```javascript
-   const AB_TESTS = {
-     '/beginners-course/': {
-       variants: [
-         { name: 'control',   path: '/beginners-course/index.html',      weight: 50 },
-         { name: 'variant-b', path: '/beginners-course/variant-b.html',  weight: 50 },
-       ],
-     },
-   };
-   ```
-
-5. **Deploy:**
-   ```bash
-   git add . && git commit -m "Start A/B test: beginners course headline" && git push
-   ```
-
-6. **Verify** in an incognito window. Check DevTools > Application > Cookies for `ab_beginners-course=control` or `ab_beginners-course=variant-b`.
+5. **Verify** in an incognito window: visit `/funnel-name/` and check DevTools > Application > Cookies for `us_XX_variant=a` or `us_XX_variant=b`. Confirm you land on the correct variant subdirectory.
 
 ### Ending a Test
 
-1. Remove or comment out the test entry in `AB_TESTS`
-2. If the variant won, replace `index.html` with the winning variant's content
-3. Delete the variant HTML file
+1. If the variant won: copy its content into `a/index.html`, then copy to `b/index.html` too (so both serve the winner)
+2. If the control won: copy `a/index.html` into `b/index.html` (so both serve the same content)
+3. The router stays in place unchanged — visitors will continue to be split 50/50 but see identical content
 4. Commit and push
 
 ### Analysing Results
 
-**In Microsoft Clarity** (clarity.microsoft.com):
-- Go to Filters > Custom Tags
-- Filter by tag name (e.g. `beginners-course`) and value (`control` vs `variant-b`)
-- Compare heatmaps, scroll depth, click maps, and recordings side by side
+**How OF visits are attributed to variants:**
 
-**Conversion tracking (three layers):**
+AffiliateWP records order form visits based on the HTTP `Referer` header — when a visitor clicks a buy link on `/funnel/a/`, the WordPress order form receives `Referer: https://go.urbansketchcourse.com/funnel/a/`. This is how variant-level OF attribution works. You can filter AffiliateWP visit exports by `url` field containing `/a/` vs `/b/`.
 
-1. **Clarity click maps** — filter by custom tag (`beginners-course-start` = `control` or `variant-b`), then compare CTA click counts per variant in the Click Maps view.
-
-2. **AffiliateWP visit URLs** — the client-side JS appends `&ab=control` or `&ab=variant-b` to all checkout links. When the visitor hits the order form, AffiliateWP records the full URL including the `ab` param. Query visits where URL contains `&ab=control` vs `&ab=variant-b` to count order form arrivals per variant.
-
-3. **AffiliateWP referrals** — each sale creates a referral linked to a `visit_id`. Cross-reference the visit's URL (which contains the `ab` param) to attribute purchases to variants.
-
-**In the Monday CRO script**, the `pull-affwp-data.js` script can filter order form visits by `ab` param to report per-variant conversion rates. Example: `node scripts/pull-affwp-data.js --days 7` then grep for `ab=control` and `ab=variant-b` in the visit URLs.
+**In Microsoft Clarity:**
+- Filter Sessions by URL containing `/funnel/a/` vs `/funnel/b/` to compare heatmaps and scroll depth per variant
 
 **Statistical significance:**
 - Use https://abtestguide.com/calc/ — enter visitors and conversions per variant
-- Pre-plan test duration with https://www.convert.com/calculator/
-- Run tests for at least 14 days regardless of sample size (day-of-week effects)
+- Run tests for at least 14 days (day-of-week effects)
 - With <200 daily visitors, test BIG changes (different headlines/angles, not button colours)
 
 ### Multiple Simultaneous Tests
 
-You can run tests on different pages at the same time (one test per page). Each test gets its own cookie. Do NOT run multiple tests on the same page — with landing page traffic volumes you won't have enough data.
+You can run tests on different funnels at the same time. Each funnel has its own cookie. Do NOT run multiple tests on the same funnel — with landing page traffic volumes you won't have enough data.
 
 ## Microsoft Clarity (Heatmaps & Session Recordings)
 
