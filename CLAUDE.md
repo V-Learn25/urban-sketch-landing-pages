@@ -167,6 +167,51 @@ npx wrangler pages secret put AFFWP_TOKEN --project-name=<project-name>
 
 Or set via Cloudflare dashboard: Settings > Environment variables > Production (make sure "Encrypt" is checked).
 
+## A/B Testing — ALWAYS Use Client-Side Routing
+
+**Never add A/B test routing to the Cloudflare Worker (`_worker.js`).** Always use client-side JavaScript routing in the funnel's `index.html` instead.
+
+**Why:** The Cloudflare Worker handles ALL requests including bots and crawlers. Bots follow HTTP 302 redirects, so server-side A/B routing creates AffiliateWP visit records for every bot request — massively inflating LP visit counts and making LP→OF conversion rates look impossibly low (e.g. 0.17% instead of the real ~8%). Client-side JS routing is invisible to bots (they don't execute JavaScript), so LP visit counts stay accurate.
+
+**The correct pattern** — copy `landscape-course/index.html` or `free-course/index.html` as the router:
+
+```html
+<script>
+(function() {
+  var COOKIE_NAME = 'us_XX_variant';  // XX = short funnel code (bc, fc, lc, etc.)
+  var COOKIE_DAYS = 30;
+  var VARIANTS = ['a', 'b'];
+
+  function getCookie(name) {
+    var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? match[2] : null;
+  }
+  function setCookie(name, value, days) {
+    var d = new Date();
+    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+    document.cookie = name + '=' + value + ';expires=' + d.toUTCString() + ';path=/;SameSite=Lax';
+  }
+
+  var variant = getCookie(COOKIE_NAME);
+  if (!variant || VARIANTS.indexOf(variant) === -1) {
+    variant = VARIANTS[Math.floor(Math.random() * VARIANTS.length)];
+    setCookie(COOKIE_NAME, variant, COOKIE_DAYS);
+  }
+
+  var basePath = '/FUNNEL-NAME/' + variant + '/';
+  var params = new URLSearchParams(window.location.search).toString();
+  if (params) basePath += '?' + params;
+
+  window.location.replace(basePath);
+})();
+</script>
+```
+
+Place variants in subdirectories: `funnel-name/a/index.html` and `funnel-name/b/index.html`.
+The `AB_TESTS` object in `_worker.js` must remain empty.
+
+---
+
 ## Adding a New Landing Page (Same Domain)
 
 1. Create a new directory: `mkdir new-course-name`

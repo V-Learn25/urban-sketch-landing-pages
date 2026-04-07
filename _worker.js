@@ -41,12 +41,10 @@
 //   },
 // ─────────────────────────────────────────────────────────────
 const AB_TESTS = {
-  '/beginners-course/': {
-    variants: [
-      { name: 'a', path: '/beginners-course/a/', weight: 50 },
-      { name: 'b', path: '/beginners-course/b/', weight: 50 },
-    ],
-  },
+  // A/B routing is handled client-side via JavaScript in each funnel's index.html
+  // (same pattern as free-course and landscape-course).
+  // Do NOT add server-side A/B routing here — it inflates LP visit counts with bot
+  // traffic because bots follow HTTP 302 redirects but not JavaScript redirects.
 };
 
 // Cookie prefix for A/B test assignments
