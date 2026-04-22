@@ -1,26 +1,37 @@
 # VL Funnel — Deployment & Testing Guide
 
-This folder contains the WordPress-side "service window" for the Cloudflare-hosted signup page at `/smm-free-course/`. The landing page is fully decoupled from WordPress — it calls a REST endpoint to register the user, then sends them to a one-time auto-login URL.
+This folder contains the WordPress-side "service window" for the Cloudflare-hosted signup pages. The landing pages are fully decoupled from WordPress — they call a REST endpoint to register the user, then send them to a one-time auto-login URL. The user lands on the OTO page already logged in, with their initial password shown once via a shortcode.
+
+**Covers:** `/smm-free-course/`, `/free-course/a/`, `/free-course/b/`, and any future funnel wired to `VL_CONFIG` + `POST /api/register`.
 
 **Architecture:**
 
 ```
-Visitor → go.urbansketchcourse.com/smm-free-course/   (Cloudflare Pages, static HTML + JS form)
+Visitor → go.urbansketchcourse.com/<funnel>/   (Cloudflare Pages, static HTML + modal signup)
          │
-         │  POST /wp-json/vl/v1/register    (cross-origin fetch + Turnstile token)
+         │  POST /api/register   (SAME-ORIGIN — handled by _worker.js)
          ▼
-         learn.urbansketch.com  (WordPress + LearnDash + AffiliateWP + this MU-plugin)
-         │   ├─ verifies Turnstile
+         Cloudflare Worker (_worker.js)
+         │   └─ forwards server-to-server to learn.urbansketch.com
+         ▼
+         learn.urbansketch.com/wp-json/vl/v1/register  (WordPress + LearnDash + AffiliateWP + this MU-plugin)
+         │   ├─ verifies Turnstile (token only — NO remoteip)
          │   ├─ rate-limits by IP
          │   ├─ creates user + enrols in LearnDash course
-         │   ├─ credits AffiliateWP referral (from affwp_ref cookie)
-         │   ├─ emails password + welcome
+         │   ├─ credits AffiliateWP referral (from affiliate_id in POST body)
+         │   ├─ stores initial password in user meta (15-min TTL)
+         │   ├─ suppresses wp_mail() during user creation (broken SMTP)
          │   └─ returns one-time auto-login URL
          │
          │  redirect → /vl-auto-login?t=TOKEN&r=/smm/free-course-oto-1-smm/
          ▼
-         User lands logged-in on /smm/free-course-oto-1-smm/
+         User lands logged-in on the OTO page.
+         [vl_credentials] shortcode on that page shows their password once.
 ```
+
+Why the same-origin proxy: direct browser → WP POSTs were failing because the host was stripping `Access-Control-Allow-Origin` on POST responses (OPTIONS preflight was fine). Routing through the Worker makes the browser see a same-origin request and sidesteps CORS entirely.
+
+Why no `remoteip` in Turnstile verification: the Worker proxy means WP sees the Worker's IP, not the user's. Including that as `remoteip` caused Turnstile to reject every valid browser token. The signed token alone is proof.
 
 Slug changes, theme changes, and plugin updates can't break this — everything runs through the MU-plugin, and MU-plugins don't auto-update.
 
@@ -28,7 +39,9 @@ Slug changes, theme changes, and plugin updates can't break this — everything 
 
 ## 1. Fill in the config constants (5 minutes)
 
-Open `vl-funnel.php` and fill in **four values** at the top:
+> **Current production values are already in `vl-funnel.php`:**
+> `VL_FUNNEL_FREE_COURSE_ID = 39746`, `VL_FUNNEL_TURNSTILE_SECRET` set, redirect + prefixes set.
+> If you're redeploying fresh or forking for a new funnel, fill these in:
 
 ```php
 define( 'VL_FUNNEL_FREE_COURSE_ID', 0 );       // <-- LearnDash course ID (integer)
@@ -80,14 +93,16 @@ You should get a JSON response describing the `register` route. If you get a 404
 
 ---
 
-## 3. Fill in the landing-page config (2 minutes)
+## 3. Landing-page config (already populated)
 
-Open `/Users/neilmk/Projects/urban-sketch-landing-pages/smm-free-course/index.html` and find this block near the top of the `<script>` section (search for `VL_CONFIG`):
+The three live modal-signup pages all declare a `VL_CONFIG` block. Current production values:
 
+**`smm-free-course/index.html`** (single page, own modal copy):
 ```js
 var VL_CONFIG = {
-  TURNSTILE_SITEKEY : '__REPLACE_TURNSTILE_SITEKEY__',
-  REGISTER_ENDPOINT : 'https://learn.urbansketch.com/wp-json/vl/v1/register',
+  TURNSTILE_SITEKEY : '0x4AAAAAADA-IjYSyV5KoJYA',
+  REGISTER_ENDPOINT : '/api/register',           // same-origin proxy in _worker.js
+  FALLBACK_REG_URL  : 'https://learn.urbansketch.com/smm/free-course-reg-page-smm/',
   LOGIN_URL_BASE    : 'https://learn.urbansketch.com/wp-login.php',
   POST_SIGNUP_PATH  : '/smm/free-course-oto-1-smm/',
   FUNNEL_TAG        : 'smm-free-course',
@@ -95,9 +110,24 @@ var VL_CONFIG = {
 };
 ```
 
-Replace `__REPLACE_TURNSTILE_SITEKEY__` with the **Site key** from step 1 (NOT the secret — the secret stays server-side in the PHP file).
+**`free-course/a/index.html`** and **`free-course/b/index.html`** (share `free-course/shared/signup-modal.js`):
+```js
+window.VL_CONFIG = {
+  TURNSTILE_SITEKEY : '0x4AAAAAADA-IjYSyV5KoJYA',
+  REGISTER_ENDPOINT : '/api/register',
+  FALLBACK_REG_URL  : 'https://learn.urbansketch.com/smm/free-course-reg-page-smm/',
+  LOGIN_URL_BASE    : 'https://learn.urbansketch.com/wp-login.php',
+  POST_SIGNUP_PATH  : '/smm/free-course-oto-1-smm/',
+  FUNNEL_TAG        : 'free-course',
+  VARIANT           : 'a'    // or 'b' in variant B
+};
+```
 
-Everything else is already correct unless you want to change the post-signup redirect.
+Key notes:
+- `REGISTER_ENDPOINT` is the same-origin `/api/register` path. `_worker.js` forwards it server-to-server to WP.
+- Site key is public — safe to commit. **Never** commit the secret (that belongs in `vl-funnel.php` on the WP host).
+- `FALLBACK_REG_URL` is the safety-net manual-registration link shown inside any error display so a bug never costs a paid lead.
+- `FUNNEL_TAG` is written into WP user meta (`vl_funnel_source`) and surfaced in Pixel + CAPI + gtag Lead events.
 
 ---
 
@@ -107,12 +137,14 @@ The repo auto-deploys to Cloudflare Pages on every push to `main`.
 
 ```bash
 cd /Users/neilmk/Projects/urban-sketch-landing-pages
-git add smm-free-course/ wp-mu-plugin/
-git commit -m "Add /smm-free-course/ headless signup + vl-funnel MU-plugin"
+git add _worker.js smm-free-course/ free-course/ wp-mu-plugin/
+git commit -m "Roll out modal signup to /free-course/ variants + docs"
 git push origin main
 ```
 
-Wait ~60 seconds. Then visit `https://go.urbansketchcourse.com/smm-free-course/`.
+Wait ~60 seconds. Then visit:
+- `https://go.urbansketchcourse.com/smm-free-course/`
+- `https://go.urbansketchcourse.com/free-course/` (will route to `/a/` or `/b/`)
 
 ---
 
@@ -201,7 +233,17 @@ The new architecture eliminates all three:
 - The redirect is a **hardcoded constant** with no slug dependency.
 - No LearnDash filter hook is used — the redirect is returned directly by our own REST endpoint.
 
-Plus the page itself is now optimised for conversion with the Synthesis-winning copy (85/100 from the Copywriting Arena), two inline signup forms, Cloudflare Turnstile for spam prevention, and a proper existing-user flow.
+Plus the pages themselves are now optimised for conversion with the Synthesis-winning copy (85/100 from the Copywriting Arena), an inline modal that captures first name + email on every CTA, Cloudflare Turnstile for spam prevention, and a proper existing-user flow.
+
+## 8b. The `[vl_credentials]` shortcode
+
+The host's `wp_mail()` pipe is currently broken. To avoid users never receiving their password:
+
+1. During signup, the MU-plugin stores the generated password in user meta `_vl_funnel_initial_password` with a 15-minute expiry.
+2. `wp_new_user_notification` is blocked via `pre_wp_mail` filter during `wp_insert_user` so the signup doesn't hang on a broken SMTP timeout.
+3. On the OTO page (`/smm/free-course-oto-1-smm/`), place the shortcode `[vl_credentials]`. When a freshly-registered user lands there, it renders a credentials card with their username + password and a "Got them saved? Good. Now read the rest of this page." pattern interrupt. Then deletes the meta so the password is never shown twice.
+
+If `wp_mail()` is fixed on the host later, you can re-enable the standard welcome email by removing the `pre_wp_mail` suppression in `vl-funnel.php` (`vl_funnel_block_new_user_emails`).
 
 ---
 

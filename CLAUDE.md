@@ -90,7 +90,54 @@ Visitor clicks affiliate link
       venv/            - Python 3.12 virtual environment (gitignored)
   [future-course]/
     index.html         - Additional landing pages follow same pattern
+  smm-free-course/
+    index.html         - Single-page landing with inline modal signup (no A/B)
+  free-course/
+    index.html         - JS A/B router
+    a/index.html       - Variant A — modal signup (uses shared/*)
+    b/index.html       - Variant B — modal signup (uses shared/*)
+    shared/
+      signup-modal.css - Shared modal + form styles
+      signup-modal.js  - Shared modal + Turnstile + submit handler
+  wp-mu-plugin/
+    vl-funnel.php      - WordPress MU-plugin: /wp-json/vl/v1/register + /vl-auto-login + [vl_credentials]
+    README.md          - MU-plugin deployment + testing guide
 ```
+
+## Modal Signup Architecture (smm-free-course + free-course)
+
+These funnels register users **without redirecting to WordPress**. Flow:
+
+```
+Visitor clicks any [data-open-modal] CTA
+  -> Modal opens: first name + email fields
+  -> Submit -> Turnstile generates invisible token
+  -> POST /api/register   (SAME-ORIGIN — handled by _worker.js)
+  -> _worker.js forwards server-to-server to
+     learn.urbansketch.com/wp-json/vl/v1/register
+  -> MU-plugin verifies Turnstile (token only, no remoteip)
+  -> Creates WP user, enrols in LearnDash course 39746,
+     credits AffiliateWP from affiliate_id in body,
+     stores password in user meta (15-min TTL),
+     blocks wp_mail() during insert (broken SMTP on host)
+  -> Returns { ok, login_url } — one-time auto-login URL
+  -> JS fires Pixel Lead + CAPI + gtag (ONLY on successful real signup)
+  -> Browser redirects to login_url
+  -> User lands on /smm/free-course-oto-1-smm/ already authenticated
+  -> [vl_credentials] shortcode on that page shows their password ONCE
+```
+
+**Why same-origin `/api/register` proxy:** the WP host was stripping `Access-Control-Allow-Origin` on POST responses only (preflight OPTIONS was fine), so direct cross-origin POSTs failed with "We could not reach the server". The Worker forwards the POST server-to-server so the browser only ever sees a same-origin request.
+
+**Why Turnstile skips `remoteip`:** the Worker proxy means WP sees the Worker's IP, not the user's. Passing that as `remoteip` causes Turnstile to reject every valid browser token. The cryptographic token is signed proof on its own — do not add `remoteip` back.
+
+**Why AffiliateWP credit comes from POST body:** cookies don't cross from `go.urbansketchcourse.com` to `learn.urbansketch.com`. The LP JS reads `affwp_affiliate_id` cookie or `?a=` / `?ref=` param and puts it in the body so WP can credit the visit.
+
+**Why `wp_mail()` is suppressed:** the host's SMTP is currently broken. Every `wp_mail()` call hangs for 10-30s. `wp_insert_user` triggers two `wp_mail()` calls via `wp_new_user_notification` by default. We short-circuit them with a `pre_wp_mail` filter around the insert. LearnDash sends its own branded welcome via arpReach (separate system). The initial password is delivered by `[vl_credentials]` on the OTO instead.
+
+**To reuse this for a new funnel** (e.g., `beginners-course/`): copy `free-course/a/` + `free-course/b/` as a template, change each variant's `VL_CONFIG` (FUNNEL_TAG, POST_SIGNUP_PATH, VARIANT), keep the shared `signup-modal.css/.js`, add the new redirect-path prefix to `VL_FUNNEL_ALLOWED_REDIRECT_PREFIXES` in `vl-funnel.php`, add the new allowed origin to `VL_FUNNEL_ALLOWED_ORIGINS` if it's a different host.
+
+Full deployment + testing guide: `wp-mu-plugin/README.md`.
 
 ## Critical Gotchas (Learned the Hard Way)
 

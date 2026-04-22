@@ -44,6 +44,12 @@ fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=453207863234417&ev=PageView&noscript=1"/></noscript>
 
+<!-- Cloudflare Turnstile (invisible widget, rendered by shared/signup-modal.js) -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback&render=explicit" async defer></script>
+
+<!-- Shared signup modal styles -->
+<link rel="stylesheet" href="/free-course/shared/signup-modal.css">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -343,7 +349,7 @@ footer{
   <div class="hero-inner">
     <h1>She Was 79 Years Old, Had Never Sketched a Day in Her Life, <span>and Was Caring For Her Husband With Dementia.</span></h1>
     <p class="hero-body">Then she found a free sketching course. Fifteen lessons. One scene in Porto. And the beginning of something none of them saw coming.</p>
-    <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course</a>
+    <a href="#" class="cta-btn" data-open-modal>Start Your Free Course</a>
     <p class="hero-note">Her story is below - or start the same free course she did right now.</p>
   </div>
 </section>
@@ -365,7 +371,7 @@ footer{
     <div class="pull-quote">But you might be wrong about the reason.</div>
 
     <div class="text-center" style="margin-top:2rem">
-      <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course - It&rsquo;s Free</a>
+      <a href="#" class="cta-btn" data-open-modal>Start Your Free Course - It&rsquo;s Free</a>
       <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required.</p>
     </div>
   </div>
@@ -447,7 +453,7 @@ footer{
     </div>
 
     <div class="text-center" style="margin-top:2rem">
-      <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course - It&rsquo;s Free</a>
+      <a href="#" class="cta-btn" data-open-modal>Start Your Free Course - It&rsquo;s Free</a>
       <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required.</p>
     </div>
   </div>
@@ -528,7 +534,7 @@ footer{
     </div>
 
     <div class="text-center" style="margin-top:2rem">
-      <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course - It&rsquo;s Free</a>
+      <a href="#" class="cta-btn" data-open-modal>Start Your Free Course - It&rsquo;s Free</a>
       <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required.</p>
     </div>
   </div>
@@ -580,7 +586,7 @@ footer{
     <div style="position:relative;width:100%;padding-bottom:56.25%;margin:0 auto;border-radius:10px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.15)"><iframe allow="autoplay" class="spotlightr" allowtransparency="true" style="width:100%;height:100%;position:absolute;top:0;left:0" allowfullscreen="true" src="https://digitalsea.cdn.spotlightr.com/watch/MTgzNTc4MA==?fallback=true" frameborder="0" scrolling="no" name="videoPlayer"></iframe></div>
     <p style="font-size:1.1rem;color:var(--text-light);margin-top:1.2rem;font-style:italic">Three minutes with Ian. No sales pitch. Just the man behind the course.</p>
     <div style="margin-top:2rem">
-      <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course</a>
+      <a href="#" class="cta-btn" data-open-modal>Start Your Free Course</a>
       <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required.</p>
     </div>
   </div>
@@ -651,7 +657,7 @@ footer{
     </div>
     <p style="font-size:1.1rem;color:var(--text);line-height:1.8;max-width:480px;margin:0 auto 1.5rem"><strong>Fifteen video lessons. A complete sketch from blank page to finished piece.</strong><br>A guide who has helped 50,000+ people in 188 countries discover that they can do this.</p>
     <p class="section-subtext" style="margin-bottom:1.5rem">All it costs is your email address.</p>
-    <a href="#" class="cta-btn" onclick="handleCTA(event)" style="font-size:1.2rem;padding:1.1rem 3rem">Start Your Free Course Now</a>
+    <a href="#" class="cta-btn" data-open-modal style="font-size:1.2rem;padding:1.1rem 3rem">Start Your Free Course Now</a>
     <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">No credit card required. No experience needed. Just press play and follow along.</p>
   </div>
 </section>
@@ -661,7 +667,7 @@ footer{
   <div class="container text-center fade-in">
     <p class="trust-bar"><strong>50,000+ students. 188 countries. 500+ five-star reviews. 86.1% complete beginners.</strong></p>
     <p style="font-family:var(--serif);font-size:1.3rem;color:var(--charcoal);margin-bottom:2rem;font-style:italic">&ldquo;There&rsquo;s no such thing as a mistake.&rdquo; - Ian Fennelly</p>
-    <a href="#" class="cta-btn" onclick="handleCTA(event)" style="font-size:1.15rem;padding:1rem 2.8rem">Start Your Free Course - It&rsquo;s Free</a>
+    <a href="#" class="cta-btn" data-open-modal style="font-size:1.15rem;padding:1rem 2.8rem">Start Your Free Course - It&rsquo;s Free</a>
     <p style="color:var(--text-lighter);font-size:1.05rem;margin-top:1rem;font-style:italic">No credit card required. Instant access. Your first lesson is waiting.</p>
   </div>
 </section>
@@ -673,8 +679,48 @@ footer{
 
 <!-- ===== STICKY MOBILE BAR ===== -->
 <div class="sticky-bar">
-  <a href="#" class="cta-btn" onclick="handleCTA(event)">Start Your Free Course - It&rsquo;s Free</a>
+  <a href="#" class="cta-btn" data-open-modal>Start Your Free Course - It&rsquo;s Free</a>
 </div>
+
+<!-- ===== SIGNUP MODAL (opened by every CTA with [data-open-modal]) ===== -->
+<div class="signup-modal" id="signup-modal" role="dialog" aria-modal="true" aria-labelledby="signup-modal-title" aria-hidden="true">
+  <div class="signup-modal-backdrop" data-close-modal></div>
+  <div class="signup-modal-panel">
+    <button type="button" class="signup-modal-close" data-close-modal aria-label="Close">&times;</button>
+    <div class="modal-eyebrow">Free Course &middot; 15 Video Lessons</div>
+    <h2 id="signup-modal-title">Where should we send your first lesson?</h2>
+    <p class="modal-sub">Tell us your first name and email &mdash; your first lesson unlocks in under a minute. No credit card. No experience needed.</p>
+
+    <form class="signup-form on-light" data-signup-form data-form-id="modal" novalidate>
+      <div class="form-fields">
+        <div class="field-row">
+          <label for="modal-first-name">Your first name</label>
+          <input type="text" id="modal-first-name" name="first_name" required autocomplete="given-name" placeholder="e.g. Sarah">
+        </div>
+        <div class="field-row">
+          <label for="modal-email">Your email address</label>
+          <input type="email" id="modal-email" name="email" required autocomplete="email" placeholder="you@example.com">
+        </div>
+        <button type="submit" class="cta-btn submit-btn">Start My Free Course &rarr;</button>
+        <p class="form-footnote">We will never share your email. Unsubscribe any time.</p>
+      </div>
+      <div class="form-loading"><span class="spinner"></span>Setting up your account&hellip;</div>
+      <div class="form-error" role="alert"></div>
+      <div class="welcome-back" role="status">
+        <h3>You are already registered!</h3>
+        <p>Good news &mdash; this email already has a free course account. Log in to pick up where you left off.</p>
+        <a href="#" class="login-btn" data-login-btn>Log In To My Course</a>
+        <a href="#" class="reset-link" data-reset-link>Forgot your password? Reset it here</a>
+      </div>
+    </form>
+
+    <div class="trust-row"><span class="stars">&starf;&starf;&starf;&starf;&starf;</span> Joined by 50,000+ students in 188 countries</div>
+  </div>
+</div>
+
+<!-- ===== GLOBAL TURNSTILE HOLDER =====
+     Must live OUTSIDE the modal — 0x0 / display:none parents cause Turnstile to fail silently. -->
+<div id="vl-turnstile-global" style="position:fixed;top:0;left:0;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;z-index:10000"></div>
 
 <!-- ===== SOCIAL PROOF POPUP ===== -->
 <div class="proof-popup" id="proofPopup">
@@ -696,47 +742,20 @@ function sendCAPI(eventName){
   }).catch(function(){});
 }
 sendCAPI('PageView');
+// Expose for shared/signup-modal.js to fire on successful Lead.
+window.sendCAPI = sendCAPI;
 
-/* ===== CTA HANDLER - Facebook Pixel Lead + CAPI + Affiliate Passthrough ===== */
-function handleCTA(e) {
-  e.preventDefault();
-
-  // Fire Facebook Pixel Lead event with variant tracking
-  if (typeof fbq === 'function') {
-    fbq('track', 'Lead', {content_name: 'free-course', variant: 'b'});
-  }
-  // Fire CAPI Lead event with variant tracking
-  sendCAPI('Lead');
-
-  // Build registration URL with passthrough parameters
-  var baseURL = 'https://learn.urbansketch.com/smm/free-course-reg-page-smm/';
-  var currentParams = new URLSearchParams(window.location.search);
-  var passParams = new URLSearchParams();
-
-  // UTM parameters
-  ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(function(key) {
-    if (currentParams.has(key)) passParams.set(key, currentParams.get(key));
-  });
-
-  // Affiliate parameters
-  ['ref','aff','affiliate','affiliate_id'].forEach(function(key) {
-    if (currentParams.has(key)) passParams.set(key, currentParams.get(key));
-  });
-
-  // Variant tracking
-  passParams.set('variant', 'b');
-  passParams.set('lp', 'free-course');
-
-  // Any other parameters - pass them all through
-  currentParams.forEach(function(value, key) {
-    if (!passParams.has(key)) passParams.set(key, value);
-  });
-
-  var queryString = passParams.toString();
-  var finalURL = baseURL + (queryString ? '?' + queryString : '');
-
-  window.location.href = finalURL;
-}
+/* ===== SIGNUP MODAL CONFIG =====
+   Consumed by /free-course/shared/signup-modal.js (loaded below). */
+window.VL_CONFIG = {
+  TURNSTILE_SITEKEY : '0x4AAAAAADA-IjYSyV5KoJYA',
+  REGISTER_ENDPOINT : '/api/register',
+  FALLBACK_REG_URL  : 'https://learn.urbansketch.com/smm/free-course-reg-page-smm/',
+  LOGIN_URL_BASE    : 'https://learn.urbansketch.com/wp-login.php',
+  POST_SIGNUP_PATH  : '/smm/free-course-oto-1-smm/',
+  FUNNEL_TAG        : 'free-course',
+  VARIANT           : 'b'
+};
 
 /* ===== Social proof popup ===== */
 (function(){
@@ -772,5 +791,8 @@ function handleCTA(e) {
   els.forEach(function(el){obs.observe(el)});
 })();
 </script>
+
+<!-- Shared signup modal behaviour (depends on VL_CONFIG above + modal markup + Turnstile script) -->
+<script src="/free-course/shared/signup-modal.js" defer></script>
 </body>
 </html>
