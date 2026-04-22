@@ -265,6 +265,12 @@ function vl_funnel_handle_register( WP_REST_Request $request ) {
 	update_user_meta( $user_id, 'vl_funnel_source', $funnel_tag ? $funnel_tag : 'smm-free-course' );
 	update_user_meta( $user_id, 'vl_funnel_signup_at', current_time( 'mysql' ) );
 
+	// 9b. Stash the plaintext password so the [vl_credentials] shortcode can show
+	//     it on the post-signup OTO page. Expires after 15 minutes (or immediately
+	//     on first display) so it's never readable again after the initial view.
+	update_user_meta( $user_id, '_vl_funnel_initial_password', $password );
+	update_user_meta( $user_id, '_vl_funnel_initial_password_expires', time() + 15 * MINUTE_IN_SECONDS );
+
 	// 10. Generate a one-time auto-login token.
 	$token = wp_generate_password( 32, false, false );
 	set_transient( 'vl_funnel_login_' . $token, array(
@@ -442,3 +448,70 @@ add_action( 'init', function () {
 		update_option( 'vl_funnel_rewrite_version', '1', false );
 	}
 }, 99 );
+
+// ---------------------------------------------------------------------------
+// CREDENTIALS SHORTCODE
+// ---------------------------------------------------------------------------
+// Drop [vl_credentials] on any WordPress page to show the freshly-signed-up
+// user their username + password once. Self-destructs after first display or
+// after 15 minutes, whichever comes first. Renders nothing for anonymous
+// visitors or returning users who've already seen it.
+// ---------------------------------------------------------------------------
+
+add_shortcode( 'vl_credentials', 'vl_funnel_credentials_shortcode' );
+
+function vl_funnel_credentials_shortcode( $atts = array() ) {
+	if ( ! is_user_logged_in() ) {
+		return '';
+	}
+
+	$user_id = get_current_user_id();
+	$password = get_user_meta( $user_id, '_vl_funnel_initial_password', true );
+	$expires  = (int) get_user_meta( $user_id, '_vl_funnel_initial_password_expires', true );
+
+	if ( ! $password ) {
+		return '';
+	}
+
+	// Expired — clean up and render nothing.
+	if ( $expires && time() > $expires ) {
+		delete_user_meta( $user_id, '_vl_funnel_initial_password' );
+		delete_user_meta( $user_id, '_vl_funnel_initial_password_expires' );
+		return '';
+	}
+
+	$user       = wp_get_current_user();
+	$username   = $user ? $user->user_login : '';
+	$first_name = $user ? $user->first_name : '';
+	$greeting   = $first_name ? esc_html( $first_name ) : 'there';
+
+	// One-time read: delete both keys now so a page refresh doesn't re-show it.
+	delete_user_meta( $user_id, '_vl_funnel_initial_password' );
+	delete_user_meta( $user_id, '_vl_funnel_initial_password_expires' );
+
+	$account_url = esc_url( home_url( '/account/' ) );
+
+	ob_start();
+	?>
+	<div class="vl-credentials-card" style="max-width:680px;margin:1.5em auto;padding:1.5em 1.75em;border:1px solid #e5d7b5;background:#fffaf0;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.04);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+		<h3 style="margin:0 0 .6em;font-size:1.3em;color:#1a1a1a;">
+			&#127881; You&rsquo;re in, <?php echo $greeting; ?>!
+		</h3>
+		<p style="margin:0 0 1em;color:#444;line-height:1.5;">
+			Save these login details somewhere safe &mdash; you&rsquo;ll need them next time you return to the site.
+			<strong>This is the only time you&rsquo;ll see your password on this page.</strong>
+		</p>
+		<div style="display:grid;grid-template-columns:max-content 1fr;gap:.5em 1.2em;margin:1em 0;padding:1em 1.2em;background:#fff;border:1px solid #e8e2d0;border-radius:6px;font-family:'Menlo','Monaco',monospace;font-size:.95em;">
+			<strong style="color:#666;font-family:-apple-system,sans-serif;">Username</strong>
+			<span style="user-select:all;color:#1a1a1a;"><?php echo esc_html( $username ); ?></span>
+			<strong style="color:#666;font-family:-apple-system,sans-serif;">Password</strong>
+			<span style="user-select:all;color:#1a1a1a;"><?php echo esc_html( $password ); ?></span>
+		</div>
+		<p style="margin:0;color:#666;font-size:.9em;line-height:1.5;">
+			Prefer your own password? You can change it any time from
+			<a href="<?php echo $account_url; ?>" style="color:#b8860b;text-decoration:underline;">your account page</a>.
+		</p>
+	</div>
+	<?php
+	return ob_get_clean();
+}
