@@ -1194,12 +1194,24 @@ function submitSignup(form, email, firstName, turnstileToken) {
     headers : { 'Content-Type': 'application/json' },
     body    : JSON.stringify(payload)
   })
-  .then(function (res) { return res.json().then(function (body) { return { status: res.status, body: body }; }); })
+  .then(function (res) {
+    return res.text().then(function (text) {
+      var body = null;
+      try { body = JSON.parse(text); } catch (e) { /* non-JSON response */ }
+      return { status: res.status, raw: text, body: body };
+    });
+  })
   .then(function (r) {
     form.classList.remove('is-submitting');
+    // Debug: surface the raw payload so we can diagnose unexpected shapes.
+    try { console.log('[vl-signup] status=' + r.status, 'body=', r.body, 'raw=', r.raw); } catch (e) {}
 
     if (!r.body || r.body.ok !== true) {
-      var msg = (r.body && r.body.error) ? r.body.error : 'Something went wrong. Please try again in a moment.';
+      // Accept message from either our custom {error:...} shape or WP's {message:...} shape.
+      var msg =
+        (r.body && r.body.error)   ? r.body.error   :
+        (r.body && r.body.message) ? r.body.message :
+        'Something went wrong. Please try again in a moment.';
       showError(form, msg);
       resetTurnstile();
       return;
