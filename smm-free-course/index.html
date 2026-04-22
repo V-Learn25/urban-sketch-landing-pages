@@ -45,7 +45,7 @@ fbq('track', 'PageView');
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=453207863234417&ev=PageView&noscript=1"/></noscript>
 
 <!-- Cloudflare Turnstile -->
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback&render=explicit" async defer></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -151,7 +151,6 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
   padding:1.05rem;
   font-size:1.1rem;
 }
-.signup-form .turnstile-holder{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .signup-form .form-footnote{
   font-family:var(--sans);
   font-size:.9rem;
@@ -916,7 +915,6 @@ footer{
       <div class="form-fields">
         <label for="modal-email">Your email address</label>
         <input type="email" id="modal-email" name="email" required autocomplete="email" placeholder="you@example.com">
-        <div class="turnstile-holder" data-turnstile></div>
         <button type="submit" class="cta-btn submit-btn">Start My Free Course &rarr;</button>
         <p class="form-footnote">We will never share your email. Unsubscribe any time.</p>
       </div>
@@ -933,6 +931,11 @@ footer{
     <div class="trust-row"><span class="stars">&starf;&starf;&starf;&starf;&starf;</span> Joined by 50,000+ students in 188 countries</div>
   </div>
 </div>
+
+<!-- ===== GLOBAL TURNSTILE HOLDER =====
+     Must live OUTSIDE the modal so it has real 1x1 layout at page load.
+     display:none / 0x0 parents cause Turnstile to fail silently. -->
+<div id="vl-turnstile-global" style="position:fixed;top:0;left:0;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;z-index:10000"></div>
 
 <!-- ===== SOCIAL PROOF POPUP ===== -->
 <div class="proof-popup" id="proofPopup">
@@ -971,47 +974,55 @@ function sendCAPI(eventName){
 sendCAPI('PageView');
 
 /* =====================================================================
-   TURNSTILE WIDGETS
-   Rendered programmatically so we can have multiple forms on one page.
-   The Turnstile script auto-calls window.onloadTurnstileCallback when ready.
+   TURNSTILE (single invisible widget, shared by the modal form)
+   The widget holder lives outside the modal so it has real layout at
+   page load (0x0 parents cause Turnstile to fail silently).
    ===================================================================== */
-var _turnstileTokens = {};
+var _turnstileWidgetId = null;
+var _turnstileToken    = null;
+var _turnstileReady    = false;
+var _pendingSubmitForm = null;  // set when user clicks submit before a token exists
 
-window.onloadTurnstileCallback = function () {
-  document.querySelectorAll('[data-turnstile]').forEach(function (holder) {
-    var form = holder.closest('form');
-    var formId = form.dataset.formId;
-    var widgetId = turnstile.render(holder, {
-      sitekey: VL_CONFIG.TURNSTILE_SITEKEY,
-      size: 'invisible',
-      callback: function (token) {
-        _turnstileTokens[formId] = token;
-        // If the user already clicked submit and we were waiting on a token, continue now.
-        if (form.classList.contains('is-submitting')) {
-          var email = (form.querySelector('input[type="email"]').value || '').trim();
-          submitSignup(form, email, token);
-        }
-      },
-      'expired-callback': function () { _turnstileTokens[formId] = null; },
-      'error-callback':   function () {
-        _turnstileTokens[formId] = null;
-        if (form.classList.contains('is-submitting')) {
-          form.classList.remove('is-submitting');
-          showError(form, 'Verification failed. Please try again.');
-        }
+function renderGlobalTurnstile () {
+  if (_turnstileReady || !window.turnstile || typeof window.turnstile.render !== 'function') return;
+  var holder = document.getElementById('vl-turnstile-global');
+  if (!holder) return;
+  var configured = VL_CONFIG.TURNSTILE_SITEKEY && VL_CONFIG.TURNSTILE_SITEKEY.indexOf('__REPLACE') !== 0;
+  if (!configured) return;
+
+  _turnstileWidgetId = window.turnstile.render(holder, {
+    sitekey  : VL_CONFIG.TURNSTILE_SITEKEY,
+    size     : 'invisible',
+    callback : function (token) {
+      _turnstileToken = token;
+      if (_pendingSubmitForm) {
+        var form = _pendingSubmitForm;
+        _pendingSubmitForm = null;
+        var email = (form.querySelector('input[type="email"]').value || '').trim();
+        submitSignup(form, email, token);
       }
-    });
-    form.dataset.turnstileWidgetId = widgetId;
+    },
+    'expired-callback': function () { _turnstileToken = null; },
+    'error-callback':   function () {
+      _turnstileToken = null;
+      if (_pendingSubmitForm) {
+        var form = _pendingSubmitForm;
+        _pendingSubmitForm = null;
+        form.classList.remove('is-submitting');
+        showError(form, 'Verification failed. Please try again.');
+      }
+    }
   });
-};
+  _turnstileReady = true;
+}
 
-// If the Turnstile script is already loaded before DOMContentLoaded finishes,
-// fire the callback explicitly. Otherwise the script's onload hook handles it.
-document.addEventListener('DOMContentLoaded', function () {
-  if (window.turnstile && typeof window.turnstile.render === 'function') {
-    window.onloadTurnstileCallback();
-  }
-});
+// Turnstile script calls this when it finishes loading (see api.js URL).
+window.onloadTurnstileCallback = renderGlobalTurnstile;
+
+// Fallback: if the script is already loaded before this JS runs, render now.
+document.addEventListener('DOMContentLoaded', renderGlobalTurnstile);
+// And a safety retry a second later in case of unusual script-load timing.
+setTimeout(renderGlobalTurnstile, 1500);
 
 /* =====================================================================
    SIGNUP FORM HANDLER
@@ -1052,7 +1063,6 @@ function showWelcomeBack(form, loginUrl, resetUrl) {
 function handleSignupSubmit(e) {
   e.preventDefault();
   var form = e.target;
-  var formId = form.dataset.formId;
   clearError(form);
 
   var email = (form.querySelector('input[type="email"]').value || '').trim();
@@ -1063,39 +1073,56 @@ function handleSignupSubmit(e) {
 
   form.classList.add('is-submitting');
 
-  var cachedToken = _turnstileTokens[formId] || '';
   var turnstileConfigured = VL_CONFIG.TURNSTILE_SITEKEY && VL_CONFIG.TURNSTILE_SITEKEY.indexOf('__REPLACE') !== 0;
 
-  // With invisible Turnstile, we trigger execute() on submit. The callback above will call submitSignup() once a token is ready.
-  // If we already have a cached token, skip straight to submission.
-  if (turnstileConfigured) {
-    if (cachedToken) {
-      submitSignup(form, email, cachedToken);
-    } else if (window.turnstile && form.dataset.turnstileWidgetId) {
-      try {
-        window.turnstile.execute(form.dataset.turnstileWidgetId);
-      } catch (err) {
-        form.classList.remove('is-submitting');
-        showError(form, 'Verification failed to start. Please refresh and try again.');
-      }
-    } else {
-      // Turnstile hasn't finished loading yet. Wait briefly then retry.
-      setTimeout(function () {
-        if (window.turnstile && form.dataset.turnstileWidgetId) {
-          try { window.turnstile.execute(form.dataset.turnstileWidgetId); } catch (err) {
-            form.classList.remove('is-submitting');
-            showError(form, 'Verification is still loading. Please try again in a moment.');
-          }
-        } else {
-          form.classList.remove('is-submitting');
-          showError(form, 'Verification is still loading. Please try again in a moment.');
-        }
-      }, 800);
-    }
-  } else {
-    // No Turnstile configured (dev mode).
+  if (!turnstileConfigured) {
     submitSignup(form, email, '');
+    return;
   }
+
+  // Already have a fresh token in memory — submit immediately.
+  if (_turnstileToken) {
+    submitSignup(form, email, _turnstileToken);
+    return;
+  }
+
+  // Turnstile ready + widget rendered — execute it. Token comes via callback.
+  if (_turnstileReady && _turnstileWidgetId && window.turnstile) {
+    _pendingSubmitForm = form;
+    try {
+      window.turnstile.execute(_turnstileWidgetId);
+    } catch (err) {
+      _pendingSubmitForm = null;
+      form.classList.remove('is-submitting');
+      showError(form, 'Verification failed to start. Please try again.');
+    }
+    return;
+  }
+
+  // Turnstile script / widget not ready yet — poll briefly, then retry.
+  _pendingSubmitForm = form;
+  var waited = 0;
+  var tick = setInterval(function () {
+    waited += 150;
+    // Try to render if we haven't yet (late script load).
+    if (!_turnstileReady) renderGlobalTurnstile();
+
+    if (_turnstileReady && _turnstileWidgetId && window.turnstile) {
+      clearInterval(tick);
+      try {
+        window.turnstile.execute(_turnstileWidgetId);
+      } catch (err) {
+        _pendingSubmitForm = null;
+        form.classList.remove('is-submitting');
+        showError(form, 'Verification failed. Please try again.');
+      }
+    } else if (waited >= 5000) {
+      clearInterval(tick);
+      _pendingSubmitForm = null;
+      form.classList.remove('is-submitting');
+      showError(form, 'Could not verify — please refresh and try again.');
+    }
+  }, 150);
 }
 
 function submitSignup(form, email, turnstileToken) {
@@ -1119,7 +1146,7 @@ function submitSignup(form, email, turnstileToken) {
     if (!r.body || r.body.ok !== true) {
       var msg = (r.body && r.body.error) ? r.body.error : 'Something went wrong. Please try again in a moment.';
       showError(form, msg);
-      resetTurnstile(form);
+      resetTurnstile();
       return;
     }
 
@@ -1143,16 +1170,15 @@ function submitSignup(form, email, turnstileToken) {
   .catch(function () {
     form.classList.remove('is-submitting');
     showError(form, 'We could not reach the server. Check your connection and try again.');
-    resetTurnstile(form);
+    resetTurnstile();
   });
 }
 
-function resetTurnstile(form) {
-  var widgetId = form.dataset.turnstileWidgetId;
-  if (widgetId && window.turnstile) {
-    window.turnstile.reset(widgetId);
-    _turnstileTokens[form.dataset.formId] = null;
+function resetTurnstile() {
+  if (_turnstileWidgetId && window.turnstile && typeof window.turnstile.reset === 'function') {
+    try { window.turnstile.reset(_turnstileWidgetId); } catch (e) {}
   }
+  _turnstileToken = null;
 }
 
 document.querySelectorAll('[data-signup-form]').forEach(function (form) {
