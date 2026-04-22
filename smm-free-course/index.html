@@ -151,7 +151,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
   padding:1.05rem;
   font-size:1.1rem;
 }
-.signup-form .turnstile-holder{margin-top:1rem;display:flex;justify-content:center}
+.signup-form .turnstile-holder{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .signup-form .form-footnote{
   font-family:var(--sans);
   font-size:.9rem;
@@ -233,6 +233,78 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
 
 .signup-form.is-submitting .form-fields{opacity:.5;pointer-events:none}
 .signup-form.is-submitting .form-loading{display:block}
+
+/* ===== HERO + FINAL CTA WRAPPERS (outside the form — open modal on click) ===== */
+.hero-cta-wrap{max-width:440px;margin:1.2rem auto 0;text-align:center}
+.hero-cta-btn{width:100%;padding:1.1rem 1.25rem;font-size:1.15rem;letter-spacing:.01em}
+.hero-cta-note{font-family:var(--sans);font-size:.9rem;color:rgba(255,255,255,.75);margin-top:.85rem}
+.final-cta-wrap{max-width:440px;margin:0 auto;text-align:center}
+.final-cta-btn{width:100%;padding:1.15rem 1.25rem;font-size:1.18rem;letter-spacing:.01em}
+.final-cta-note{font-family:var(--sans);font-size:.9rem;color:var(--text-light);margin-top:.95rem}
+
+/* ===== SIGNUP MODAL ===== */
+.signup-modal{
+  position:fixed;inset:0;z-index:9999;
+  display:none;align-items:center;justify-content:center;
+  padding:1rem;
+  font-family:var(--sans);
+}
+.signup-modal.open{display:flex}
+.signup-modal-backdrop{
+  position:absolute;inset:0;
+  background:rgba(24,24,24,.72);
+  backdrop-filter:blur(4px);
+  animation:fadeIn .2s ease;
+}
+.signup-modal-panel{
+  position:relative;
+  background:var(--white);
+  color:var(--charcoal);
+  border-radius:14px;
+  padding:clamp(1.5rem,5vw,2.5rem);
+  width:100%;max-width:460px;
+  box-shadow:0 30px 80px rgba(0,0,0,.4);
+  animation:modalIn .25s cubic-bezier(.2,.9,.3,1.2);
+  max-height:calc(100vh - 2rem);
+  overflow-y:auto;
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes modalIn{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+.signup-modal-close{
+  position:absolute;top:.6rem;right:.8rem;
+  background:none;border:none;
+  font-size:1.8rem;line-height:1;
+  color:var(--text-light);cursor:pointer;
+  padding:.3rem .55rem;border-radius:6px;
+  transition:background .15s, color .15s;
+}
+.signup-modal-close:hover{background:var(--warm-grey);color:var(--charcoal)}
+.signup-modal-panel .modal-eyebrow{
+  font-family:var(--sans);font-size:.78rem;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--amber);font-weight:700;
+  margin-bottom:.4rem;
+}
+.signup-modal-panel h2{
+  font-family:var(--serif);
+  font-size:clamp(1.5rem,4vw,1.9rem);
+  line-height:1.2;margin-bottom:.55rem;
+  color:var(--charcoal);
+}
+.signup-modal-panel .modal-sub{
+  font-size:.98rem;line-height:1.55;
+  color:var(--text-light);
+  margin-bottom:1.25rem;
+}
+.signup-modal .signup-form .submit-btn{margin-top:.85rem}
+.signup-modal .trust-row{
+  display:flex;align-items:center;justify-content:center;gap:.4rem;
+  font-size:.85rem;color:var(--text-light);
+  margin-top:1rem;
+}
+.signup-modal .trust-row .stars{color:var(--amber)}
+
+body.modal-open{overflow:hidden}
 
 /* ===== SECTION HEADING ===== */
 .section-heading{
@@ -487,24 +559,11 @@ footer{
     <p class="hero-body">15 free video lessons with the guide students call &ldquo;the Bob Ross of urban sketching.&rdquo;</p>
     <p class="hero-sub-body">No credit card. No experience needed. Your first lesson unlocks in under a minute.</p>
 
-    <!-- SIGNUP FORM 1 (hero, above the fold) -->
-    <form class="signup-form" data-signup-form data-form-id="hero" novalidate>
-      <div class="form-fields">
-        <label for="hero-email">Your email address</label>
-        <input type="email" id="hero-email" name="email" required autocomplete="email" placeholder="you@example.com">
-        <div class="turnstile-holder" data-turnstile></div>
-        <button type="submit" class="cta-btn submit-btn">Start My Free Course</button>
-        <p class="form-footnote">No credit card. We will never share your email. Unsubscribe any time.</p>
-      </div>
-      <div class="form-loading"><span class="spinner"></span>Setting up your account&hellip;</div>
-      <div class="form-error" role="alert"></div>
-      <div class="welcome-back" role="status">
-        <h3>You are already registered!</h3>
-        <p>Good news &mdash; this email already has a free course account. Log in to pick up where you left off.</p>
-        <a href="#" class="login-btn" data-login-btn>Log In To My Course</a>
-        <a href="#" class="reset-link" data-reset-link>Forgot your password? Reset it here</a>
-      </div>
-    </form>
+    <!-- HERO CTA (opens signup modal) -->
+    <div class="hero-cta-wrap">
+      <button type="button" class="cta-btn hero-cta-btn" data-open-modal>Start My Free Course &rarr;</button>
+      <p class="hero-cta-note">No credit card. No experience needed. Your first lesson unlocks in under a minute.</p>
+    </div>
 
     <p class="hero-note">Or keep reading to hear from people who started exactly where you are.</p>
   </div>
@@ -527,7 +586,7 @@ footer{
     <div class="pull-quote">But you might be wrong about the reason.</div>
 
     <div class="text-center" style="margin-top:2rem">
-      <a href="#final-signup" class="cta-btn" data-scroll-cta>Start Your Free Course</a>
+      <button type="button" class="cta-btn" data-open-modal>Start Your Free Course</button>
       <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">Just your email. No credit card.</p>
     </div>
   </div>
@@ -609,7 +668,7 @@ footer{
     </div>
 
     <div class="text-center" style="margin-top:2rem">
-      <a href="#final-signup" class="cta-btn" data-scroll-cta>Start Your Free Course</a>
+      <button type="button" class="cta-btn" data-open-modal>Start Your Free Course</button>
       <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">Just your email. No credit card.</p>
     </div>
   </div>
@@ -690,7 +749,7 @@ footer{
     </div>
 
     <div class="text-center" style="margin-top:2rem">
-      <a href="#final-signup" class="cta-btn" data-scroll-cta>Start Your Free Course</a>
+      <button type="button" class="cta-btn" data-open-modal>Start Your Free Course</button>
       <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">Just your email. No credit card.</p>
     </div>
   </div>
@@ -742,7 +801,7 @@ footer{
     <div style="position:relative;width:100%;padding-bottom:56.25%;margin:0 auto;border-radius:10px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.15)"><iframe allow="autoplay" class="spotlightr" allowtransparency="true" style="width:100%;height:100%;position:absolute;top:0;left:0" allowfullscreen="true" src="https://digitalsea.cdn.spotlightr.com/watch/MTgzNTc4MA==?fallback=true" frameborder="0" scrolling="no" name="videoPlayer"></iframe></div>
     <p style="font-size:1.1rem;color:var(--text-light);margin-top:1.2rem;font-style:italic">Three minutes with Ian. No sales pitch. Just the man behind the course.</p>
     <div style="margin-top:2rem">
-      <a href="#final-signup" class="cta-btn" data-scroll-cta>Start Your Free Course</a>
+      <button type="button" class="cta-btn" data-open-modal>Start Your Free Course</button>
       <p style="color:var(--text-lighter);font-size:1rem;margin-top:.75rem">Just your email. No credit card.</p>
     </div>
   </div>
@@ -818,24 +877,11 @@ footer{
     </div>
     <p style="font-size:1.1rem;color:var(--text);line-height:1.8;max-width:480px;margin:0 auto 1.5rem"><strong>Fifteen video lessons. A complete sketch from blank page to finished piece.</strong><br>All it costs is your email address.</p>
 
-    <!-- SIGNUP FORM 2 (final CTA) -->
-    <form class="signup-form on-light" data-signup-form data-form-id="final" novalidate>
-      <div class="form-fields">
-        <label for="final-email">Your email address</label>
-        <input type="email" id="final-email" name="email" required autocomplete="email" placeholder="you@example.com">
-        <div class="turnstile-holder" data-turnstile></div>
-        <button type="submit" class="cta-btn submit-btn">Start My Free Course Now</button>
-        <p class="form-footnote">No credit card. No experience needed. Just press play and follow along.</p>
-      </div>
-      <div class="form-loading"><span class="spinner"></span>Setting up your account&hellip;</div>
-      <div class="form-error" role="alert"></div>
-      <div class="welcome-back" role="status">
-        <h3>You are already registered!</h3>
-        <p>Good news &mdash; this email already has a free course account. Log in to pick up where you left off.</p>
-        <a href="#" class="login-btn" data-login-btn>Log In To My Course</a>
-        <a href="#" class="reset-link" data-reset-link>Forgot your password? Reset it here</a>
-      </div>
-    </form>
+    <!-- FINAL CTA (opens signup modal) -->
+    <div class="final-cta-wrap">
+      <button type="button" class="cta-btn final-cta-btn" data-open-modal>Start My Free Course Now &rarr;</button>
+      <p class="final-cta-note">No credit card. No experience needed. Just press play and follow along.</p>
+    </div>
   </div>
 </section>
 
@@ -854,7 +900,38 @@ footer{
 
 <!-- ===== STICKY MOBILE BAR ===== -->
 <div class="sticky-bar">
-  <a href="#final-signup" class="cta-btn" data-scroll-cta>Start Your Free Course</a>
+  <button type="button" class="cta-btn" data-open-modal>Start Your Free Course</button>
+</div>
+
+<!-- ===== SIGNUP MODAL (shared — opened by every CTA on the page) ===== -->
+<div class="signup-modal" id="signup-modal" role="dialog" aria-modal="true" aria-labelledby="signup-modal-title" aria-hidden="true">
+  <div class="signup-modal-backdrop" data-close-modal></div>
+  <div class="signup-modal-panel">
+    <button type="button" class="signup-modal-close" data-close-modal aria-label="Close">&times;</button>
+    <div class="modal-eyebrow">Free Course &middot; 15 Video Lessons</div>
+    <h2 id="signup-modal-title">Where should we send your first lesson?</h2>
+    <p class="modal-sub">Enter your email and your first lesson unlocks in under a minute. No credit card. No experience needed.</p>
+
+    <form class="signup-form on-light" data-signup-form data-form-id="modal" novalidate>
+      <div class="form-fields">
+        <label for="modal-email">Your email address</label>
+        <input type="email" id="modal-email" name="email" required autocomplete="email" placeholder="you@example.com">
+        <div class="turnstile-holder" data-turnstile></div>
+        <button type="submit" class="cta-btn submit-btn">Start My Free Course &rarr;</button>
+        <p class="form-footnote">We will never share your email. Unsubscribe any time.</p>
+      </div>
+      <div class="form-loading"><span class="spinner"></span>Setting up your account&hellip;</div>
+      <div class="form-error" role="alert"></div>
+      <div class="welcome-back" role="status">
+        <h3>You are already registered!</h3>
+        <p>Good news &mdash; this email already has a free course account. Log in to pick up where you left off.</p>
+        <a href="#" class="login-btn" data-login-btn>Log In To My Course</a>
+        <a href="#" class="reset-link" data-reset-link>Forgot your password? Reset it here</a>
+      </div>
+    </form>
+
+    <div class="trust-row"><span class="stars">&starf;&starf;&starf;&starf;&starf;</span> Joined by 50,000+ students in 188 countries</div>
+  </div>
 </div>
 
 <!-- ===== SOCIAL PROOF POPUP ===== -->
@@ -906,10 +983,23 @@ window.onloadTurnstileCallback = function () {
     var formId = form.dataset.formId;
     var widgetId = turnstile.render(holder, {
       sitekey: VL_CONFIG.TURNSTILE_SITEKEY,
-      theme: form.classList.contains('on-light') ? 'light' : 'dark',
-      callback: function (token) { _turnstileTokens[formId] = token; },
+      size: 'invisible',
+      callback: function (token) {
+        _turnstileTokens[formId] = token;
+        // If the user already clicked submit and we were waiting on a token, continue now.
+        if (form.classList.contains('is-submitting')) {
+          var email = (form.querySelector('input[type="email"]').value || '').trim();
+          submitSignup(form, email, token);
+        }
+      },
       'expired-callback': function () { _turnstileTokens[formId] = null; },
-      'error-callback':   function () { _turnstileTokens[formId] = null; }
+      'error-callback':   function () {
+        _turnstileTokens[formId] = null;
+        if (form.classList.contains('is-submitting')) {
+          form.classList.remove('is-submitting');
+          showError(form, 'Verification failed. Please try again.');
+        }
+      }
     });
     form.dataset.turnstileWidgetId = widgetId;
   });
@@ -965,20 +1055,50 @@ function handleSignupSubmit(e) {
   var formId = form.dataset.formId;
   clearError(form);
 
-  var email = form.querySelector('input[type="email"]').value.trim();
-  if (!email) {
-    showError(form, 'Please enter your email address.');
-    return;
-  }
-
-  var turnstileToken = _turnstileTokens[formId] || '';
-  if (VL_CONFIG.TURNSTILE_SITEKEY && VL_CONFIG.TURNSTILE_SITEKEY.indexOf('__REPLACE') !== 0 && !turnstileToken) {
-    showError(form, 'Please complete the captcha below the button, then click Start again.');
+  var email = (form.querySelector('input[type="email"]').value || '').trim();
+  if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+    showError(form, 'Please enter a valid email address.');
     return;
   }
 
   form.classList.add('is-submitting');
 
+  var cachedToken = _turnstileTokens[formId] || '';
+  var turnstileConfigured = VL_CONFIG.TURNSTILE_SITEKEY && VL_CONFIG.TURNSTILE_SITEKEY.indexOf('__REPLACE') !== 0;
+
+  // With invisible Turnstile, we trigger execute() on submit. The callback above will call submitSignup() once a token is ready.
+  // If we already have a cached token, skip straight to submission.
+  if (turnstileConfigured) {
+    if (cachedToken) {
+      submitSignup(form, email, cachedToken);
+    } else if (window.turnstile && form.dataset.turnstileWidgetId) {
+      try {
+        window.turnstile.execute(form.dataset.turnstileWidgetId);
+      } catch (err) {
+        form.classList.remove('is-submitting');
+        showError(form, 'Verification failed to start. Please refresh and try again.');
+      }
+    } else {
+      // Turnstile hasn't finished loading yet. Wait briefly then retry.
+      setTimeout(function () {
+        if (window.turnstile && form.dataset.turnstileWidgetId) {
+          try { window.turnstile.execute(form.dataset.turnstileWidgetId); } catch (err) {
+            form.classList.remove('is-submitting');
+            showError(form, 'Verification is still loading. Please try again in a moment.');
+          }
+        } else {
+          form.classList.remove('is-submitting');
+          showError(form, 'Verification is still loading. Please try again in a moment.');
+        }
+      }, 800);
+    }
+  } else {
+    // No Turnstile configured (dev mode).
+    submitSignup(form, email, '');
+  }
+}
+
+function submitSignup(form, email, turnstileToken) {
   var payload = {
     email        : email,
     turnstile    : turnstileToken,
@@ -1040,22 +1160,59 @@ document.querySelectorAll('[data-signup-form]').forEach(function (form) {
 });
 
 /* =====================================================================
-   SCROLL-TO-FORM BEHAVIOUR FOR SECONDARY CTAS
-   All mid-page "Start Your Free Course" buttons scroll to #final-signup
-   and focus the email input to remove one tap.
+   SIGNUP MODAL — all CTAs on the page open this modal.
+   Two-step opt-in pattern: button click = micro-commitment, modal = focused capture.
    ===================================================================== */
-document.querySelectorAll('[data-scroll-cta]').forEach(function (el) {
-  el.addEventListener('click', function (e) {
-    e.preventDefault();
-    var target = document.getElementById('final-signup');
-    if (!target) return;
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    setTimeout(function () {
-      var input = target.querySelector('input[type="email"]');
-      if (input) input.focus({ preventScroll: true });
-    }, 600);
+(function(){
+  var modal = document.getElementById('signup-modal');
+  if (!modal) return;
+  var lastFocused = null;
+
+  function openModal(sourceBtn){
+    lastFocused = sourceBtn || document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    // Focus the email input for immediate typing. Delay slightly so the open animation doesn't fight the focus.
+    setTimeout(function(){
+      var input = modal.querySelector('input[type="email"]');
+      if (input) input.focus();
+    }, 120);
+  }
+
+  function closeModal(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+    // Clear any error state so the next open is clean.
+    var form = modal.querySelector('[data-signup-form]');
+    if (form) clearError(form);
+    if (lastFocused && typeof lastFocused.focus === 'function') {
+      try { lastFocused.focus(); } catch(e){}
+    }
+  }
+
+  document.querySelectorAll('[data-open-modal]').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      openModal(btn);
+    });
   });
-});
+
+  modal.querySelectorAll('[data-close-modal]').forEach(function(el){
+    el.addEventListener('click', function(e){
+      e.preventDefault();
+      closeModal();
+    });
+  });
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+
+  // Expose so other code (e.g. post-signup flows) can close programmatically if needed.
+  window._vlCloseSignupModal = closeModal;
+})();
 
 /* ===== Social proof popup ===== */
 (function(){
