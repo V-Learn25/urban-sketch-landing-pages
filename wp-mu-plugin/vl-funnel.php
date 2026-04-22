@@ -505,10 +505,28 @@ function vl_funnel_credentials_shortcode( $atts = array() ) {
 			<strong style="color:#666;font-family:-apple-system,sans-serif;">Password</strong>
 			<span style="user-select:all;color:#1a1a1a;"><?php echo esc_html( $password ); ?></span>
 		</div>
-		<p style="margin:0;color:#666;font-size:.9em;line-height:1.5;">
+		<p style="margin:0 0 1.4em;color:#666;font-size:.9em;line-height:1.5;">
 			Prefer your own password? You can change it any time from your account page once you&rsquo;re inside.
 		</p>
+
+		<div style="padding-top:1.3em;border-top:1px dashed #e5d7b5;text-align:center;">
+			<p style="margin:0 0 .4em;font-size:1.05em;font-weight:700;color:#1a1a1a;letter-spacing:.02em;">
+				Got them saved? Good. Now read the rest of this page.
+			</p>
+			<p style="margin:0 0 .8em;color:#555;font-size:.95em;line-height:1.55;">
+				We&rsquo;ve put a new-student-only welcome below that&rsquo;s only available
+				<strong>right now, on this page</strong>. Your first lesson will be
+				waiting when you&rsquo;re done.
+			</p>
+			<div style="font-size:1.6em;color:#b8860b;line-height:1;animation:vlBounce 1.6s ease-in-out infinite;">&darr;</div>
+		</div>
 	</div>
+	<style>
+		@keyframes vlBounce {
+			0%, 100% { transform: translateY(0); }
+			50%      { transform: translateY(8px); }
+		}
+	</style>
 	<?php
 	return ob_get_clean();
 }
