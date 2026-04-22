@@ -204,6 +204,14 @@ function vl_funnel_handle_register( WP_REST_Request $request ) {
 	}
 
 	// 6. Create the user. Auto-generate a password; they can change it later.
+	// Suppress WordPress core's default new-user notification emails — they send
+	// synchronously via wp_mail() on a broken mail pipe and add 10-30s to the
+	// response. LearnDash sends its own branded welcome via arpReach anyway.
+	if ( ! defined( 'VL_FUNNEL_SUPPRESS_NEW_USER_NOTIFY' ) ) {
+		define( 'VL_FUNNEL_SUPPRESS_NEW_USER_NOTIFY', true );
+	}
+	add_filter( 'pre_wp_mail', 'vl_funnel_block_new_user_emails', 10, 2 );
+
 	$first_name = sanitize_text_field( (string) $request->get_param( 'first_name' ) );
 	$username   = vl_funnel_generate_username( $email );
 	$password   = wp_generate_password( 16, true, false );
@@ -216,6 +224,8 @@ function vl_funnel_handle_register( WP_REST_Request $request ) {
 		'display_name' => $first_name ? $first_name : $username,
 		'role'         => 'subscriber',
 	) );
+
+	remove_filter( 'pre_wp_mail', 'vl_funnel_block_new_user_emails', 10 );
 
 	if ( is_wp_error( $user_id ) ) {
 		return new WP_REST_Response( array(
@@ -267,8 +277,10 @@ function vl_funnel_handle_register( WP_REST_Request $request ) {
 		'r' => rawurlencode( $redirect_to ),
 	), home_url( '/vl-auto-login' ) );
 
-	// 11. Welcome email with password. If this fails we don't block signup — user can reset later.
-	vl_funnel_send_welcome_email( $email, $first_name, $username, $password, home_url( $redirect_to ) );
+	// 11. Welcome email is handled by LearnDash → arpReach. We used to call
+	//     vl_funnel_send_welcome_email() here but wp_mail() is non-functional on
+	//     this host and was adding 10-30s to every signup waiting for SMTP timeout.
+	//     Kept the function definition below in case a future host restores wp_mail.
 
 	return new WP_REST_Response( array(
 		'ok'        => true,
@@ -372,6 +384,17 @@ function vl_funnel_sanitize_redirect( $path ) {
 	}
 
 	return VL_FUNNEL_DEFAULT_REDIRECT;
+}
+
+/**
+ * Short-circuit wp_mail() during wp_insert_user() so WordPress's blocking
+ * new-user notifications never fire on this broken mail pipe. Only active
+ * during the brief window between add_filter / remove_filter in the handler.
+ * Returning `true` from `pre_wp_mail` tells WP the mail was handled (but we
+ * just swallow it).
+ */
+function vl_funnel_block_new_user_emails( $short_circuit, $atts ) {
+	return defined( 'VL_FUNNEL_SUPPRESS_NEW_USER_NOTIFY' ) && VL_FUNNEL_SUPPRESS_NEW_USER_NOTIFY ? true : $short_circuit;
 }
 
 function vl_funnel_generate_username( $email ) {
