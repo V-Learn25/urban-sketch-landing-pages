@@ -966,7 +966,9 @@ footer{
    ===================================================================== */
 var VL_CONFIG = {
   TURNSTILE_SITEKEY : '0x4AAAAAADA-IjYSyV5KoJYA',
-  REGISTER_ENDPOINT : 'https://learn.urbansketch.com/wp-json/vl/v1/register',
+  // Same-origin proxy (handled by _worker.js) -> forwards to learn.urbansketch.com/wp-json/vl/v1/register
+  // Avoids CORS entirely. Direct WP endpoint still exists at the real URL if needed.
+  REGISTER_ENDPOINT : '/api/register',
   LOGIN_URL_BASE    : 'https://learn.urbansketch.com/wp-login.php',
   POST_SIGNUP_PATH  : '/smm/free-course-oto-1-smm/',
   FUNNEL_TAG        : 'smm-free-course',

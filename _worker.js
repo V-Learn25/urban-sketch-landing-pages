@@ -59,6 +59,17 @@ export default {
     const url = new URL(request.url);
     const cookies = parseCookies(request.headers.get('cookie') || '');
 
+    // ── /api/register proxy ─────────────────────────────────
+    // Same-origin proxy to learn.urbansketch.com/wp-json/vl/v1/register.
+    // Sidesteps CORS entirely — the browser sees a same-origin request,
+    // the WP endpoint sees a server-to-server POST from Cloudflare.
+    if (url.pathname === '/api/register' && request.method === 'POST') {
+      return await proxyRegister(request, env);
+    }
+    if (url.pathname === '/api/register' && request.method === 'OPTIONS') {
+      return new Response(null, { status: 204 });
+    }
+
     // ── A/B Test Routing ────────────────────────────────────
     const abResult = resolveABTest(url, cookies);
 
@@ -199,6 +210,51 @@ function resolveABTest(url, cookies) {
   return { testKey, variant: testConfig.variants[testConfig.variants.length - 1], isNew: true };
 }
 
+
+// ─────────────────────────────────────────────────────────────
+// REGISTRATION PROXY
+// ─────────────────────────────────────────────────────────────
+
+/**
+ * Proxy POST /api/register to the WordPress MU-plugin endpoint.
+ * Executes server-to-server so no CORS preflight is involved and no
+ * Access-Control-Allow-Origin header is required on the response.
+ */
+async function proxyRegister(request, env) {
+  const parentUrl = (env.AFFWP_PARENT_URL || 'https://learn.urbansketch.com').replace(/\/$/, '');
+  const target = `${parentUrl}/wp-json/vl/v1/register`;
+
+  try {
+    const bodyText = await request.text();
+    const upstream = await fetch(target, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Forwarded-For': request.headers.get('cf-connecting-ip') || '',
+        'User-Agent': request.headers.get('user-agent') || 'VL-Worker',
+      },
+      body: bodyText,
+    });
+
+    const responseBody = await upstream.text();
+    return new Response(responseBody, {
+      status: upstream.status,
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Cache-Control': 'no-store',
+      },
+    });
+  } catch (err) {
+    return new Response(JSON.stringify({
+      ok: false,
+      code: 'proxy_failed',
+      error: 'Unable to reach the registration service. Please try again.',
+    }), {
+      status: 502,
+      headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+    });
+  }
+}
 
 // ─────────────────────────────────────────────────────────────
 // AFFILIATE TRACKING HELPERS
