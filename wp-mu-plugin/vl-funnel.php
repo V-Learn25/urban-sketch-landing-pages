@@ -331,12 +331,17 @@ function vl_funnel_client_ip() {
 function vl_funnel_verify_turnstile( $token ) {
 	if ( ! $token ) return false;
 
+	// NOTE: We intentionally do NOT send `remoteip` to Turnstile. The request reaches
+	// this endpoint via a Cloudflare Worker proxy, so vl_funnel_client_ip() returns
+	// the Worker's outbound IP rather than the browser's IP that Turnstile issued the
+	// token against. Sending a mismatched remoteip causes Turnstile to reject otherwise
+	// valid tokens. The token itself is a cryptographically signed proof of solve;
+	// IP cross-check was a secondary layer we can safely omit.
 	$resp = wp_remote_post( 'https://challenges.cloudflare.com/turnstile/v0/siteverify', array(
 		'timeout' => 8,
 		'body'    => array(
 			'secret'   => VL_FUNNEL_TURNSTILE_SECRET,
 			'response' => $token,
-			'remoteip' => vl_funnel_client_ip(),
 		),
 	) );
 

@@ -177,6 +177,9 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.2}
 }
 .signup-form.on-light .form-error{color:var(--error);background:rgba(194,59,34,.08)}
 .signup-form .form-error.show{display:block}
+.signup-form .form-error-fallback{margin-top:.6rem;font-size:.9rem}
+.signup-form .form-error-fallback a{color:var(--error);text-decoration:underline;font-weight:600}
+.signup-form .form-error-fallback a:hover{opacity:.8}
 .signup-form .form-loading{
   display:none;
   text-align:center;
@@ -969,6 +972,9 @@ var VL_CONFIG = {
   // Same-origin proxy (handled by _worker.js) -> forwards to learn.urbansketch.com/wp-json/vl/v1/register
   // Avoids CORS entirely. Direct WP endpoint still exists at the real URL if needed.
   REGISTER_ENDPOINT : '/api/register',
+  // Safety-net fallback. If the async signup fails for any reason, surface this in the error
+  // message so the user can still register manually — never lose a paid lead to a bug.
+  FALLBACK_REG_URL  : 'https://learn.urbansketch.com/smm/free-course-reg-page-smm/',
   LOGIN_URL_BASE    : 'https://learn.urbansketch.com/wp-login.php',
   POST_SIGNUP_PATH  : '/smm/free-course-oto-1-smm/',
   FUNNEL_TAG        : 'smm-free-course',
@@ -1060,7 +1066,23 @@ function readCookie(name) {
 
 function showError(form, message) {
   var box = form.querySelector('.form-error');
-  box.textContent = message;
+  // Always render a safety-net manual-registration link below the error so a bug
+  // in the async flow never costs us a paid lead. Use DOM APIs — safe from HTML injection.
+  while (box.firstChild) box.removeChild(box.firstChild);
+  var msgEl = document.createElement('div');
+  msgEl.textContent = message;
+  box.appendChild(msgEl);
+
+  if (VL_CONFIG.FALLBACK_REG_URL) {
+    var fallback = document.createElement('div');
+    fallback.className = 'form-error-fallback';
+    var link = document.createElement('a');
+    link.href = VL_CONFIG.FALLBACK_REG_URL;
+    link.textContent = 'Having trouble? Register on our backup page instead →';
+    link.rel = 'noopener';
+    fallback.appendChild(link);
+    box.appendChild(fallback);
+  }
   box.classList.add('show');
 }
 function clearError(form) {
