@@ -79,7 +79,21 @@ add_action( 'rest_api_init', function () {
 	add_filter( 'rest_pre_serve_request', 'vl_funnel_cors_headers', 15 );
 }, 15 );
 
-function vl_funnel_cors_headers( $value ) {
+// Also hook send_headers to cover the case where our REST handler returns a
+// non-success status. rest_pre_serve_request is only reliably applied on 2xx;
+// error paths sometimes bypass it or have their origin header stripped.
+add_action( 'send_headers', 'vl_funnel_send_cors_headers_early' );
+
+function vl_funnel_send_cors_headers_early() {
+	// Only emit for our REST route, not every WP request.
+	$uri = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
+	if ( strpos( $uri, '/wp-json/vl/v1/' ) === false ) {
+		return;
+	}
+	vl_funnel_emit_cors_headers();
+}
+
+function vl_funnel_emit_cors_headers() {
 	$origin  = isset( $_SERVER['HTTP_ORIGIN'] ) ? $_SERVER['HTTP_ORIGIN'] : '';
 	$allowed = array_map( 'trim', explode( ',', VL_FUNNEL_ALLOWED_ORIGINS ) );
 
@@ -90,7 +104,10 @@ function vl_funnel_cors_headers( $value ) {
 		header( 'Access-Control-Allow-Headers: Content-Type' );
 		header( 'Access-Control-Max-Age: 600' );
 	}
+}
 
+function vl_funnel_cors_headers( $value ) {
+	vl_funnel_emit_cors_headers();
 	return $value;
 }
 
@@ -125,6 +142,9 @@ add_action( 'template_redirect', 'vl_funnel_handle_auto_login' );
 // ---------------------------------------------------------------------------
 
 function vl_funnel_handle_register( WP_REST_Request $request ) {
+	// 0. Emit CORS headers defensively — some hosts/CDNs strip them on non-2xx responses.
+	vl_funnel_emit_cors_headers();
+
 	// 1. Rate limit by IP. Hard block before we touch the DB.
 	$ip_key = 'vl_funnel_rate_' . md5( vl_funnel_client_ip() );
 	$count  = (int) get_transient( $ip_key );
