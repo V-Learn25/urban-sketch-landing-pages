@@ -489,8 +489,6 @@ function vl_funnel_credentials_shortcode( $atts = array() ) {
 	delete_user_meta( $user_id, '_vl_funnel_initial_password' );
 	delete_user_meta( $user_id, '_vl_funnel_initial_password_expires' );
 
-	$account_url = esc_url( home_url( '/account/' ) );
-
 	ob_start();
 	?>
 	<div class="vl-credentials-card" style="max-width:680px;margin:1.5em auto;padding:1.5em 1.75em;border:1px solid #e5d7b5;background:#fffaf0;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.04);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
@@ -508,8 +506,7 @@ function vl_funnel_credentials_shortcode( $atts = array() ) {
 			<span style="user-select:all;color:#1a1a1a;"><?php echo esc_html( $password ); ?></span>
 		</div>
 		<p style="margin:0;color:#666;font-size:.9em;line-height:1.5;">
-			Prefer your own password? You can change it any time from
-			<a href="<?php echo $account_url; ?>" style="color:#b8860b;text-decoration:underline;">your account page</a>.
+			Prefer your own password? You can change it any time from your account page once you&rsquo;re inside.
 		</p>
 	</div>
 	<?php
