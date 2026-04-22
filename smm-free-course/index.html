@@ -1040,6 +1040,11 @@ function buildResetUrl(destinationPath) {
   return VL_CONFIG.LOGIN_URL_BASE + '?action=lostpassword&redirect_to=' + encodeURIComponent(dest);
 }
 
+function readCookie(name) {
+  var match = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') + '=([^;]*)'));
+  return match ? decodeURIComponent(match[1]) : '';
+}
+
 function showError(form, message) {
   var box = form.querySelector('.form-error');
   box.textContent = message;
@@ -1126,18 +1131,25 @@ function handleSignupSubmit(e) {
 }
 
 function submitSignup(form, email, turnstileToken) {
+  // Pull affiliate ID from either URL param (?a=36) or the Cloudflare-set cookie on go.urbansketchcourse.com.
+  // Cookies don't cross domains, so we must pass it in the POST body for the WP endpoint to credit AffiliateWP.
+  var urlParams = new URLSearchParams(window.location.search);
+  var affiliateId = urlParams.get('a') || urlParams.get('ref') || readCookie('affwp_affiliate_id') || '';
+  var campaign    = urlParams.get('campaign') || readCookie('affwp_campaign') || '';
+
   var payload = {
     email        : email,
     turnstile    : turnstileToken,
     redirect_to  : VL_CONFIG.POST_SIGNUP_PATH,
-    funnel_tag   : VL_CONFIG.FUNNEL_TAG
+    funnel_tag   : VL_CONFIG.FUNNEL_TAG,
+    affiliate_id : affiliateId,
+    campaign     : campaign
   };
 
   fetch(VL_CONFIG.REGISTER_ENDPOINT, {
-    method      : 'POST',
-    headers     : { 'Content-Type': 'application/json' },
-    credentials : 'include',
-    body        : JSON.stringify(payload)
+    method  : 'POST',
+    headers : { 'Content-Type': 'application/json' },
+    body    : JSON.stringify(payload)
   })
   .then(function (res) { return res.json().then(function (body) { return { status: res.status, body: body }; }); })
   .then(function (r) {

@@ -210,10 +210,14 @@ function vl_funnel_handle_register( WP_REST_Request $request ) {
 		ld_update_course_access( $user_id, VL_FUNNEL_FREE_COURSE_ID, false );
 	}
 
-	// 8. AffiliateWP referral crediting (mirrors the logic from the old functions.php fix,
-	//    but keyed off the affwp_ref cookie since no hidden form field exists on an external LP).
-	if ( function_exists( 'affiliate_wp' ) && ! empty( $_COOKIE['affwp_ref'] ) ) {
-		$affiliate_id = absint( $_COOKIE['affwp_ref'] );
+	// 8. AffiliateWP referral crediting. Cross-origin landing page (go.urbansketchcourse.com)
+	//    can't send learn.urbansketch.com cookies, so we accept the affiliate_id as a POST field.
+	//    Fall back to the cookie if present (for same-origin future use).
+	if ( function_exists( 'affiliate_wp' ) ) {
+		$affiliate_id = absint( $request->get_param( 'affiliate_id' ) );
+		if ( ! $affiliate_id && ! empty( $_COOKIE['affwp_ref'] ) ) {
+			$affiliate_id = absint( $_COOKIE['affwp_ref'] );
+		}
 		if ( $affiliate_id && affiliate_wp()->affiliates->get_affiliate( $affiliate_id ) ) {
 			affiliate_wp()->referrals->add( array(
 				'affiliate_id' => $affiliate_id,
