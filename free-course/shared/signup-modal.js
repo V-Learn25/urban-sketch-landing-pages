@@ -204,8 +204,12 @@
   function submitSignup(form, email, firstName, turnstileToken) {
     // Pull affiliate info from URL (?a= / ?ref=) or cookie. Cookies don't cross
     // domains, so we must POST the affiliate_id for the WP endpoint to credit AffiliateWP.
+    // Final fallback: every visitor on go.urbansketchcourse.com came via paid, so default
+    // to FBAds (36) if the param and cookie both missed (some Meta placements strip query
+    // params; Safari ITP can drop cookies). The MU-plugin ALSO has a server-side fallback,
+    // but sending it here means we don't rely on a single layer.
     var urlParams   = new URLSearchParams(window.location.search);
-    var affiliateId = urlParams.get('a') || urlParams.get('ref') || readCookie('affwp_affiliate_id') || '';
+    var affiliateId = urlParams.get('a') || urlParams.get('ref') || readCookie('affwp_affiliate_id') || '36';
     var campaign    = urlParams.get('campaign') || readCookie('affwp_campaign') || '';
 
     var payload = {

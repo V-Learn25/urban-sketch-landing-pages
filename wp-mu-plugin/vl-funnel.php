@@ -243,13 +243,32 @@ function vl_funnel_handle_register( WP_REST_Request $request ) {
 	// 8. AffiliateWP referral crediting. Cross-origin landing page (go.urbansketchcourse.com)
 	//    can't send learn.urbansketch.com cookies, so we accept the affiliate_id as a POST field.
 	//    Fall back to the cookie if present (for same-origin future use).
+	//    Further fallback: if a funnel_tag is present we're on a paid funnel, so default to
+	//    affiliate_id=36 (FBAds) so a missing cookie/param never silently drops attribution.
+	$funnel_tag = sanitize_key( (string) $request->get_param( 'funnel_tag' ) );
+
+	$affwp_raw_param = $request->get_param( 'affiliate_id' );
+	error_log( '[vl-funnel] register: email=' . $email . ' funnel_tag=' . $funnel_tag . ' affiliate_id_param=' . var_export( $affwp_raw_param, true ) . ' cookie_affwp_ref=' . ( isset( $_COOKIE['affwp_ref'] ) ? $_COOKIE['affwp_ref'] : 'none' ) );
+
 	if ( function_exists( 'affiliate_wp' ) ) {
-		$affiliate_id = absint( $request->get_param( 'affiliate_id' ) );
+		$affiliate_id = absint( $affwp_raw_param );
 		if ( ! $affiliate_id && ! empty( $_COOKIE['affwp_ref'] ) ) {
 			$affiliate_id = absint( $_COOKIE['affwp_ref'] );
+			error_log( '[vl-funnel] using cookie affwp_ref affiliate_id=' . $affiliate_id );
 		}
-		if ( $affiliate_id && affiliate_wp()->affiliates->get_affiliate( $affiliate_id ) ) {
-			affiliate_wp()->referrals->add( array(
+		// Fallback: any tagged funnel submission on go.urbansketchcourse.com came through paid,
+		// so credit FBAds (affiliate_id=36) even when the cookie/param made it through.
+		if ( ! $affiliate_id && $funnel_tag ) {
+			$affiliate_id = 36;
+			error_log( '[vl-funnel] FALLBACK: no affiliate_id, using default 36 for funnel_tag=' . $funnel_tag );
+		}
+
+		if ( ! $affiliate_id ) {
+			error_log( '[vl-funnel] SKIP referral: no affiliate_id resolvable (email=' . $email . ')' );
+		} elseif ( ! affiliate_wp()->affiliates->get_affiliate( $affiliate_id ) ) {
+			error_log( '[vl-funnel] SKIP referral: affiliate_id=' . $affiliate_id . ' not found in AffiliateWP (email=' . $email . ')' );
+		} else {
+			$referral_result = affiliate_wp()->referrals->add( array(
 				'affiliate_id' => $affiliate_id,
 				'amount'       => 0,
 				'description'  => 'SMM Free Course Signup: ' . $email,
@@ -257,11 +276,13 @@ function vl_funnel_handle_register( WP_REST_Request $request ) {
 				'context'      => 'vl_funnel_registration',
 				'status'       => 'unpaid',
 			) );
+			error_log( '[vl-funnel] referrals->add returned: ' . var_export( $referral_result, true ) . ' (email=' . $email . ', affiliate_id=' . $affiliate_id . ')' );
 		}
+	} else {
+		error_log( '[vl-funnel] SKIP referral: affiliate_wp() function not available (email=' . $email . ')' );
 	}
 
 	// 9. Tag the user with funnel metadata for later analytics.
-	$funnel_tag = sanitize_key( (string) $request->get_param( 'funnel_tag' ) );
 	update_user_meta( $user_id, 'vl_funnel_source', $funnel_tag ? $funnel_tag : 'smm-free-course' );
 	update_user_meta( $user_id, 'vl_funnel_signup_at', current_time( 'mysql' ) );
 

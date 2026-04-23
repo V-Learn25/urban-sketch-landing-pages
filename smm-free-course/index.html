@@ -1175,8 +1175,10 @@ function handleSignupSubmit(e) {
 function submitSignup(form, email, firstName, turnstileToken) {
   // Pull affiliate ID from either URL param (?a=36) or the Cloudflare-set cookie on go.urbansketchcourse.com.
   // Cookies don't cross domains, so we must pass it in the POST body for the WP endpoint to credit AffiliateWP.
+  // Final fallback: every visitor on go.urbansketchcourse.com came via paid, so default to FBAds (36) if
+  // param and cookie both missed (Meta placements sometimes strip query params; Safari ITP can drop cookies).
   var urlParams = new URLSearchParams(window.location.search);
-  var affiliateId = urlParams.get('a') || urlParams.get('ref') || readCookie('affwp_affiliate_id') || '';
+  var affiliateId = urlParams.get('a') || urlParams.get('ref') || readCookie('affwp_affiliate_id') || '36';
   var campaign    = urlParams.get('campaign') || readCookie('affwp_campaign') || '';
 
   var payload = {
