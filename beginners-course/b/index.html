@@ -472,18 +472,36 @@ footer{
   text-align:center;padding:2rem 1.5rem;font-size:1rem;
 }
 
-/* ===== STICKY MOBILE BAR ===== */
-.sticky-bar{
-  display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;
-  background:var(--white);
-  padding:.75rem 1rem;
-  box-shadow:0 -4px 20px rgba(0,0,0,.1);
-  border-top:1px solid var(--warm-grey);
+/* ===== STICKY BOTTOM CTA BAR (ISSPF-style, desktop + mobile) ===== */
+.sticky-cta{
+  position:fixed;bottom:0;left:0;right:0;z-index:100;
+  background:var(--charcoal);
+  border-top:4px solid var(--amber);
+  padding:14px 24px;
+  transform:translateY(110%);
+  transition:transform .25s ease;
+  box-shadow:0 -8px 32px rgba(0,0,0,.35);
 }
-.sticky-bar .buy-btn{padding:.85rem 1rem;font-size:1rem}
-@media(max-width:767px){
-  .sticky-bar.visible{display:block}
-  body{padding-bottom:70px}
+.sticky-cta.visible{transform:translateY(0)}
+.sticky-cta-inner{
+  max-width:1180px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.sticky-cta-text{
+  font-family:var(--sans);font-weight:700;
+  color:var(--white);font-size:14px;letter-spacing:.005em;
+}
+.sticky-cta-text .price{color:var(--amber);font-weight:800}
+.sticky-cta .buy-btn{
+  padding:12px 22px;font-size:13px;
+  width:auto;display:inline-block;margin:0;
+}
+body.sticky-active{padding-bottom:72px}
+@media (max-width:600px){
+  .sticky-cta{padding:10px 16px}
+  .sticky-cta-text{font-size:12px}
+  .sticky-cta .buy-btn{padding:10px 16px;font-size:12px}
+  body.sticky-active{padding-bottom:64px}
 }
 
 .proof-time{color:var(--text-lighter);font-size:.75rem}
@@ -1224,9 +1242,12 @@ footer{
   <p>&copy; 2026 Urban Sketch Course. All rights reserved.</p>
 </footer>
 
-<!-- ===== STICKY MOBILE BAR ===== -->
-<div class="sticky-bar">
-  <a href="#pricing" class="buy-btn">See What's Inside the Course</a>
+<!-- ===== STICKY BOTTOM CTA BAR ===== -->
+<div class="sticky-cta" id="stickyCta" aria-hidden="true">
+  <div class="sticky-cta-inner">
+    <span class="sticky-cta-text">Beginners Urban Sketching Course · <span class="price priceOffer"></span></span>
+    <a href="#" class="buy-btn" onclick="handleBuy(event)">Get Instant Access</a>
+  </div>
 </div>
 
 <script>
@@ -1433,17 +1454,29 @@ function toggleFaq(el){
 })();
 </script>
 <script>
+/* ===== STICKY CTA BAR — show after hero scrolls past, hide once pricing enters viewport ===== */
 (function(){
-  var bar = document.querySelector('.sticky-bar');
-  var anchor = document.getElementById('buy');
-  if(!bar || !anchor) return;
-  function check(){
-    var threshold = anchor.getBoundingClientRect().top + window.scrollY - window.innerHeight * 1.5;
-    if(window.scrollY > threshold){ bar.classList.add('visible'); }
-    else{ bar.classList.remove('visible'); }
+  var sticky = document.getElementById('stickyCta');
+  var hero = document.querySelector('.hero');
+  var pricing = document.getElementById('pricing');
+  var body = document.body;
+  if(!sticky || !hero || !pricing) return;
+  function update(){
+    var heroBottom = hero.getBoundingClientRect().bottom;
+    var pricingTop = pricing.getBoundingClientRect().top;
+    var viewportH = window.innerHeight;
+    var shouldShow = heroBottom < 0 && pricingTop > viewportH * 0.5;
+    if(shouldShow){
+      sticky.classList.add('visible');
+      body.classList.add('sticky-active');
+    } else {
+      sticky.classList.remove('visible');
+      body.classList.remove('sticky-active');
+    }
   }
-  window.addEventListener('scroll', check, {passive:true});
-  check();
+  window.addEventListener('scroll', update, {passive:true});
+  window.addEventListener('resize', update);
+  update();
 })();
 </script>
 </body>
