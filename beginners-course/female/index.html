@@ -1316,7 +1316,7 @@ function sendCAPI(eventName, customData){
     body:JSON.stringify(payload)
   }).catch(function(){});
 }
-sendCAPI('PageView', {variant: 'a'});
+sendCAPI('PageView', {variant: 'female'});
 
 /* ===== BUY BUTTON HANDLER - Facebook Pixel InitiateCheckout + CAPI + Param Passthrough ===== */
 function handleBuy(e) {
@@ -1324,10 +1324,10 @@ function handleBuy(e) {
 
   // Fire Facebook Pixel InitiateCheckout event (client-side) with variant
   if (typeof fbq === 'function') {
-    fbq('track', 'InitiateCheckout', {variant: 'a'});
+    fbq('track', 'InitiateCheckout', {variant: 'female'});
   }
   // Fire CAPI InitiateCheckout event (server-side) with variant
-  sendCAPI('InitiateCheckout', {variant: 'a'});
+  sendCAPI('InitiateCheckout', {variant: 'female'});
 
   // Build buy URL with passthrough parameters
   var baseURL = 'https://learn.urbansketch.com/smm/buy-beginners-course/';
@@ -1350,7 +1350,7 @@ function handleBuy(e) {
   });
 
   // Always append variant
-  passParams.set('variant', 'a');
+  passParams.set('variant', 'female');
 
   var queryString = passParams.toString();
   var finalURL = baseURL + (queryString ? '?' + queryString : '');
